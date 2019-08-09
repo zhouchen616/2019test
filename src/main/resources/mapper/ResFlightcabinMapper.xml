@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.holyrobot.con_res.mapper.ResFlightcabinMapper" >
+  <resultMap id="BaseResultMap" type="com.holyrobot.con_res.pojo.ResFlightcabin" >
+    <id column="ID" property="id" jdbcType="CHAR" />
+    <result column="FlightID" property="flightid" jdbcType="CHAR" />
+    <result column="CabinName" property="cabinname" jdbcType="VARCHAR" />
+    <result column="CabinNum" property="cabinnum" jdbcType="VARCHAR" />
+    <result column="CabinPrice" property="cabinprice" jdbcType="DECIMAL" />
+    <result column="CabinCode" property="cabincode" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, FlightID, CabinName, CabinNum, CabinPrice, CabinCode
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.holyrobot.con_res.pojo.ResFlightcabinExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from Res_FlightCabin
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from Res_FlightCabin
+    where ID = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from Res_FlightCabin
+    where ID = #{id,jdbcType=CHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.holyrobot.con_res.pojo.ResFlightcabinExample" >
+    delete from Res_FlightCabin
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.holyrobot.con_res.pojo.ResFlightcabin" >
+    insert into Res_FlightCabin (ID, FlightID, CabinName, 
+      CabinNum, CabinPrice, CabinCode
+      )
+    values (#{id,jdbcType=CHAR}, #{flightid,jdbcType=CHAR}, #{cabinname,jdbcType=VARCHAR},
+      #{cabinnum,jdbcType=VARCHAR}, #{cabinprice,jdbcType=DECIMAL}, #{cabincode,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.holyrobot.con_res.pojo.ResFlightcabin" >
+    insert into Res_FlightCabin
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="flightid != null" >
+        FlightID,
+      </if>
+      <if test="cabinname != null" >
+        CabinName,
+      </if>
+      <if test="cabinnum != null" >
+        CabinNum,
+      </if>
+      <if test="cabinprice != null" >
+        CabinPrice,
+      </if>
+      <if test="cabincode != null" >
+        CabinCode,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="flightid != null" >
+        #{flightid,jdbcType=CHAR},
+      </if>
+      <if test="cabinname != null" >
+        #{cabinname,jdbcType=VARCHAR},
+      </if>
+      <if test="cabinnum != null" >
+        #{cabinnum,jdbcType=VARCHAR},
+      </if>
+      <if test="cabinprice != null" >
+        #{cabinprice,jdbcType=DECIMAL},
+      </if>
+      <if test="cabincode != null" >
+        #{cabincode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.holyrobot.con_res.pojo.ResFlightcabinExample" resultType="java.lang.Integer" >
+    select count(*) from Res_FlightCabin
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update Res_FlightCabin
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=CHAR},
+      </if>
+      <if test="record.flightid != null" >
+        FlightID = #{record.flightid,jdbcType=CHAR},
+      </if>
+      <if test="record.cabinname != null" >
+        CabinName = #{record.cabinname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cabinnum != null" >
+        CabinNum = #{record.cabinnum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cabinprice != null" >
+        CabinPrice = #{record.cabinprice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.cabincode != null" >
+        CabinCode = #{record.cabincode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update Res_FlightCabin
+    set ID = #{record.id,jdbcType=CHAR},
+      FlightID = #{record.flightid,jdbcType=CHAR},
+      CabinName = #{record.cabinname,jdbcType=VARCHAR},
+      CabinNum = #{record.cabinnum,jdbcType=VARCHAR},
+      CabinPrice = #{record.cabinprice,jdbcType=DECIMAL},
+      CabinCode = #{record.cabincode,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.holyrobot.con_res.pojo.ResFlightcabin" >
+    update Res_FlightCabin
+    <set >
+      <if test="flightid != null" >
+        FlightID = #{flightid,jdbcType=CHAR},
+      </if>
+      <if test="cabinname != null" >
+        CabinName = #{cabinname,jdbcType=VARCHAR},
+      </if>
+      <if test="cabinnum != null" >
+        CabinNum = #{cabinnum,jdbcType=VARCHAR},
+      </if>
+      <if test="cabinprice != null" >
+        CabinPrice = #{cabinprice,jdbcType=DECIMAL},
+      </if>
+      <if test="cabincode != null" >
+        CabinCode = #{cabincode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.holyrobot.con_res.pojo.ResFlightcabin" >
+    update Res_FlightCabin
+    set FlightID = #{flightid,jdbcType=CHAR},
+      CabinName = #{cabinname,jdbcType=VARCHAR},
+      CabinNum = #{cabinnum,jdbcType=VARCHAR},
+      CabinPrice = #{cabinprice,jdbcType=DECIMAL},
+      CabinCode = #{cabincode,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+</mapper>

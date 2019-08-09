@@ -1,0 +1,523 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.holyrobot.con_volunteer.mapper.VolunteerProductTourMapper" >
+  <resultMap id="BaseResultMap" type="com.holyrobot.con_volunteer.pojo.VolunteerProductTour" >
+    <id column="ID" property="id" jdbcType="CHAR" />
+    <result column="OrgID" property="orgid" jdbcType="CHAR" />
+    <result column="TravelAgencyName" property="travelagencyname" jdbcType="VARCHAR" />
+    <result column="UserID" property="userid" jdbcType="CHAR" />
+    <result column="ShopName" property="shopname" jdbcType="VARCHAR" />
+    <result column="ProID" property="proid" jdbcType="CHAR" />
+    <result column="TourID" property="tourid" jdbcType="CHAR" />
+    <result column="PlanNum" property="plannum" jdbcType="INTEGER" />
+    <result column="TourName" property="tourname" jdbcType="VARCHAR" />
+    <result column="TourDate" property="tourdate" jdbcType="DATE" />
+    <result column="DueDate" property="duedate" jdbcType="DATE" />
+    <result column="DataStatus" property="datastatus" jdbcType="INTEGER" />
+    <result column="CreatedDate" property="createddate" jdbcType="TIMESTAMP" />
+    <result column="VolunteerProductID" property="volunteerproductid" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, OrgID, TravelAgencyName, UserID, ShopName, ProID, TourID, PlanNum, TourName,
+    TourDate, DueDate, DataStatus, CreatedDate, VolunteerProductID
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.holyrobot.con_volunteer.pojo.VolunteerProductTourExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from Volunteer_ProductTour
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from Volunteer_ProductTour
+    where ID = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from Volunteer_ProductTour
+    where ID = #{id,jdbcType=CHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.holyrobot.con_volunteer.pojo.VolunteerProductTourExample" >
+    delete from Volunteer_ProductTour
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.holyrobot.con_volunteer.pojo.VolunteerProductTour" >
+    insert into Volunteer_ProductTour (ID, OrgID, TravelAgencyName,
+    UserID, ShopName, ProID,
+    TourID, PlanNum, TourName,
+    TourDate, DueDate, DataStatus,
+    CreatedDate, VolunteerProductID)
+    values (#{id,jdbcType=CHAR}, #{orgid,jdbcType=CHAR}, #{travelagencyname,jdbcType=VARCHAR},
+    #{userid,jdbcType=CHAR}, #{shopname,jdbcType=VARCHAR}, #{proid,jdbcType=CHAR},
+    #{tourid,jdbcType=CHAR}, #{plannum,jdbcType=INTEGER}, #{tourname,jdbcType=VARCHAR},
+    #{tourdate,jdbcType=DATE}, #{duedate,jdbcType=DATE}, #{datastatus,jdbcType=INTEGER},
+    #{createddate,jdbcType=TIMESTAMP}, #{volunteerproductid,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.holyrobot.con_volunteer.pojo.VolunteerProductTour" >
+    insert into Volunteer_ProductTour
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="orgid != null" >
+        OrgID,
+      </if>
+      <if test="travelagencyname != null" >
+        TravelAgencyName,
+      </if>
+      <if test="userid != null" >
+        UserID,
+      </if>
+      <if test="shopname != null" >
+        ShopName,
+      </if>
+      <if test="proid != null" >
+        ProID,
+      </if>
+      <if test="tourid != null" >
+        TourID,
+      </if>
+      <if test="plannum != null" >
+        PlanNum,
+      </if>
+      <if test="tourname != null" >
+        TourName,
+      </if>
+      <if test="tourdate != null" >
+        TourDate,
+      </if>
+      <if test="duedate != null" >
+        DueDate,
+      </if>
+      <if test="datastatus != null" >
+        DataStatus,
+      </if>
+      <if test="createddate != null" >
+        CreatedDate,
+      </if>
+      <if test="volunteerproductid != null" >
+        VolunteerProductID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="orgid != null" >
+        #{orgid,jdbcType=CHAR},
+      </if>
+      <if test="travelagencyname != null" >
+        #{travelagencyname,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=CHAR},
+      </if>
+      <if test="shopname != null" >
+        #{shopname,jdbcType=VARCHAR},
+      </if>
+      <if test="proid != null" >
+        #{proid,jdbcType=CHAR},
+      </if>
+      <if test="tourid != null" >
+        #{tourid,jdbcType=CHAR},
+      </if>
+      <if test="plannum != null" >
+        #{plannum,jdbcType=INTEGER},
+      </if>
+      <if test="tourname != null" >
+        #{tourname,jdbcType=VARCHAR},
+      </if>
+      <if test="tourdate != null" >
+        #{tourdate,jdbcType=DATE},
+      </if>
+      <if test="duedate != null" >
+        #{duedate,jdbcType=DATE},
+      </if>
+      <if test="datastatus != null" >
+        #{datastatus,jdbcType=INTEGER},
+      </if>
+      <if test="createddate != null" >
+        #{createddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="volunteerproductid != null" >
+        #{volunteerproductid,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.holyrobot.con_volunteer.pojo.VolunteerProductTourExample" resultType="java.lang.Integer" >
+    select count(*) from Volunteer_ProductTour
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update Volunteer_ProductTour
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=CHAR},
+      </if>
+      <if test="record.orgid != null" >
+        OrgID = #{record.orgid,jdbcType=CHAR},
+      </if>
+      <if test="record.travelagencyname != null" >
+        TravelAgencyName = #{record.travelagencyname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userid != null" >
+        UserID = #{record.userid,jdbcType=CHAR},
+      </if>
+      <if test="record.shopname != null" >
+        ShopName = #{record.shopname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.proid != null" >
+        ProID = #{record.proid,jdbcType=CHAR},
+      </if>
+      <if test="record.tourid != null" >
+        TourID = #{record.tourid,jdbcType=CHAR},
+      </if>
+      <if test="record.plannum != null" >
+        PlanNum = #{record.plannum,jdbcType=INTEGER},
+      </if>
+      <if test="record.tourname != null" >
+        TourName = #{record.tourname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tourdate != null" >
+        TourDate = #{record.tourdate,jdbcType=DATE},
+      </if>
+      <if test="record.duedate != null" >
+        DueDate = #{record.duedate,jdbcType=DATE},
+      </if>
+      <if test="record.datastatus != null" >
+        DataStatus = #{record.datastatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.createddate != null" >
+        CreatedDate = #{record.createddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.volunteerproductid != null" >
+        VolunteerProductID = #{record.volunteerproductid,jdbcType=CHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update Volunteer_ProductTour
+    set ID = #{record.id,jdbcType=CHAR},
+    OrgID = #{record.orgid,jdbcType=CHAR},
+    TravelAgencyName = #{record.travelagencyname,jdbcType=VARCHAR},
+    UserID = #{record.userid,jdbcType=CHAR},
+    ShopName = #{record.shopname,jdbcType=VARCHAR},
+    ProID = #{record.proid,jdbcType=CHAR},
+    TourID = #{record.tourid,jdbcType=CHAR},
+    PlanNum = #{record.plannum,jdbcType=INTEGER},
+    TourName = #{record.tourname,jdbcType=VARCHAR},
+    TourDate = #{record.tourdate,jdbcType=DATE},
+    DueDate = #{record.duedate,jdbcType=DATE},
+    DataStatus = #{record.datastatus,jdbcType=INTEGER},
+    CreatedDate = #{record.createddate,jdbcType=TIMESTAMP},
+    VolunteerProductID = #{record.volunteerproductid,jdbcType=CHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.holyrobot.con_volunteer.pojo.VolunteerProductTour" >
+    update Volunteer_ProductTour
+    <set >
+      <if test="orgid != null" >
+        OrgID = #{orgid,jdbcType=CHAR},
+      </if>
+      <if test="travelagencyname != null" >
+        TravelAgencyName = #{travelagencyname,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null" >
+        UserID = #{userid,jdbcType=CHAR},
+      </if>
+      <if test="shopname != null" >
+        ShopName = #{shopname,jdbcType=VARCHAR},
+      </if>
+      <if test="proid != null" >
+        ProID = #{proid,jdbcType=CHAR},
+      </if>
+      <if test="tourid != null" >
+        TourID = #{tourid,jdbcType=CHAR},
+      </if>
+      <if test="plannum != null" >
+        PlanNum = #{plannum,jdbcType=INTEGER},
+      </if>
+      <if test="tourname != null" >
+        TourName = #{tourname,jdbcType=VARCHAR},
+      </if>
+      <if test="tourdate != null" >
+        TourDate = #{tourdate,jdbcType=DATE},
+      </if>
+      <if test="duedate != null" >
+        DueDate = #{duedate,jdbcType=DATE},
+      </if>
+      <if test="datastatus != null" >
+        DataStatus = #{datastatus,jdbcType=INTEGER},
+      </if>
+      <if test="createddate != null" >
+        CreatedDate = #{createddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="volunteerproductid != null" >
+        VolunteerProductID = #{volunteerproductid,jdbcType=CHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.holyrobot.con_volunteer.pojo.VolunteerProductTour" >
+    update Volunteer_ProductTour
+    set OrgID = #{orgid,jdbcType=CHAR},
+    TravelAgencyName = #{travelagencyname,jdbcType=VARCHAR},
+    UserID = #{userid,jdbcType=CHAR},
+    ShopName = #{shopname,jdbcType=VARCHAR},
+    ProID = #{proid,jdbcType=CHAR},
+    TourID = #{tourid,jdbcType=CHAR},
+    PlanNum = #{plannum,jdbcType=INTEGER},
+    TourName = #{tourname,jdbcType=VARCHAR},
+    TourDate = #{tourdate,jdbcType=DATE},
+    DueDate = #{duedate,jdbcType=DATE},
+    DataStatus = #{datastatus,jdbcType=INTEGER},
+    CreatedDate = #{createddate,jdbcType=TIMESTAMP},
+    VolunteerProductID = #{volunteerproductid,jdbcType=CHAR}
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+  <insert id="insertList" parameterType="java.util.List" >
+    insert into Volunteer_ProductTour (ID, OrgID, TravelAgencyName,
+    UserID, ShopName, ProID,
+    TourID, PlanNum, TourName,
+    TourDate, DueDate, DataStatus,
+    CreatedDate, VolunteerProductID)
+    values
+    <foreach collection="list" separator="," item="tour" >
+      (#{tour.id,jdbcType=CHAR}, #{tour.orgid,jdbcType=CHAR}, #{tour.travelagencyname,jdbcType=VARCHAR},
+      #{tour.userid,jdbcType=CHAR}, #{tour.shopname,jdbcType=VARCHAR}, #{tour.proid,jdbcType=CHAR},
+      #{tour.tourid,jdbcType=CHAR}, #{tour.plannum,jdbcType=INTEGER}, #{tour.tourname,jdbcType=VARCHAR},
+      #{tour.tourdate,jdbcType=DATE}, #{tour.duedate,jdbcType=DATE}, #{tour.datastatus,jdbcType=INTEGER},
+      #{tour.createddate,jdbcType=TIMESTAMP}, #{tour.volunteerproductid,jdbcType=CHAR})
+    </foreach>
+  </insert>
+  <select id="selectTourIds" resultType="java.lang.String">
+    SELECT TourID FROM  Volunteer_ProductTour as t
+    LEFT JOIN volunteer_product as p on p.id = t.volunteerProductId
+    where p.ProID = #{proId}
+    and p.dataStatus in(0,1)
+    and p.UserID =#{userId}
+    AND p.OrgID =#{orgId}
+    AND P.ProStatus = #{proStatus}
+  </select>
+  <select id="selectTourList" resultType="com.holyrobot.dto.TourBo">
+     SELECT
+    a.PlanNum - ISNULL(d.VisitorNum, 0) - ISNULL(a.TourEscortNum, 0) stock ,
+    c.ID AS id,
+    a.TourNo AS tourNo,
+    c.TourName AS tourName,
+    c.TourDate AS tourDate,
+    c.DueDate AS dueDate,
+    a.PlanNum AS planNum,
+    a.MinNum AS minNum,
+    a.SeatNum AS seatNum,
+    a.RefDepFlight AS refDepFlight,
+    a.RefBackFlight AS refBackFlight,
+    a.TourStatus AS tourStatus,
+    b.SalesPrice AS salesPrice,
+    b.DirectPrice AS directPrice,
+    a.IsTail AS isTail,
+    a.TailAuditStatus AS tailAuditStatus,
+    a.IsAck AS isAck,
+    a.HasTraffic AS hasTraffic
+    FROM
+    Volunteer_ProductTour AS c
+    LEFT JOIN Volunteer_ProductTourPrice AS b ON b.VolunteerProductID = c.ID
+    LEFT JOIN Pro_Tour AS a ON a.ID = c.TourID
+		LEFT JOIN Volunteer_Product as p on p.ID = c.VolunteerProductID
+
+		LEFT JOIN --已报名人数
+    ( SELECT    SUM(a.VisitorNum) VisitorNum ,
+    TourID
+    FROM      Ord_Order_Price a
+    INNER JOIN Ord_OrderInfo b ON a.OrderID = b.ID
+    WHERE     a.IsSeat = 1
+    AND (b.DataStatus != -1 AND b.DataStatus != -3) --取消 和 取消订单
+    AND b.ID NOT IN ( SELECT    ToOrderID
+    FROM      dbo.Ord_OrderToInside )
+    AND b.ID NOT IN ( SELECT    ParentOrderID
+    FROM      [Ord_OrderRelationship])
+    GROUP BY  TourID
+    ) AS d ON c.TourID = d.TourID
+    WHERE
+    c.ProID = #{proId}
+		AND p.UserID = #{userId}
+    AND b.SiteID = #{siteId}
+
+	AND p.ProStatus =  #{proStatus}
+    AND a.TourDate like '%${dates}%'
+    AND c.DataStatus = 1
+    AND p.DataStatus = 1
+    AND b.IsDefault=1
+    AND B.DataStatus = 1
+   and a.TourStatus!=-1
+    AND C.DueDate > DATEADD(DAY, -1, GETDATE())
+    order by a.TourDate
+  </select>
+  <select id="listTourLimit" resultType="com.holyrobot.dto.TourBo">
+    SELECT
+    TOP 7 z.ID AS id,
+    a.TourNo AS tourNo,
+    a.TourName AS tourName,
+    a.TourDate AS tourDate,
+    a.DueDate AS dueDate,
+    a.PlanNum AS planNum,
+    a.MinNum AS minNum,
+    a.SeatNum AS seatNum,
+    a.RefDepFlight AS refDepFlight,
+    a.RefBackFlight AS refBackFlight,
+    a.TourStatus AS tourStatus,
+    b.SalesPrice AS salesPrice,
+    b.DirectPrice AS directPrice,
+    B.SiteID
+    FROM
+    Pro_Tour a
+    LEFT JOIN Volunteer_ProductTour AS Z ON Z.TourID = a.ID
+    INNER JOIN Volunteer_ProductTourPrice b ON b.VolunteerProductID= Z.ID
+	LEFT JOIN Volunteer_Product as p on p.ID = Z.VolunteerProductID
+    WHERE
+    b.IsDefault = 1
+    AND z.ProID = #{proId}
+		AND p.UserID = #{userId}
+		AND p.ProStatus = #{proStatus}
+    AND a.TourStatus !=- 1
+    AND b.SiteID =#{siteId}
+    AND z.DataStatus = 1
+    AND p.DataStatus = 1
+    AND z.TourDate >= GETDATE()
+    ORDER BY
+    a.TourDate
+  </select>
+  <select id="listPricePolicy"  resultType="com.holyrobot.dto.TourPricePolicyBo">
+     SELECT
+    a.ID AS id,
+    a.TouristType AS touristType,
+    a.PolicyName AS policyName,
+    a.SalesPrice AS salesPrice,
+    a.RebatePrice AS rebatePrice,
+    a.SingleRoomPrice AS singleRoomPrice,
+    a.IsDefault AS def,
+    a.IsOccupySeat AS seat,
+    a.OrderIndex AS orderIndex,
+    (a.DirectPrice-a.DirectCostPrice) AS volunteerRebatePrice,
+    a.DirectCostPrice AS volunteerDirectPrice,
+    a.DirectCostPrice AS volunteerSalesPrice,
+    a.DirectPrice AS directPrice,
+    a.Allowance AS allowance
+    FROM
+    Volunteer_ProductTourPrice a
+    INNER JOIN Volunteer_ProductTour b ON a.VolunteerProductID = b.ID
+		LEFT JOIN Volunteer_Product as p on p.ID = b.VolunteerProductID
+    WHERE
+    b.ID = #{tourID}
+    AND a.SiteID = #{siteId}
+    AND b.DataStatus = 1
+    AND b.UserID = #{userId}
+	AND p.ProStatus =  #{proStatus}
+  </select>
+  <select id="selectMinRebatePrice" parameterType="map" resultType="com.holyrobot.dto.RebatePriceDto">
+SELECT
+	MIN (ISNULL(RebatePrice , 0)) as price,
+	ROUND((MIN (ISNULL(RebatePrice , 0)/ DirectPrice)),3) AS pricePercent
+FROM
+	Volunteer_Product AS p
+LEFT JOIN Volunteer_ProductTour AS t ON t.VolunteerProductID = p.ID
+LEFT JOIN Volunteer_ProductTourPrice AS vp ON vp.VolunteerProductID = t.ID
+WHERE
+	p.ProID = #{proId}
+<if test="siteId != null and siteId != '' ">
+AND vp.SiteID = #{siteId}
+</if>
+and p.UserID = #{userId}
+and vp.DirectPrice is not null
+AND p.ProStatus = #{proStatus}
+  </select>
+  <select id="manyTours" resultType="com.holyrobot.dto.ManyToursDto">
+    SELECT pt.tourno,t.ID as tourId,tp.DirectPrice,t.tourDate as tourDate from Volunteer_Product as p
+LEFT JOIN Volunteer_ProductTour as t on t.VolunteerProductID = p.ID
+LEFT JOIN Pro_Tour as pt on pt.id =t.tourid
+LEFT JOIN Volunteer_ProductTourPrice as tp on tp.VolunteerProductID = t.ID
+ WHERE p.OrgID=#{orgId}
+and p.ProID = #{proId}
+AND p.UserID =#{userId}
+and tp.SiteID = #{siteId}
+and t.TourDate = #{tourDate}
+and p.ProStatus = #{proStatus}
+AND p.DataStatus = 1
+and tp.IsDefault =1
+  </select>
+</mapper>

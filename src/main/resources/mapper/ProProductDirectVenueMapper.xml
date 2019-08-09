@@ -1,0 +1,368 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.holyrobot.con_product.mapper.ProProductDirectVenueMapper" >
+  <resultMap id="BaseResultMap" type="com.holyrobot.con_product.pojo.ProProductDirectVenue" >
+    <id column="ID" property="id" jdbcType="CHAR" />
+    <result column="OrgID" property="orgid" jdbcType="CHAR" />
+    <result column="TourID" property="tourid" jdbcType="CHAR" />
+    <result column="ProID" property="proid" jdbcType="CHAR" />
+    <result column="SiteID" property="siteid" jdbcType="CHAR" />
+    <result column="SiteName" property="sitename" jdbcType="VARCHAR" />
+    <result column="DepartureID" property="departureid" jdbcType="CHAR" />
+    <result column="DepartureName" property="departurename" jdbcType="VARCHAR" />
+    <result column="ShuttlePriceCost" property="shuttlepricecost" jdbcType="DECIMAL" />
+    <result column="DropOffPriceCost" property="dropoffpricecost" jdbcType="DECIMAL" />
+    <result column="ShuttlePriceSales" property="shuttlepricesales" jdbcType="DECIMAL" />
+    <result column="DropOffPriceSales" property="dropoffpricesales" jdbcType="DECIMAL" />
+    <result column="Venue" property="venue" jdbcType="VARCHAR" />
+    <result column="CollectionTime" property="collectiontime" jdbcType="VARCHAR" />
+    <result column="ProTourVenueID" property="protourvenueid" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, OrgID, TourID, ProID, SiteID, SiteName, DepartureID, DepartureName, ShuttlePriceCost, 
+    DropOffPriceCost, ShuttlePriceSales, DropOffPriceSales, Venue, CollectionTime, ProTourVenueID
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.holyrobot.con_product.pojo.ProProductDirectVenueExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from Pro_Product_DirectVenue
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from Pro_Product_DirectVenue
+    where ID = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from Pro_Product_DirectVenue
+    where ID = #{id,jdbcType=CHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.holyrobot.con_product.pojo.ProProductDirectVenueExample" >
+    delete from Pro_Product_DirectVenue
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.holyrobot.con_product.pojo.ProProductDirectVenue" >
+    insert into Pro_Product_DirectVenue (ID, OrgID, TourID, ProID, 
+      SiteID, SiteName, DepartureID, 
+      DepartureName, ShuttlePriceCost, DropOffPriceCost, 
+      ShuttlePriceSales, DropOffPriceSales, Venue, 
+      CollectionTime, ProTourVenueID)
+    values (#{id,jdbcType=CHAR}, #{orgid,jdbcType=CHAR}, #{tourid,jdbcType=CHAR}, #{proid,jdbcType=CHAR}, 
+      #{siteid,jdbcType=CHAR}, #{sitename,jdbcType=VARCHAR}, #{departureid,jdbcType=CHAR},
+      #{departurename,jdbcType=VARCHAR}, #{shuttlepricecost,jdbcType=DECIMAL}, #{dropoffpricecost,jdbcType=DECIMAL},
+      #{shuttlepricesales,jdbcType=DECIMAL}, #{dropoffpricesales,jdbcType=DECIMAL}, #{venue,jdbcType=VARCHAR},
+      #{collectiontime,jdbcType=VARCHAR}, #{protourvenueid,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.holyrobot.con_product.pojo.ProProductDirectVenue" >
+    insert into Pro_Product_DirectVenue
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="orgid != null" >
+        OrgID,
+      </if>
+      <if test="tourid != null" >
+        TourID,
+      </if>
+      <if test="proid != null" >
+        ProID,
+      </if>
+      <if test="siteid != null" >
+        SiteID,
+      </if>
+      <if test="sitename != null" >
+        SiteName,
+      </if>
+      <if test="departureid != null" >
+        DepartureID,
+      </if>
+      <if test="departurename != null" >
+        DepartureName,
+      </if>
+      <if test="shuttlepricecost != null" >
+        ShuttlePriceCost,
+      </if>
+      <if test="dropoffpricecost != null" >
+        DropOffPriceCost,
+      </if>
+      <if test="shuttlepricesales != null" >
+        ShuttlePriceSales,
+      </if>
+      <if test="dropoffpricesales != null" >
+        DropOffPriceSales,
+      </if>
+      <if test="venue != null" >
+        Venue,
+      </if>
+      <if test="collectiontime != null" >
+        CollectionTime,
+      </if>
+      <if test="protourvenueid != null" >
+        ProTourVenueID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="orgid != null" >
+        #{orgid,jdbcType=CHAR},
+      </if>
+      <if test="tourid != null" >
+        #{tourid,jdbcType=CHAR},
+      </if>
+      <if test="proid != null" >
+        #{proid,jdbcType=CHAR},
+      </if>
+      <if test="siteid != null" >
+        #{siteid,jdbcType=CHAR},
+      </if>
+      <if test="sitename != null" >
+        #{sitename,jdbcType=VARCHAR},
+      </if>
+      <if test="departureid != null" >
+        #{departureid,jdbcType=CHAR},
+      </if>
+      <if test="departurename != null" >
+        #{departurename,jdbcType=VARCHAR},
+      </if>
+      <if test="shuttlepricecost != null" >
+        #{shuttlepricecost,jdbcType=DECIMAL},
+      </if>
+      <if test="dropoffpricecost != null" >
+        #{dropoffpricecost,jdbcType=DECIMAL},
+      </if>
+      <if test="shuttlepricesales != null" >
+        #{shuttlepricesales,jdbcType=DECIMAL},
+      </if>
+      <if test="dropoffpricesales != null" >
+        #{dropoffpricesales,jdbcType=DECIMAL},
+      </if>
+      <if test="venue != null" >
+        #{venue,jdbcType=VARCHAR},
+      </if>
+      <if test="collectiontime != null" >
+        #{collectiontime,jdbcType=VARCHAR},
+      </if>
+      <if test="protourvenueid != null" >
+        #{protourvenueid,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.holyrobot.con_product.pojo.ProProductDirectVenueExample" resultType="java.lang.Integer" >
+    select count(*) from Pro_Product_DirectVenue
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update Pro_Product_DirectVenue
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=CHAR},
+      </if>
+      <if test="record.orgid != null" >
+        OrgID = #{record.orgid,jdbcType=CHAR},
+      </if>
+      <if test="record.tourid != null" >
+        TourID = #{record.tourid,jdbcType=CHAR},
+      </if>
+      <if test="record.proid != null" >
+        ProID = #{record.proid,jdbcType=CHAR},
+      </if>
+      <if test="record.siteid != null" >
+        SiteID = #{record.siteid,jdbcType=CHAR},
+      </if>
+      <if test="record.sitename != null" >
+        SiteName = #{record.sitename,jdbcType=VARCHAR},
+      </if>
+      <if test="record.departureid != null" >
+        DepartureID = #{record.departureid,jdbcType=CHAR},
+      </if>
+      <if test="record.departurename != null" >
+        DepartureName = #{record.departurename,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shuttlepricecost != null" >
+        ShuttlePriceCost = #{record.shuttlepricecost,jdbcType=DECIMAL},
+      </if>
+      <if test="record.dropoffpricecost != null" >
+        DropOffPriceCost = #{record.dropoffpricecost,jdbcType=DECIMAL},
+      </if>
+      <if test="record.shuttlepricesales != null" >
+        ShuttlePriceSales = #{record.shuttlepricesales,jdbcType=DECIMAL},
+      </if>
+      <if test="record.dropoffpricesales != null" >
+        DropOffPriceSales = #{record.dropoffpricesales,jdbcType=DECIMAL},
+      </if>
+      <if test="record.venue != null" >
+        Venue = #{record.venue,jdbcType=VARCHAR},
+      </if>
+      <if test="record.collectiontime != null" >
+        CollectionTime = #{record.collectiontime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.protourvenueid != null" >
+        ProTourVenueID = #{record.protourvenueid,jdbcType=CHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update Pro_Product_DirectVenue
+    set ID = #{record.id,jdbcType=CHAR},
+      OrgID = #{record.orgid,jdbcType=CHAR},
+      TourID = #{record.tourid,jdbcType=CHAR},
+      ProID = #{record.proid,jdbcType=CHAR},
+      SiteID = #{record.siteid,jdbcType=CHAR},
+      SiteName = #{record.sitename,jdbcType=VARCHAR},
+      DepartureID = #{record.departureid,jdbcType=CHAR},
+      DepartureName = #{record.departurename,jdbcType=VARCHAR},
+      ShuttlePriceCost = #{record.shuttlepricecost,jdbcType=DECIMAL},
+      DropOffPriceCost = #{record.dropoffpricecost,jdbcType=DECIMAL},
+      ShuttlePriceSales = #{record.shuttlepricesales,jdbcType=DECIMAL},
+      DropOffPriceSales = #{record.dropoffpricesales,jdbcType=DECIMAL},
+      Venue = #{record.venue,jdbcType=VARCHAR},
+      CollectionTime = #{record.collectiontime,jdbcType=VARCHAR},
+      ProTourVenueID = #{record.protourvenueid,jdbcType=CHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.holyrobot.con_product.pojo.ProProductDirectVenue" >
+    update Pro_Product_DirectVenue
+    <set >
+      <if test="orgid != null" >
+        OrgID = #{orgid,jdbcType=CHAR},
+      </if>
+      <if test="tourid != null" >
+        TourID = #{tourid,jdbcType=CHAR},
+      </if>
+      <if test="proid != null" >
+        ProID = #{proid,jdbcType=CHAR},
+      </if>
+      <if test="siteid != null" >
+        SiteID = #{siteid,jdbcType=CHAR},
+      </if>
+      <if test="sitename != null" >
+        SiteName = #{sitename,jdbcType=VARCHAR},
+      </if>
+      <if test="departureid != null" >
+        DepartureID = #{departureid,jdbcType=CHAR},
+      </if>
+      <if test="departurename != null" >
+        DepartureName = #{departurename,jdbcType=VARCHAR},
+      </if>
+      <if test="shuttlepricecost != null" >
+        ShuttlePriceCost = #{shuttlepricecost,jdbcType=DECIMAL},
+      </if>
+      <if test="dropoffpricecost != null" >
+        DropOffPriceCost = #{dropoffpricecost,jdbcType=DECIMAL},
+      </if>
+      <if test="shuttlepricesales != null" >
+        ShuttlePriceSales = #{shuttlepricesales,jdbcType=DECIMAL},
+      </if>
+      <if test="dropoffpricesales != null" >
+        DropOffPriceSales = #{dropoffpricesales,jdbcType=DECIMAL},
+      </if>
+      <if test="venue != null" >
+        Venue = #{venue,jdbcType=VARCHAR},
+      </if>
+      <if test="collectiontime != null" >
+        CollectionTime = #{collectiontime,jdbcType=VARCHAR},
+      </if>
+      <if test="protourvenueid != null" >
+        ProTourVenueID = #{protourvenueid,jdbcType=CHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.holyrobot.con_product.pojo.ProProductDirectVenue" >
+    update Pro_Product_DirectVenue
+    set OrgID = #{orgid,jdbcType=CHAR},
+      TourID = #{tourid,jdbcType=CHAR},
+      ProID = #{proid,jdbcType=CHAR},
+      SiteID = #{siteid,jdbcType=CHAR},
+      SiteName = #{sitename,jdbcType=VARCHAR},
+      DepartureID = #{departureid,jdbcType=CHAR},
+      DepartureName = #{departurename,jdbcType=VARCHAR},
+      ShuttlePriceCost = #{shuttlepricecost,jdbcType=DECIMAL},
+      DropOffPriceCost = #{dropoffpricecost,jdbcType=DECIMAL},
+      ShuttlePriceSales = #{shuttlepricesales,jdbcType=DECIMAL},
+      DropOffPriceSales = #{dropoffpricesales,jdbcType=DECIMAL},
+      Venue = #{venue,jdbcType=VARCHAR},
+      CollectionTime = #{collectiontime,jdbcType=VARCHAR},
+      ProTourVenueID = #{protourvenueid,jdbcType=CHAR}
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+</mapper>

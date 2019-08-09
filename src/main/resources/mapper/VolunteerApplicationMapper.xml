@@ -1,0 +1,603 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.holyrobot.con_volunteer.mapper.VolunteerApplicationMapper" >
+  <resultMap id="BaseResultMap" type="com.holyrobot.con_volunteer.pojo.VolunteerApplication" >
+    <id column="ID" property="id" jdbcType="CHAR" />
+    <result column="OrgID" property="orgid" jdbcType="CHAR" />
+    <result column="TravelAgencyName" property="travelagencyname" jdbcType="VARCHAR" />
+    <result column="UserID" property="userid" jdbcType="CHAR" />
+    <result column="UserName" property="username" jdbcType="VARCHAR" />
+    <result column="UserCard" property="usercard" jdbcType="VARCHAR" />
+    <result column="UserCardUrl" property="usercardurl" jdbcType="VARCHAR" />
+    <result column="Phone" property="phone" jdbcType="VARCHAR" />
+    <result column="TAContact" property="tacontact" jdbcType="VARCHAR" />
+    <result column="ShopName" property="shopname" jdbcType="VARCHAR" />
+    <result column="ShopHeadPortrait" property="shopheadportrait" jdbcType="VARCHAR" />
+    <result column="PayType" property="paytype" jdbcType="VARCHAR" />
+    <result column="DepositBank" property="depositbank" jdbcType="VARCHAR" />
+    <result column="CardNo" property="cardno" jdbcType="VARCHAR" />
+    <result column="DataStatus" property="datastatus" jdbcType="INTEGER" />
+    <result column="CreatedDate" property="createddate" jdbcType="TIMESTAMP" />
+    <result column="Remark" property="remark" jdbcType="VARCHAR" />
+    <result column="AutoUpdate" property="autoupdate" jdbcType="INTEGER" />
+    <result column="AdjustmentType" property="adjustmenttype" jdbcType="INTEGER" />
+    <result column="AdjustmentMethod" property="adjustmentmethod" jdbcType="INTEGER" />
+    <result column="Percentage" property="percentage" jdbcType="DECIMAL" />
+    <result column="FixedAmount" property="fixedamount" jdbcType="DECIMAL" />
+    <result column="InfoStatus" property="infostatus" jdbcType="INTEGER" />
+    <result column="TaContactID" property="tacontactid" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, OrgID, TravelAgencyName, UserID, UserName, UserCard, UserCardUrl, Phone, TAContact,
+    ShopName, ShopHeadPortrait, PayType, DepositBank, CardNo, DataStatus, CreatedDate,
+    Remark, AutoUpdate, AdjustmentType, AdjustmentMethod, Percentage, FixedAmount, InfoStatus,TaContactID
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.holyrobot.con_volunteer.pojo.VolunteerApplicationExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from Volunteer_Application
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from Volunteer_Application
+    where ID = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from Volunteer_Application
+    where ID = #{id,jdbcType=CHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.holyrobot.con_volunteer.pojo.VolunteerApplicationExample" >
+    delete from Volunteer_Application
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.holyrobot.con_volunteer.pojo.VolunteerApplication" >
+    insert into Volunteer_Application (ID, OrgID, TravelAgencyName,
+      UserID, UserName, UserCard,
+      UserCardUrl, Phone, TAContact,
+      ShopName, ShopHeadPortrait, PayType,
+      DepositBank, CardNo, DataStatus,
+      CreatedDate, Remark, AutoUpdate,
+      AdjustmentType, AdjustmentMethod, Percentage,
+      FixedAmount, InfoStatus,TaContactID)
+    values (#{id,jdbcType=CHAR}, #{orgid,jdbcType=CHAR}, #{travelagencyname,jdbcType=VARCHAR},
+      #{userid,jdbcType=CHAR}, #{username,jdbcType=VARCHAR}, #{usercard,jdbcType=VARCHAR},
+      #{usercardurl,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{tacontact,jdbcType=VARCHAR},
+      #{shopname,jdbcType=VARCHAR}, #{shopheadportrait,jdbcType=VARCHAR}, #{paytype,jdbcType=VARCHAR},
+      #{depositbank,jdbcType=VARCHAR}, #{cardno,jdbcType=VARCHAR}, #{datastatus,jdbcType=INTEGER},
+      #{createddate,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR}, #{autoupdate,jdbcType=INTEGER},
+      #{adjustmenttype,jdbcType=INTEGER}, #{adjustmentmethod,jdbcType=INTEGER}, #{percentage,jdbcType=DECIMAL},
+      #{fixedamount,jdbcType=DECIMAL}, #{infostatus,jdbcType=INTEGER}, #{tacontactid,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.holyrobot.con_volunteer.pojo.VolunteerApplication" >
+    insert into Volunteer_Application
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="orgid != null" >
+        OrgID,
+      </if>
+      <if test="travelagencyname != null" >
+        TravelAgencyName,
+      </if>
+      <if test="userid != null" >
+        UserID,
+      </if>
+      <if test="username != null" >
+        UserName,
+      </if>
+      <if test="usercard != null" >
+        UserCard,
+      </if>
+      <if test="usercardurl != null" >
+        UserCardUrl,
+      </if>
+      <if test="phone != null" >
+        Phone,
+      </if>
+      <if test="tacontact != null" >
+        TAContact,
+      </if>
+      <if test="shopname != null" >
+        ShopName,
+      </if>
+      <if test="shopheadportrait != null" >
+        ShopHeadPortrait,
+      </if>
+      <if test="paytype != null" >
+        PayType,
+      </if>
+      <if test="depositbank != null" >
+        DepositBank,
+      </if>
+      <if test="cardno != null" >
+        CardNo,
+      </if>
+      <if test="datastatus != null" >
+        DataStatus,
+      </if>
+      <if test="createddate != null" >
+        CreatedDate,
+      </if>
+      <if test="remark != null" >
+        Remark,
+      </if>
+      <if test="autoupdate != null" >
+        AutoUpdate,
+      </if>
+      <if test="adjustmenttype != null" >
+        AdjustmentType,
+      </if>
+      <if test="adjustmentmethod != null" >
+        AdjustmentMethod,
+      </if>
+      <if test="percentage != null" >
+        Percentage,
+      </if>
+      <if test="fixedamount != null" >
+        FixedAmount,
+      </if>
+      <if test="infostatus != null" >
+        InfoStatus,
+      </if>
+      <if test="tacontactid != null" >
+        TaContactID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="orgid != null" >
+        #{orgid,jdbcType=CHAR},
+      </if>
+      <if test="travelagencyname != null" >
+        #{travelagencyname,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=CHAR},
+      </if>
+      <if test="username != null" >
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="usercard != null" >
+        #{usercard,jdbcType=VARCHAR},
+      </if>
+      <if test="usercardurl != null" >
+        #{usercardurl,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="tacontact != null" >
+        #{tacontact,jdbcType=VARCHAR},
+      </if>
+      <if test="shopname != null" >
+        #{shopname,jdbcType=VARCHAR},
+      </if>
+      <if test="shopheadportrait != null" >
+        #{shopheadportrait,jdbcType=VARCHAR},
+      </if>
+      <if test="paytype != null" >
+        #{paytype,jdbcType=VARCHAR},
+      </if>
+      <if test="depositbank != null" >
+        #{depositbank,jdbcType=VARCHAR},
+      </if>
+      <if test="cardno != null" >
+        #{cardno,jdbcType=VARCHAR},
+      </if>
+      <if test="datastatus != null" >
+        #{datastatus,jdbcType=INTEGER},
+      </if>
+      <if test="createddate != null" >
+        #{createddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="autoupdate != null" >
+        #{autoupdate,jdbcType=INTEGER},
+      </if>
+      <if test="adjustmenttype != null" >
+        #{adjustmenttype,jdbcType=INTEGER},
+      </if>
+      <if test="adjustmentmethod != null" >
+        #{adjustmentmethod,jdbcType=INTEGER},
+      </if>
+      <if test="percentage != null" >
+        #{percentage,jdbcType=DECIMAL},
+      </if>
+      <if test="fixedamount != null" >
+        #{fixedamount,jdbcType=DECIMAL},
+      </if>
+      <if test="infostatus != null" >
+        #{infostatus,jdbcType=INTEGER},
+      </if>
+      <if test="tacontactid != null" >
+        #{tacontactid,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.holyrobot.con_volunteer.pojo.VolunteerApplicationExample" resultType="java.lang.Integer" >
+    select count(*) from Volunteer_Application
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update Volunteer_Application
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=CHAR},
+      </if>
+      <if test="record.orgid != null" >
+        OrgID = #{record.orgid,jdbcType=CHAR},
+      </if>
+      <if test="record.travelagencyname != null" >
+        TravelAgencyName = #{record.travelagencyname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userid != null" >
+        UserID = #{record.userid,jdbcType=CHAR},
+      </if>
+      <if test="record.username != null" >
+        UserName = #{record.username,jdbcType=VARCHAR},
+      </if>
+      <if test="record.usercard != null" >
+        UserCard = #{record.usercard,jdbcType=VARCHAR},
+      </if>
+      <if test="record.usercardurl != null" >
+        UserCardUrl = #{record.usercardurl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.phone != null" >
+        Phone = #{record.phone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tacontact != null" >
+        TAContact = #{record.tacontact,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shopname != null" >
+        ShopName = #{record.shopname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shopheadportrait != null" >
+        ShopHeadPortrait = #{record.shopheadportrait,jdbcType=VARCHAR},
+      </if>
+      <if test="record.paytype != null" >
+        PayType = #{record.paytype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.depositbank != null" >
+        DepositBank = #{record.depositbank,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cardno != null" >
+        CardNo = #{record.cardno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.datastatus != null" >
+        DataStatus = #{record.datastatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.createddate != null" >
+        CreatedDate = #{record.createddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.remark != null" >
+        Remark = #{record.remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.autoupdate != null" >
+        AutoUpdate = #{record.autoupdate,jdbcType=INTEGER},
+      </if>
+      <if test="record.adjustmenttype != null" >
+        AdjustmentType = #{record.adjustmenttype,jdbcType=INTEGER},
+      </if>
+      <if test="record.adjustmentmethod != null" >
+        AdjustmentMethod = #{record.adjustmentmethod,jdbcType=INTEGER},
+      </if>
+      <if test="record.percentage != null" >
+        Percentage = #{record.percentage,jdbcType=DECIMAL},
+      </if>
+      <if test="record.fixedamount != null" >
+        FixedAmount = #{record.fixedamount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.infostatus != null" >
+        InfoStatus = #{record.infostatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.tacontactid != null" >
+        TaContactID = #{record.tacontactid,jdbcType=CHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update Volunteer_Application
+    set ID = #{record.id,jdbcType=CHAR},
+    OrgID = #{record.orgid,jdbcType=CHAR},
+    TravelAgencyName = #{record.travelagencyname,jdbcType=VARCHAR},
+    UserID = #{record.userid,jdbcType=CHAR},
+    UserName = #{record.username,jdbcType=VARCHAR},
+    UserCard = #{record.usercard,jdbcType=VARCHAR},
+    UserCardUrl = #{record.usercardurl,jdbcType=VARCHAR},
+    Phone = #{record.phone,jdbcType=VARCHAR},
+    TAContact = #{record.tacontact,jdbcType=VARCHAR},
+    ShopName = #{record.shopname,jdbcType=VARCHAR},
+    ShopHeadPortrait = #{record.shopheadportrait,jdbcType=VARCHAR},
+    PayType = #{record.paytype,jdbcType=VARCHAR},
+    DepositBank = #{record.depositbank,jdbcType=VARCHAR},
+    CardNo = #{record.cardno,jdbcType=VARCHAR},
+    DataStatus = #{record.datastatus,jdbcType=INTEGER},
+    CreatedDate = #{record.createddate,jdbcType=TIMESTAMP},
+    Remark = #{record.remark,jdbcType=VARCHAR},
+    AutoUpdate = #{record.autoupdate,jdbcType=INTEGER},
+    AdjustmentType = #{record.adjustmenttype,jdbcType=INTEGER},
+    AdjustmentMethod = #{record.adjustmentmethod,jdbcType=INTEGER},
+    Percentage = #{record.percentage,jdbcType=DECIMAL},
+    FixedAmount = #{record.fixedamount,jdbcType=DECIMAL},
+    InfoStatus = #{record.infostatus,jdbcType=INTEGER},
+    TaContactID = #{record.tacontactid,jdbcType=CHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.holyrobot.con_volunteer.pojo.VolunteerApplication" >
+    update Volunteer_Application
+    <set >
+      <if test="orgid != null" >
+        OrgID = #{orgid,jdbcType=CHAR},
+      </if>
+      <if test="travelagencyname != null" >
+        TravelAgencyName = #{travelagencyname,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null" >
+        UserID = #{userid,jdbcType=CHAR},
+      </if>
+      <if test="username != null" >
+        UserName = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="usercard != null" >
+        UserCard = #{usercard,jdbcType=VARCHAR},
+      </if>
+      <if test="usercardurl != null" >
+        UserCardUrl = #{usercardurl,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        Phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="tacontact != null" >
+        TAContact = #{tacontact,jdbcType=VARCHAR},
+      </if>
+      <if test="shopname != null" >
+        ShopName = #{shopname,jdbcType=VARCHAR},
+      </if>
+      <if test="shopheadportrait != null" >
+        ShopHeadPortrait = #{shopheadportrait,jdbcType=VARCHAR},
+      </if>
+      <if test="paytype != null" >
+        PayType = #{paytype,jdbcType=VARCHAR},
+      </if>
+      <if test="depositbank != null" >
+        DepositBank = #{depositbank,jdbcType=VARCHAR},
+      </if>
+      <if test="cardno != null" >
+        CardNo = #{cardno,jdbcType=VARCHAR},
+      </if>
+      <if test="datastatus != null" >
+        DataStatus = #{datastatus,jdbcType=INTEGER},
+      </if>
+      <if test="createddate != null" >
+        CreatedDate = #{createddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null" >
+        Remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="autoupdate != null" >
+        AutoUpdate = #{autoupdate,jdbcType=INTEGER},
+      </if>
+      <if test="adjustmenttype != null" >
+        AdjustmentType = #{adjustmenttype,jdbcType=INTEGER},
+      </if>
+      <if test="adjustmentmethod != null" >
+        AdjustmentMethod = #{adjustmentmethod,jdbcType=INTEGER},
+      </if>
+      <if test="percentage != null" >
+        Percentage = #{percentage,jdbcType=DECIMAL},
+      </if>
+      <if test="fixedamount != null" >
+        FixedAmount = #{fixedamount,jdbcType=DECIMAL},
+      </if>
+      <if test="infostatus != null" >
+        InfoStatus = #{infostatus,jdbcType=INTEGER},
+      </if>
+      <if test="tacontactid != null" >
+        TaContactID = #{tacontactid,jdbcType=CHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.holyrobot.con_volunteer.pojo.VolunteerApplication" >
+    update Volunteer_Application
+    set OrgID = #{orgid,jdbcType=CHAR},
+      TravelAgencyName = #{travelagencyname,jdbcType=VARCHAR},
+      UserID = #{userid,jdbcType=CHAR},
+      UserName = #{username,jdbcType=VARCHAR},
+      UserCard = #{usercard,jdbcType=VARCHAR},
+      UserCardUrl = #{usercardurl,jdbcType=VARCHAR},
+      Phone = #{phone,jdbcType=VARCHAR},
+      TAContact = #{tacontact,jdbcType=VARCHAR},
+      ShopName = #{shopname,jdbcType=VARCHAR},
+      ShopHeadPortrait = #{shopheadportrait,jdbcType=VARCHAR},
+      PayType = #{paytype,jdbcType=VARCHAR},
+      DepositBank = #{depositbank,jdbcType=VARCHAR},
+      CardNo = #{cardno,jdbcType=VARCHAR},
+      DataStatus = #{datastatus,jdbcType=INTEGER},
+      CreatedDate = #{createddate,jdbcType=TIMESTAMP},
+      Remark = #{remark,jdbcType=VARCHAR},
+      AutoUpdate = #{autoupdate,jdbcType=INTEGER},
+      AdjustmentType = #{adjustmenttype,jdbcType=INTEGER},
+      AdjustmentMethod = #{adjustmentmethod,jdbcType=INTEGER},
+      Percentage = #{percentage,jdbcType=DECIMAL},
+      FixedAmount = #{fixedamount,jdbcType=DECIMAL},
+      InfoStatus = #{infostatus,jdbcType=INTEGER},
+      TaContactID = #{tacontactid,jdbcType=CHAR}
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+  <select id="getTravelerInfoDown" resultType="java.util.HashMap">
+    SELECT
+    CONVERT(varchar(100), a.CreatedDate, 23) CreatedDate,a.UserName,a.DataStatus,a.ShopHeadPortrait,a.UserID,
+    ISNULL((SELECT sum(AdultNum)+sum(ChildNum) from ord_orderInfo where orderSalerId = a.userId and OrgID = a.OrgID),0) as mub,
+    (select c.UserName from Volunteer_Application c where c.UserID = #{map.userId} AND c.OrgID = #{map.orgId}) as inviter
+    from Volunteer_Application as a
+    <where>
+      <if test="map.userId!=null">
+        UserID in (
+        select ChildID  FROM Volunteer_Parent
+        <where>
+          <if test="map.userId!=null">
+            ParentID = #{map.userId}
+          </if>
+          <if test="map.orgId!=null">
+           and OrgID = #{map.orgId}
+          </if>
+           and ParentStatus = 1 and DataStatus NOT IN ('-1','-2','0','10','3')
+        </where>
+        )
+      </if>
+      order by a.CreatedDate desc
+    </where>
+  </select>
+  <select id="getTravelerInfoUp" resultType="java.util.HashMap">
+    SELECT *, (SELECT count(*) from Volunteer_Parent where ParentID = a.userId and OrgID=a.OrgID and ParentStatus=1) as mub FROM  Volunteer_Application AS a
+    <where>
+      <if test="map.userId!=null">
+        UserID = (
+        select ParentID  FROM Volunteer_Parent
+        <where>
+          <if test="map.userId!=null">
+            ChildID = #{map.userId}
+          </if>
+          <if test="map.orgId!=null">
+            and OrgID = #{map.orgId}
+          </if>
+          and ParentStatus = 1
+       </where>
+        )
+      </if>
+    </where>
+    ORDER BY CreatedDate DESC
+  </select>
+  <update id="updateTravelerAppication">
+    update Volunteer_Application  set DataStatus =-2
+    update Volunteer_Application_Record  set Record =-2
+    <where>
+      <if test="map.userId!=null">
+        UserID = #{map.userId}
+      </if>
+      <if test="map.orgId!=null">
+       and  OrgID = #{map.orgId}
+      </if>
+    </where>
+    UPDATE Volunteer_Parent SET ParentStatus = 0
+    <where>
+      <if test="map.userId!=null">
+        ChildID = #{map.userId}
+      </if>
+      <if test="map.orgId!=null">
+        and  OrgID = #{map.orgId}
+      </if>
+      <if test="map.parentId!=null">
+        and  ParentID = #{map.parentId}
+      </if>
+    </where>
+  </update>
+  <update id="updateDataStatusById">
+    update Volunteer_Application  set DataStatus =#{map.dataStatus}
+    <where>
+       <if test="map.orgId!=null">
+         OrgID = #{map.orgId}
+       </if>
+      <if test="map.userId!=null">
+       AND UserID = #{map.userId}
+      </if>
+    </where>
+  </update>
+  <select id="selectTaContact" resultType="com.holyrobot.con_volunteer.pojo.VolunteerApplication">
+    SELECT
+	TAContact,TAContactID
+    FROM
+        Volunteer_Application
+    WHERE
+        <if test="map.orgId!=null">
+          OrgID = #{map.orgId}
+        </if>
+        <if test="map.parentId!=null">
+          AND UserID = #{map.parentId}
+        </if>
+    order BY CreatedDate DESC
+  </select>
+</mapper>

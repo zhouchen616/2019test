@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.holyrobot.con_fin.mapper.FinSupplierDynamicManagementMapper" >
+  <resultMap id="BaseResultMap" type="com.holyrobot.con_fin.pojo.FinSupplierDynamicManagement" >
+    <id column="ID" property="id" jdbcType="CHAR" />
+    <result column="Type" property="type" jdbcType="INTEGER" />
+    <result column="SupplierID" property="supplierid" jdbcType="CHAR" />
+    <result column="IsEnabled" property="isenabled" jdbcType="INTEGER" />
+    <result column="ProportionalPercentage" property="proportionalpercentage" jdbcType="DECIMAL" />
+    <result column="HeadValue" property="headvalue" jdbcType="DECIMAL" />
+    <result column="OrgID" property="orgid" jdbcType="CHAR" />
+    <result column="CreatedByID" property="createdbyid" jdbcType="CHAR" />
+    <result column="CreatedBy" property="createdby" jdbcType="VARCHAR" />
+    <result column="CreatedDate" property="createddate" jdbcType="TIMESTAMP" />
+    <result column="internalSuppType" property="internalsupptype" jdbcType="INTEGER" />
+    <result column="SetMode" property="setmode" jdbcType="INTEGER" />
+    <result column="SetModeValue" property="setmodevalue" jdbcType="DECIMAL" />
+    <result column="RevisedDate" property="reviseddate" jdbcType="TIMESTAMP" />
+    <result column="RevisedBy" property="revisedby" jdbcType="VARCHAR" />
+    <result column="RevisedByID" property="revisedbyid" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, Type, SupplierID, IsEnabled, ProportionalPercentage, HeadValue, OrgID, CreatedByID, 
+    CreatedBy, CreatedDate, internalSuppType, SetMode, SetModeValue, RevisedDate, RevisedBy, 
+    RevisedByID
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.holyrobot.con_fin.pojo.FinSupplierDynamicManagementExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from Fin_Supplier_DynamicManagement
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from Fin_Supplier_DynamicManagement
+    where ID = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from Fin_Supplier_DynamicManagement
+    where ID = #{id,jdbcType=CHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.holyrobot.con_fin.pojo.FinSupplierDynamicManagementExample" >
+    delete from Fin_Supplier_DynamicManagement
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.holyrobot.con_fin.pojo.FinSupplierDynamicManagement" >
+    insert into Fin_Supplier_DynamicManagement (ID, Type, SupplierID, 
+      IsEnabled, ProportionalPercentage, HeadValue, 
+      OrgID, CreatedByID, CreatedBy, 
+      CreatedDate, internalSuppType, SetMode, 
+      SetModeValue, RevisedDate, RevisedBy, 
+      RevisedByID)
+    values (#{id,jdbcType=CHAR}, #{type,jdbcType=INTEGER}, #{supplierid,jdbcType=CHAR}, 
+      #{isenabled,jdbcType=INTEGER}, #{proportionalpercentage,jdbcType=DECIMAL}, #{headvalue,jdbcType=DECIMAL}, 
+      #{orgid,jdbcType=CHAR}, #{createdbyid,jdbcType=CHAR}, #{createdby,jdbcType=VARCHAR},
+      #{createddate,jdbcType=TIMESTAMP}, #{internalsupptype,jdbcType=INTEGER}, #{setmode,jdbcType=INTEGER}, 
+      #{setmodevalue,jdbcType=DECIMAL}, #{reviseddate,jdbcType=TIMESTAMP}, #{revisedby,jdbcType=VARCHAR},
+      #{revisedbyid,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.holyrobot.con_fin.pojo.FinSupplierDynamicManagement" >
+    insert into Fin_Supplier_DynamicManagement
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="type != null" >
+        Type,
+      </if>
+      <if test="supplierid != null" >
+        SupplierID,
+      </if>
+      <if test="isenabled != null" >
+        IsEnabled,
+      </if>
+      <if test="proportionalpercentage != null" >
+        ProportionalPercentage,
+      </if>
+      <if test="headvalue != null" >
+        HeadValue,
+      </if>
+      <if test="orgid != null" >
+        OrgID,
+      </if>
+      <if test="createdbyid != null" >
+        CreatedByID,
+      </if>
+      <if test="createdby != null" >
+        CreatedBy,
+      </if>
+      <if test="createddate != null" >
+        CreatedDate,
+      </if>
+      <if test="internalsupptype != null" >
+        internalSuppType,
+      </if>
+      <if test="setmode != null" >
+        SetMode,
+      </if>
+      <if test="setmodevalue != null" >
+        SetModeValue,
+      </if>
+      <if test="reviseddate != null" >
+        RevisedDate,
+      </if>
+      <if test="revisedby != null" >
+        RevisedBy,
+      </if>
+      <if test="revisedbyid != null" >
+        RevisedByID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="supplierid != null" >
+        #{supplierid,jdbcType=CHAR},
+      </if>
+      <if test="isenabled != null" >
+        #{isenabled,jdbcType=INTEGER},
+      </if>
+      <if test="proportionalpercentage != null" >
+        #{proportionalpercentage,jdbcType=DECIMAL},
+      </if>
+      <if test="headvalue != null" >
+        #{headvalue,jdbcType=DECIMAL},
+      </if>
+      <if test="orgid != null" >
+        #{orgid,jdbcType=CHAR},
+      </if>
+      <if test="createdbyid != null" >
+        #{createdbyid,jdbcType=CHAR},
+      </if>
+      <if test="createdby != null" >
+        #{createdby,jdbcType=VARCHAR},
+      </if>
+      <if test="createddate != null" >
+        #{createddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="internalsupptype != null" >
+        #{internalsupptype,jdbcType=INTEGER},
+      </if>
+      <if test="setmode != null" >
+        #{setmode,jdbcType=INTEGER},
+      </if>
+      <if test="setmodevalue != null" >
+        #{setmodevalue,jdbcType=DECIMAL},
+      </if>
+      <if test="reviseddate != null" >
+        #{reviseddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="revisedby != null" >
+        #{revisedby,jdbcType=VARCHAR},
+      </if>
+      <if test="revisedbyid != null" >
+        #{revisedbyid,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.holyrobot.con_fin.pojo.FinSupplierDynamicManagementExample" resultType="java.lang.Integer" >
+    select count(*) from Fin_Supplier_DynamicManagement
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update Fin_Supplier_DynamicManagement
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=CHAR},
+      </if>
+      <if test="record.type != null" >
+        Type = #{record.type,jdbcType=INTEGER},
+      </if>
+      <if test="record.supplierid != null" >
+        SupplierID = #{record.supplierid,jdbcType=CHAR},
+      </if>
+      <if test="record.isenabled != null" >
+        IsEnabled = #{record.isenabled,jdbcType=INTEGER},
+      </if>
+      <if test="record.proportionalpercentage != null" >
+        ProportionalPercentage = #{record.proportionalpercentage,jdbcType=DECIMAL},
+      </if>
+      <if test="record.headvalue != null" >
+        HeadValue = #{record.headvalue,jdbcType=DECIMAL},
+      </if>
+      <if test="record.orgid != null" >
+        OrgID = #{record.orgid,jdbcType=CHAR},
+      </if>
+      <if test="record.createdbyid != null" >
+        CreatedByID = #{record.createdbyid,jdbcType=CHAR},
+      </if>
+      <if test="record.createdby != null" >
+        CreatedBy = #{record.createdby,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createddate != null" >
+        CreatedDate = #{record.createddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.internalsupptype != null" >
+        internalSuppType = #{record.internalsupptype,jdbcType=INTEGER},
+      </if>
+      <if test="record.setmode != null" >
+        SetMode = #{record.setmode,jdbcType=INTEGER},
+      </if>
+      <if test="record.setmodevalue != null" >
+        SetModeValue = #{record.setmodevalue,jdbcType=DECIMAL},
+      </if>
+      <if test="record.reviseddate != null" >
+        RevisedDate = #{record.reviseddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.revisedby != null" >
+        RevisedBy = #{record.revisedby,jdbcType=VARCHAR},
+      </if>
+      <if test="record.revisedbyid != null" >
+        RevisedByID = #{record.revisedbyid,jdbcType=CHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update Fin_Supplier_DynamicManagement
+    set ID = #{record.id,jdbcType=CHAR},
+      Type = #{record.type,jdbcType=INTEGER},
+      SupplierID = #{record.supplierid,jdbcType=CHAR},
+      IsEnabled = #{record.isenabled,jdbcType=INTEGER},
+      ProportionalPercentage = #{record.proportionalpercentage,jdbcType=DECIMAL},
+      HeadValue = #{record.headvalue,jdbcType=DECIMAL},
+      OrgID = #{record.orgid,jdbcType=CHAR},
+      CreatedByID = #{record.createdbyid,jdbcType=CHAR},
+      CreatedBy = #{record.createdby,jdbcType=VARCHAR},
+      CreatedDate = #{record.createddate,jdbcType=TIMESTAMP},
+      internalSuppType = #{record.internalsupptype,jdbcType=INTEGER},
+      SetMode = #{record.setmode,jdbcType=INTEGER},
+      SetModeValue = #{record.setmodevalue,jdbcType=DECIMAL},
+      RevisedDate = #{record.reviseddate,jdbcType=TIMESTAMP},
+      RevisedBy = #{record.revisedby,jdbcType=VARCHAR},
+      RevisedByID = #{record.revisedbyid,jdbcType=CHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.holyrobot.con_fin.pojo.FinSupplierDynamicManagement" >
+    update Fin_Supplier_DynamicManagement
+    <set >
+      <if test="type != null" >
+        Type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="supplierid != null" >
+        SupplierID = #{supplierid,jdbcType=CHAR},
+      </if>
+      <if test="isenabled != null" >
+        IsEnabled = #{isenabled,jdbcType=INTEGER},
+      </if>
+      <if test="proportionalpercentage != null" >
+        ProportionalPercentage = #{proportionalpercentage,jdbcType=DECIMAL},
+      </if>
+      <if test="headvalue != null" >
+        HeadValue = #{headvalue,jdbcType=DECIMAL},
+      </if>
+      <if test="orgid != null" >
+        OrgID = #{orgid,jdbcType=CHAR},
+      </if>
+      <if test="createdbyid != null" >
+        CreatedByID = #{createdbyid,jdbcType=CHAR},
+      </if>
+      <if test="createdby != null" >
+        CreatedBy = #{createdby,jdbcType=VARCHAR},
+      </if>
+      <if test="createddate != null" >
+        CreatedDate = #{createddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="internalsupptype != null" >
+        internalSuppType = #{internalsupptype,jdbcType=INTEGER},
+      </if>
+      <if test="setmode != null" >
+        SetMode = #{setmode,jdbcType=INTEGER},
+      </if>
+      <if test="setmodevalue != null" >
+        SetModeValue = #{setmodevalue,jdbcType=DECIMAL},
+      </if>
+      <if test="reviseddate != null" >
+        RevisedDate = #{reviseddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="revisedby != null" >
+        RevisedBy = #{revisedby,jdbcType=VARCHAR},
+      </if>
+      <if test="revisedbyid != null" >
+        RevisedByID = #{revisedbyid,jdbcType=CHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.holyrobot.con_fin.pojo.FinSupplierDynamicManagement" >
+    update Fin_Supplier_DynamicManagement
+    set Type = #{type,jdbcType=INTEGER},
+      SupplierID = #{supplierid,jdbcType=CHAR},
+      IsEnabled = #{isenabled,jdbcType=INTEGER},
+      ProportionalPercentage = #{proportionalpercentage,jdbcType=DECIMAL},
+      HeadValue = #{headvalue,jdbcType=DECIMAL},
+      OrgID = #{orgid,jdbcType=CHAR},
+      CreatedByID = #{createdbyid,jdbcType=CHAR},
+      CreatedBy = #{createdby,jdbcType=VARCHAR},
+      CreatedDate = #{createddate,jdbcType=TIMESTAMP},
+      internalSuppType = #{internalsupptype,jdbcType=INTEGER},
+      SetMode = #{setmode,jdbcType=INTEGER},
+      SetModeValue = #{setmodevalue,jdbcType=DECIMAL},
+      RevisedDate = #{reviseddate,jdbcType=TIMESTAMP},
+      RevisedBy = #{revisedby,jdbcType=VARCHAR},
+      RevisedByID = #{revisedbyid,jdbcType=CHAR}
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+</mapper>

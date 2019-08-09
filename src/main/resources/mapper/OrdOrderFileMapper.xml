@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.holyrobot.con_order.mapper.OrdOrderFileMapper" >
+  <resultMap id="BaseResultMap" type="com.holyrobot.con_order.pojo.OrdOrderFile" >
+    <id column="ID" property="id" jdbcType="CHAR" />
+    <result column="ItemIndex" property="itemindex" jdbcType="INTEGER" />
+    <result column="FileName" property="filename" jdbcType="VARCHAR" />
+    <result column="FileUrl" property="fileurl" jdbcType="VARCHAR" />
+    <result column="OrgID" property="orgid" jdbcType="CHAR" />
+    <result column="ExtendName" property="extendname" jdbcType="VARCHAR" />
+    <result column="OrderID" property="orderid" jdbcType="CHAR" />
+    <result column="Width" property="width" jdbcType="INTEGER" />
+    <result column="Height" property="height" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, ItemIndex, FileName, FileUrl, OrgID, ExtendName, OrderID, Width, Height
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.holyrobot.con_order.pojo.OrdOrderFileExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from Ord_Order_File
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from Ord_Order_File
+    where ID = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from Ord_Order_File
+    where ID = #{id,jdbcType=CHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.holyrobot.con_order.pojo.OrdOrderFileExample" >
+    delete from Ord_Order_File
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.holyrobot.con_order.pojo.OrdOrderFile" >
+    insert into Ord_Order_File (ID, ItemIndex, FileName, 
+      FileUrl, OrgID, ExtendName, 
+      OrderID, Width, Height
+      )
+    values (#{id,jdbcType=CHAR}, #{itemindex,jdbcType=INTEGER}, #{filename,jdbcType=VARCHAR},
+      #{fileurl,jdbcType=VARCHAR}, #{orgid,jdbcType=CHAR}, #{extendname,jdbcType=VARCHAR},
+      #{orderid,jdbcType=CHAR}, #{width,jdbcType=INTEGER}, #{height,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.holyrobot.con_order.pojo.OrdOrderFile" >
+    insert into Ord_Order_File
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="itemindex != null" >
+        ItemIndex,
+      </if>
+      <if test="filename != null" >
+        FileName,
+      </if>
+      <if test="fileurl != null" >
+        FileUrl,
+      </if>
+      <if test="orgid != null" >
+        OrgID,
+      </if>
+      <if test="extendname != null" >
+        ExtendName,
+      </if>
+      <if test="orderid != null" >
+        OrderID,
+      </if>
+      <if test="width != null" >
+        Width,
+      </if>
+      <if test="height != null" >
+        Height,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="itemindex != null" >
+        #{itemindex,jdbcType=INTEGER},
+      </if>
+      <if test="filename != null" >
+        #{filename,jdbcType=VARCHAR},
+      </if>
+      <if test="fileurl != null" >
+        #{fileurl,jdbcType=VARCHAR},
+      </if>
+      <if test="orgid != null" >
+        #{orgid,jdbcType=CHAR},
+      </if>
+      <if test="extendname != null" >
+        #{extendname,jdbcType=VARCHAR},
+      </if>
+      <if test="orderid != null" >
+        #{orderid,jdbcType=CHAR},
+      </if>
+      <if test="width != null" >
+        #{width,jdbcType=INTEGER},
+      </if>
+      <if test="height != null" >
+        #{height,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.holyrobot.con_order.pojo.OrdOrderFileExample" resultType="java.lang.Integer" >
+    select count(*) from Ord_Order_File
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update Ord_Order_File
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=CHAR},
+      </if>
+      <if test="record.itemindex != null" >
+        ItemIndex = #{record.itemindex,jdbcType=INTEGER},
+      </if>
+      <if test="record.filename != null" >
+        FileName = #{record.filename,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fileurl != null" >
+        FileUrl = #{record.fileurl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orgid != null" >
+        OrgID = #{record.orgid,jdbcType=CHAR},
+      </if>
+      <if test="record.extendname != null" >
+        ExtendName = #{record.extendname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orderid != null" >
+        OrderID = #{record.orderid,jdbcType=CHAR},
+      </if>
+      <if test="record.width != null" >
+        Width = #{record.width,jdbcType=INTEGER},
+      </if>
+      <if test="record.height != null" >
+        Height = #{record.height,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update Ord_Order_File
+    set ID = #{record.id,jdbcType=CHAR},
+      ItemIndex = #{record.itemindex,jdbcType=INTEGER},
+      FileName = #{record.filename,jdbcType=VARCHAR},
+      FileUrl = #{record.fileurl,jdbcType=VARCHAR},
+      OrgID = #{record.orgid,jdbcType=CHAR},
+      ExtendName = #{record.extendname,jdbcType=VARCHAR},
+      OrderID = #{record.orderid,jdbcType=CHAR},
+      Width = #{record.width,jdbcType=INTEGER},
+      Height = #{record.height,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.holyrobot.con_order.pojo.OrdOrderFile" >
+    update Ord_Order_File
+    <set >
+      <if test="itemindex != null" >
+        ItemIndex = #{itemindex,jdbcType=INTEGER},
+      </if>
+      <if test="filename != null" >
+        FileName = #{filename,jdbcType=VARCHAR},
+      </if>
+      <if test="fileurl != null" >
+        FileUrl = #{fileurl,jdbcType=VARCHAR},
+      </if>
+      <if test="orgid != null" >
+        OrgID = #{orgid,jdbcType=CHAR},
+      </if>
+      <if test="extendname != null" >
+        ExtendName = #{extendname,jdbcType=VARCHAR},
+      </if>
+      <if test="orderid != null" >
+        OrderID = #{orderid,jdbcType=CHAR},
+      </if>
+      <if test="width != null" >
+        Width = #{width,jdbcType=INTEGER},
+      </if>
+      <if test="height != null" >
+        Height = #{height,jdbcType=INTEGER},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.holyrobot.con_order.pojo.OrdOrderFile" >
+    update Ord_Order_File
+    set ItemIndex = #{itemindex,jdbcType=INTEGER},
+      FileName = #{filename,jdbcType=VARCHAR},
+      FileUrl = #{fileurl,jdbcType=VARCHAR},
+      OrgID = #{orgid,jdbcType=CHAR},
+      ExtendName = #{extendname,jdbcType=VARCHAR},
+      OrderID = #{orderid,jdbcType=CHAR},
+      Width = #{width,jdbcType=INTEGER},
+      Height = #{height,jdbcType=INTEGER}
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+</mapper>

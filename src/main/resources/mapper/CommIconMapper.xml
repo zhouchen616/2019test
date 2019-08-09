@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.holyrobot.con_common.mapper.CommIconMapper" >
+  <resultMap id="BaseResultMap" type="com.holyrobot.con_common.pojo.CommIcon" >
+    <id column="ID" property="id" jdbcType="CHAR" />
+    <result column="SourceID" property="sourceid" jdbcType="CHAR" />
+    <result column="Type" property="type" jdbcType="INTEGER" />
+    <result column="IconUrl" property="iconurl" jdbcType="VARCHAR" />
+    <result column="CreatedDate" property="createddate" jdbcType="TIMESTAMP" />
+    <result column="CreatedBy" property="createdby" jdbcType="VARCHAR" />
+    <result column="CreatedByID" property="createdbyid" jdbcType="CHAR" />
+    <result column="Weight" property="weight" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, SourceID, Type, IconUrl, CreatedDate, CreatedBy, CreatedByID, Weight
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.holyrobot.con_common.pojo.CommIconExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from Comm_Icon
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from Comm_Icon
+    where ID = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from Comm_Icon
+    where ID = #{id,jdbcType=CHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.holyrobot.con_common.pojo.CommIconExample" >
+    delete from Comm_Icon
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.holyrobot.con_common.pojo.CommIcon" >
+    insert into Comm_Icon (ID, SourceID, Type, 
+      IconUrl, CreatedDate, CreatedBy, 
+      CreatedByID, Weight)
+    values (#{id,jdbcType=CHAR}, #{sourceid,jdbcType=CHAR}, #{type,jdbcType=INTEGER}, 
+      #{iconurl,jdbcType=VARCHAR}, #{createddate,jdbcType=TIMESTAMP}, #{createdby,jdbcType=VARCHAR},
+      #{createdbyid,jdbcType=CHAR}, #{weight,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.holyrobot.con_common.pojo.CommIcon" >
+    insert into Comm_Icon
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="sourceid != null" >
+        SourceID,
+      </if>
+      <if test="type != null" >
+        Type,
+      </if>
+      <if test="iconurl != null" >
+        IconUrl,
+      </if>
+      <if test="createddate != null" >
+        CreatedDate,
+      </if>
+      <if test="createdby != null" >
+        CreatedBy,
+      </if>
+      <if test="createdbyid != null" >
+        CreatedByID,
+      </if>
+      <if test="weight != null" >
+        Weight,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="sourceid != null" >
+        #{sourceid,jdbcType=CHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="iconurl != null" >
+        #{iconurl,jdbcType=VARCHAR},
+      </if>
+      <if test="createddate != null" >
+        #{createddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdby != null" >
+        #{createdby,jdbcType=VARCHAR},
+      </if>
+      <if test="createdbyid != null" >
+        #{createdbyid,jdbcType=CHAR},
+      </if>
+      <if test="weight != null" >
+        #{weight,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.holyrobot.con_common.pojo.CommIconExample" resultType="java.lang.Integer" >
+    select count(*) from Comm_Icon
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update Comm_Icon
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=CHAR},
+      </if>
+      <if test="record.sourceid != null" >
+        SourceID = #{record.sourceid,jdbcType=CHAR},
+      </if>
+      <if test="record.type != null" >
+        Type = #{record.type,jdbcType=INTEGER},
+      </if>
+      <if test="record.iconurl != null" >
+        IconUrl = #{record.iconurl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createddate != null" >
+        CreatedDate = #{record.createddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createdby != null" >
+        CreatedBy = #{record.createdby,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createdbyid != null" >
+        CreatedByID = #{record.createdbyid,jdbcType=CHAR},
+      </if>
+      <if test="record.weight != null" >
+        Weight = #{record.weight,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update Comm_Icon
+    set ID = #{record.id,jdbcType=CHAR},
+      SourceID = #{record.sourceid,jdbcType=CHAR},
+      Type = #{record.type,jdbcType=INTEGER},
+      IconUrl = #{record.iconurl,jdbcType=VARCHAR},
+      CreatedDate = #{record.createddate,jdbcType=TIMESTAMP},
+      CreatedBy = #{record.createdby,jdbcType=VARCHAR},
+      CreatedByID = #{record.createdbyid,jdbcType=CHAR},
+      Weight = #{record.weight,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.holyrobot.con_common.pojo.CommIcon" >
+    update Comm_Icon
+    <set >
+      <if test="sourceid != null" >
+        SourceID = #{sourceid,jdbcType=CHAR},
+      </if>
+      <if test="type != null" >
+        Type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="iconurl != null" >
+        IconUrl = #{iconurl,jdbcType=VARCHAR},
+      </if>
+      <if test="createddate != null" >
+        CreatedDate = #{createddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdby != null" >
+        CreatedBy = #{createdby,jdbcType=VARCHAR},
+      </if>
+      <if test="createdbyid != null" >
+        CreatedByID = #{createdbyid,jdbcType=CHAR},
+      </if>
+      <if test="weight != null" >
+        Weight = #{weight,jdbcType=INTEGER},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.holyrobot.con_common.pojo.CommIcon" >
+    update Comm_Icon
+    set SourceID = #{sourceid,jdbcType=CHAR},
+      Type = #{type,jdbcType=INTEGER},
+      IconUrl = #{iconurl,jdbcType=VARCHAR},
+      CreatedDate = #{createddate,jdbcType=TIMESTAMP},
+      CreatedBy = #{createdby,jdbcType=VARCHAR},
+      CreatedByID = #{createdbyid,jdbcType=CHAR},
+      Weight = #{weight,jdbcType=INTEGER}
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+  <select id="selectProTypeIcon" resultType="com.holyrobot.dto.ProTypeIconDto">
+SELECT p.ID,P.RouteType AS proType,I.IconUrl FROM Om_RouteType AS P
+
+LEFT JOIN Comm_Icon AS I ON I.SourceID=P.ID
+
+ORDER BY I.Weight DESC
+  </select>
+</mapper>

@@ -1,0 +1,600 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.holyrobot.con_res.mapper.ResFlightinfoMapper" >
+  <resultMap id="BaseResultMap" type="com.holyrobot.con_res.pojo.ResFlightinfo" >
+    <id column="ID" property="id" jdbcType="CHAR" />
+    <result column="FlightNo" property="flightno" jdbcType="VARCHAR" />
+    <result column="FlightDate" property="flightdate" jdbcType="TIMESTAMP" />
+    <result column="Plane" property="plane" jdbcType="VARCHAR" />
+    <result column="BeginCity" property="begincity" jdbcType="VARCHAR" />
+    <result column="EndCity" property="endcity" jdbcType="VARCHAR" />
+    <result column="BeginTime" property="begintime" jdbcType="VARCHAR" />
+    <result column="EndTime" property="endtime" jdbcType="VARCHAR" />
+    <result column="RealBeginTime" property="realbegintime" jdbcType="VARCHAR" />
+    <result column="RealEndTime" property="realendtime" jdbcType="VARCHAR" />
+    <result column="FlightStatus" property="flightstatus" jdbcType="VARCHAR" />
+    <result column="Stop" property="stop" jdbcType="INTEGER" />
+    <result column="Times" property="times" jdbcType="VARCHAR" />
+    <result column="AduOil" property="aduoil" jdbcType="DECIMAL" />
+    <result column="ChdOil" property="chdoil" jdbcType="DECIMAL" />
+    <result column="AriLine" property="ariline" jdbcType="VARCHAR" />
+    <result column="Tax" property="tax" jdbcType="DECIMAL" />
+    <result column="KM" property="km" jdbcType="DECIMAL" />
+    <result column="PriceY" property="pricey" jdbcType="DECIMAL" />
+    <result column="BeginTerm" property="beginterm" jdbcType="VARCHAR" />
+    <result column="EndTerm" property="endterm" jdbcType="VARCHAR" />
+    <result column="Eat" property="eat" jdbcType="VARCHAR" />
+    <result column="IsSale" property="issale" jdbcType="VARCHAR" />
+    <result column="xType" property="xtype" jdbcType="INTEGER" />
+    <result column="CreatedDate" property="createddate" jdbcType="TIMESTAMP" />
+    <result column="CreatedBy" property="createdby" jdbcType="VARCHAR" />
+    <result column="CreatedByID" property="createdbyid" jdbcType="CHAR" />
+    <result column="DeptID" property="deptid" jdbcType="CHAR" />
+    <result column="OrgID" property="orgid" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, FlightNo, FlightDate, Plane, BeginCity, EndCity, BeginTime, EndTime, RealBeginTime, 
+    RealEndTime, FlightStatus, Stop, Times, AduOil, ChdOil, AriLine, Tax, KM, PriceY, 
+    BeginTerm, EndTerm, Eat, IsSale, xType, CreatedDate, CreatedBy, CreatedByID, DeptID, 
+    OrgID
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.holyrobot.con_res.pojo.ResFlightinfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from Res_FlightInfo
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from Res_FlightInfo
+    where ID = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from Res_FlightInfo
+    where ID = #{id,jdbcType=CHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.holyrobot.con_res.pojo.ResFlightinfoExample" >
+    delete from Res_FlightInfo
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.holyrobot.con_res.pojo.ResFlightinfo" >
+    insert into Res_FlightInfo (ID, FlightNo, FlightDate, 
+      Plane, BeginCity, EndCity, 
+      BeginTime, EndTime, RealBeginTime, 
+      RealEndTime, FlightStatus, Stop, 
+      Times, AduOil, ChdOil, 
+      AriLine, Tax, KM, 
+      PriceY, BeginTerm, EndTerm, 
+      Eat, IsSale, xType, 
+      CreatedDate, CreatedBy, CreatedByID, 
+      DeptID, OrgID)
+    values (#{id,jdbcType=CHAR}, #{flightno,jdbcType=VARCHAR}, #{flightdate,jdbcType=TIMESTAMP},
+      #{plane,jdbcType=VARCHAR}, #{begincity,jdbcType=VARCHAR}, #{endcity,jdbcType=VARCHAR},
+      #{begintime,jdbcType=VARCHAR}, #{endtime,jdbcType=VARCHAR}, #{realbegintime,jdbcType=VARCHAR},
+      #{realendtime,jdbcType=VARCHAR}, #{flightstatus,jdbcType=VARCHAR}, #{stop,jdbcType=INTEGER},
+      #{times,jdbcType=VARCHAR}, #{aduoil,jdbcType=DECIMAL}, #{chdoil,jdbcType=DECIMAL},
+      #{ariline,jdbcType=VARCHAR}, #{tax,jdbcType=DECIMAL}, #{km,jdbcType=DECIMAL},
+      #{pricey,jdbcType=DECIMAL}, #{beginterm,jdbcType=VARCHAR}, #{endterm,jdbcType=VARCHAR},
+      #{eat,jdbcType=VARCHAR}, #{issale,jdbcType=VARCHAR}, #{xtype,jdbcType=INTEGER},
+      #{createddate,jdbcType=TIMESTAMP}, #{createdby,jdbcType=VARCHAR}, #{createdbyid,jdbcType=CHAR},
+      #{deptid,jdbcType=CHAR}, #{orgid,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.holyrobot.con_res.pojo.ResFlightinfo" >
+    insert into Res_FlightInfo
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="flightno != null" >
+        FlightNo,
+      </if>
+      <if test="flightdate != null" >
+        FlightDate,
+      </if>
+      <if test="plane != null" >
+        Plane,
+      </if>
+      <if test="begincity != null" >
+        BeginCity,
+      </if>
+      <if test="endcity != null" >
+        EndCity,
+      </if>
+      <if test="begintime != null" >
+        BeginTime,
+      </if>
+      <if test="endtime != null" >
+        EndTime,
+      </if>
+      <if test="realbegintime != null" >
+        RealBeginTime,
+      </if>
+      <if test="realendtime != null" >
+        RealEndTime,
+      </if>
+      <if test="flightstatus != null" >
+        FlightStatus,
+      </if>
+      <if test="stop != null" >
+        Stop,
+      </if>
+      <if test="times != null" >
+        Times,
+      </if>
+      <if test="aduoil != null" >
+        AduOil,
+      </if>
+      <if test="chdoil != null" >
+        ChdOil,
+      </if>
+      <if test="ariline != null" >
+        AriLine,
+      </if>
+      <if test="tax != null" >
+        Tax,
+      </if>
+      <if test="km != null" >
+        KM,
+      </if>
+      <if test="pricey != null" >
+        PriceY,
+      </if>
+      <if test="beginterm != null" >
+        BeginTerm,
+      </if>
+      <if test="endterm != null" >
+        EndTerm,
+      </if>
+      <if test="eat != null" >
+        Eat,
+      </if>
+      <if test="issale != null" >
+        IsSale,
+      </if>
+      <if test="xtype != null" >
+        xType,
+      </if>
+      <if test="createddate != null" >
+        CreatedDate,
+      </if>
+      <if test="createdby != null" >
+        CreatedBy,
+      </if>
+      <if test="createdbyid != null" >
+        CreatedByID,
+      </if>
+      <if test="deptid != null" >
+        DeptID,
+      </if>
+      <if test="orgid != null" >
+        OrgID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="flightno != null" >
+        #{flightno,jdbcType=VARCHAR},
+      </if>
+      <if test="flightdate != null" >
+        #{flightdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="plane != null" >
+        #{plane,jdbcType=VARCHAR},
+      </if>
+      <if test="begincity != null" >
+        #{begincity,jdbcType=VARCHAR},
+      </if>
+      <if test="endcity != null" >
+        #{endcity,jdbcType=VARCHAR},
+      </if>
+      <if test="begintime != null" >
+        #{begintime,jdbcType=VARCHAR},
+      </if>
+      <if test="endtime != null" >
+        #{endtime,jdbcType=VARCHAR},
+      </if>
+      <if test="realbegintime != null" >
+        #{realbegintime,jdbcType=VARCHAR},
+      </if>
+      <if test="realendtime != null" >
+        #{realendtime,jdbcType=VARCHAR},
+      </if>
+      <if test="flightstatus != null" >
+        #{flightstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="stop != null" >
+        #{stop,jdbcType=INTEGER},
+      </if>
+      <if test="times != null" >
+        #{times,jdbcType=VARCHAR},
+      </if>
+      <if test="aduoil != null" >
+        #{aduoil,jdbcType=DECIMAL},
+      </if>
+      <if test="chdoil != null" >
+        #{chdoil,jdbcType=DECIMAL},
+      </if>
+      <if test="ariline != null" >
+        #{ariline,jdbcType=VARCHAR},
+      </if>
+      <if test="tax != null" >
+        #{tax,jdbcType=DECIMAL},
+      </if>
+      <if test="km != null" >
+        #{km,jdbcType=DECIMAL},
+      </if>
+      <if test="pricey != null" >
+        #{pricey,jdbcType=DECIMAL},
+      </if>
+      <if test="beginterm != null" >
+        #{beginterm,jdbcType=VARCHAR},
+      </if>
+      <if test="endterm != null" >
+        #{endterm,jdbcType=VARCHAR},
+      </if>
+      <if test="eat != null" >
+        #{eat,jdbcType=VARCHAR},
+      </if>
+      <if test="issale != null" >
+        #{issale,jdbcType=VARCHAR},
+      </if>
+      <if test="xtype != null" >
+        #{xtype,jdbcType=INTEGER},
+      </if>
+      <if test="createddate != null" >
+        #{createddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdby != null" >
+        #{createdby,jdbcType=VARCHAR},
+      </if>
+      <if test="createdbyid != null" >
+        #{createdbyid,jdbcType=CHAR},
+      </if>
+      <if test="deptid != null" >
+        #{deptid,jdbcType=CHAR},
+      </if>
+      <if test="orgid != null" >
+        #{orgid,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.holyrobot.con_res.pojo.ResFlightinfoExample" resultType="java.lang.Integer" >
+    select count(*) from Res_FlightInfo
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update Res_FlightInfo
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=CHAR},
+      </if>
+      <if test="record.flightno != null" >
+        FlightNo = #{record.flightno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.flightdate != null" >
+        FlightDate = #{record.flightdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.plane != null" >
+        Plane = #{record.plane,jdbcType=VARCHAR},
+      </if>
+      <if test="record.begincity != null" >
+        BeginCity = #{record.begincity,jdbcType=VARCHAR},
+      </if>
+      <if test="record.endcity != null" >
+        EndCity = #{record.endcity,jdbcType=VARCHAR},
+      </if>
+      <if test="record.begintime != null" >
+        BeginTime = #{record.begintime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.endtime != null" >
+        EndTime = #{record.endtime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.realbegintime != null" >
+        RealBeginTime = #{record.realbegintime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.realendtime != null" >
+        RealEndTime = #{record.realendtime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.flightstatus != null" >
+        FlightStatus = #{record.flightstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.stop != null" >
+        Stop = #{record.stop,jdbcType=INTEGER},
+      </if>
+      <if test="record.times != null" >
+        Times = #{record.times,jdbcType=VARCHAR},
+      </if>
+      <if test="record.aduoil != null" >
+        AduOil = #{record.aduoil,jdbcType=DECIMAL},
+      </if>
+      <if test="record.chdoil != null" >
+        ChdOil = #{record.chdoil,jdbcType=DECIMAL},
+      </if>
+      <if test="record.ariline != null" >
+        AriLine = #{record.ariline,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tax != null" >
+        Tax = #{record.tax,jdbcType=DECIMAL},
+      </if>
+      <if test="record.km != null" >
+        KM = #{record.km,jdbcType=DECIMAL},
+      </if>
+      <if test="record.pricey != null" >
+        PriceY = #{record.pricey,jdbcType=DECIMAL},
+      </if>
+      <if test="record.beginterm != null" >
+        BeginTerm = #{record.beginterm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.endterm != null" >
+        EndTerm = #{record.endterm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.eat != null" >
+        Eat = #{record.eat,jdbcType=VARCHAR},
+      </if>
+      <if test="record.issale != null" >
+        IsSale = #{record.issale,jdbcType=VARCHAR},
+      </if>
+      <if test="record.xtype != null" >
+        xType = #{record.xtype,jdbcType=INTEGER},
+      </if>
+      <if test="record.createddate != null" >
+        CreatedDate = #{record.createddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createdby != null" >
+        CreatedBy = #{record.createdby,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createdbyid != null" >
+        CreatedByID = #{record.createdbyid,jdbcType=CHAR},
+      </if>
+      <if test="record.deptid != null" >
+        DeptID = #{record.deptid,jdbcType=CHAR},
+      </if>
+      <if test="record.orgid != null" >
+        OrgID = #{record.orgid,jdbcType=CHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update Res_FlightInfo
+    set ID = #{record.id,jdbcType=CHAR},
+      FlightNo = #{record.flightno,jdbcType=VARCHAR},
+      FlightDate = #{record.flightdate,jdbcType=TIMESTAMP},
+      Plane = #{record.plane,jdbcType=VARCHAR},
+      BeginCity = #{record.begincity,jdbcType=VARCHAR},
+      EndCity = #{record.endcity,jdbcType=VARCHAR},
+      BeginTime = #{record.begintime,jdbcType=VARCHAR},
+      EndTime = #{record.endtime,jdbcType=VARCHAR},
+      RealBeginTime = #{record.realbegintime,jdbcType=VARCHAR},
+      RealEndTime = #{record.realendtime,jdbcType=VARCHAR},
+      FlightStatus = #{record.flightstatus,jdbcType=VARCHAR},
+      Stop = #{record.stop,jdbcType=INTEGER},
+      Times = #{record.times,jdbcType=VARCHAR},
+      AduOil = #{record.aduoil,jdbcType=DECIMAL},
+      ChdOil = #{record.chdoil,jdbcType=DECIMAL},
+      AriLine = #{record.ariline,jdbcType=VARCHAR},
+      Tax = #{record.tax,jdbcType=DECIMAL},
+      KM = #{record.km,jdbcType=DECIMAL},
+      PriceY = #{record.pricey,jdbcType=DECIMAL},
+      BeginTerm = #{record.beginterm,jdbcType=VARCHAR},
+      EndTerm = #{record.endterm,jdbcType=VARCHAR},
+      Eat = #{record.eat,jdbcType=VARCHAR},
+      IsSale = #{record.issale,jdbcType=VARCHAR},
+      xType = #{record.xtype,jdbcType=INTEGER},
+      CreatedDate = #{record.createddate,jdbcType=TIMESTAMP},
+      CreatedBy = #{record.createdby,jdbcType=VARCHAR},
+      CreatedByID = #{record.createdbyid,jdbcType=CHAR},
+      DeptID = #{record.deptid,jdbcType=CHAR},
+      OrgID = #{record.orgid,jdbcType=CHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.holyrobot.con_res.pojo.ResFlightinfo" >
+    update Res_FlightInfo
+    <set >
+      <if test="flightno != null" >
+        FlightNo = #{flightno,jdbcType=VARCHAR},
+      </if>
+      <if test="flightdate != null" >
+        FlightDate = #{flightdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="plane != null" >
+        Plane = #{plane,jdbcType=VARCHAR},
+      </if>
+      <if test="begincity != null" >
+        BeginCity = #{begincity,jdbcType=VARCHAR},
+      </if>
+      <if test="endcity != null" >
+        EndCity = #{endcity,jdbcType=VARCHAR},
+      </if>
+      <if test="begintime != null" >
+        BeginTime = #{begintime,jdbcType=VARCHAR},
+      </if>
+      <if test="endtime != null" >
+        EndTime = #{endtime,jdbcType=VARCHAR},
+      </if>
+      <if test="realbegintime != null" >
+        RealBeginTime = #{realbegintime,jdbcType=VARCHAR},
+      </if>
+      <if test="realendtime != null" >
+        RealEndTime = #{realendtime,jdbcType=VARCHAR},
+      </if>
+      <if test="flightstatus != null" >
+        FlightStatus = #{flightstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="stop != null" >
+        Stop = #{stop,jdbcType=INTEGER},
+      </if>
+      <if test="times != null" >
+        Times = #{times,jdbcType=VARCHAR},
+      </if>
+      <if test="aduoil != null" >
+        AduOil = #{aduoil,jdbcType=DECIMAL},
+      </if>
+      <if test="chdoil != null" >
+        ChdOil = #{chdoil,jdbcType=DECIMAL},
+      </if>
+      <if test="ariline != null" >
+        AriLine = #{ariline,jdbcType=VARCHAR},
+      </if>
+      <if test="tax != null" >
+        Tax = #{tax,jdbcType=DECIMAL},
+      </if>
+      <if test="km != null" >
+        KM = #{km,jdbcType=DECIMAL},
+      </if>
+      <if test="pricey != null" >
+        PriceY = #{pricey,jdbcType=DECIMAL},
+      </if>
+      <if test="beginterm != null" >
+        BeginTerm = #{beginterm,jdbcType=VARCHAR},
+      </if>
+      <if test="endterm != null" >
+        EndTerm = #{endterm,jdbcType=VARCHAR},
+      </if>
+      <if test="eat != null" >
+        Eat = #{eat,jdbcType=VARCHAR},
+      </if>
+      <if test="issale != null" >
+        IsSale = #{issale,jdbcType=VARCHAR},
+      </if>
+      <if test="xtype != null" >
+        xType = #{xtype,jdbcType=INTEGER},
+      </if>
+      <if test="createddate != null" >
+        CreatedDate = #{createddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdby != null" >
+        CreatedBy = #{createdby,jdbcType=VARCHAR},
+      </if>
+      <if test="createdbyid != null" >
+        CreatedByID = #{createdbyid,jdbcType=CHAR},
+      </if>
+      <if test="deptid != null" >
+        DeptID = #{deptid,jdbcType=CHAR},
+      </if>
+      <if test="orgid != null" >
+        OrgID = #{orgid,jdbcType=CHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.holyrobot.con_res.pojo.ResFlightinfo" >
+    update Res_FlightInfo
+    set FlightNo = #{flightno,jdbcType=VARCHAR},
+      FlightDate = #{flightdate,jdbcType=TIMESTAMP},
+      Plane = #{plane,jdbcType=VARCHAR},
+      BeginCity = #{begincity,jdbcType=VARCHAR},
+      EndCity = #{endcity,jdbcType=VARCHAR},
+      BeginTime = #{begintime,jdbcType=VARCHAR},
+      EndTime = #{endtime,jdbcType=VARCHAR},
+      RealBeginTime = #{realbegintime,jdbcType=VARCHAR},
+      RealEndTime = #{realendtime,jdbcType=VARCHAR},
+      FlightStatus = #{flightstatus,jdbcType=VARCHAR},
+      Stop = #{stop,jdbcType=INTEGER},
+      Times = #{times,jdbcType=VARCHAR},
+      AduOil = #{aduoil,jdbcType=DECIMAL},
+      ChdOil = #{chdoil,jdbcType=DECIMAL},
+      AriLine = #{ariline,jdbcType=VARCHAR},
+      Tax = #{tax,jdbcType=DECIMAL},
+      KM = #{km,jdbcType=DECIMAL},
+      PriceY = #{pricey,jdbcType=DECIMAL},
+      BeginTerm = #{beginterm,jdbcType=VARCHAR},
+      EndTerm = #{endterm,jdbcType=VARCHAR},
+      Eat = #{eat,jdbcType=VARCHAR},
+      IsSale = #{issale,jdbcType=VARCHAR},
+      xType = #{xtype,jdbcType=INTEGER},
+      CreatedDate = #{createddate,jdbcType=TIMESTAMP},
+      CreatedBy = #{createdby,jdbcType=VARCHAR},
+      CreatedByID = #{createdbyid,jdbcType=CHAR},
+      DeptID = #{deptid,jdbcType=CHAR},
+      OrgID = #{orgid,jdbcType=CHAR}
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+
+  <!-- -->
+  <select id="selectByFlightNoAndFlightDate" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from Res_FlightInfo
+    where FlightNo = #{flightno,jdbcType=VARCHAR}
+    and FlightDate = #{flightdate,jdbcType=TIMESTAMP}
+  </select>
+
+</mapper>

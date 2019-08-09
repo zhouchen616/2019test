@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.holyrobot.con_order.mapper.OrdOrderLogMapper" >
+  <resultMap id="BaseResultMap" type="com.holyrobot.con_order.pojo.OrdOrderLog" >
+    <id column="ID" property="id" jdbcType="CHAR" />
+    <result column="OrderID" property="orderid" jdbcType="CHAR" />
+    <result column="OpLog" property="oplog" jdbcType="VARCHAR" />
+    <result column="OpIP" property="opip" jdbcType="VARCHAR" />
+    <result column="OpBrowser" property="opbrowser" jdbcType="VARCHAR" />
+    <result column="CreatedByID" property="createdbyid" jdbcType="CHAR" />
+    <result column="CreatedBy" property="createdby" jdbcType="VARCHAR" />
+    <result column="CreatedDate" property="createddate" jdbcType="TIMESTAMP" />
+    <result column="OrgID" property="orgid" jdbcType="CHAR" />
+    <result column="VisibleType" property="visibletype" jdbcType="INTEGER" />
+    <result column="OrgName" property="orgname" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, OrderID, OpLog, OpIP, OpBrowser, CreatedByID, CreatedBy, CreatedDate, OrgID, 
+    VisibleType, OrgName
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.holyrobot.con_order.pojo.OrdOrderLogExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from Ord_Order_Log
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from Ord_Order_Log
+    where ID = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from Ord_Order_Log
+    where ID = #{id,jdbcType=CHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.holyrobot.con_order.pojo.OrdOrderLogExample" >
+    delete from Ord_Order_Log
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.holyrobot.con_order.pojo.OrdOrderLog" >
+    insert into Ord_Order_Log (ID, OrderID, OpLog, 
+      OpIP, OpBrowser, CreatedByID, 
+      CreatedBy, CreatedDate, OrgID, 
+      VisibleType, OrgName)
+    values (#{id,jdbcType=CHAR}, #{orderid,jdbcType=CHAR}, #{oplog,jdbcType=VARCHAR},
+      #{opip,jdbcType=VARCHAR}, #{opbrowser,jdbcType=VARCHAR}, #{createdbyid,jdbcType=CHAR},
+      #{createdby,jdbcType=VARCHAR}, #{createddate,jdbcType=TIMESTAMP}, #{orgid,jdbcType=CHAR},
+      #{visibletype,jdbcType=INTEGER}, #{orgname,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.holyrobot.con_order.pojo.OrdOrderLog" >
+    insert into Ord_Order_Log
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="orderid != null" >
+        OrderID,
+      </if>
+      <if test="oplog != null" >
+        OpLog,
+      </if>
+      <if test="opip != null" >
+        OpIP,
+      </if>
+      <if test="opbrowser != null" >
+        OpBrowser,
+      </if>
+      <if test="createdbyid != null" >
+        CreatedByID,
+      </if>
+      <if test="createdby != null" >
+        CreatedBy,
+      </if>
+      <if test="createddate != null" >
+        CreatedDate,
+      </if>
+      <if test="orgid != null" >
+        OrgID,
+      </if>
+      <if test="visibletype != null" >
+        VisibleType,
+      </if>
+      <if test="orgname != null" >
+        OrgName,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="orderid != null" >
+        #{orderid,jdbcType=CHAR},
+      </if>
+      <if test="oplog != null" >
+        #{oplog,jdbcType=VARCHAR},
+      </if>
+      <if test="opip != null" >
+        #{opip,jdbcType=VARCHAR},
+      </if>
+      <if test="opbrowser != null" >
+        #{opbrowser,jdbcType=VARCHAR},
+      </if>
+      <if test="createdbyid != null" >
+        #{createdbyid,jdbcType=CHAR},
+      </if>
+      <if test="createdby != null" >
+        #{createdby,jdbcType=VARCHAR},
+      </if>
+      <if test="createddate != null" >
+        #{createddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orgid != null" >
+        #{orgid,jdbcType=CHAR},
+      </if>
+      <if test="visibletype != null" >
+        #{visibletype,jdbcType=INTEGER},
+      </if>
+      <if test="orgname != null" >
+        #{orgname,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.holyrobot.con_order.pojo.OrdOrderLogExample" resultType="java.lang.Integer" >
+    select count(*) from Ord_Order_Log
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update Ord_Order_Log
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=CHAR},
+      </if>
+      <if test="record.orderid != null" >
+        OrderID = #{record.orderid,jdbcType=CHAR},
+      </if>
+      <if test="record.oplog != null" >
+        OpLog = #{record.oplog,jdbcType=VARCHAR},
+      </if>
+      <if test="record.opip != null" >
+        OpIP = #{record.opip,jdbcType=VARCHAR},
+      </if>
+      <if test="record.opbrowser != null" >
+        OpBrowser = #{record.opbrowser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createdbyid != null" >
+        CreatedByID = #{record.createdbyid,jdbcType=CHAR},
+      </if>
+      <if test="record.createdby != null" >
+        CreatedBy = #{record.createdby,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createddate != null" >
+        CreatedDate = #{record.createddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.orgid != null" >
+        OrgID = #{record.orgid,jdbcType=CHAR},
+      </if>
+      <if test="record.visibletype != null" >
+        VisibleType = #{record.visibletype,jdbcType=INTEGER},
+      </if>
+      <if test="record.orgname != null" >
+        OrgName = #{record.orgname,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update Ord_Order_Log
+    set ID = #{record.id,jdbcType=CHAR},
+      OrderID = #{record.orderid,jdbcType=CHAR},
+      OpLog = #{record.oplog,jdbcType=VARCHAR},
+      OpIP = #{record.opip,jdbcType=VARCHAR},
+      OpBrowser = #{record.opbrowser,jdbcType=VARCHAR},
+      CreatedByID = #{record.createdbyid,jdbcType=CHAR},
+      CreatedBy = #{record.createdby,jdbcType=VARCHAR},
+      CreatedDate = #{record.createddate,jdbcType=TIMESTAMP},
+      OrgID = #{record.orgid,jdbcType=CHAR},
+      VisibleType = #{record.visibletype,jdbcType=INTEGER},
+      OrgName = #{record.orgname,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.holyrobot.con_order.pojo.OrdOrderLog" >
+    update Ord_Order_Log
+    <set >
+      <if test="orderid != null" >
+        OrderID = #{orderid,jdbcType=CHAR},
+      </if>
+      <if test="oplog != null" >
+        OpLog = #{oplog,jdbcType=VARCHAR},
+      </if>
+      <if test="opip != null" >
+        OpIP = #{opip,jdbcType=VARCHAR},
+      </if>
+      <if test="opbrowser != null" >
+        OpBrowser = #{opbrowser,jdbcType=VARCHAR},
+      </if>
+      <if test="createdbyid != null" >
+        CreatedByID = #{createdbyid,jdbcType=CHAR},
+      </if>
+      <if test="createdby != null" >
+        CreatedBy = #{createdby,jdbcType=VARCHAR},
+      </if>
+      <if test="createddate != null" >
+        CreatedDate = #{createddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orgid != null" >
+        OrgID = #{orgid,jdbcType=CHAR},
+      </if>
+      <if test="visibletype != null" >
+        VisibleType = #{visibletype,jdbcType=INTEGER},
+      </if>
+      <if test="orgname != null" >
+        OrgName = #{orgname,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.holyrobot.con_order.pojo.OrdOrderLog" >
+    update Ord_Order_Log
+    set OrderID = #{orderid,jdbcType=CHAR},
+      OpLog = #{oplog,jdbcType=VARCHAR},
+      OpIP = #{opip,jdbcType=VARCHAR},
+      OpBrowser = #{opbrowser,jdbcType=VARCHAR},
+      CreatedByID = #{createdbyid,jdbcType=CHAR},
+      CreatedBy = #{createdby,jdbcType=VARCHAR},
+      CreatedDate = #{createddate,jdbcType=TIMESTAMP},
+      OrgID = #{orgid,jdbcType=CHAR},
+      VisibleType = #{visibletype,jdbcType=INTEGER},
+      OrgName = #{orgname,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+</mapper>

@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.holyrobot.con_volunteer.mapper.VolunteerStoreUnbindingRecordMapper" >
+  <resultMap id="BaseResultMap" type="com.holyrobot.con_volunteer.pojo.VolunteerStoreUnbindingRecord" >
+    <id column="ID" property="id" jdbcType="CHAR" />
+    <result column="VolAppID" property="volappid" jdbcType="CHAR" />
+    <result column="OrgID" property="orgid" jdbcType="CHAR" />
+    <result column="UserID" property="userid" jdbcType="CHAR" />
+    <result column="StoreStatus" property="storestatus" jdbcType="INTEGER" />
+    <result column="AppReason" property="appreason" jdbcType="VARCHAR" />
+    <result column="Remarks" property="remarks" jdbcType="VARCHAR" />
+    <result column="ReasonDate" property="reasondate" jdbcType="TIMESTAMP" />
+    <result column="ReviewDate" property="reviewdate" jdbcType="TIMESTAMP" />
+    <result column="Reviewer" property="reviewer" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, VolAppID, OrgID, UserID, StoreStatus, AppReason, Remarks, ReasonDate, ReviewDate, 
+    Reviewer
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.holyrobot.con_volunteer.pojo.VolunteerStoreUnbindingRecordExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from Volunteer_Store_UnbindingRecord
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from Volunteer_Store_UnbindingRecord
+    where ID = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from Volunteer_Store_UnbindingRecord
+    where ID = #{id,jdbcType=CHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.holyrobot.con_volunteer.pojo.VolunteerStoreUnbindingRecordExample" >
+    delete from Volunteer_Store_UnbindingRecord
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.holyrobot.con_volunteer.pojo.VolunteerStoreUnbindingRecord" >
+    insert into Volunteer_Store_UnbindingRecord (ID, VolAppID, OrgID, UserID, 
+      StoreStatus, AppReason, Remarks, 
+      ReasonDate, ReviewDate, Reviewer
+      )
+    values (#{id,jdbcType=CHAR}, #{volappid,jdbcType=CHAR}, #{orgid,jdbcType=CHAR}, #{userid,jdbcType=CHAR}, 
+      #{storestatus,jdbcType=INTEGER}, #{appreason,jdbcType=VARCHAR}, #{remarks,jdbcType=VARCHAR},
+      #{reasondate,jdbcType=TIMESTAMP}, #{reviewdate,jdbcType=TIMESTAMP}, #{reviewer,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.holyrobot.con_volunteer.pojo.VolunteerStoreUnbindingRecord" >
+    insert into Volunteer_Store_UnbindingRecord
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="volappid != null" >
+        VolAppID,
+      </if>
+      <if test="orgid != null" >
+        OrgID,
+      </if>
+      <if test="userid != null" >
+        UserID,
+      </if>
+      <if test="storestatus != null" >
+        StoreStatus,
+      </if>
+      <if test="appreason != null" >
+        AppReason,
+      </if>
+      <if test="remarks != null" >
+        Remarks,
+      </if>
+      <if test="reasondate != null" >
+        ReasonDate,
+      </if>
+      <if test="reviewdate != null" >
+        ReviewDate,
+      </if>
+      <if test="reviewer != null" >
+        Reviewer,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="volappid != null" >
+        #{volappid,jdbcType=CHAR},
+      </if>
+      <if test="orgid != null" >
+        #{orgid,jdbcType=CHAR},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=CHAR},
+      </if>
+      <if test="storestatus != null" >
+        #{storestatus,jdbcType=INTEGER},
+      </if>
+      <if test="appreason != null" >
+        #{appreason,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks != null" >
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="reasondate != null" >
+        #{reasondate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="reviewdate != null" >
+        #{reviewdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="reviewer != null" >
+        #{reviewer,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.holyrobot.con_volunteer.pojo.VolunteerStoreUnbindingRecordExample" resultType="java.lang.Integer" >
+    select count(*) from Volunteer_Store_UnbindingRecord
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update Volunteer_Store_UnbindingRecord
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=CHAR},
+      </if>
+      <if test="record.volappid != null" >
+        VolAppID = #{record.volappid,jdbcType=CHAR},
+      </if>
+      <if test="record.orgid != null" >
+        OrgID = #{record.orgid,jdbcType=CHAR},
+      </if>
+      <if test="record.userid != null" >
+        UserID = #{record.userid,jdbcType=CHAR},
+      </if>
+      <if test="record.storestatus != null" >
+        StoreStatus = #{record.storestatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.appreason != null" >
+        AppReason = #{record.appreason,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remarks != null" >
+        Remarks = #{record.remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="record.reasondate != null" >
+        ReasonDate = #{record.reasondate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.reviewdate != null" >
+        ReviewDate = #{record.reviewdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.reviewer != null" >
+        Reviewer = #{record.reviewer,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update Volunteer_Store_UnbindingRecord
+    set ID = #{record.id,jdbcType=CHAR},
+      VolAppID = #{record.volappid,jdbcType=CHAR},
+      OrgID = #{record.orgid,jdbcType=CHAR},
+      UserID = #{record.userid,jdbcType=CHAR},
+      StoreStatus = #{record.storestatus,jdbcType=INTEGER},
+      AppReason = #{record.appreason,jdbcType=VARCHAR},
+      Remarks = #{record.remarks,jdbcType=VARCHAR},
+      ReasonDate = #{record.reasondate,jdbcType=TIMESTAMP},
+      ReviewDate = #{record.reviewdate,jdbcType=TIMESTAMP},
+      Reviewer = #{record.reviewer,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.holyrobot.con_volunteer.pojo.VolunteerStoreUnbindingRecord" >
+    update Volunteer_Store_UnbindingRecord
+    <set >
+      <if test="volappid != null" >
+        VolAppID = #{volappid,jdbcType=CHAR},
+      </if>
+      <if test="orgid != null" >
+        OrgID = #{orgid,jdbcType=CHAR},
+      </if>
+      <if test="userid != null" >
+        UserID = #{userid,jdbcType=CHAR},
+      </if>
+      <if test="storestatus != null" >
+        StoreStatus = #{storestatus,jdbcType=INTEGER},
+      </if>
+      <if test="appreason != null" >
+        AppReason = #{appreason,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks != null" >
+        Remarks = #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="reasondate != null" >
+        ReasonDate = #{reasondate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="reviewdate != null" >
+        ReviewDate = #{reviewdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="reviewer != null" >
+        Reviewer = #{reviewer,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.holyrobot.con_volunteer.pojo.VolunteerStoreUnbindingRecord" >
+    update Volunteer_Store_UnbindingRecord
+    set VolAppID = #{volappid,jdbcType=CHAR},
+      OrgID = #{orgid,jdbcType=CHAR},
+      UserID = #{userid,jdbcType=CHAR},
+      StoreStatus = #{storestatus,jdbcType=INTEGER},
+      AppReason = #{appreason,jdbcType=VARCHAR},
+      Remarks = #{remarks,jdbcType=VARCHAR},
+      ReasonDate = #{reasondate,jdbcType=TIMESTAMP},
+      ReviewDate = #{reviewdate,jdbcType=TIMESTAMP},
+      Reviewer = #{reviewer,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+</mapper>

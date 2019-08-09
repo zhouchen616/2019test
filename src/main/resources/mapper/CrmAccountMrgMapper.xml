@@ -1,0 +1,575 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.holyrobot.con_common.mapper.CrmAccountMrgMapper" >
+  <resultMap id="BaseResultMap" type="com.holyrobot.con_common.pojo.CrmAccountMrg" >
+    <id column="ID" property="id" jdbcType="CHAR" />
+    <result column="ParentID" property="parentid" jdbcType="CHAR" />
+    <result column="CategoryID" property="categoryid" jdbcType="CHAR" />
+    <result column="CategoryName" property="categoryname" jdbcType="VARCHAR" />
+    <result column="UnitName" property="unitname" jdbcType="VARCHAR" />
+    <result column="CityID" property="cityid" jdbcType="CHAR" />
+    <result column="CityName" property="cityname" jdbcType="VARCHAR" />
+    <result column="BelongToDeptID" property="belongtodeptid" jdbcType="CHAR" />
+    <result column="DelongToDept" property="delongtodept" jdbcType="VARCHAR" />
+    <result column="InBlacklist" property="inblacklist" jdbcType="BIT" />
+    <result column="Contact" property="contact" jdbcType="VARCHAR" />
+    <result column="Mobile" property="mobile" jdbcType="VARCHAR" />
+    <result column="Comment" property="comment" jdbcType="VARCHAR" />
+    <result column="CreatedDate" property="createddate" jdbcType="TIMESTAMP" />
+    <result column="CreatedBy" property="createdby" jdbcType="VARCHAR" />
+    <result column="CreatedByID" property="createdbyid" jdbcType="CHAR" />
+    <result column="DeptID" property="deptid" jdbcType="CHAR" />
+    <result column="OrgID" property="orgid" jdbcType="CHAR" />
+    <result column="RevisedDate" property="reviseddate" jdbcType="TIMESTAMP" />
+    <result column="RevisedBy" property="revisedby" jdbcType="VARCHAR" />
+    <result column="DataStatus" property="datastatus" jdbcType="INTEGER" />
+    <result column="CreditAmt" property="creditamt" jdbcType="DECIMAL" />
+    <result column="CreditNumber" property="creditnumber" jdbcType="INTEGER" />
+    <result column="PurchaserOrgID" property="purchaserorgid" jdbcType="CHAR" />
+    <result column="CrmAddress" property="crmaddress" jdbcType="VARCHAR" />
+    <result column="IsOpneCrmAccount" property="isopnecrmaccount" jdbcType="INTEGER" />
+    <result column="CrmAccountOrgID" property="crmaccountorgid" jdbcType="CHAR" />
+    <result column="Source" property="source" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, ParentID, CategoryID, CategoryName, UnitName, CityID, CityName, BelongToDeptID, 
+    DelongToDept, InBlacklist, Contact, Mobile, Comment, CreatedDate, CreatedBy, CreatedByID, 
+    DeptID, OrgID, RevisedDate, RevisedBy, DataStatus, CreditAmt, CreditNumber, PurchaserOrgID, 
+    CrmAddress, IsOpneCrmAccount, CrmAccountOrgID, Source
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.holyrobot.con_common.pojo.CrmAccountMrgExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from Crm_AccountMrg
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from Crm_AccountMrg
+    where ID = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from Crm_AccountMrg
+    where ID = #{id,jdbcType=CHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.holyrobot.con_common.pojo.CrmAccountMrgExample" >
+    delete from Crm_AccountMrg
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.holyrobot.con_common.pojo.CrmAccountMrg" >
+    insert into Crm_AccountMrg (ID, ParentID, CategoryID, 
+      CategoryName, UnitName, CityID, 
+      CityName, BelongToDeptID, DelongToDept, 
+      InBlacklist, Contact, Mobile, 
+      Comment, CreatedDate, CreatedBy, 
+      CreatedByID, DeptID, OrgID, 
+      RevisedDate, RevisedBy, DataStatus, 
+      CreditAmt, CreditNumber, PurchaserOrgID, 
+      CrmAddress, IsOpneCrmAccount, CrmAccountOrgID, 
+      Source)
+    values (#{id,jdbcType=CHAR}, #{parentid,jdbcType=CHAR}, #{categoryid,jdbcType=CHAR}, 
+      #{categoryname,jdbcType=VARCHAR}, #{unitname,jdbcType=VARCHAR}, #{cityid,jdbcType=CHAR},
+      #{cityname,jdbcType=VARCHAR}, #{belongtodeptid,jdbcType=CHAR}, #{delongtodept,jdbcType=VARCHAR},
+      #{inblacklist,jdbcType=BIT}, #{contact,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR},
+      #{comment,jdbcType=VARCHAR}, #{createddate,jdbcType=TIMESTAMP}, #{createdby,jdbcType=VARCHAR},
+      #{createdbyid,jdbcType=CHAR}, #{deptid,jdbcType=CHAR}, #{orgid,jdbcType=CHAR}, 
+      #{reviseddate,jdbcType=TIMESTAMP}, #{revisedby,jdbcType=VARCHAR}, #{datastatus,jdbcType=INTEGER},
+      #{creditamt,jdbcType=DECIMAL}, #{creditnumber,jdbcType=INTEGER}, #{purchaserorgid,jdbcType=CHAR}, 
+      #{crmaddress,jdbcType=VARCHAR}, #{isopnecrmaccount,jdbcType=INTEGER}, #{crmaccountorgid,jdbcType=CHAR},
+      #{source,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.holyrobot.con_common.pojo.CrmAccountMrg" >
+    insert into Crm_AccountMrg
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="parentid != null" >
+        ParentID,
+      </if>
+      <if test="categoryid != null" >
+        CategoryID,
+      </if>
+      <if test="categoryname != null" >
+        CategoryName,
+      </if>
+      <if test="unitname != null" >
+        UnitName,
+      </if>
+      <if test="cityid != null" >
+        CityID,
+      </if>
+      <if test="cityname != null" >
+        CityName,
+      </if>
+      <if test="belongtodeptid != null" >
+        BelongToDeptID,
+      </if>
+      <if test="delongtodept != null" >
+        DelongToDept,
+      </if>
+      <if test="inblacklist != null" >
+        InBlacklist,
+      </if>
+      <if test="contact != null" >
+        Contact,
+      </if>
+      <if test="mobile != null" >
+        Mobile,
+      </if>
+      <if test="comment != null" >
+        Comment,
+      </if>
+      <if test="createddate != null" >
+        CreatedDate,
+      </if>
+      <if test="createdby != null" >
+        CreatedBy,
+      </if>
+      <if test="createdbyid != null" >
+        CreatedByID,
+      </if>
+      <if test="deptid != null" >
+        DeptID,
+      </if>
+      <if test="orgid != null" >
+        OrgID,
+      </if>
+      <if test="reviseddate != null" >
+        RevisedDate,
+      </if>
+      <if test="revisedby != null" >
+        RevisedBy,
+      </if>
+      <if test="datastatus != null" >
+        DataStatus,
+      </if>
+      <if test="creditamt != null" >
+        CreditAmt,
+      </if>
+      <if test="creditnumber != null" >
+        CreditNumber,
+      </if>
+      <if test="purchaserorgid != null" >
+        PurchaserOrgID,
+      </if>
+      <if test="crmaddress != null" >
+        CrmAddress,
+      </if>
+      <if test="isopnecrmaccount != null" >
+        IsOpneCrmAccount,
+      </if>
+      <if test="crmaccountorgid != null" >
+        CrmAccountOrgID,
+      </if>
+      <if test="source != null" >
+        Source,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="parentid != null" >
+        #{parentid,jdbcType=CHAR},
+      </if>
+      <if test="categoryid != null" >
+        #{categoryid,jdbcType=CHAR},
+      </if>
+      <if test="categoryname != null" >
+        #{categoryname,jdbcType=VARCHAR},
+      </if>
+      <if test="unitname != null" >
+        #{unitname,jdbcType=VARCHAR},
+      </if>
+      <if test="cityid != null" >
+        #{cityid,jdbcType=CHAR},
+      </if>
+      <if test="cityname != null" >
+        #{cityname,jdbcType=VARCHAR},
+      </if>
+      <if test="belongtodeptid != null" >
+        #{belongtodeptid,jdbcType=CHAR},
+      </if>
+      <if test="delongtodept != null" >
+        #{delongtodept,jdbcType=VARCHAR},
+      </if>
+      <if test="inblacklist != null" >
+        #{inblacklist,jdbcType=BIT},
+      </if>
+      <if test="contact != null" >
+        #{contact,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="comment != null" >
+        #{comment,jdbcType=VARCHAR},
+      </if>
+      <if test="createddate != null" >
+        #{createddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdby != null" >
+        #{createdby,jdbcType=VARCHAR},
+      </if>
+      <if test="createdbyid != null" >
+        #{createdbyid,jdbcType=CHAR},
+      </if>
+      <if test="deptid != null" >
+        #{deptid,jdbcType=CHAR},
+      </if>
+      <if test="orgid != null" >
+        #{orgid,jdbcType=CHAR},
+      </if>
+      <if test="reviseddate != null" >
+        #{reviseddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="revisedby != null" >
+        #{revisedby,jdbcType=VARCHAR},
+      </if>
+      <if test="datastatus != null" >
+        #{datastatus,jdbcType=INTEGER},
+      </if>
+      <if test="creditamt != null" >
+        #{creditamt,jdbcType=DECIMAL},
+      </if>
+      <if test="creditnumber != null" >
+        #{creditnumber,jdbcType=INTEGER},
+      </if>
+      <if test="purchaserorgid != null" >
+        #{purchaserorgid,jdbcType=CHAR},
+      </if>
+      <if test="crmaddress != null" >
+        #{crmaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="isopnecrmaccount != null" >
+        #{isopnecrmaccount,jdbcType=INTEGER},
+      </if>
+      <if test="crmaccountorgid != null" >
+        #{crmaccountorgid,jdbcType=CHAR},
+      </if>
+      <if test="source != null" >
+        #{source,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.holyrobot.con_common.pojo.CrmAccountMrgExample" resultType="java.lang.Integer" >
+    select count(*) from Crm_AccountMrg
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update Crm_AccountMrg
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=CHAR},
+      </if>
+      <if test="record.parentid != null" >
+        ParentID = #{record.parentid,jdbcType=CHAR},
+      </if>
+      <if test="record.categoryid != null" >
+        CategoryID = #{record.categoryid,jdbcType=CHAR},
+      </if>
+      <if test="record.categoryname != null" >
+        CategoryName = #{record.categoryname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.unitname != null" >
+        UnitName = #{record.unitname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cityid != null" >
+        CityID = #{record.cityid,jdbcType=CHAR},
+      </if>
+      <if test="record.cityname != null" >
+        CityName = #{record.cityname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.belongtodeptid != null" >
+        BelongToDeptID = #{record.belongtodeptid,jdbcType=CHAR},
+      </if>
+      <if test="record.delongtodept != null" >
+        DelongToDept = #{record.delongtodept,jdbcType=VARCHAR},
+      </if>
+      <if test="record.inblacklist != null" >
+        InBlacklist = #{record.inblacklist,jdbcType=BIT},
+      </if>
+      <if test="record.contact != null" >
+        Contact = #{record.contact,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mobile != null" >
+        Mobile = #{record.mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="record.comment != null" >
+        Comment = #{record.comment,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createddate != null" >
+        CreatedDate = #{record.createddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createdby != null" >
+        CreatedBy = #{record.createdby,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createdbyid != null" >
+        CreatedByID = #{record.createdbyid,jdbcType=CHAR},
+      </if>
+      <if test="record.deptid != null" >
+        DeptID = #{record.deptid,jdbcType=CHAR},
+      </if>
+      <if test="record.orgid != null" >
+        OrgID = #{record.orgid,jdbcType=CHAR},
+      </if>
+      <if test="record.reviseddate != null" >
+        RevisedDate = #{record.reviseddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.revisedby != null" >
+        RevisedBy = #{record.revisedby,jdbcType=VARCHAR},
+      </if>
+      <if test="record.datastatus != null" >
+        DataStatus = #{record.datastatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.creditamt != null" >
+        CreditAmt = #{record.creditamt,jdbcType=DECIMAL},
+      </if>
+      <if test="record.creditnumber != null" >
+        CreditNumber = #{record.creditnumber,jdbcType=INTEGER},
+      </if>
+      <if test="record.purchaserorgid != null" >
+        PurchaserOrgID = #{record.purchaserorgid,jdbcType=CHAR},
+      </if>
+      <if test="record.crmaddress != null" >
+        CrmAddress = #{record.crmaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isopnecrmaccount != null" >
+        IsOpneCrmAccount = #{record.isopnecrmaccount,jdbcType=INTEGER},
+      </if>
+      <if test="record.crmaccountorgid != null" >
+        CrmAccountOrgID = #{record.crmaccountorgid,jdbcType=CHAR},
+      </if>
+      <if test="record.source != null" >
+        Source = #{record.source,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update Crm_AccountMrg
+    set ID = #{record.id,jdbcType=CHAR},
+      ParentID = #{record.parentid,jdbcType=CHAR},
+      CategoryID = #{record.categoryid,jdbcType=CHAR},
+      CategoryName = #{record.categoryname,jdbcType=VARCHAR},
+      UnitName = #{record.unitname,jdbcType=VARCHAR},
+      CityID = #{record.cityid,jdbcType=CHAR},
+      CityName = #{record.cityname,jdbcType=VARCHAR},
+      BelongToDeptID = #{record.belongtodeptid,jdbcType=CHAR},
+      DelongToDept = #{record.delongtodept,jdbcType=VARCHAR},
+      InBlacklist = #{record.inblacklist,jdbcType=BIT},
+      Contact = #{record.contact,jdbcType=VARCHAR},
+      Mobile = #{record.mobile,jdbcType=VARCHAR},
+      Comment = #{record.comment,jdbcType=VARCHAR},
+      CreatedDate = #{record.createddate,jdbcType=TIMESTAMP},
+      CreatedBy = #{record.createdby,jdbcType=VARCHAR},
+      CreatedByID = #{record.createdbyid,jdbcType=CHAR},
+      DeptID = #{record.deptid,jdbcType=CHAR},
+      OrgID = #{record.orgid,jdbcType=CHAR},
+      RevisedDate = #{record.reviseddate,jdbcType=TIMESTAMP},
+      RevisedBy = #{record.revisedby,jdbcType=VARCHAR},
+      DataStatus = #{record.datastatus,jdbcType=INTEGER},
+      CreditAmt = #{record.creditamt,jdbcType=DECIMAL},
+      CreditNumber = #{record.creditnumber,jdbcType=INTEGER},
+      PurchaserOrgID = #{record.purchaserorgid,jdbcType=CHAR},
+      CrmAddress = #{record.crmaddress,jdbcType=VARCHAR},
+      IsOpneCrmAccount = #{record.isopnecrmaccount,jdbcType=INTEGER},
+      CrmAccountOrgID = #{record.crmaccountorgid,jdbcType=CHAR},
+      Source = #{record.source,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.holyrobot.con_common.pojo.CrmAccountMrg" >
+    update Crm_AccountMrg
+    <set >
+      <if test="parentid != null" >
+        ParentID = #{parentid,jdbcType=CHAR},
+      </if>
+      <if test="categoryid != null" >
+        CategoryID = #{categoryid,jdbcType=CHAR},
+      </if>
+      <if test="categoryname != null" >
+        CategoryName = #{categoryname,jdbcType=VARCHAR},
+      </if>
+      <if test="unitname != null" >
+        UnitName = #{unitname,jdbcType=VARCHAR},
+      </if>
+      <if test="cityid != null" >
+        CityID = #{cityid,jdbcType=CHAR},
+      </if>
+      <if test="cityname != null" >
+        CityName = #{cityname,jdbcType=VARCHAR},
+      </if>
+      <if test="belongtodeptid != null" >
+        BelongToDeptID = #{belongtodeptid,jdbcType=CHAR},
+      </if>
+      <if test="delongtodept != null" >
+        DelongToDept = #{delongtodept,jdbcType=VARCHAR},
+      </if>
+      <if test="inblacklist != null" >
+        InBlacklist = #{inblacklist,jdbcType=BIT},
+      </if>
+      <if test="contact != null" >
+        Contact = #{contact,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        Mobile = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="comment != null" >
+        Comment = #{comment,jdbcType=VARCHAR},
+      </if>
+      <if test="createddate != null" >
+        CreatedDate = #{createddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdby != null" >
+        CreatedBy = #{createdby,jdbcType=VARCHAR},
+      </if>
+      <if test="createdbyid != null" >
+        CreatedByID = #{createdbyid,jdbcType=CHAR},
+      </if>
+      <if test="deptid != null" >
+        DeptID = #{deptid,jdbcType=CHAR},
+      </if>
+      <if test="orgid != null" >
+        OrgID = #{orgid,jdbcType=CHAR},
+      </if>
+      <if test="reviseddate != null" >
+        RevisedDate = #{reviseddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="revisedby != null" >
+        RevisedBy = #{revisedby,jdbcType=VARCHAR},
+      </if>
+      <if test="datastatus != null" >
+        DataStatus = #{datastatus,jdbcType=INTEGER},
+      </if>
+      <if test="creditamt != null" >
+        CreditAmt = #{creditamt,jdbcType=DECIMAL},
+      </if>
+      <if test="creditnumber != null" >
+        CreditNumber = #{creditnumber,jdbcType=INTEGER},
+      </if>
+      <if test="purchaserorgid != null" >
+        PurchaserOrgID = #{purchaserorgid,jdbcType=CHAR},
+      </if>
+      <if test="crmaddress != null" >
+        CrmAddress = #{crmaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="isopnecrmaccount != null" >
+        IsOpneCrmAccount = #{isopnecrmaccount,jdbcType=INTEGER},
+      </if>
+      <if test="crmaccountorgid != null" >
+        CrmAccountOrgID = #{crmaccountorgid,jdbcType=CHAR},
+      </if>
+      <if test="source != null" >
+        Source = #{source,jdbcType=INTEGER},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.holyrobot.con_common.pojo.CrmAccountMrg" >
+    update Crm_AccountMrg
+    set ParentID = #{parentid,jdbcType=CHAR},
+      CategoryID = #{categoryid,jdbcType=CHAR},
+      CategoryName = #{categoryname,jdbcType=VARCHAR},
+      UnitName = #{unitname,jdbcType=VARCHAR},
+      CityID = #{cityid,jdbcType=CHAR},
+      CityName = #{cityname,jdbcType=VARCHAR},
+      BelongToDeptID = #{belongtodeptid,jdbcType=CHAR},
+      DelongToDept = #{delongtodept,jdbcType=VARCHAR},
+      InBlacklist = #{inblacklist,jdbcType=BIT},
+      Contact = #{contact,jdbcType=VARCHAR},
+      Mobile = #{mobile,jdbcType=VARCHAR},
+      Comment = #{comment,jdbcType=VARCHAR},
+      CreatedDate = #{createddate,jdbcType=TIMESTAMP},
+      CreatedBy = #{createdby,jdbcType=VARCHAR},
+      CreatedByID = #{createdbyid,jdbcType=CHAR},
+      DeptID = #{deptid,jdbcType=CHAR},
+      OrgID = #{orgid,jdbcType=CHAR},
+      RevisedDate = #{reviseddate,jdbcType=TIMESTAMP},
+      RevisedBy = #{revisedby,jdbcType=VARCHAR},
+      DataStatus = #{datastatus,jdbcType=INTEGER},
+      CreditAmt = #{creditamt,jdbcType=DECIMAL},
+      CreditNumber = #{creditnumber,jdbcType=INTEGER},
+      PurchaserOrgID = #{purchaserorgid,jdbcType=CHAR},
+      CrmAddress = #{crmaddress,jdbcType=VARCHAR},
+      IsOpneCrmAccount = #{isopnecrmaccount,jdbcType=INTEGER},
+      CrmAccountOrgID = #{crmaccountorgid,jdbcType=CHAR},
+      Source = #{source,jdbcType=INTEGER}
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+</mapper>

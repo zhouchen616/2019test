@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.holyrobot.con_product.mapper.ProOtherProductMapper" >
+  <resultMap id="BaseResultMap" type="com.holyrobot.con_product.pojo.ProOtherProduct" >
+    <id column="ID" property="id" jdbcType="CHAR" />
+    <result column="ProType" property="protype" jdbcType="INTEGER" />
+    <result column="UnitAmt" property="unitamt" jdbcType="DECIMAL" />
+    <result column="DeductionAmt" property="deductionamt" jdbcType="DECIMAL" />
+    <result column="PicUrl" property="picurl" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, ProType, UnitAmt, DeductionAmt, PicUrl
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.holyrobot.con_product.pojo.ProOtherProductExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from Pro_OtherProduct
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from Pro_OtherProduct
+    where ID = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from Pro_OtherProduct
+    where ID = #{id,jdbcType=CHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.holyrobot.con_product.pojo.ProOtherProductExample" >
+    delete from Pro_OtherProduct
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.holyrobot.con_product.pojo.ProOtherProduct" >
+    insert into Pro_OtherProduct (ID, ProType, UnitAmt, 
+      DeductionAmt, PicUrl)
+    values (#{id,jdbcType=CHAR}, #{protype,jdbcType=INTEGER}, #{unitamt,jdbcType=DECIMAL}, 
+      #{deductionamt,jdbcType=DECIMAL}, #{picurl,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.holyrobot.con_product.pojo.ProOtherProduct" >
+    insert into Pro_OtherProduct
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="protype != null" >
+        ProType,
+      </if>
+      <if test="unitamt != null" >
+        UnitAmt,
+      </if>
+      <if test="deductionamt != null" >
+        DeductionAmt,
+      </if>
+      <if test="picurl != null" >
+        PicUrl,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="protype != null" >
+        #{protype,jdbcType=INTEGER},
+      </if>
+      <if test="unitamt != null" >
+        #{unitamt,jdbcType=DECIMAL},
+      </if>
+      <if test="deductionamt != null" >
+        #{deductionamt,jdbcType=DECIMAL},
+      </if>
+      <if test="picurl != null" >
+        #{picurl,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.holyrobot.con_product.pojo.ProOtherProductExample" resultType="java.lang.Integer" >
+    select count(*) from Pro_OtherProduct
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update Pro_OtherProduct
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=CHAR},
+      </if>
+      <if test="record.protype != null" >
+        ProType = #{record.protype,jdbcType=INTEGER},
+      </if>
+      <if test="record.unitamt != null" >
+        UnitAmt = #{record.unitamt,jdbcType=DECIMAL},
+      </if>
+      <if test="record.deductionamt != null" >
+        DeductionAmt = #{record.deductionamt,jdbcType=DECIMAL},
+      </if>
+      <if test="record.picurl != null" >
+        PicUrl = #{record.picurl,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update Pro_OtherProduct
+    set ID = #{record.id,jdbcType=CHAR},
+      ProType = #{record.protype,jdbcType=INTEGER},
+      UnitAmt = #{record.unitamt,jdbcType=DECIMAL},
+      DeductionAmt = #{record.deductionamt,jdbcType=DECIMAL},
+      PicUrl = #{record.picurl,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.holyrobot.con_product.pojo.ProOtherProduct" >
+    update Pro_OtherProduct
+    <set >
+      <if test="protype != null" >
+        ProType = #{protype,jdbcType=INTEGER},
+      </if>
+      <if test="unitamt != null" >
+        UnitAmt = #{unitamt,jdbcType=DECIMAL},
+      </if>
+      <if test="deductionamt != null" >
+        DeductionAmt = #{deductionamt,jdbcType=DECIMAL},
+      </if>
+      <if test="picurl != null" >
+        PicUrl = #{picurl,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.holyrobot.con_product.pojo.ProOtherProduct" >
+    update Pro_OtherProduct
+    set ProType = #{protype,jdbcType=INTEGER},
+      UnitAmt = #{unitamt,jdbcType=DECIMAL},
+      DeductionAmt = #{deductionamt,jdbcType=DECIMAL},
+      PicUrl = #{picurl,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+</mapper>

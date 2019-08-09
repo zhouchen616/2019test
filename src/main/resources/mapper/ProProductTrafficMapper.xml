@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.holyrobot.con_product.mapper.ProProductTrafficMapper" >
+  <resultMap id="BaseResultMap" type="com.holyrobot.con_product.pojo.ProProductTraffic" >
+    <id column="ID" property="id" jdbcType="CHAR" />
+    <result column="ProID" property="proid" jdbcType="CHAR" />
+    <result column="TrafficNo" property="trafficno" jdbcType="VARCHAR" />
+    <result column="DepName" property="depname" jdbcType="VARCHAR" />
+    <result column="DepTime" property="deptime" jdbcType="VARCHAR" />
+    <result column="DepTerminal" property="depterminal" jdbcType="VARCHAR" />
+    <result column="ArrName" property="arrname" jdbcType="VARCHAR" />
+    <result column="ArrTime" property="arrtime" jdbcType="VARCHAR" />
+    <result column="ArrTerminal" property="arrterminal" jdbcType="VARCHAR" />
+    <result column="Company" property="company" jdbcType="VARCHAR" />
+    <result column="IsDirect" property="isdirect" jdbcType="INTEGER" />
+    <result column="DataStatus" property="datastatus" jdbcType="INTEGER" />
+    <result column="OrgID" property="orgid" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, ProID, TrafficNo, DepName, DepTime, DepTerminal, ArrName, ArrTime, ArrTerminal, 
+    Company, IsDirect, DataStatus, OrgID
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.holyrobot.con_product.pojo.ProProductTrafficExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from Pro_Product_Traffic
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from Pro_Product_Traffic
+    where ID = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from Pro_Product_Traffic
+    where ID = #{id,jdbcType=CHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.holyrobot.con_product.pojo.ProProductTrafficExample" >
+    delete from Pro_Product_Traffic
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.holyrobot.con_product.pojo.ProProductTraffic" >
+    insert into Pro_Product_Traffic (ID, ProID, TrafficNo, 
+      DepName, DepTime, DepTerminal, 
+      ArrName, ArrTime, ArrTerminal, 
+      Company, IsDirect, DataStatus, 
+      OrgID)
+    values (#{id,jdbcType=CHAR}, #{proid,jdbcType=CHAR}, #{trafficno,jdbcType=VARCHAR},
+      #{depname,jdbcType=VARCHAR}, #{deptime,jdbcType=VARCHAR}, #{depterminal,jdbcType=VARCHAR},
+      #{arrname,jdbcType=VARCHAR}, #{arrtime,jdbcType=VARCHAR}, #{arrterminal,jdbcType=VARCHAR},
+      #{company,jdbcType=VARCHAR}, #{isdirect,jdbcType=INTEGER}, #{datastatus,jdbcType=INTEGER},
+      #{orgid,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.holyrobot.con_product.pojo.ProProductTraffic" >
+    insert into Pro_Product_Traffic
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="proid != null" >
+        ProID,
+      </if>
+      <if test="trafficno != null" >
+        TrafficNo,
+      </if>
+      <if test="depname != null" >
+        DepName,
+      </if>
+      <if test="deptime != null" >
+        DepTime,
+      </if>
+      <if test="depterminal != null" >
+        DepTerminal,
+      </if>
+      <if test="arrname != null" >
+        ArrName,
+      </if>
+      <if test="arrtime != null" >
+        ArrTime,
+      </if>
+      <if test="arrterminal != null" >
+        ArrTerminal,
+      </if>
+      <if test="company != null" >
+        Company,
+      </if>
+      <if test="isdirect != null" >
+        IsDirect,
+      </if>
+      <if test="datastatus != null" >
+        DataStatus,
+      </if>
+      <if test="orgid != null" >
+        OrgID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="proid != null" >
+        #{proid,jdbcType=CHAR},
+      </if>
+      <if test="trafficno != null" >
+        #{trafficno,jdbcType=VARCHAR},
+      </if>
+      <if test="depname != null" >
+        #{depname,jdbcType=VARCHAR},
+      </if>
+      <if test="deptime != null" >
+        #{deptime,jdbcType=VARCHAR},
+      </if>
+      <if test="depterminal != null" >
+        #{depterminal,jdbcType=VARCHAR},
+      </if>
+      <if test="arrname != null" >
+        #{arrname,jdbcType=VARCHAR},
+      </if>
+      <if test="arrtime != null" >
+        #{arrtime,jdbcType=VARCHAR},
+      </if>
+      <if test="arrterminal != null" >
+        #{arrterminal,jdbcType=VARCHAR},
+      </if>
+      <if test="company != null" >
+        #{company,jdbcType=VARCHAR},
+      </if>
+      <if test="isdirect != null" >
+        #{isdirect,jdbcType=INTEGER},
+      </if>
+      <if test="datastatus != null" >
+        #{datastatus,jdbcType=INTEGER},
+      </if>
+      <if test="orgid != null" >
+        #{orgid,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.holyrobot.con_product.pojo.ProProductTrafficExample" resultType="java.lang.Integer" >
+    select count(*) from Pro_Product_Traffic
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update Pro_Product_Traffic
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=CHAR},
+      </if>
+      <if test="record.proid != null" >
+        ProID = #{record.proid,jdbcType=CHAR},
+      </if>
+      <if test="record.trafficno != null" >
+        TrafficNo = #{record.trafficno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.depname != null" >
+        DepName = #{record.depname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deptime != null" >
+        DepTime = #{record.deptime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.depterminal != null" >
+        DepTerminal = #{record.depterminal,jdbcType=VARCHAR},
+      </if>
+      <if test="record.arrname != null" >
+        ArrName = #{record.arrname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.arrtime != null" >
+        ArrTime = #{record.arrtime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.arrterminal != null" >
+        ArrTerminal = #{record.arrterminal,jdbcType=VARCHAR},
+      </if>
+      <if test="record.company != null" >
+        Company = #{record.company,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isdirect != null" >
+        IsDirect = #{record.isdirect,jdbcType=INTEGER},
+      </if>
+      <if test="record.datastatus != null" >
+        DataStatus = #{record.datastatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.orgid != null" >
+        OrgID = #{record.orgid,jdbcType=CHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update Pro_Product_Traffic
+    set ID = #{record.id,jdbcType=CHAR},
+      ProID = #{record.proid,jdbcType=CHAR},
+      TrafficNo = #{record.trafficno,jdbcType=VARCHAR},
+      DepName = #{record.depname,jdbcType=VARCHAR},
+      DepTime = #{record.deptime,jdbcType=VARCHAR},
+      DepTerminal = #{record.depterminal,jdbcType=VARCHAR},
+      ArrName = #{record.arrname,jdbcType=VARCHAR},
+      ArrTime = #{record.arrtime,jdbcType=VARCHAR},
+      ArrTerminal = #{record.arrterminal,jdbcType=VARCHAR},
+      Company = #{record.company,jdbcType=VARCHAR},
+      IsDirect = #{record.isdirect,jdbcType=INTEGER},
+      DataStatus = #{record.datastatus,jdbcType=INTEGER},
+      OrgID = #{record.orgid,jdbcType=CHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.holyrobot.con_product.pojo.ProProductTraffic" >
+    update Pro_Product_Traffic
+    <set >
+      <if test="proid != null" >
+        ProID = #{proid,jdbcType=CHAR},
+      </if>
+      <if test="trafficno != null" >
+        TrafficNo = #{trafficno,jdbcType=VARCHAR},
+      </if>
+      <if test="depname != null" >
+        DepName = #{depname,jdbcType=VARCHAR},
+      </if>
+      <if test="deptime != null" >
+        DepTime = #{deptime,jdbcType=VARCHAR},
+      </if>
+      <if test="depterminal != null" >
+        DepTerminal = #{depterminal,jdbcType=VARCHAR},
+      </if>
+      <if test="arrname != null" >
+        ArrName = #{arrname,jdbcType=VARCHAR},
+      </if>
+      <if test="arrtime != null" >
+        ArrTime = #{arrtime,jdbcType=VARCHAR},
+      </if>
+      <if test="arrterminal != null" >
+        ArrTerminal = #{arrterminal,jdbcType=VARCHAR},
+      </if>
+      <if test="company != null" >
+        Company = #{company,jdbcType=VARCHAR},
+      </if>
+      <if test="isdirect != null" >
+        IsDirect = #{isdirect,jdbcType=INTEGER},
+      </if>
+      <if test="datastatus != null" >
+        DataStatus = #{datastatus,jdbcType=INTEGER},
+      </if>
+      <if test="orgid != null" >
+        OrgID = #{orgid,jdbcType=CHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.holyrobot.con_product.pojo.ProProductTraffic" >
+    update Pro_Product_Traffic
+    set ProID = #{proid,jdbcType=CHAR},
+      TrafficNo = #{trafficno,jdbcType=VARCHAR},
+      DepName = #{depname,jdbcType=VARCHAR},
+      DepTime = #{deptime,jdbcType=VARCHAR},
+      DepTerminal = #{depterminal,jdbcType=VARCHAR},
+      ArrName = #{arrname,jdbcType=VARCHAR},
+      ArrTime = #{arrtime,jdbcType=VARCHAR},
+      ArrTerminal = #{arrterminal,jdbcType=VARCHAR},
+      Company = #{company,jdbcType=VARCHAR},
+      IsDirect = #{isdirect,jdbcType=INTEGER},
+      DataStatus = #{datastatus,jdbcType=INTEGER},
+      OrgID = #{orgid,jdbcType=CHAR}
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+</mapper>

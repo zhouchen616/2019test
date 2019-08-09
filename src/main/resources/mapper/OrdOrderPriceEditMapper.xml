@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.holyrobot.con_order.mapper.OrdOrderPriceEditMapper" >
+  <resultMap id="BaseResultMap" type="com.holyrobot.con_order.pojo.OrdOrderPriceEdit" >
+    <id column="ID" property="id" jdbcType="CHAR" />
+    <result column="PriceID" property="priceid" jdbcType="CHAR" />
+    <result column="OrderID" property="orderid" jdbcType="CHAR" />
+    <result column="TourPriceID" property="tourpriceid" jdbcType="CHAR" />
+    <result column="PriceName" property="pricename" jdbcType="VARCHAR" />
+    <result column="VisitorNum" property="visitornum" jdbcType="INTEGER" />
+    <result column="SalePrice" property="saleprice" jdbcType="DECIMAL" />
+    <result column="RebateAvg" property="rebateavg" jdbcType="DECIMAL" />
+    <result column="RebateNum" property="rebatenum" jdbcType="INTEGER" />
+    <result column="RoomPrice" property="roomprice" jdbcType="DECIMAL" />
+    <result column="IsSeat" property="isseat" jdbcType="BIT" />
+    <result column="IsChild" property="ischild" jdbcType="BIT" />
+    <result column="OrgID" property="orgid" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, PriceID, OrderID, TourPriceID, PriceName, VisitorNum, SalePrice, RebateAvg, RebateNum, 
+    RoomPrice, IsSeat, IsChild, OrgID
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.holyrobot.con_order.pojo.OrdOrderPriceEditExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from Ord_Order_Price_Edit
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from Ord_Order_Price_Edit
+    where ID = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from Ord_Order_Price_Edit
+    where ID = #{id,jdbcType=CHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.holyrobot.con_order.pojo.OrdOrderPriceEditExample" >
+    delete from Ord_Order_Price_Edit
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.holyrobot.con_order.pojo.OrdOrderPriceEdit" >
+    insert into Ord_Order_Price_Edit (ID, PriceID, OrderID, 
+      TourPriceID, PriceName, VisitorNum, 
+      SalePrice, RebateAvg, RebateNum, 
+      RoomPrice, IsSeat, IsChild, 
+      OrgID)
+    values (#{id,jdbcType=CHAR}, #{priceid,jdbcType=CHAR}, #{orderid,jdbcType=CHAR}, 
+      #{tourpriceid,jdbcType=CHAR}, #{pricename,jdbcType=VARCHAR}, #{visitornum,jdbcType=INTEGER},
+      #{saleprice,jdbcType=DECIMAL}, #{rebateavg,jdbcType=DECIMAL}, #{rebatenum,jdbcType=INTEGER}, 
+      #{roomprice,jdbcType=DECIMAL}, #{isseat,jdbcType=BIT}, #{ischild,jdbcType=BIT}, 
+      #{orgid,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.holyrobot.con_order.pojo.OrdOrderPriceEdit" >
+    insert into Ord_Order_Price_Edit
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="priceid != null" >
+        PriceID,
+      </if>
+      <if test="orderid != null" >
+        OrderID,
+      </if>
+      <if test="tourpriceid != null" >
+        TourPriceID,
+      </if>
+      <if test="pricename != null" >
+        PriceName,
+      </if>
+      <if test="visitornum != null" >
+        VisitorNum,
+      </if>
+      <if test="saleprice != null" >
+        SalePrice,
+      </if>
+      <if test="rebateavg != null" >
+        RebateAvg,
+      </if>
+      <if test="rebatenum != null" >
+        RebateNum,
+      </if>
+      <if test="roomprice != null" >
+        RoomPrice,
+      </if>
+      <if test="isseat != null" >
+        IsSeat,
+      </if>
+      <if test="ischild != null" >
+        IsChild,
+      </if>
+      <if test="orgid != null" >
+        OrgID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="priceid != null" >
+        #{priceid,jdbcType=CHAR},
+      </if>
+      <if test="orderid != null" >
+        #{orderid,jdbcType=CHAR},
+      </if>
+      <if test="tourpriceid != null" >
+        #{tourpriceid,jdbcType=CHAR},
+      </if>
+      <if test="pricename != null" >
+        #{pricename,jdbcType=VARCHAR},
+      </if>
+      <if test="visitornum != null" >
+        #{visitornum,jdbcType=INTEGER},
+      </if>
+      <if test="saleprice != null" >
+        #{saleprice,jdbcType=DECIMAL},
+      </if>
+      <if test="rebateavg != null" >
+        #{rebateavg,jdbcType=DECIMAL},
+      </if>
+      <if test="rebatenum != null" >
+        #{rebatenum,jdbcType=INTEGER},
+      </if>
+      <if test="roomprice != null" >
+        #{roomprice,jdbcType=DECIMAL},
+      </if>
+      <if test="isseat != null" >
+        #{isseat,jdbcType=BIT},
+      </if>
+      <if test="ischild != null" >
+        #{ischild,jdbcType=BIT},
+      </if>
+      <if test="orgid != null" >
+        #{orgid,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.holyrobot.con_order.pojo.OrdOrderPriceEditExample" resultType="java.lang.Integer" >
+    select count(*) from Ord_Order_Price_Edit
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update Ord_Order_Price_Edit
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=CHAR},
+      </if>
+      <if test="record.priceid != null" >
+        PriceID = #{record.priceid,jdbcType=CHAR},
+      </if>
+      <if test="record.orderid != null" >
+        OrderID = #{record.orderid,jdbcType=CHAR},
+      </if>
+      <if test="record.tourpriceid != null" >
+        TourPriceID = #{record.tourpriceid,jdbcType=CHAR},
+      </if>
+      <if test="record.pricename != null" >
+        PriceName = #{record.pricename,jdbcType=VARCHAR},
+      </if>
+      <if test="record.visitornum != null" >
+        VisitorNum = #{record.visitornum,jdbcType=INTEGER},
+      </if>
+      <if test="record.saleprice != null" >
+        SalePrice = #{record.saleprice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.rebateavg != null" >
+        RebateAvg = #{record.rebateavg,jdbcType=DECIMAL},
+      </if>
+      <if test="record.rebatenum != null" >
+        RebateNum = #{record.rebatenum,jdbcType=INTEGER},
+      </if>
+      <if test="record.roomprice != null" >
+        RoomPrice = #{record.roomprice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.isseat != null" >
+        IsSeat = #{record.isseat,jdbcType=BIT},
+      </if>
+      <if test="record.ischild != null" >
+        IsChild = #{record.ischild,jdbcType=BIT},
+      </if>
+      <if test="record.orgid != null" >
+        OrgID = #{record.orgid,jdbcType=CHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update Ord_Order_Price_Edit
+    set ID = #{record.id,jdbcType=CHAR},
+      PriceID = #{record.priceid,jdbcType=CHAR},
+      OrderID = #{record.orderid,jdbcType=CHAR},
+      TourPriceID = #{record.tourpriceid,jdbcType=CHAR},
+      PriceName = #{record.pricename,jdbcType=VARCHAR},
+      VisitorNum = #{record.visitornum,jdbcType=INTEGER},
+      SalePrice = #{record.saleprice,jdbcType=DECIMAL},
+      RebateAvg = #{record.rebateavg,jdbcType=DECIMAL},
+      RebateNum = #{record.rebatenum,jdbcType=INTEGER},
+      RoomPrice = #{record.roomprice,jdbcType=DECIMAL},
+      IsSeat = #{record.isseat,jdbcType=BIT},
+      IsChild = #{record.ischild,jdbcType=BIT},
+      OrgID = #{record.orgid,jdbcType=CHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.holyrobot.con_order.pojo.OrdOrderPriceEdit" >
+    update Ord_Order_Price_Edit
+    <set >
+      <if test="priceid != null" >
+        PriceID = #{priceid,jdbcType=CHAR},
+      </if>
+      <if test="orderid != null" >
+        OrderID = #{orderid,jdbcType=CHAR},
+      </if>
+      <if test="tourpriceid != null" >
+        TourPriceID = #{tourpriceid,jdbcType=CHAR},
+      </if>
+      <if test="pricename != null" >
+        PriceName = #{pricename,jdbcType=VARCHAR},
+      </if>
+      <if test="visitornum != null" >
+        VisitorNum = #{visitornum,jdbcType=INTEGER},
+      </if>
+      <if test="saleprice != null" >
+        SalePrice = #{saleprice,jdbcType=DECIMAL},
+      </if>
+      <if test="rebateavg != null" >
+        RebateAvg = #{rebateavg,jdbcType=DECIMAL},
+      </if>
+      <if test="rebatenum != null" >
+        RebateNum = #{rebatenum,jdbcType=INTEGER},
+      </if>
+      <if test="roomprice != null" >
+        RoomPrice = #{roomprice,jdbcType=DECIMAL},
+      </if>
+      <if test="isseat != null" >
+        IsSeat = #{isseat,jdbcType=BIT},
+      </if>
+      <if test="ischild != null" >
+        IsChild = #{ischild,jdbcType=BIT},
+      </if>
+      <if test="orgid != null" >
+        OrgID = #{orgid,jdbcType=CHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.holyrobot.con_order.pojo.OrdOrderPriceEdit" >
+    update Ord_Order_Price_Edit
+    set PriceID = #{priceid,jdbcType=CHAR},
+      OrderID = #{orderid,jdbcType=CHAR},
+      TourPriceID = #{tourpriceid,jdbcType=CHAR},
+      PriceName = #{pricename,jdbcType=VARCHAR},
+      VisitorNum = #{visitornum,jdbcType=INTEGER},
+      SalePrice = #{saleprice,jdbcType=DECIMAL},
+      RebateAvg = #{rebateavg,jdbcType=DECIMAL},
+      RebateNum = #{rebatenum,jdbcType=INTEGER},
+      RoomPrice = #{roomprice,jdbcType=DECIMAL},
+      IsSeat = #{isseat,jdbcType=BIT},
+      IsChild = #{ischild,jdbcType=BIT},
+      OrgID = #{orgid,jdbcType=CHAR}
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+
+
+  <!-- -->
+  <select id="selectByNOrderIdWithIsChild" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from Ord_Order_Price_Edit
+    where OrderID = #{nOderId,jdbcType=CHAR}
+    and IsChild = 1
+  </select>
+
+  <select id="selectByNOrderIdWithNoChild" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from Ord_Order_Price_Edit
+    where OrderID = #{nOderId,jdbcType=CHAR}
+    and IsChild = 0
+  </select>
+
+</mapper>

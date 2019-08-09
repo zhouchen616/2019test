@@ -1,0 +1,392 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.holyrobot.con_product.mapper.ProProductDepartureMapper" >
+  <resultMap id="BaseResultMap" type="com.holyrobot.con_product.pojo.ProProductDeparture" >
+    <id column="ID" property="id" jdbcType="CHAR" />
+    <result column="ProID" property="proid" jdbcType="CHAR" />
+    <result column="SiteID" property="siteid" jdbcType="CHAR" />
+    <result column="DepartureID" property="departureid" jdbcType="CHAR" />
+    <result column="Departure" property="departure" jdbcType="VARCHAR" />
+    <result column="OrgID" property="orgid" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, ProID, SiteID, DepartureID, Departure, OrgID
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.holyrobot.con_product.pojo.ProProductDepartureExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from Pro_Product_Departure
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from Pro_Product_Departure
+    where ID = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from Pro_Product_Departure
+    where ID = #{id,jdbcType=CHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.holyrobot.con_product.pojo.ProProductDepartureExample" >
+    delete from Pro_Product_Departure
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.holyrobot.con_product.pojo.ProProductDeparture" >
+    insert into Pro_Product_Departure (ID, ProID, SiteID, DepartureID, 
+      Departure, OrgID)
+    values (#{id,jdbcType=CHAR}, #{proid,jdbcType=CHAR}, #{siteid,jdbcType=CHAR}, #{departureid,jdbcType=CHAR}, 
+      #{departure,jdbcType=VARCHAR}, #{orgid,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.holyrobot.con_product.pojo.ProProductDeparture" >
+    insert into Pro_Product_Departure
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="proid != null" >
+        ProID,
+      </if>
+      <if test="siteid != null" >
+        SiteID,
+      </if>
+      <if test="departureid != null" >
+        DepartureID,
+      </if>
+      <if test="departure != null" >
+        Departure,
+      </if>
+      <if test="orgid != null" >
+        OrgID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="proid != null" >
+        #{proid,jdbcType=CHAR},
+      </if>
+      <if test="siteid != null" >
+        #{siteid,jdbcType=CHAR},
+      </if>
+      <if test="departureid != null" >
+        #{departureid,jdbcType=CHAR},
+      </if>
+      <if test="departure != null" >
+        #{departure,jdbcType=VARCHAR},
+      </if>
+      <if test="orgid != null" >
+        #{orgid,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.holyrobot.con_product.pojo.ProProductDepartureExample" resultType="java.lang.Integer" >
+    select count(*) from Pro_Product_Departure
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update Pro_Product_Departure
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=CHAR},
+      </if>
+      <if test="record.proid != null" >
+        ProID = #{record.proid,jdbcType=CHAR},
+      </if>
+      <if test="record.siteid != null" >
+        SiteID = #{record.siteid,jdbcType=CHAR},
+      </if>
+      <if test="record.departureid != null" >
+        DepartureID = #{record.departureid,jdbcType=CHAR},
+      </if>
+      <if test="record.departure != null" >
+        Departure = #{record.departure,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orgid != null" >
+        OrgID = #{record.orgid,jdbcType=CHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update Pro_Product_Departure
+    set ID = #{record.id,jdbcType=CHAR},
+      ProID = #{record.proid,jdbcType=CHAR},
+      SiteID = #{record.siteid,jdbcType=CHAR},
+      DepartureID = #{record.departureid,jdbcType=CHAR},
+      Departure = #{record.departure,jdbcType=VARCHAR},
+      OrgID = #{record.orgid,jdbcType=CHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.holyrobot.con_product.pojo.ProProductDeparture" >
+    update Pro_Product_Departure
+    <set >
+      <if test="proid != null" >
+        ProID = #{proid,jdbcType=CHAR},
+      </if>
+      <if test="siteid != null" >
+        SiteID = #{siteid,jdbcType=CHAR},
+      </if>
+      <if test="departureid != null" >
+        DepartureID = #{departureid,jdbcType=CHAR},
+      </if>
+      <if test="departure != null" >
+        Departure = #{departure,jdbcType=VARCHAR},
+      </if>
+      <if test="orgid != null" >
+        OrgID = #{orgid,jdbcType=CHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.holyrobot.con_product.pojo.ProProductDeparture" >
+    update Pro_Product_Departure
+    set ProID = #{proid,jdbcType=CHAR},
+      SiteID = #{siteid,jdbcType=CHAR},
+      DepartureID = #{departureid,jdbcType=CHAR},
+      Departure = #{departure,jdbcType=VARCHAR},
+      OrgID = #{orgid,jdbcType=CHAR}
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+  <select id="findDeparturePrice" resultType="com.holyrobot.dto.ProProductDeparturePriceDto">
+    SELECT MIN(SalesPrice) as SalesPrice,MIN(DirectPrice) as DirectPrice from Pro_Product_DirectSales_Item as t1
+    LEFT JOIN Pro_Product_DirectSales as t2 on t1.DirectSalesID = t2.ID
+    WHERE
+    t2.ProID = #{proId}
+    AND t1.SiteID = #{siteId}
+    AND t2.ReceiverID = #{orgId}
+    AND t2.DataStatus = 1
+    AND t2.SupplierDataStatus = 1
+    AND t2.AuditStatus = 1
+    AND t1.TouristType = 1
+    AND t2.DueDate > DATEADD(DAY, -1, GETDATE())
+  </select>
+
+  <select id="selectTourListAll" resultType="com.holyrobot.dto.TourBo">
+    SELECT
+    a.PlanNum-ISNULL(d.VisitorNum, 0) stock ,
+    a.ID AS id,
+    c.TourNo AS tourNo,
+    c.TourName AS tourName,
+    c.TourDate AS tourDate,
+    c.DueDate AS dueDate,
+    a.PlanNum AS planNum,
+    a.MinNum AS minNum,
+    a.SeatNum AS seatNum,
+    a.RefDepFlight AS refDepFlight,
+    a.RefBackFlight AS refBackFlight,
+    a.TourStatus AS tourStatus,
+    b.SalesPrice AS salesPrice,
+    b.DirectPrice AS directPrice,
+    a.IsTail AS isTail,
+    a.TailAuditStatus AS tailAuditStatus,
+    a.IsAck AS isAck,
+    a.HasTraffic AS hasTraffic
+    b.volunteerDirectPrice,
+    b.volunteerRebatePrice,
+    b.volunteerSalesPrice
+    FROM
+    Pro_Product_DirectSales AS c
+    LEFT JOIN Pro_Product_DirectSales_Item AS b ON b.TourID = c.TourID
+    LEFT JOIN Pro_Tour AS a ON a.ID = c.TourID
+    LEFT JOIN --已报名人数
+    ( SELECT    SUM(a.VisitorNum) VisitorNum ,
+    TourID
+    FROM      Ord_Order_Price a
+    INNER JOIN Ord_OrderInfo b ON a.OrderID = b.ID
+    WHERE     a.IsSeat = 1
+    AND (b.DataStatus != -1 AND b.DataStatus != -3) --取消 和 取消订单
+    AND b.ID NOT IN ( SELECT    ToOrderID
+    FROM      dbo.Ord_OrderToInside )
+    AND b.ID NOT IN ( SELECT    ParentOrderID
+    FROM      [Ord_OrderRelationship])
+    GROUP BY  TourID
+    ) AS d ON c.TourID = d.TourID
+    WHERE
+    c.ProID = #{proId}
+    <if test="dates != null and dates.size()>0">
+      AND
+      <foreach collection="dates" index="index" item="item" open="(" separator="or" close=")">
+        a.TourDate like '%${item}%'
+      </foreach>
+    </if>
+    AND c.DataStatus = 1
+    AND c.SupplierDataStatus = 1
+    AND c.AuditStatus = 1
+    AND b.IsDefault=1
+    and a.TourStatus!=-1
+    AND C.DueDate > DATEADD(DAY, -1, GETDATE())
+    order by a.TourDate
+  </select>
+
+  <select id="selectTourList" resultType="com.holyrobot.dto.TourBo">
+    SELECT
+    a.PlanNum-ISNULL(d.VisitorNum, 0) stock ,
+    a.ID AS id,
+    c.TourNo AS tourNo,
+    c.TourName AS tourName,
+    c.TourDate AS tourDate,
+    c.DueDate AS dueDate,
+    a.PlanNum AS planNum,
+    a.MinNum AS minNum,
+    a.SeatNum AS seatNum,
+    a.RefDepFlight AS refDepFlight,
+    a.RefBackFlight AS refBackFlight,
+    a.TourStatus AS tourStatus,
+    b.SalesPrice AS salesPrice,
+    b.DirectPrice AS directPrice,
+    a.IsTail AS isTail,
+    a.TailAuditStatus AS tailAuditStatus,
+    a.IsAck AS isAck,
+    a.HasTraffic AS hasTraffic,
+    b.volunteerDirectPrice,
+    b.volunteerRebatePrice,
+    b.volunteerSalesPrice
+    FROM
+    Pro_Product_DirectSales AS c
+    LEFT JOIN Pro_Product_DirectSales_Item AS b ON b.DirectSalesID = c.ID
+    LEFT JOIN Pro_Tour AS a ON a.ID = c.TourID
+    LEFT JOIN --已报名人数
+    ( SELECT    SUM(a.VisitorNum) VisitorNum ,
+    TourID
+    FROM      Ord_Order_Price a
+    INNER JOIN Ord_OrderInfo b ON a.OrderID = b.ID
+    WHERE     a.IsSeat = 1
+    AND (b.DataStatus != -1 AND b.DataStatus != -3) --取消 和 取消订单
+    AND b.ID NOT IN ( SELECT    ToOrderID
+    FROM      dbo.Ord_OrderToInside )
+    AND b.ID NOT IN ( SELECT    ParentOrderID
+    FROM      [Ord_OrderRelationship])
+    GROUP BY  TourID
+    ) AS d ON c.TourID = d.TourID
+    WHERE
+    c.ProID = #{proId}
+    AND b.SiteID = #{siteId}
+    AND c.ReceiverID = #{orgId}
+    AND a.TourDate like '%${dates}%'
+    AND c.DataStatus = 1
+    AND c.SupplierDataStatus = 1
+    AND c.AuditStatus = 1
+    AND b.IsDefault=1
+    and a.TourStatus!=-1
+    AND C.DueDate > DATEADD(DAY, -1, GETDATE())
+    order by a.TourDate
+  </select>
+  <select id="listPricePolicy"  resultType="com.holyrobot.dto.TourPricePolicyBo">
+    SELECT
+    a.ID AS id,
+    a.TouristType AS touristType,
+    a.PolicyName AS policyName,
+    a.SalesPrice AS salesPrice,
+    a.RebatePrice AS rebatePrice,
+    a.SingleRoomPrice AS singleRoomPrice,
+    a.IsDefault AS def,
+    a.IsOccupySeat AS seat,
+    a.OrderIndex AS orderIndex,
+    a.DirectPrice AS directPrice,
+    a.volunteerDirectPrice,
+    a.volunteerRebatePrice,
+    a.volunteerSalesPrice
+    FROM
+    Pro_Product_DirectSales_Item a
+    INNER JOIN Pro_Product_DirectSales b ON a.DirectSalesID = b.ID
+    WHERE
+    b.TourID = #{tourID}
+    AND a.SiteID =#{siteId}
+    AND b.ReceiverID = #{orgId}
+  </select>
+
+  <select id="manyTours" resultType="com.holyrobot.dto.ManyToursDto">
+    SELECT
+    TourNo,
+    t.TourID,
+    t.TourDate,
+    i.SalesPrice,
+    i.DirectPrice
+    FROM
+    Pro_Product_DirectSales t
+    LEFT JOIN Pro_Product_DirectSales_Item i ON i.DirectSalesID = t.ID
+    WHERE
+    t.ReceiverID = #{orgId}
+    AND t.ProID = #{proId}
+    AND i.SiteID =#{siteId}
+    AND t.TourDate = #{tourDate}
+    AND i.IsDefault = 1
+    ORDER BY i.SalesPrice
+  </select>
+</mapper>

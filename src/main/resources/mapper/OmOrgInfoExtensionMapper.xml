@@ -1,0 +1,753 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.holyrobot.con_om.mapper.OmOrgInfoExtensionMapper" >
+  <resultMap id="BaseResultMap" type="com.holyrobot.con_om.pojo.OmOrgInfoExtension" >
+    <id column="ID" property="id" jdbcType="CHAR" />
+    <result column="Logo" property="logo" jdbcType="VARCHAR" />
+    <result column="TravelAgencyName" property="travelagencyname" jdbcType="VARCHAR" />
+    <result column="TravelAgentLocation" property="travelagentlocation" jdbcType="VARCHAR" />
+    <result column="CorporationName" property="corporationname" jdbcType="VARCHAR" />
+    <result column="CorporationCard" property="corporationcard" jdbcType="VARCHAR" />
+    <result column="SocialCreditCode" property="socialcreditcode" jdbcType="VARCHAR" />
+    <result column="CorporationCardPath" property="corporationcardpath" jdbcType="VARCHAR" />
+    <result column="BussinessLicencePath" property="bussinesslicencepath" jdbcType="VARCHAR" />
+    <result column="RegisterCard" property="registercard" jdbcType="VARCHAR" />
+    <result column="RegisterCardPath" property="registercardpath" jdbcType="VARCHAR" />
+    <result column="CreatedDate" property="createddate" jdbcType="TIMESTAMP" />
+    <result column="CreatedBy" property="createdby" jdbcType="VARCHAR" />
+    <result column="CreatedByID" property="createdbyid" jdbcType="CHAR" />
+    <result column="RevisedDate" property="reviseddate" jdbcType="TIMESTAMP" />
+    <result column="RevisedBy" property="revisedby" jdbcType="VARCHAR" />
+    <result column="OrgID" property="orgid" jdbcType="CHAR" />
+    <result column="TravelAgencyStatus" property="travelagencystatus" jdbcType="INTEGER" />
+    <result column="TAContactMobile" property="tacontactmobile" jdbcType="VARCHAR" />
+    <result column="TAContact" property="tacontact" jdbcType="VARCHAR" />
+    <result column="EmergencyContact" property="emergencycontact" jdbcType="VARCHAR" />
+    <result column="EmergencyMobile" property="emergencymobile" jdbcType="VARCHAR" />
+    <result column="InvoiceTitle" property="invoicetitle" jdbcType="VARCHAR" />
+    <result column="InvoiceAddr" property="invoiceaddr" jdbcType="VARCHAR" />
+    <result column="TaxNumber" property="taxnumber" jdbcType="VARCHAR" />
+    <result column="Address" property="address" jdbcType="VARCHAR" />
+    <result column="Phone" property="phone" jdbcType="VARCHAR" />
+    <result column="OpeningBank" property="openingbank" jdbcType="VARCHAR" />
+    <result column="BankCardNo" property="bankcardno" jdbcType="VARCHAR" />
+    <result column="RegisterCardReversePath" property="registercardreversepath" jdbcType="VARCHAR" />
+    <result column="RegisterCardHandheldPath" property="registercardhandheldpath" jdbcType="VARCHAR" />
+    <result column="CityID" property="cityid" jdbcType="CHAR" />
+    <result column="CityName" property="cityname" jdbcType="VARCHAR" />
+    <result column="CityPath" property="citypath" jdbcType="VARCHAR" />
+    <result column="FirstChar" property="firstchar" jdbcType="VARCHAR" />
+    <result column="BrandName" property="brandname" jdbcType="VARCHAR" />
+    <result column="DataStatus" property="datastatus" jdbcType="INTEGER" />
+    <result column="TABusinessLicenseNumber" property="tabusinesslicensenumber" jdbcType="VARCHAR" />
+    <result column="TABusinessLicenseNumberPath" property="tabusinesslicensenumberpath" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, Logo, TravelAgencyName, TravelAgentLocation, CorporationName, CorporationCard, 
+    SocialCreditCode, CorporationCardPath, BussinessLicencePath, RegisterCard, RegisterCardPath, 
+    CreatedDate, CreatedBy, CreatedByID, RevisedDate, RevisedBy, OrgID, TravelAgencyStatus, 
+    TAContactMobile, TAContact, EmergencyContact, EmergencyMobile, InvoiceTitle, InvoiceAddr, 
+    TaxNumber, Address, Phone, OpeningBank, BankCardNo, RegisterCardReversePath, RegisterCardHandheldPath, 
+    CityID, CityName, CityPath, FirstChar, BrandName, DataStatus, TABusinessLicenseNumber, 
+    TABusinessLicenseNumberPath
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.holyrobot.con_om.pojo.OmOrgInfoExtensionExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from Om_OrgInfo_Extension
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from Om_OrgInfo_Extension
+    where ID = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from Om_OrgInfo_Extension
+    where ID = #{id,jdbcType=CHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.holyrobot.con_om.pojo.OmOrgInfoExtensionExample" >
+    delete from Om_OrgInfo_Extension
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.holyrobot.con_om.pojo.OmOrgInfoExtension" >
+    insert into Om_OrgInfo_Extension (ID, Logo, TravelAgencyName, 
+      TravelAgentLocation, CorporationName, 
+      CorporationCard, SocialCreditCode, CorporationCardPath, 
+      BussinessLicencePath, RegisterCard, RegisterCardPath, 
+      CreatedDate, CreatedBy, CreatedByID, 
+      RevisedDate, RevisedBy, OrgID, 
+      TravelAgencyStatus, TAContactMobile, TAContact, 
+      EmergencyContact, EmergencyMobile, InvoiceTitle, 
+      InvoiceAddr, TaxNumber, Address, 
+      Phone, OpeningBank, BankCardNo, 
+      RegisterCardReversePath, RegisterCardHandheldPath, 
+      CityID, CityName, CityPath, 
+      FirstChar, BrandName, DataStatus, 
+      TABusinessLicenseNumber, TABusinessLicenseNumberPath
+      )
+    values (#{id,jdbcType=CHAR}, #{logo,jdbcType=VARCHAR}, #{travelagencyname,jdbcType=VARCHAR},
+      #{travelagentlocation,jdbcType=VARCHAR}, #{corporationname,jdbcType=VARCHAR},
+      #{corporationcard,jdbcType=VARCHAR}, #{socialcreditcode,jdbcType=VARCHAR}, #{corporationcardpath,jdbcType=VARCHAR},
+      #{bussinesslicencepath,jdbcType=VARCHAR}, #{registercard,jdbcType=VARCHAR}, #{registercardpath,jdbcType=VARCHAR},
+      #{createddate,jdbcType=TIMESTAMP}, #{createdby,jdbcType=VARCHAR}, #{createdbyid,jdbcType=CHAR},
+      #{reviseddate,jdbcType=TIMESTAMP}, #{revisedby,jdbcType=VARCHAR}, #{orgid,jdbcType=CHAR},
+      #{travelagencystatus,jdbcType=INTEGER}, #{tacontactmobile,jdbcType=VARCHAR}, #{tacontact,jdbcType=VARCHAR},
+      #{emergencycontact,jdbcType=VARCHAR}, #{emergencymobile,jdbcType=VARCHAR}, #{invoicetitle,jdbcType=VARCHAR},
+      #{invoiceaddr,jdbcType=VARCHAR}, #{taxnumber,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR},
+      #{phone,jdbcType=VARCHAR}, #{openingbank,jdbcType=VARCHAR}, #{bankcardno,jdbcType=VARCHAR},
+      #{registercardreversepath,jdbcType=VARCHAR}, #{registercardhandheldpath,jdbcType=VARCHAR},
+      #{cityid,jdbcType=CHAR}, #{cityname,jdbcType=VARCHAR}, #{citypath,jdbcType=VARCHAR},
+      #{firstchar,jdbcType=VARCHAR}, #{brandname,jdbcType=VARCHAR}, #{datastatus,jdbcType=INTEGER},
+      #{tabusinesslicensenumber,jdbcType=VARCHAR}, #{tabusinesslicensenumberpath,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.holyrobot.con_om.pojo.OmOrgInfoExtension" >
+    insert into Om_OrgInfo_Extension
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="logo != null" >
+        Logo,
+      </if>
+      <if test="travelagencyname != null" >
+        TravelAgencyName,
+      </if>
+      <if test="travelagentlocation != null" >
+        TravelAgentLocation,
+      </if>
+      <if test="corporationname != null" >
+        CorporationName,
+      </if>
+      <if test="corporationcard != null" >
+        CorporationCard,
+      </if>
+      <if test="socialcreditcode != null" >
+        SocialCreditCode,
+      </if>
+      <if test="corporationcardpath != null" >
+        CorporationCardPath,
+      </if>
+      <if test="bussinesslicencepath != null" >
+        BussinessLicencePath,
+      </if>
+      <if test="registercard != null" >
+        RegisterCard,
+      </if>
+      <if test="registercardpath != null" >
+        RegisterCardPath,
+      </if>
+      <if test="createddate != null" >
+        CreatedDate,
+      </if>
+      <if test="createdby != null" >
+        CreatedBy,
+      </if>
+      <if test="createdbyid != null" >
+        CreatedByID,
+      </if>
+      <if test="reviseddate != null" >
+        RevisedDate,
+      </if>
+      <if test="revisedby != null" >
+        RevisedBy,
+      </if>
+      <if test="orgid != null" >
+        OrgID,
+      </if>
+      <if test="travelagencystatus != null" >
+        TravelAgencyStatus,
+      </if>
+      <if test="tacontactmobile != null" >
+        TAContactMobile,
+      </if>
+      <if test="tacontact != null" >
+        TAContact,
+      </if>
+      <if test="emergencycontact != null" >
+        EmergencyContact,
+      </if>
+      <if test="emergencymobile != null" >
+        EmergencyMobile,
+      </if>
+      <if test="invoicetitle != null" >
+        InvoiceTitle,
+      </if>
+      <if test="invoiceaddr != null" >
+        InvoiceAddr,
+      </if>
+      <if test="taxnumber != null" >
+        TaxNumber,
+      </if>
+      <if test="address != null" >
+        Address,
+      </if>
+      <if test="phone != null" >
+        Phone,
+      </if>
+      <if test="openingbank != null" >
+        OpeningBank,
+      </if>
+      <if test="bankcardno != null" >
+        BankCardNo,
+      </if>
+      <if test="registercardreversepath != null" >
+        RegisterCardReversePath,
+      </if>
+      <if test="registercardhandheldpath != null" >
+        RegisterCardHandheldPath,
+      </if>
+      <if test="cityid != null" >
+        CityID,
+      </if>
+      <if test="cityname != null" >
+        CityName,
+      </if>
+      <if test="citypath != null" >
+        CityPath,
+      </if>
+      <if test="firstchar != null" >
+        FirstChar,
+      </if>
+      <if test="brandname != null" >
+        BrandName,
+      </if>
+      <if test="datastatus != null" >
+        DataStatus,
+      </if>
+      <if test="tabusinesslicensenumber != null" >
+        TABusinessLicenseNumber,
+      </if>
+      <if test="tabusinesslicensenumberpath != null" >
+        TABusinessLicenseNumberPath,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="logo != null" >
+        #{logo,jdbcType=VARCHAR},
+      </if>
+      <if test="travelagencyname != null" >
+        #{travelagencyname,jdbcType=VARCHAR},
+      </if>
+      <if test="travelagentlocation != null" >
+        #{travelagentlocation,jdbcType=VARCHAR},
+      </if>
+      <if test="corporationname != null" >
+        #{corporationname,jdbcType=VARCHAR},
+      </if>
+      <if test="corporationcard != null" >
+        #{corporationcard,jdbcType=VARCHAR},
+      </if>
+      <if test="socialcreditcode != null" >
+        #{socialcreditcode,jdbcType=VARCHAR},
+      </if>
+      <if test="corporationcardpath != null" >
+        #{corporationcardpath,jdbcType=VARCHAR},
+      </if>
+      <if test="bussinesslicencepath != null" >
+        #{bussinesslicencepath,jdbcType=VARCHAR},
+      </if>
+      <if test="registercard != null" >
+        #{registercard,jdbcType=VARCHAR},
+      </if>
+      <if test="registercardpath != null" >
+        #{registercardpath,jdbcType=VARCHAR},
+      </if>
+      <if test="createddate != null" >
+        #{createddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdby != null" >
+        #{createdby,jdbcType=VARCHAR},
+      </if>
+      <if test="createdbyid != null" >
+        #{createdbyid,jdbcType=CHAR},
+      </if>
+      <if test="reviseddate != null" >
+        #{reviseddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="revisedby != null" >
+        #{revisedby,jdbcType=VARCHAR},
+      </if>
+      <if test="orgid != null" >
+        #{orgid,jdbcType=CHAR},
+      </if>
+      <if test="travelagencystatus != null" >
+        #{travelagencystatus,jdbcType=INTEGER},
+      </if>
+      <if test="tacontactmobile != null" >
+        #{tacontactmobile,jdbcType=VARCHAR},
+      </if>
+      <if test="tacontact != null" >
+        #{tacontact,jdbcType=VARCHAR},
+      </if>
+      <if test="emergencycontact != null" >
+        #{emergencycontact,jdbcType=VARCHAR},
+      </if>
+      <if test="emergencymobile != null" >
+        #{emergencymobile,jdbcType=VARCHAR},
+      </if>
+      <if test="invoicetitle != null" >
+        #{invoicetitle,jdbcType=VARCHAR},
+      </if>
+      <if test="invoiceaddr != null" >
+        #{invoiceaddr,jdbcType=VARCHAR},
+      </if>
+      <if test="taxnumber != null" >
+        #{taxnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="openingbank != null" >
+        #{openingbank,jdbcType=VARCHAR},
+      </if>
+      <if test="bankcardno != null" >
+        #{bankcardno,jdbcType=VARCHAR},
+      </if>
+      <if test="registercardreversepath != null" >
+        #{registercardreversepath,jdbcType=VARCHAR},
+      </if>
+      <if test="registercardhandheldpath != null" >
+        #{registercardhandheldpath,jdbcType=VARCHAR},
+      </if>
+      <if test="cityid != null" >
+        #{cityid,jdbcType=CHAR},
+      </if>
+      <if test="cityname != null" >
+        #{cityname,jdbcType=VARCHAR},
+      </if>
+      <if test="citypath != null" >
+        #{citypath,jdbcType=VARCHAR},
+      </if>
+      <if test="firstchar != null" >
+        #{firstchar,jdbcType=VARCHAR},
+      </if>
+      <if test="brandname != null" >
+        #{brandname,jdbcType=VARCHAR},
+      </if>
+      <if test="datastatus != null" >
+        #{datastatus,jdbcType=INTEGER},
+      </if>
+      <if test="tabusinesslicensenumber != null" >
+        #{tabusinesslicensenumber,jdbcType=VARCHAR},
+      </if>
+      <if test="tabusinesslicensenumberpath != null" >
+        #{tabusinesslicensenumberpath,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.holyrobot.con_om.pojo.OmOrgInfoExtensionExample" resultType="java.lang.Integer" >
+    select count(*) from Om_OrgInfo_Extension
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update Om_OrgInfo_Extension
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=CHAR},
+      </if>
+      <if test="record.logo != null" >
+        Logo = #{record.logo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.travelagencyname != null" >
+        TravelAgencyName = #{record.travelagencyname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.travelagentlocation != null" >
+        TravelAgentLocation = #{record.travelagentlocation,jdbcType=VARCHAR},
+      </if>
+      <if test="record.corporationname != null" >
+        CorporationName = #{record.corporationname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.corporationcard != null" >
+        CorporationCard = #{record.corporationcard,jdbcType=VARCHAR},
+      </if>
+      <if test="record.socialcreditcode != null" >
+        SocialCreditCode = #{record.socialcreditcode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.corporationcardpath != null" >
+        CorporationCardPath = #{record.corporationcardpath,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bussinesslicencepath != null" >
+        BussinessLicencePath = #{record.bussinesslicencepath,jdbcType=VARCHAR},
+      </if>
+      <if test="record.registercard != null" >
+        RegisterCard = #{record.registercard,jdbcType=VARCHAR},
+      </if>
+      <if test="record.registercardpath != null" >
+        RegisterCardPath = #{record.registercardpath,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createddate != null" >
+        CreatedDate = #{record.createddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createdby != null" >
+        CreatedBy = #{record.createdby,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createdbyid != null" >
+        CreatedByID = #{record.createdbyid,jdbcType=CHAR},
+      </if>
+      <if test="record.reviseddate != null" >
+        RevisedDate = #{record.reviseddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.revisedby != null" >
+        RevisedBy = #{record.revisedby,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orgid != null" >
+        OrgID = #{record.orgid,jdbcType=CHAR},
+      </if>
+      <if test="record.travelagencystatus != null" >
+        TravelAgencyStatus = #{record.travelagencystatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.tacontactmobile != null" >
+        TAContactMobile = #{record.tacontactmobile,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tacontact != null" >
+        TAContact = #{record.tacontact,jdbcType=VARCHAR},
+      </if>
+      <if test="record.emergencycontact != null" >
+        EmergencyContact = #{record.emergencycontact,jdbcType=VARCHAR},
+      </if>
+      <if test="record.emergencymobile != null" >
+        EmergencyMobile = #{record.emergencymobile,jdbcType=VARCHAR},
+      </if>
+      <if test="record.invoicetitle != null" >
+        InvoiceTitle = #{record.invoicetitle,jdbcType=VARCHAR},
+      </if>
+      <if test="record.invoiceaddr != null" >
+        InvoiceAddr = #{record.invoiceaddr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.taxnumber != null" >
+        TaxNumber = #{record.taxnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.address != null" >
+        Address = #{record.address,jdbcType=VARCHAR},
+      </if>
+      <if test="record.phone != null" >
+        Phone = #{record.phone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.openingbank != null" >
+        OpeningBank = #{record.openingbank,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bankcardno != null" >
+        BankCardNo = #{record.bankcardno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.registercardreversepath != null" >
+        RegisterCardReversePath = #{record.registercardreversepath,jdbcType=VARCHAR},
+      </if>
+      <if test="record.registercardhandheldpath != null" >
+        RegisterCardHandheldPath = #{record.registercardhandheldpath,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cityid != null" >
+        CityID = #{record.cityid,jdbcType=CHAR},
+      </if>
+      <if test="record.cityname != null" >
+        CityName = #{record.cityname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.citypath != null" >
+        CityPath = #{record.citypath,jdbcType=VARCHAR},
+      </if>
+      <if test="record.firstchar != null" >
+        FirstChar = #{record.firstchar,jdbcType=VARCHAR},
+      </if>
+      <if test="record.brandname != null" >
+        BrandName = #{record.brandname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.datastatus != null" >
+        DataStatus = #{record.datastatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.tabusinesslicensenumber != null" >
+        TABusinessLicenseNumber = #{record.tabusinesslicensenumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tabusinesslicensenumberpath != null" >
+        TABusinessLicenseNumberPath = #{record.tabusinesslicensenumberpath,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update Om_OrgInfo_Extension
+    set ID = #{record.id,jdbcType=CHAR},
+      Logo = #{record.logo,jdbcType=VARCHAR},
+      TravelAgencyName = #{record.travelagencyname,jdbcType=VARCHAR},
+      TravelAgentLocation = #{record.travelagentlocation,jdbcType=VARCHAR},
+      CorporationName = #{record.corporationname,jdbcType=VARCHAR},
+      CorporationCard = #{record.corporationcard,jdbcType=VARCHAR},
+      SocialCreditCode = #{record.socialcreditcode,jdbcType=VARCHAR},
+      CorporationCardPath = #{record.corporationcardpath,jdbcType=VARCHAR},
+      BussinessLicencePath = #{record.bussinesslicencepath,jdbcType=VARCHAR},
+      RegisterCard = #{record.registercard,jdbcType=VARCHAR},
+      RegisterCardPath = #{record.registercardpath,jdbcType=VARCHAR},
+      CreatedDate = #{record.createddate,jdbcType=TIMESTAMP},
+      CreatedBy = #{record.createdby,jdbcType=VARCHAR},
+      CreatedByID = #{record.createdbyid,jdbcType=CHAR},
+      RevisedDate = #{record.reviseddate,jdbcType=TIMESTAMP},
+      RevisedBy = #{record.revisedby,jdbcType=VARCHAR},
+      OrgID = #{record.orgid,jdbcType=CHAR},
+      TravelAgencyStatus = #{record.travelagencystatus,jdbcType=INTEGER},
+      TAContactMobile = #{record.tacontactmobile,jdbcType=VARCHAR},
+      TAContact = #{record.tacontact,jdbcType=VARCHAR},
+      EmergencyContact = #{record.emergencycontact,jdbcType=VARCHAR},
+      EmergencyMobile = #{record.emergencymobile,jdbcType=VARCHAR},
+      InvoiceTitle = #{record.invoicetitle,jdbcType=VARCHAR},
+      InvoiceAddr = #{record.invoiceaddr,jdbcType=VARCHAR},
+      TaxNumber = #{record.taxnumber,jdbcType=VARCHAR},
+      Address = #{record.address,jdbcType=VARCHAR},
+      Phone = #{record.phone,jdbcType=VARCHAR},
+      OpeningBank = #{record.openingbank,jdbcType=VARCHAR},
+      BankCardNo = #{record.bankcardno,jdbcType=VARCHAR},
+      RegisterCardReversePath = #{record.registercardreversepath,jdbcType=VARCHAR},
+      RegisterCardHandheldPath = #{record.registercardhandheldpath,jdbcType=VARCHAR},
+      CityID = #{record.cityid,jdbcType=CHAR},
+      CityName = #{record.cityname,jdbcType=VARCHAR},
+      CityPath = #{record.citypath,jdbcType=VARCHAR},
+      FirstChar = #{record.firstchar,jdbcType=VARCHAR},
+      BrandName = #{record.brandname,jdbcType=VARCHAR},
+      DataStatus = #{record.datastatus,jdbcType=INTEGER},
+      TABusinessLicenseNumber = #{record.tabusinesslicensenumber,jdbcType=VARCHAR},
+      TABusinessLicenseNumberPath = #{record.tabusinesslicensenumberpath,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.holyrobot.con_om.pojo.OmOrgInfoExtension" >
+    update Om_OrgInfo_Extension
+    <set >
+      <if test="logo != null" >
+        Logo = #{logo,jdbcType=VARCHAR},
+      </if>
+      <if test="travelagencyname != null" >
+        TravelAgencyName = #{travelagencyname,jdbcType=VARCHAR},
+      </if>
+      <if test="travelagentlocation != null" >
+        TravelAgentLocation = #{travelagentlocation,jdbcType=VARCHAR},
+      </if>
+      <if test="corporationname != null" >
+        CorporationName = #{corporationname,jdbcType=VARCHAR},
+      </if>
+      <if test="corporationcard != null" >
+        CorporationCard = #{corporationcard,jdbcType=VARCHAR},
+      </if>
+      <if test="socialcreditcode != null" >
+        SocialCreditCode = #{socialcreditcode,jdbcType=VARCHAR},
+      </if>
+      <if test="corporationcardpath != null" >
+        CorporationCardPath = #{corporationcardpath,jdbcType=VARCHAR},
+      </if>
+      <if test="bussinesslicencepath != null" >
+        BussinessLicencePath = #{bussinesslicencepath,jdbcType=VARCHAR},
+      </if>
+      <if test="registercard != null" >
+        RegisterCard = #{registercard,jdbcType=VARCHAR},
+      </if>
+      <if test="registercardpath != null" >
+        RegisterCardPath = #{registercardpath,jdbcType=VARCHAR},
+      </if>
+      <if test="createddate != null" >
+        CreatedDate = #{createddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdby != null" >
+        CreatedBy = #{createdby,jdbcType=VARCHAR},
+      </if>
+      <if test="createdbyid != null" >
+        CreatedByID = #{createdbyid,jdbcType=CHAR},
+      </if>
+      <if test="reviseddate != null" >
+        RevisedDate = #{reviseddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="revisedby != null" >
+        RevisedBy = #{revisedby,jdbcType=VARCHAR},
+      </if>
+      <if test="orgid != null" >
+        OrgID = #{orgid,jdbcType=CHAR},
+      </if>
+      <if test="travelagencystatus != null" >
+        TravelAgencyStatus = #{travelagencystatus,jdbcType=INTEGER},
+      </if>
+      <if test="tacontactmobile != null" >
+        TAContactMobile = #{tacontactmobile,jdbcType=VARCHAR},
+      </if>
+      <if test="tacontact != null" >
+        TAContact = #{tacontact,jdbcType=VARCHAR},
+      </if>
+      <if test="emergencycontact != null" >
+        EmergencyContact = #{emergencycontact,jdbcType=VARCHAR},
+      </if>
+      <if test="emergencymobile != null" >
+        EmergencyMobile = #{emergencymobile,jdbcType=VARCHAR},
+      </if>
+      <if test="invoicetitle != null" >
+        InvoiceTitle = #{invoicetitle,jdbcType=VARCHAR},
+      </if>
+      <if test="invoiceaddr != null" >
+        InvoiceAddr = #{invoiceaddr,jdbcType=VARCHAR},
+      </if>
+      <if test="taxnumber != null" >
+        TaxNumber = #{taxnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        Address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        Phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="openingbank != null" >
+        OpeningBank = #{openingbank,jdbcType=VARCHAR},
+      </if>
+      <if test="bankcardno != null" >
+        BankCardNo = #{bankcardno,jdbcType=VARCHAR},
+      </if>
+      <if test="registercardreversepath != null" >
+        RegisterCardReversePath = #{registercardreversepath,jdbcType=VARCHAR},
+      </if>
+      <if test="registercardhandheldpath != null" >
+        RegisterCardHandheldPath = #{registercardhandheldpath,jdbcType=VARCHAR},
+      </if>
+      <if test="cityid != null" >
+        CityID = #{cityid,jdbcType=CHAR},
+      </if>
+      <if test="cityname != null" >
+        CityName = #{cityname,jdbcType=VARCHAR},
+      </if>
+      <if test="citypath != null" >
+        CityPath = #{citypath,jdbcType=VARCHAR},
+      </if>
+      <if test="firstchar != null" >
+        FirstChar = #{firstchar,jdbcType=VARCHAR},
+      </if>
+      <if test="brandname != null" >
+        BrandName = #{brandname,jdbcType=VARCHAR},
+      </if>
+      <if test="datastatus != null" >
+        DataStatus = #{datastatus,jdbcType=INTEGER},
+      </if>
+      <if test="tabusinesslicensenumber != null" >
+        TABusinessLicenseNumber = #{tabusinesslicensenumber,jdbcType=VARCHAR},
+      </if>
+      <if test="tabusinesslicensenumberpath != null" >
+        TABusinessLicenseNumberPath = #{tabusinesslicensenumberpath,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.holyrobot.con_om.pojo.OmOrgInfoExtension" >
+    update Om_OrgInfo_Extension
+    set Logo = #{logo,jdbcType=VARCHAR},
+      TravelAgencyName = #{travelagencyname,jdbcType=VARCHAR},
+      TravelAgentLocation = #{travelagentlocation,jdbcType=VARCHAR},
+      CorporationName = #{corporationname,jdbcType=VARCHAR},
+      CorporationCard = #{corporationcard,jdbcType=VARCHAR},
+      SocialCreditCode = #{socialcreditcode,jdbcType=VARCHAR},
+      CorporationCardPath = #{corporationcardpath,jdbcType=VARCHAR},
+      BussinessLicencePath = #{bussinesslicencepath,jdbcType=VARCHAR},
+      RegisterCard = #{registercard,jdbcType=VARCHAR},
+      RegisterCardPath = #{registercardpath,jdbcType=VARCHAR},
+      CreatedDate = #{createddate,jdbcType=TIMESTAMP},
+      CreatedBy = #{createdby,jdbcType=VARCHAR},
+      CreatedByID = #{createdbyid,jdbcType=CHAR},
+      RevisedDate = #{reviseddate,jdbcType=TIMESTAMP},
+      RevisedBy = #{revisedby,jdbcType=VARCHAR},
+      OrgID = #{orgid,jdbcType=CHAR},
+      TravelAgencyStatus = #{travelagencystatus,jdbcType=INTEGER},
+      TAContactMobile = #{tacontactmobile,jdbcType=VARCHAR},
+      TAContact = #{tacontact,jdbcType=VARCHAR},
+      EmergencyContact = #{emergencycontact,jdbcType=VARCHAR},
+      EmergencyMobile = #{emergencymobile,jdbcType=VARCHAR},
+      InvoiceTitle = #{invoicetitle,jdbcType=VARCHAR},
+      InvoiceAddr = #{invoiceaddr,jdbcType=VARCHAR},
+      TaxNumber = #{taxnumber,jdbcType=VARCHAR},
+      Address = #{address,jdbcType=VARCHAR},
+      Phone = #{phone,jdbcType=VARCHAR},
+      OpeningBank = #{openingbank,jdbcType=VARCHAR},
+      BankCardNo = #{bankcardno,jdbcType=VARCHAR},
+      RegisterCardReversePath = #{registercardreversepath,jdbcType=VARCHAR},
+      RegisterCardHandheldPath = #{registercardhandheldpath,jdbcType=VARCHAR},
+      CityID = #{cityid,jdbcType=CHAR},
+      CityName = #{cityname,jdbcType=VARCHAR},
+      CityPath = #{citypath,jdbcType=VARCHAR},
+      FirstChar = #{firstchar,jdbcType=VARCHAR},
+      BrandName = #{brandname,jdbcType=VARCHAR},
+      DataStatus = #{datastatus,jdbcType=INTEGER},
+      TABusinessLicenseNumber = #{tabusinesslicensenumber,jdbcType=VARCHAR},
+      TABusinessLicenseNumberPath = #{tabusinesslicensenumberpath,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+</mapper>

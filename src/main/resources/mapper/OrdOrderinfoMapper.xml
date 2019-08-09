@@ -1,0 +1,2088 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.holyrobot.con_order.mapper.OrdOrderinfoMapper">
+    <resultMap id="BaseResultMap" type="com.holyrobot.con_order.pojo.OrdOrderinfo">
+        <id column="ID" property="id" jdbcType="CHAR"/>
+        <result column="RouteID" property="routeid" jdbcType="CHAR"/>
+        <result column="TourID" property="tourid" jdbcType="CHAR"/>
+        <result column="OrderName" property="ordername" jdbcType="VARCHAR"/>
+        <result column="ScheduleDays" property="scheduledays" jdbcType="INTEGER"/>
+        <result column="Category" property="category" jdbcType="INTEGER"/>
+        <result column="OrderType" property="ordertype" jdbcType="INTEGER"/>
+        <result column="TourDate" property="tourdate" jdbcType="TIMESTAMP"/>
+        <result column="ReturnDate" property="returndate" jdbcType="TIMESTAMP"/>
+        <result column="DepName" property="depname" jdbcType="VARCHAR"/>
+        <result column="DestName" property="destname" jdbcType="VARCHAR"/>
+        <result column="DestID" property="destid" jdbcType="CHAR"/>
+        <result column="OrderNo" property="orderno" jdbcType="VARCHAR"/>
+        <result column="CustomerUnitID" property="customerunitid" jdbcType="CHAR"/>
+        <result column="CustomerName" property="customername" jdbcType="VARCHAR"/>
+        <result column="OrderSourceID" property="ordersourceid" jdbcType="CHAR"/>
+        <result column="OrderSource" property="ordersource" jdbcType="VARCHAR"/>
+        <result column="Contact" property="contact" jdbcType="VARCHAR"/>
+        <result column="Mobile" property="mobile" jdbcType="VARCHAR"/>
+        <result column="Email" property="email" jdbcType="VARCHAR"/>
+        <result column="HasTraffic" property="hastraffic" jdbcType="INTEGER"/>
+        <result column="AdjustAmt" property="adjustamt" jdbcType="DECIMAL"/>
+        <result column="ReceivableAmt" property="receivableamt" jdbcType="DECIMAL"/>
+        <result column="PayableAmt" property="payableamt" jdbcType="DECIMAL"/>
+        <result column="AdultNum" property="adultnum" jdbcType="INTEGER"/>
+        <result column="ChildNum" property="childnum" jdbcType="INTEGER"/>
+        <result column="GuideNum" property="guidenum" jdbcType="INTEGER"/>
+        <result column="Comment" property="comment" jdbcType="VARCHAR"/>
+        <result column="CreatedDate" property="createddate" jdbcType="TIMESTAMP"/>
+        <result column="CreatedBy" property="createdby" jdbcType="VARCHAR"/>
+        <result column="CreatedByID" property="createdbyid" jdbcType="CHAR"/>
+        <result column="DeptID" property="deptid" jdbcType="CHAR"/>
+        <result column="RevisedDate" property="reviseddate" jdbcType="TIMESTAMP"/>
+        <result column="RevisedBy" property="revisedby" jdbcType="VARCHAR"/>
+        <result column="OrgID" property="orgid" jdbcType="CHAR"/>
+        <result column="OrgName" property="orgname" jdbcType="VARCHAR"/>
+        <result column="DataStatus" property="datastatus" jdbcType="INTEGER"/>
+        <result column="SignStatus" property="signstatus" jdbcType="INTEGER"/>
+        <result column="SignType" property="signtype" jdbcType="INTEGER"/>
+        <result column="TourGuide" property="tourguide" jdbcType="VARCHAR"/>
+        <result column="SupplierID" property="supplierid" jdbcType="CHAR"/>
+        <result column="SupplierName" property="suppliername" jdbcType="VARCHAR"/>
+        <result column="SiteID" property="siteid" jdbcType="CHAR"/>
+        <result column="OccupiedPeriod" property="occupiedperiod" jdbcType="INTEGER"/>
+        <result column="SingleOrderTypeID" property="singleordertypeid" jdbcType="INTEGER"/>
+        <result column="SingleOrderType" property="singleordertype" jdbcType="VARCHAR"/>
+        <result column="ServiceStandard" property="servicestandard" jdbcType="VARCHAR"/>
+        <result column="PrivComment" property="privcomment" jdbcType="VARCHAR"/>
+        <result column="OrdComment" property="ordcomment" jdbcType="VARCHAR"/>
+        <result column="AjustComment" property="ajustcomment" jdbcType="VARCHAR"/>
+        <result column="TicketStatus" property="ticketstatus" jdbcType="INTEGER"/>
+        <result column="RouteTypeID" property="routetypeid" jdbcType="CHAR"/>
+        <result column="RouteTypeName" property="routetypename" jdbcType="VARCHAR"/>
+        <result column="CustomerUnitType" property="customerunittype" jdbcType="INTEGER"/>
+        <result column="IsSignCost" property="issigncost" jdbcType="INTEGER"/>
+        <result column="DepID" property="depid" jdbcType="CHAR"/>
+        <result column="ProType" property="protype" jdbcType="VARCHAR"/>
+        <result column="ProTypeID" property="protypeid" jdbcType="CHAR"/>
+        <result column="IsCreditPay" property="iscreditpay" jdbcType="BIT"/>
+        <result column="CreditPayDate" property="creditpaydate" jdbcType="TIMESTAMP"/>
+        <result column="PayStatus" property="paystatus" jdbcType="INTEGER"/>
+        <result column="EntrySourceID" property="entrysourceid" jdbcType="CHAR"/>
+        <result column="EntrySource" property="entrysource" jdbcType="VARCHAR"/>
+        <result column="OrderSaler" property="ordersaler" jdbcType="VARCHAR"/>
+        <result column="OrderSalerID" property="ordersalerid" jdbcType="CHAR"/>
+        <result column="AirportService" property="airportservice" jdbcType="VARCHAR"/>
+        <result column="SalerDeptID" property="salerdeptid" jdbcType="CHAR"/>
+        <result column="SalerDeptName" property="salerdeptname" jdbcType="VARCHAR"/>
+        <result column="HasTourist" property="hastourist" jdbcType="INTEGER"/>
+        <result column="IsAutoConfirmed" property="isautoconfirmed" jdbcType="INTEGER"/>
+        <result column="OrigReceivableAmt" property="origreceivableamt" jdbcType="DECIMAL"/>
+        <result column="OrigPayableAmt" property="origpayableamt" jdbcType="DECIMAL"/>
+        <result column="ParentOrgID" property="parentorgid" jdbcType="CHAR"/>
+        <result column="IsDirectOrgan" property="isdirectorgan" jdbcType="BIT"/>
+        <result column="NoTouristComment" property="notouristcomment" jdbcType="VARCHAR"/>
+        <result column="IsUseDiscount" property="isusediscount" jdbcType="BIT"/>
+        <result column="PriceType" property="pricetype" jdbcType="INTEGER"/>
+        <result column="ProdutOuterTimes" property="produtoutertimes" jdbcType="INTEGER"/>
+        <result column="NoTurnPayableAmt" property="noturnpayableamt" jdbcType="DECIMAL"/>
+        <result column="OrderBusinessSource" property="orderbusinesssource" jdbcType="CHAR"/>
+        <result column="TurnBeforeCategory" property="turnbeforecategory" jdbcType="INTEGER"/>
+        <result column="ExtendedStatus" property="extendedstatus" jdbcType="INTEGER"/>
+        <result column="DirectSalesSendID" property="directsalessendid" jdbcType="CHAR"/>
+        <result column="RouteSubType" property="routesubtype" jdbcType="CHAR"/>
+        <result column="RouteSubTypeName" property="routesubtypename" jdbcType="VARCHAR"/>
+        <result column="ChangeStatus" property="changestatus" jdbcType="INTEGER"/>
+        <result column="TeamNature" property="teamnature" jdbcType="VARCHAR"/>
+        <result column="IsSigned" property="issigned" jdbcType="INTEGER"/>
+        <result column="SendTime" property="sendtime" jdbcType="TIMESTAMP"/>
+        <result column="SignTime" property="signtime" jdbcType="TIMESTAMP"/>
+        <result column="IsShopOrderManage" property="isshopordermanage" jdbcType="INTEGER"/>
+        <result column="ProductType" property="producttype" jdbcType="INTEGER"/>
+        <result column="RouteDescription" property="routedescription" jdbcType="LONGVARCHAR"/>
+    </resultMap>
+    <sql id="Example_Where_Clause">
+        <where>
+            <foreach collection="oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" suffix=")" prefixOverrides="and">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")"
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Update_By_Example_Where_Clause">
+        <where>
+            <foreach collection="example.oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" suffix=")" prefixOverrides="and">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")"
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Base_Column_List">
+    ID, RouteID, TourID, OrderName, ScheduleDays, Category, OrderType, TourDate, ReturnDate,
+    DepName, DestName, DestID, OrderNo, CustomerUnitID, CustomerName, OrderSourceID,
+    OrderSource, Contact, Mobile, Email, HasTraffic, AdjustAmt, ReceivableAmt, PayableAmt,
+    AdultNum, ChildNum, GuideNum, Comment, CreatedDate, CreatedBy, CreatedByID, DeptID,
+    RevisedDate, RevisedBy, OrgID, OrgName, DataStatus, SignStatus, SignType, TourGuide,
+    SupplierID, SupplierName, SiteID, OccupiedPeriod, SingleOrderTypeID, SingleOrderType,
+    ServiceStandard, PrivComment, OrdComment, AjustComment, TicketStatus, RouteTypeID,
+    RouteTypeName, CustomerUnitType, IsSignCost, DepID, ProType, ProTypeID, IsCreditPay,
+    CreditPayDate, PayStatus, EntrySourceID, EntrySource, OrderSaler, OrderSalerID, AirportService,
+    SalerDeptID, SalerDeptName, HasTourist, IsAutoConfirmed, OrigReceivableAmt, OrigPayableAmt,
+    ParentOrgID, IsDirectOrgan, NoTouristComment, IsUseDiscount, PriceType, ProdutOuterTimes,
+    NoTurnPayableAmt, OrderBusinessSource, TurnBeforeCategory, ExtendedStatus, DirectSalesSendID,
+    RouteSubType, RouteSubTypeName, ChangeStatus, TeamNature, IsSigned, SendTime, SignTime,
+    IsShopOrderManage, ProductType, RouteDescription
+  </sql>
+    <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.holyrobot.con_order.pojo.OrdOrderinfoExample">
+        select
+        <if test="distinct">
+            distinct
+        </if>
+        <include refid="Base_Column_List"/>
+        from Ord_OrderInfo
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+    </select>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List"/>
+        from Ord_OrderInfo
+        where ID = #{id,jdbcType=CHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from Ord_OrderInfo
+    where ID = #{id,jdbcType=CHAR}
+  </delete>
+    <delete id="deleteByExample" parameterType="com.holyrobot.con_order.pojo.OrdOrderinfoExample">
+        delete from Ord_OrderInfo
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </delete>
+    <insert id="insert" parameterType="com.holyrobot.con_order.pojo.OrdOrderinfo">
+    insert into Ord_OrderInfo (ID, RouteID, TourID, OrderName,
+      ScheduleDays, Category, OrderType,
+      TourDate, ReturnDate, DepName,
+      DestName, DestID, OrderNo,
+      CustomerUnitID, CustomerName, OrderSourceID,
+      OrderSource, Contact, Mobile,
+      Email, HasTraffic, AdjustAmt,
+      ReceivableAmt, PayableAmt, AdultNum,
+      ChildNum, GuideNum, Comment,
+      CreatedDate, CreatedBy, CreatedByID,
+      DeptID, RevisedDate, RevisedBy,
+      OrgID, OrgName, DataStatus,
+      SignStatus, TourGuide, SupplierID,
+      SupplierName, SiteID, OccupiedPeriod,
+      SingleOrderTypeID, SingleOrderType, ServiceStandard,
+      PrivComment, OrdComment, TicketStatus,
+      RouteTypeID, RouteTypeName, CustomerUnitType,
+      IsSignCost, DepID,OrderSaler,
+      OrderSalerID,  SalerDeptID,
+      SalerDeptName, DirectSalesSendId,ProdutOuterTimes,ParentOrgID,IsShopOrderManage, ProductType, RouteDescription,
+      PriceType, NewCategory, NewSignType,
+      NewTicketStatus, NewTicketFinaStatus, NewOrderChangeType,
+      NewOrderChangeStatus, NewFlag, NewOrderStatus,
+      NewOrderAdjustStatus)
+    values (#{id,jdbcType=CHAR}, #{routeid,jdbcType=CHAR}, #{tourid,jdbcType=CHAR}, #{ordername,jdbcType=VARCHAR},
+      #{scheduledays,jdbcType=INTEGER}, #{category,jdbcType=INTEGER}, #{ordertype,jdbcType=INTEGER},
+      #{tourdate,jdbcType=TIMESTAMP}, #{returndate,jdbcType=TIMESTAMP}, #{depname,jdbcType=VARCHAR},
+      #{destname,jdbcType=VARCHAR}, #{destid,jdbcType=CHAR}, #{orderno,jdbcType=VARCHAR},
+      #{customerunitid,jdbcType=CHAR}, #{customername,jdbcType=VARCHAR}, #{ordersourceid,jdbcType=CHAR},
+      #{ordersource,jdbcType=VARCHAR}, #{contact,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR},
+      #{email,jdbcType=VARCHAR}, #{hastraffic,jdbcType=INTEGER}, #{adjustamt,jdbcType=DECIMAL},
+      #{receivableamt,jdbcType=DECIMAL}, #{payableamt,jdbcType=DECIMAL}, #{adultnum,jdbcType=INTEGER},
+      #{childnum,jdbcType=INTEGER}, #{guidenum,jdbcType=INTEGER}, #{comment,jdbcType=VARCHAR},
+      #{createddate,jdbcType=TIMESTAMP}, #{createdby,jdbcType=VARCHAR}, #{createdbyid,jdbcType=CHAR},
+      #{deptid,jdbcType=CHAR}, #{reviseddate,jdbcType=TIMESTAMP}, #{revisedby,jdbcType=VARCHAR},
+      #{orgid,jdbcType=CHAR}, #{orgname,jdbcType=VARCHAR}, #{datastatus,jdbcType=INTEGER},
+      #{signstatus,jdbcType=INTEGER}, #{tourguide,jdbcType=VARCHAR}, #{supplierid,jdbcType=CHAR},
+      #{suppliername,jdbcType=VARCHAR}, #{siteid,jdbcType=CHAR}, #{occupiedperiod,jdbcType=INTEGER},
+      #{singleordertypeid,jdbcType=INTEGER}, #{singleordertype,jdbcType=VARCHAR}, #{servicestandard,jdbcType=VARCHAR},
+      #{privcomment,jdbcType=VARCHAR}, #{ordcomment,jdbcType=VARCHAR}, #{ticketstatus,jdbcType=INTEGER},
+      #{routetypeid,jdbcType=CHAR}, #{routetypename,jdbcType=VARCHAR}, #{customerunittype,jdbcType=INTEGER},
+      #{issigncost,jdbcType=INTEGER}, #{depid,jdbcType=CHAR},#{ordersaler,jdbcType=VARCHAR},
+      #{ordersalerid,jdbcType=CHAR}, #{salerdeptid,jdbcType=CHAR},
+      #{salerdeptname,jdbcType=VARCHAR},#{directSalesSendId,jdbcType=CHAR},#{produtoutertimes,jdbcType=INTEGER},#{parentorgid,jdbcType=CHAR},#{isshopordermanage,jdbcType=INTEGER},#{producttype,jdbcType=INTEGER},#{routedescription,jdbcType=LONGVARCHAR}
+      ,#{pricetype,jdbcType=INTEGER}, #{newcategory,jdbcType=INTEGER}, #{newsigntype,jdbcType=INTEGER},
+      #{newticketstatus,jdbcType=INTEGER}, #{newticketfinastatus,jdbcType=INTEGER}, #{neworderchangetype,jdbcType=INTEGER},
+      #{neworderchangestatus,jdbcType=INTEGER}, #{newflag,jdbcType=INTEGER}, #{neworderstatus,jdbcType=INTEGER},
+      #{neworderadjuststatus,jdbcType=INTEGER})
+  </insert>
+    <insert id="insertSelective" parameterType="com.holyrobot.con_order.pojo.OrdOrderinfo">
+        insert into Ord_OrderInfo
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                ID,
+            </if>
+            <if test="routeid != null">
+                RouteID,
+            </if>
+            <if test="tourid != null">
+                TourID,
+            </if>
+            <if test="ordername != null">
+                OrderName,
+            </if>
+            <if test="scheduledays != null">
+                ScheduleDays,
+            </if>
+            <if test="category != null">
+                Category,
+            </if>
+            <if test="ordertype != null">
+                OrderType,
+            </if>
+            <if test="tourdate != null">
+                TourDate,
+            </if>
+            <if test="returndate != null">
+                ReturnDate,
+            </if>
+            <if test="depname != null">
+                DepName,
+            </if>
+            <if test="destname != null">
+                DestName,
+            </if>
+            <if test="destid != null">
+                DestID,
+            </if>
+            <if test="orderno != null">
+                OrderNo,
+            </if>
+            <if test="customerunitid != null">
+                CustomerUnitID,
+            </if>
+            <if test="customername != null">
+                CustomerName,
+            </if>
+            <if test="ordersourceid != null">
+                OrderSourceID,
+            </if>
+            <if test="ordersource != null">
+                OrderSource,
+            </if>
+            <if test="contact != null">
+                Contact,
+            </if>
+            <if test="mobile != null">
+                Mobile,
+            </if>
+            <if test="email != null">
+                Email,
+            </if>
+            <if test="hastraffic != null">
+                HasTraffic,
+            </if>
+            <if test="adjustamt != null">
+                AdjustAmt,
+            </if>
+            <if test="receivableamt != null">
+                ReceivableAmt,
+            </if>
+            <if test="payableamt != null">
+                PayableAmt,
+            </if>
+            <if test="adultnum != null">
+                AdultNum,
+            </if>
+            <if test="childnum != null">
+                ChildNum,
+            </if>
+            <if test="guidenum != null">
+                GuideNum,
+            </if>
+            <if test="comment != null">
+                Comment,
+            </if>
+            <if test="createddate != null">
+                CreatedDate,
+            </if>
+            <if test="createdby != null">
+                CreatedBy,
+            </if>
+            <if test="createdbyid != null">
+                CreatedByID,
+            </if>
+            <if test="deptid != null">
+                DeptID,
+            </if>
+            <if test="reviseddate != null">
+                RevisedDate,
+            </if>
+            <if test="revisedby != null">
+                RevisedBy,
+            </if>
+            <if test="orgid != null">
+                OrgID,
+            </if>
+            <if test="orgname != null">
+                OrgName,
+            </if>
+            <if test="datastatus != null">
+                DataStatus,
+            </if>
+            <if test="signstatus != null">
+                SignStatus,
+            </if>
+            <if test="signtype != null">
+                SignType,
+            </if>
+            <if test="tourguide != null">
+                TourGuide,
+            </if>
+            <if test="supplierid != null">
+                SupplierID,
+            </if>
+            <if test="suppliername != null">
+                SupplierName,
+            </if>
+            <if test="siteid != null">
+                SiteID,
+            </if>
+            <if test="occupiedperiod != null">
+                OccupiedPeriod,
+            </if>
+            <if test="singleordertypeid != null">
+                SingleOrderTypeID,
+            </if>
+            <if test="singleordertype != null">
+                SingleOrderType,
+            </if>
+            <if test="servicestandard != null">
+                ServiceStandard,
+            </if>
+            <if test="privcomment != null">
+                PrivComment,
+            </if>
+            <if test="ordcomment != null">
+                OrdComment,
+            </if>
+            <if test="ajustcomment != null">
+                AjustComment,
+            </if>
+            <if test="ticketstatus != null">
+                TicketStatus,
+            </if>
+            <if test="routetypeid != null">
+                RouteTypeID,
+            </if>
+            <if test="routetypename != null">
+                RouteTypeName,
+            </if>
+            <if test="customerunittype != null">
+                CustomerUnitType,
+            </if>
+            <if test="issigncost != null">
+                IsSignCost,
+            </if>
+            <if test="depid != null">
+                DepID,
+            </if>
+            <if test="protype != null">
+                ProType,
+            </if>
+            <if test="protypeid != null">
+                ProTypeID,
+            </if>
+            <if test="iscreditpay != null">
+                IsCreditPay,
+            </if>
+            <if test="creditpaydate != null">
+                CreditPayDate,
+            </if>
+            <if test="paystatus != null">
+                PayStatus,
+            </if>
+            <if test="entrysourceid != null">
+                EntrySourceID,
+            </if>
+            <if test="entrysource != null">
+                EntrySource,
+            </if>
+            <if test="ordersaler != null">
+                OrderSaler,
+            </if>
+            <if test="ordersalerid != null">
+                OrderSalerID,
+            </if>
+            <if test="airportservice != null">
+                AirportService,
+            </if>
+            <if test="salerdeptid != null">
+                SalerDeptID,
+            </if>
+            <if test="salerdeptname != null">
+                SalerDeptName,
+            </if>
+            <if test="hastourist != null">
+                HasTourist,
+            </if>
+            <if test="isautoconfirmed != null">
+                IsAutoConfirmed,
+            </if>
+            <if test="origreceivableamt != null">
+                OrigReceivableAmt,
+            </if>
+            <if test="origpayableamt != null">
+                OrigPayableAmt,
+            </if>
+            <if test="parentorgid != null">
+                ParentOrgID,
+            </if>
+            <if test="isdirectorgan != null">
+                IsDirectOrgan,
+            </if>
+            <if test="notouristcomment != null">
+                NoTouristComment,
+            </if>
+            <if test="isusediscount != null">
+                IsUseDiscount,
+            </if>
+            <if test="pricetype != null">
+                PriceType,
+            </if>
+            <if test="produtoutertimes != null">
+                ProdutOuterTimes,
+            </if>
+            <if test="noturnpayableamt != null">
+                NoTurnPayableAmt,
+            </if>
+            <if test="orderbusinesssource != null">
+                OrderBusinessSource,
+            </if>
+            <if test="turnbeforecategory != null">
+                TurnBeforeCategory,
+            </if>
+            <if test="extendedstatus != null">
+                ExtendedStatus,
+            </if>
+            <if test="directsalessendid != null">
+                DirectSalesSendID,
+            </if>
+            <if test="routesubtype != null">
+                RouteSubType,
+            </if>
+            <if test="routesubtypename != null">
+                RouteSubTypeName,
+            </if>
+            <if test="changestatus != null">
+                ChangeStatus,
+            </if>
+            <if test="teamnature != null">
+                TeamNature,
+            </if>
+            <if test="issigned != null">
+                IsSigned,
+            </if>
+            <if test="sendtime != null">
+                SendTime,
+            </if>
+            <if test="signtime != null">
+                SignTime,
+            </if>
+            <if test="isshopordermanage != null">
+                IsShopOrderManage,
+            </if>
+            <if test="producttype != null">
+                ProductType,
+            </if>
+            <if test="routedescription != null">
+                RouteDescription,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=CHAR},
+            </if>
+            <if test="routeid != null">
+                #{routeid,jdbcType=CHAR},
+            </if>
+            <if test="tourid != null">
+                #{tourid,jdbcType=CHAR},
+            </if>
+            <if test="ordername != null">
+                #{ordername,jdbcType=VARCHAR},
+            </if>
+            <if test="scheduledays != null">
+                #{scheduledays,jdbcType=INTEGER},
+            </if>
+            <if test="category != null">
+                #{category,jdbcType=INTEGER},
+            </if>
+            <if test="ordertype != null">
+                #{ordertype,jdbcType=INTEGER},
+            </if>
+            <if test="tourdate != null">
+                #{tourdate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="returndate != null">
+                #{returndate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="depname != null">
+                #{depname,jdbcType=VARCHAR},
+            </if>
+            <if test="destname != null">
+                #{destname,jdbcType=VARCHAR},
+            </if>
+            <if test="destid != null">
+                #{destid,jdbcType=CHAR},
+            </if>
+            <if test="orderno != null">
+                #{orderno,jdbcType=VARCHAR},
+            </if>
+            <if test="customerunitid != null">
+                #{customerunitid,jdbcType=CHAR},
+            </if>
+            <if test="customername != null">
+                #{customername,jdbcType=VARCHAR},
+            </if>
+            <if test="ordersourceid != null">
+                #{ordersourceid,jdbcType=CHAR},
+            </if>
+            <if test="ordersource != null">
+                #{ordersource,jdbcType=VARCHAR},
+            </if>
+            <if test="contact != null">
+                #{contact,jdbcType=VARCHAR},
+            </if>
+            <if test="mobile != null">
+                #{mobile,jdbcType=VARCHAR},
+            </if>
+            <if test="email != null">
+                #{email,jdbcType=VARCHAR},
+            </if>
+            <if test="hastraffic != null">
+                #{hastraffic,jdbcType=INTEGER},
+            </if>
+            <if test="adjustamt != null">
+                #{adjustamt,jdbcType=DECIMAL},
+            </if>
+            <if test="receivableamt != null">
+                #{receivableamt,jdbcType=DECIMAL},
+            </if>
+            <if test="payableamt != null">
+                #{payableamt,jdbcType=DECIMAL},
+            </if>
+            <if test="adultnum != null">
+                #{adultnum,jdbcType=INTEGER},
+            </if>
+            <if test="childnum != null">
+                #{childnum,jdbcType=INTEGER},
+            </if>
+            <if test="guidenum != null">
+                #{guidenum,jdbcType=INTEGER},
+            </if>
+            <if test="comment != null">
+                #{comment,jdbcType=VARCHAR},
+            </if>
+            <if test="createddate != null">
+                #{createddate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createdby != null">
+                #{createdby,jdbcType=VARCHAR},
+            </if>
+            <if test="createdbyid != null">
+                #{createdbyid,jdbcType=CHAR},
+            </if>
+            <if test="deptid != null">
+                #{deptid,jdbcType=CHAR},
+            </if>
+            <if test="reviseddate != null">
+                #{reviseddate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="revisedby != null">
+                #{revisedby,jdbcType=VARCHAR},
+            </if>
+            <if test="orgid != null">
+                #{orgid,jdbcType=CHAR},
+            </if>
+            <if test="orgname != null">
+                #{orgname,jdbcType=VARCHAR},
+            </if>
+            <if test="datastatus != null">
+                #{datastatus,jdbcType=INTEGER},
+            </if>
+            <if test="signstatus != null">
+                #{signstatus,jdbcType=INTEGER},
+            </if>
+            <if test="signtype != null">
+                #{signtype,jdbcType=INTEGER},
+            </if>
+            <if test="tourguide != null">
+                #{tourguide,jdbcType=VARCHAR},
+            </if>
+            <if test="supplierid != null">
+                #{supplierid,jdbcType=CHAR},
+            </if>
+            <if test="suppliername != null">
+                #{suppliername,jdbcType=VARCHAR},
+            </if>
+            <if test="siteid != null">
+                #{siteid,jdbcType=CHAR},
+            </if>
+            <if test="occupiedperiod != null">
+                #{occupiedperiod,jdbcType=INTEGER},
+            </if>
+            <if test="singleordertypeid != null">
+                #{singleordertypeid,jdbcType=INTEGER},
+            </if>
+            <if test="singleordertype != null">
+                #{singleordertype,jdbcType=VARCHAR},
+            </if>
+            <if test="servicestandard != null">
+                #{servicestandard,jdbcType=VARCHAR},
+            </if>
+            <if test="privcomment != null">
+                #{privcomment,jdbcType=VARCHAR},
+            </if>
+            <if test="ordcomment != null">
+                #{ordcomment,jdbcType=VARCHAR},
+            </if>
+            <if test="ajustcomment != null">
+                #{ajustcomment,jdbcType=VARCHAR},
+            </if>
+            <if test="ticketstatus != null">
+                #{ticketstatus,jdbcType=INTEGER},
+            </if>
+            <if test="routetypeid != null">
+                #{routetypeid,jdbcType=CHAR},
+            </if>
+            <if test="routetypename != null">
+                #{routetypename,jdbcType=VARCHAR},
+            </if>
+            <if test="customerunittype != null">
+                #{customerunittype,jdbcType=INTEGER},
+            </if>
+            <if test="issigncost != null">
+                #{issigncost,jdbcType=INTEGER},
+            </if>
+            <if test="depid != null">
+                #{depid,jdbcType=CHAR},
+            </if>
+            <if test="protype != null">
+                #{protype,jdbcType=VARCHAR},
+            </if>
+            <if test="protypeid != null">
+                #{protypeid,jdbcType=CHAR},
+            </if>
+            <if test="iscreditpay != null">
+                #{iscreditpay,jdbcType=BIT},
+            </if>
+            <if test="creditpaydate != null">
+                #{creditpaydate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="paystatus != null">
+                #{paystatus,jdbcType=INTEGER},
+            </if>
+            <if test="entrysourceid != null">
+                #{entrysourceid,jdbcType=CHAR},
+            </if>
+            <if test="entrysource != null">
+                #{entrysource,jdbcType=VARCHAR},
+            </if>
+            <if test="ordersaler != null">
+                #{ordersaler,jdbcType=VARCHAR},
+            </if>
+            <if test="ordersalerid != null">
+                #{ordersalerid,jdbcType=CHAR},
+            </if>
+            <if test="airportservice != null">
+                #{airportservice,jdbcType=VARCHAR},
+            </if>
+            <if test="salerdeptid != null">
+                #{salerdeptid,jdbcType=CHAR},
+            </if>
+            <if test="salerdeptname != null">
+                #{salerdeptname,jdbcType=VARCHAR},
+            </if>
+            <if test="hastourist != null">
+                #{hastourist,jdbcType=INTEGER},
+            </if>
+            <if test="isautoconfirmed != null">
+                #{isautoconfirmed,jdbcType=INTEGER},
+            </if>
+            <if test="origreceivableamt != null">
+                #{origreceivableamt,jdbcType=DECIMAL},
+            </if>
+            <if test="origpayableamt != null">
+                #{origpayableamt,jdbcType=DECIMAL},
+            </if>
+            <if test="parentorgid != null">
+                #{parentorgid,jdbcType=CHAR},
+            </if>
+            <if test="isdirectorgan != null">
+                #{isdirectorgan,jdbcType=BIT},
+            </if>
+            <if test="notouristcomment != null">
+                #{notouristcomment,jdbcType=VARCHAR},
+            </if>
+            <if test="isusediscount != null">
+                #{isusediscount,jdbcType=BIT},
+            </if>
+            <if test="pricetype != null">
+                #{pricetype,jdbcType=INTEGER},
+            </if>
+            <if test="produtoutertimes != null">
+                #{produtoutertimes,jdbcType=INTEGER},
+            </if>
+            <if test="noturnpayableamt != null">
+                #{noturnpayableamt,jdbcType=DECIMAL},
+            </if>
+            <if test="orderbusinesssource != null">
+                #{orderbusinesssource,jdbcType=CHAR},
+            </if>
+            <if test="turnbeforecategory != null">
+                #{turnbeforecategory,jdbcType=INTEGER},
+            </if>
+            <if test="extendedstatus != null">
+                #{extendedstatus,jdbcType=INTEGER},
+            </if>
+            <if test="directsalessendid != null">
+                #{directsalessendid,jdbcType=CHAR},
+            </if>
+            <if test="routesubtype != null">
+                #{routesubtype,jdbcType=CHAR},
+            </if>
+            <if test="routesubtypename != null">
+                #{routesubtypename,jdbcType=VARCHAR},
+            </if>
+            <if test="changestatus != null">
+                #{changestatus,jdbcType=INTEGER},
+            </if>
+            <if test="teamnature != null">
+                #{teamnature,jdbcType=VARCHAR},
+            </if>
+            <if test="issigned != null">
+                #{issigned,jdbcType=INTEGER},
+            </if>
+            <if test="sendtime != null">
+                #{sendtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="signtime != null">
+                #{signtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="isshopordermanage != null">
+                #{isshopordermanage,jdbcType=INTEGER},
+            </if>
+            <if test="producttype != null">
+                #{producttype,jdbcType=INTEGER},
+            </if>
+            <if test="routedescription != null">
+                #{routedescription,jdbcType=LONGVARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <select id="countByExample" parameterType="com.holyrobot.con_order.pojo.OrdOrderinfoExample" resultType="java.lang.Integer">
+        select count(*) from Ord_OrderInfo
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </select>
+    <update id="updateByExampleSelective" parameterType="map">
+        update Ord_OrderInfo
+        <set>
+            <if test="record.id != null">
+                ID = #{record.id,jdbcType=CHAR},
+            </if>
+            <if test="record.routeid != null">
+                RouteID = #{record.routeid,jdbcType=CHAR},
+            </if>
+            <if test="record.tourid != null">
+                TourID = #{record.tourid,jdbcType=CHAR},
+            </if>
+            <if test="record.ordername != null">
+                OrderName = #{record.ordername,jdbcType=VARCHAR},
+            </if>
+            <if test="record.scheduledays != null">
+                ScheduleDays = #{record.scheduledays,jdbcType=INTEGER},
+            </if>
+            <if test="record.category != null">
+                Category = #{record.category,jdbcType=INTEGER},
+            </if>
+            <if test="record.ordertype != null">
+                OrderType = #{record.ordertype,jdbcType=INTEGER},
+            </if>
+            <if test="record.tourdate != null">
+                TourDate = #{record.tourdate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.returndate != null">
+                ReturnDate = #{record.returndate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.depname != null">
+                DepName = #{record.depname,jdbcType=VARCHAR},
+            </if>
+            <if test="record.destname != null">
+                DestName = #{record.destname,jdbcType=VARCHAR},
+            </if>
+            <if test="record.destid != null">
+                DestID = #{record.destid,jdbcType=CHAR},
+            </if>
+            <if test="record.orderno != null">
+                OrderNo = #{record.orderno,jdbcType=VARCHAR},
+            </if>
+            <if test="record.customerunitid != null">
+                CustomerUnitID = #{record.customerunitid,jdbcType=CHAR},
+            </if>
+            <if test="record.customername != null">
+                CustomerName = #{record.customername,jdbcType=VARCHAR},
+            </if>
+            <if test="record.ordersourceid != null">
+                OrderSourceID = #{record.ordersourceid,jdbcType=CHAR},
+            </if>
+            <if test="record.ordersource != null">
+                OrderSource = #{record.ordersource,jdbcType=VARCHAR},
+            </if>
+            <if test="record.contact != null">
+                Contact = #{record.contact,jdbcType=VARCHAR},
+            </if>
+            <if test="record.mobile != null">
+                Mobile = #{record.mobile,jdbcType=VARCHAR},
+            </if>
+            <if test="record.email != null">
+                Email = #{record.email,jdbcType=VARCHAR},
+            </if>
+            <if test="record.hastraffic != null">
+                HasTraffic = #{record.hastraffic,jdbcType=INTEGER},
+            </if>
+            <if test="record.adjustamt != null">
+                AdjustAmt = #{record.adjustamt,jdbcType=DECIMAL},
+            </if>
+            <if test="record.receivableamt != null">
+                ReceivableAmt = #{record.receivableamt,jdbcType=DECIMAL},
+            </if>
+            <if test="record.payableamt != null">
+                PayableAmt = #{record.payableamt,jdbcType=DECIMAL},
+            </if>
+            <if test="record.adultnum != null">
+                AdultNum = #{record.adultnum,jdbcType=INTEGER},
+            </if>
+            <if test="record.childnum != null">
+                ChildNum = #{record.childnum,jdbcType=INTEGER},
+            </if>
+            <if test="record.guidenum != null">
+                GuideNum = #{record.guidenum,jdbcType=INTEGER},
+            </if>
+            <if test="record.comment != null">
+                Comment = #{record.comment,jdbcType=VARCHAR},
+            </if>
+            <if test="record.createddate != null">
+                CreatedDate = #{record.createddate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.createdby != null">
+                CreatedBy = #{record.createdby,jdbcType=VARCHAR},
+            </if>
+            <if test="record.createdbyid != null">
+                CreatedByID = #{record.createdbyid,jdbcType=CHAR},
+            </if>
+            <if test="record.deptid != null">
+                DeptID = #{record.deptid,jdbcType=CHAR},
+            </if>
+            <if test="record.reviseddate != null">
+                RevisedDate = #{record.reviseddate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.revisedby != null">
+                RevisedBy = #{record.revisedby,jdbcType=VARCHAR},
+            </if>
+            <if test="record.orgid != null">
+                OrgID = #{record.orgid,jdbcType=CHAR},
+            </if>
+            <if test="record.orgname != null">
+                OrgName = #{record.orgname,jdbcType=VARCHAR},
+            </if>
+            <if test="record.datastatus != null">
+                DataStatus = #{record.datastatus,jdbcType=INTEGER},
+            </if>
+            <if test="record.signstatus != null">
+                SignStatus = #{record.signstatus,jdbcType=INTEGER},
+            </if>
+            <if test="record.signtype != null">
+                SignType = #{record.signtype,jdbcType=INTEGER},
+            </if>
+            <if test="record.tourguide != null">
+                TourGuide = #{record.tourguide,jdbcType=VARCHAR},
+            </if>
+            <if test="record.supplierid != null">
+                SupplierID = #{record.supplierid,jdbcType=CHAR},
+            </if>
+            <if test="record.suppliername != null">
+                SupplierName = #{record.suppliername,jdbcType=VARCHAR},
+            </if>
+            <if test="record.siteid != null">
+                SiteID = #{record.siteid,jdbcType=CHAR},
+            </if>
+            <if test="record.occupiedperiod != null">
+                OccupiedPeriod = #{record.occupiedperiod,jdbcType=INTEGER},
+            </if>
+            <if test="record.singleordertypeid != null">
+                SingleOrderTypeID = #{record.singleordertypeid,jdbcType=INTEGER},
+            </if>
+            <if test="record.singleordertype != null">
+                SingleOrderType = #{record.singleordertype,jdbcType=VARCHAR},
+            </if>
+            <if test="record.servicestandard != null">
+                ServiceStandard = #{record.servicestandard,jdbcType=VARCHAR},
+            </if>
+            <if test="record.privcomment != null">
+                PrivComment = #{record.privcomment,jdbcType=VARCHAR},
+            </if>
+            <if test="record.ordcomment != null">
+                OrdComment = #{record.ordcomment,jdbcType=VARCHAR},
+            </if>
+            <if test="record.ajustcomment != null">
+                AjustComment = #{record.ajustcomment,jdbcType=VARCHAR},
+            </if>
+            <if test="record.ticketstatus != null">
+                TicketStatus = #{record.ticketstatus,jdbcType=INTEGER},
+            </if>
+            <if test="record.routetypeid != null">
+                RouteTypeID = #{record.routetypeid,jdbcType=CHAR},
+            </if>
+            <if test="record.routetypename != null">
+                RouteTypeName = #{record.routetypename,jdbcType=VARCHAR},
+            </if>
+            <if test="record.customerunittype != null">
+                CustomerUnitType = #{record.customerunittype,jdbcType=INTEGER},
+            </if>
+            <if test="record.issigncost != null">
+                IsSignCost = #{record.issigncost,jdbcType=INTEGER},
+            </if>
+            <if test="record.depid != null">
+                DepID = #{record.depid,jdbcType=CHAR},
+            </if>
+            <if test="record.protype != null">
+                ProType = #{record.protype,jdbcType=VARCHAR},
+            </if>
+            <if test="record.protypeid != null">
+                ProTypeID = #{record.protypeid,jdbcType=CHAR},
+            </if>
+            <if test="record.iscreditpay != null">
+                IsCreditPay = #{record.iscreditpay,jdbcType=BIT},
+            </if>
+            <if test="record.creditpaydate != null">
+                CreditPayDate = #{record.creditpaydate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.paystatus != null">
+                PayStatus = #{record.paystatus,jdbcType=INTEGER},
+            </if>
+            <if test="record.entrysourceid != null">
+                EntrySourceID = #{record.entrysourceid,jdbcType=CHAR},
+            </if>
+            <if test="record.entrysource != null">
+                EntrySource = #{record.entrysource,jdbcType=VARCHAR},
+            </if>
+            <if test="record.ordersaler != null">
+                OrderSaler = #{record.ordersaler,jdbcType=VARCHAR},
+            </if>
+            <if test="record.ordersalerid != null">
+                OrderSalerID = #{record.ordersalerid,jdbcType=CHAR},
+            </if>
+            <if test="record.airportservice != null">
+                AirportService = #{record.airportservice,jdbcType=VARCHAR},
+            </if>
+            <if test="record.salerdeptid != null">
+                SalerDeptID = #{record.salerdeptid,jdbcType=CHAR},
+            </if>
+            <if test="record.salerdeptname != null">
+                SalerDeptName = #{record.salerdeptname,jdbcType=VARCHAR},
+            </if>
+            <if test="record.hastourist != null">
+                HasTourist = #{record.hastourist,jdbcType=INTEGER},
+            </if>
+            <if test="record.isautoconfirmed != null">
+                IsAutoConfirmed = #{record.isautoconfirmed,jdbcType=INTEGER},
+            </if>
+            <if test="record.origreceivableamt != null">
+                OrigReceivableAmt = #{record.origreceivableamt,jdbcType=DECIMAL},
+            </if>
+            <if test="record.origpayableamt != null">
+                OrigPayableAmt = #{record.origpayableamt,jdbcType=DECIMAL},
+            </if>
+            <if test="record.parentorgid != null">
+                ParentOrgID = #{record.parentorgid,jdbcType=CHAR},
+            </if>
+            <if test="record.isdirectorgan != null">
+                IsDirectOrgan = #{record.isdirectorgan,jdbcType=BIT},
+            </if>
+            <if test="record.notouristcomment != null">
+                NoTouristComment = #{record.notouristcomment,jdbcType=VARCHAR},
+            </if>
+            <if test="record.isusediscount != null">
+                IsUseDiscount = #{record.isusediscount,jdbcType=BIT},
+            </if>
+            <if test="record.pricetype != null">
+                PriceType = #{record.pricetype,jdbcType=INTEGER},
+            </if>
+            <if test="record.produtoutertimes != null">
+                ProdutOuterTimes = #{record.produtoutertimes,jdbcType=INTEGER},
+            </if>
+            <if test="record.noturnpayableamt != null">
+                NoTurnPayableAmt = #{record.noturnpayableamt,jdbcType=DECIMAL},
+            </if>
+            <if test="record.orderbusinesssource != null">
+                OrderBusinessSource = #{record.orderbusinesssource,jdbcType=CHAR},
+            </if>
+            <if test="record.turnbeforecategory != null">
+                TurnBeforeCategory = #{record.turnbeforecategory,jdbcType=INTEGER},
+            </if>
+            <if test="record.extendedstatus != null">
+                ExtendedStatus = #{record.extendedstatus,jdbcType=INTEGER},
+            </if>
+            <if test="record.directsalessendid != null">
+                DirectSalesSendID = #{record.directsalessendid,jdbcType=CHAR},
+            </if>
+            <if test="record.routesubtype != null">
+                RouteSubType = #{record.routesubtype,jdbcType=CHAR},
+            </if>
+            <if test="record.routesubtypename != null">
+                RouteSubTypeName = #{record.routesubtypename,jdbcType=VARCHAR},
+            </if>
+            <if test="record.changestatus != null">
+                ChangeStatus = #{record.changestatus,jdbcType=INTEGER},
+            </if>
+            <if test="record.teamnature != null">
+                TeamNature = #{record.teamnature,jdbcType=VARCHAR},
+            </if>
+            <if test="record.issigned != null">
+                IsSigned = #{record.issigned,jdbcType=INTEGER},
+            </if>
+            <if test="record.sendtime != null">
+                SendTime = #{record.sendtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.signtime != null">
+                SignTime = #{record.signtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.isshopordermanage != null">
+                IsShopOrderManage = #{record.isshopordermanage,jdbcType=INTEGER},
+            </if>
+            <if test="record.producttype != null">
+                ProductType = #{record.producttype,jdbcType=INTEGER},
+            </if>
+            <if test="record.routedescription != null">
+                RouteDescription = #{record.routedescription,jdbcType=LONGVARCHAR},
+            </if>
+        </set>
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByExample" parameterType="map">
+        update Ord_OrderInfo
+        set ID = #{record.id,jdbcType=CHAR},
+        RouteID = #{record.routeid,jdbcType=CHAR},
+        TourID = #{record.tourid,jdbcType=CHAR},
+        OrderName = #{record.ordername,jdbcType=VARCHAR},
+        ScheduleDays = #{record.scheduledays,jdbcType=INTEGER},
+        Category = #{record.category,jdbcType=INTEGER},
+        OrderType = #{record.ordertype,jdbcType=INTEGER},
+        TourDate = #{record.tourdate,jdbcType=TIMESTAMP},
+        ReturnDate = #{record.returndate,jdbcType=TIMESTAMP},
+        DepName = #{record.depname,jdbcType=VARCHAR},
+        DestName = #{record.destname,jdbcType=VARCHAR},
+        DestID = #{record.destid,jdbcType=CHAR},
+        OrderNo = #{record.orderno,jdbcType=VARCHAR},
+        CustomerUnitID = #{record.customerunitid,jdbcType=CHAR},
+        CustomerName = #{record.customername,jdbcType=VARCHAR},
+        OrderSourceID = #{record.ordersourceid,jdbcType=CHAR},
+        OrderSource = #{record.ordersource,jdbcType=VARCHAR},
+        Contact = #{record.contact,jdbcType=VARCHAR},
+        Mobile = #{record.mobile,jdbcType=VARCHAR},
+        Email = #{record.email,jdbcType=VARCHAR},
+        HasTraffic = #{record.hastraffic,jdbcType=INTEGER},
+        AdjustAmt = #{record.adjustamt,jdbcType=DECIMAL},
+        ReceivableAmt = #{record.receivableamt,jdbcType=DECIMAL},
+        PayableAmt = #{record.payableamt,jdbcType=DECIMAL},
+        AdultNum = #{record.adultnum,jdbcType=INTEGER},
+        ChildNum = #{record.childnum,jdbcType=INTEGER},
+        GuideNum = #{record.guidenum,jdbcType=INTEGER},
+        Comment = #{record.comment,jdbcType=VARCHAR},
+        CreatedDate = #{record.createddate,jdbcType=TIMESTAMP},
+        CreatedBy = #{record.createdby,jdbcType=VARCHAR},
+        CreatedByID = #{record.createdbyid,jdbcType=CHAR},
+        DeptID = #{record.deptid,jdbcType=CHAR},
+        RevisedDate = #{record.reviseddate,jdbcType=TIMESTAMP},
+        RevisedBy = #{record.revisedby,jdbcType=VARCHAR},
+        OrgID = #{record.orgid,jdbcType=CHAR},
+        OrgName = #{record.orgname,jdbcType=VARCHAR},
+        DataStatus = #{record.datastatus,jdbcType=INTEGER},
+        SignStatus = #{record.signstatus,jdbcType=INTEGER},
+        SignType = #{record.signtype,jdbcType=INTEGER},
+        TourGuide = #{record.tourguide,jdbcType=VARCHAR},
+        SupplierID = #{record.supplierid,jdbcType=CHAR},
+        SupplierName = #{record.suppliername,jdbcType=VARCHAR},
+        SiteID = #{record.siteid,jdbcType=CHAR},
+        OccupiedPeriod = #{record.occupiedperiod,jdbcType=INTEGER},
+        SingleOrderTypeID = #{record.singleordertypeid,jdbcType=INTEGER},
+        SingleOrderType = #{record.singleordertype,jdbcType=VARCHAR},
+        ServiceStandard = #{record.servicestandard,jdbcType=VARCHAR},
+        PrivComment = #{record.privcomment,jdbcType=VARCHAR},
+        OrdComment = #{record.ordcomment,jdbcType=VARCHAR},
+        AjustComment = #{record.ajustcomment,jdbcType=VARCHAR},
+        TicketStatus = #{record.ticketstatus,jdbcType=INTEGER},
+        RouteTypeID = #{record.routetypeid,jdbcType=CHAR},
+        RouteTypeName = #{record.routetypename,jdbcType=VARCHAR},
+        CustomerUnitType = #{record.customerunittype,jdbcType=INTEGER},
+        IsSignCost = #{record.issigncost,jdbcType=INTEGER},
+        DepID = #{record.depid,jdbcType=CHAR},
+        ProType = #{record.protype,jdbcType=VARCHAR},
+        ProTypeID = #{record.protypeid,jdbcType=CHAR},
+        IsCreditPay = #{record.iscreditpay,jdbcType=BIT},
+        CreditPayDate = #{record.creditpaydate,jdbcType=TIMESTAMP},
+        PayStatus = #{record.paystatus,jdbcType=INTEGER},
+        EntrySourceID = #{record.entrysourceid,jdbcType=CHAR},
+        EntrySource = #{record.entrysource,jdbcType=VARCHAR},
+        OrderSaler = #{record.ordersaler,jdbcType=VARCHAR},
+        OrderSalerID = #{record.ordersalerid,jdbcType=CHAR},
+        AirportService = #{record.airportservice,jdbcType=VARCHAR},
+        SalerDeptID = #{record.salerdeptid,jdbcType=CHAR},
+        SalerDeptName = #{record.salerdeptname,jdbcType=VARCHAR},
+        HasTourist = #{record.hastourist,jdbcType=INTEGER},
+        IsAutoConfirmed = #{record.isautoconfirmed,jdbcType=INTEGER},
+        OrigReceivableAmt = #{record.origreceivableamt,jdbcType=DECIMAL},
+        OrigPayableAmt = #{record.origpayableamt,jdbcType=DECIMAL},
+        ParentOrgID = #{record.parentorgid,jdbcType=CHAR},
+        IsDirectOrgan = #{record.isdirectorgan,jdbcType=BIT},
+        NoTouristComment = #{record.notouristcomment,jdbcType=VARCHAR},
+        IsUseDiscount = #{record.isusediscount,jdbcType=BIT},
+        PriceType = #{record.pricetype,jdbcType=INTEGER},
+        ProdutOuterTimes = #{record.produtoutertimes,jdbcType=INTEGER},
+        NoTurnPayableAmt = #{record.noturnpayableamt,jdbcType=DECIMAL},
+        OrderBusinessSource = #{record.orderbusinesssource,jdbcType=CHAR},
+        TurnBeforeCategory = #{record.turnbeforecategory,jdbcType=INTEGER},
+        ExtendedStatus = #{record.extendedstatus,jdbcType=INTEGER},
+        DirectSalesSendID = #{record.directsalessendid,jdbcType=CHAR},
+        RouteSubType = #{record.routesubtype,jdbcType=CHAR},
+        RouteSubTypeName = #{record.routesubtypename,jdbcType=VARCHAR},
+        ChangeStatus = #{record.changestatus,jdbcType=INTEGER},
+        TeamNature = #{record.teamnature,jdbcType=VARCHAR},
+        IsSigned = #{record.issigned,jdbcType=INTEGER},
+        SendTime = #{record.sendtime,jdbcType=TIMESTAMP},
+        SignTime = #{record.signtime,jdbcType=TIMESTAMP},
+        IsShopOrderManage = #{record.isshopordermanage,jdbcType=INTEGER},
+        ProductType = #{record.producttype,jdbcType=INTEGER},
+        RouteDescription = #{record.routedescription,jdbcType=LONGVARCHAR}
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByPrimaryKeySelective" parameterType="com.holyrobot.con_order.pojo.OrdOrderinfo">
+        update Ord_OrderInfo
+        <set>
+            <if test="routeid != null">
+                RouteID = #{routeid,jdbcType=CHAR},
+            </if>
+            <if test="tourid != null">
+                TourID = #{tourid,jdbcType=CHAR},
+            </if>
+            <if test="ordername != null">
+                OrderName = #{ordername,jdbcType=VARCHAR},
+            </if>
+            <if test="scheduledays != null">
+                ScheduleDays = #{scheduledays,jdbcType=INTEGER},
+            </if>
+            <if test="category != null">
+                Category = #{category,jdbcType=INTEGER},
+            </if>
+            <if test="ordertype != null">
+                OrderType = #{ordertype,jdbcType=INTEGER},
+            </if>
+            <if test="tourdate != null">
+                TourDate = #{tourdate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="returndate != null">
+                ReturnDate = #{returndate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="depname != null">
+                DepName = #{depname,jdbcType=VARCHAR},
+            </if>
+            <if test="destname != null">
+                DestName = #{destname,jdbcType=VARCHAR},
+            </if>
+            <if test="destid != null">
+                DestID = #{destid,jdbcType=CHAR},
+            </if>
+            <if test="orderno != null">
+                OrderNo = #{orderno,jdbcType=VARCHAR},
+            </if>
+            <if test="customerunitid != null">
+                CustomerUnitID = #{customerunitid,jdbcType=CHAR},
+            </if>
+            <if test="customername != null">
+                CustomerName = #{customername,jdbcType=VARCHAR},
+            </if>
+            <if test="ordersourceid != null">
+                OrderSourceID = #{ordersourceid,jdbcType=CHAR},
+            </if>
+            <if test="ordersource != null">
+                OrderSource = #{ordersource,jdbcType=VARCHAR},
+            </if>
+            <if test="contact != null">
+                Contact = #{contact,jdbcType=VARCHAR},
+            </if>
+            <if test="mobile != null">
+                Mobile = #{mobile,jdbcType=VARCHAR},
+            </if>
+            <if test="email != null">
+                Email = #{email,jdbcType=VARCHAR},
+            </if>
+            <if test="hastraffic != null">
+                HasTraffic = #{hastraffic,jdbcType=INTEGER},
+            </if>
+            <if test="adjustamt != null">
+                AdjustAmt = #{adjustamt,jdbcType=DECIMAL},
+            </if>
+            <if test="receivableamt != null">
+                ReceivableAmt = #{receivableamt,jdbcType=DECIMAL},
+            </if>
+            <if test="payableamt != null">
+                PayableAmt = #{payableamt,jdbcType=DECIMAL},
+            </if>
+            <if test="adultnum != null">
+                AdultNum = #{adultnum,jdbcType=INTEGER},
+            </if>
+            <if test="childnum != null">
+                ChildNum = #{childnum,jdbcType=INTEGER},
+            </if>
+            <if test="guidenum != null">
+                GuideNum = #{guidenum,jdbcType=INTEGER},
+            </if>
+            <if test="comment != null">
+                Comment = #{comment,jdbcType=VARCHAR},
+            </if>
+            <if test="createddate != null">
+                CreatedDate = #{createddate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createdby != null">
+                CreatedBy = #{createdby,jdbcType=VARCHAR},
+            </if>
+            <if test="createdbyid != null">
+                CreatedByID = #{createdbyid,jdbcType=CHAR},
+            </if>
+            <if test="deptid != null">
+                DeptID = #{deptid,jdbcType=CHAR},
+            </if>
+            <if test="reviseddate != null">
+                RevisedDate = #{reviseddate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="revisedby != null">
+                RevisedBy = #{revisedby,jdbcType=VARCHAR},
+            </if>
+            <if test="orgid != null">
+                OrgID = #{orgid,jdbcType=CHAR},
+            </if>
+            <if test="orgname != null">
+                OrgName = #{orgname,jdbcType=VARCHAR},
+            </if>
+            <if test="datastatus != null">
+                DataStatus = #{datastatus,jdbcType=INTEGER},
+            </if>
+            <if test="signstatus != null">
+                SignStatus = #{signstatus,jdbcType=INTEGER},
+            </if>
+            <if test="signtype != null">
+                SignType = #{signtype,jdbcType=INTEGER},
+            </if>
+            <if test="tourguide != null">
+                TourGuide = #{tourguide,jdbcType=VARCHAR},
+            </if>
+            <if test="supplierid != null">
+                SupplierID = #{supplierid,jdbcType=CHAR},
+            </if>
+            <if test="suppliername != null">
+                SupplierName = #{suppliername,jdbcType=VARCHAR},
+            </if>
+            <if test="siteid != null">
+                SiteID = #{siteid,jdbcType=CHAR},
+            </if>
+            <if test="occupiedperiod != null">
+                OccupiedPeriod = #{occupiedperiod,jdbcType=INTEGER},
+            </if>
+            <if test="singleordertypeid != null">
+                SingleOrderTypeID = #{singleordertypeid,jdbcType=INTEGER},
+            </if>
+            <if test="singleordertype != null">
+                SingleOrderType = #{singleordertype,jdbcType=VARCHAR},
+            </if>
+            <if test="servicestandard != null">
+                ServiceStandard = #{servicestandard,jdbcType=VARCHAR},
+            </if>
+            <if test="privcomment != null">
+                PrivComment = #{privcomment,jdbcType=VARCHAR},
+            </if>
+            <if test="ordcomment != null">
+                OrdComment = #{ordcomment,jdbcType=VARCHAR},
+            </if>
+            <if test="ajustcomment != null">
+                AjustComment = #{ajustcomment,jdbcType=VARCHAR},
+            </if>
+            <if test="ticketstatus != null">
+                TicketStatus = #{ticketstatus,jdbcType=INTEGER},
+            </if>
+            <if test="routetypeid != null">
+                RouteTypeID = #{routetypeid,jdbcType=CHAR},
+            </if>
+            <if test="routetypename != null">
+                RouteTypeName = #{routetypename,jdbcType=VARCHAR},
+            </if>
+            <if test="customerunittype != null">
+                CustomerUnitType = #{customerunittype,jdbcType=INTEGER},
+            </if>
+            <if test="issigncost != null">
+                IsSignCost = #{issigncost,jdbcType=INTEGER},
+            </if>
+            <if test="depid != null">
+                DepID = #{depid,jdbcType=CHAR},
+            </if>
+            <if test="protype != null">
+                ProType = #{protype,jdbcType=VARCHAR},
+            </if>
+            <if test="protypeid != null">
+                ProTypeID = #{protypeid,jdbcType=CHAR},
+            </if>
+            <if test="iscreditpay != null">
+                IsCreditPay = #{iscreditpay,jdbcType=BIT},
+            </if>
+            <if test="creditpaydate != null">
+                CreditPayDate = #{creditpaydate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="paystatus != null">
+                PayStatus = #{paystatus,jdbcType=INTEGER},
+            </if>
+            <if test="entrysourceid != null">
+                EntrySourceID = #{entrysourceid,jdbcType=CHAR},
+            </if>
+            <if test="entrysource != null">
+                EntrySource = #{entrysource,jdbcType=VARCHAR},
+            </if>
+            <if test="ordersaler != null">
+                OrderSaler = #{ordersaler,jdbcType=VARCHAR},
+            </if>
+            <if test="ordersalerid != null">
+                OrderSalerID = #{ordersalerid,jdbcType=CHAR},
+            </if>
+            <if test="airportservice != null">
+                AirportService = #{airportservice,jdbcType=VARCHAR},
+            </if>
+            <if test="salerdeptid != null">
+                SalerDeptID = #{salerdeptid,jdbcType=CHAR},
+            </if>
+            <if test="salerdeptname != null">
+                SalerDeptName = #{salerdeptname,jdbcType=VARCHAR},
+            </if>
+            <if test="hastourist != null">
+                HasTourist = #{hastourist,jdbcType=INTEGER},
+            </if>
+            <if test="isautoconfirmed != null">
+                IsAutoConfirmed = #{isautoconfirmed,jdbcType=INTEGER},
+            </if>
+            <if test="origreceivableamt != null">
+                OrigReceivableAmt = #{origreceivableamt,jdbcType=DECIMAL},
+            </if>
+            <if test="origpayableamt != null">
+                OrigPayableAmt = #{origpayableamt,jdbcType=DECIMAL},
+            </if>
+            <if test="parentorgid != null">
+                ParentOrgID = #{parentorgid,jdbcType=CHAR},
+            </if>
+            <if test="isdirectorgan != null">
+                IsDirectOrgan = #{isdirectorgan,jdbcType=BIT},
+            </if>
+            <if test="notouristcomment != null">
+                NoTouristComment = #{notouristcomment,jdbcType=VARCHAR},
+            </if>
+            <if test="isusediscount != null">
+                IsUseDiscount = #{isusediscount,jdbcType=BIT},
+            </if>
+            <if test="pricetype != null">
+                PriceType = #{pricetype,jdbcType=INTEGER},
+            </if>
+            <if test="produtoutertimes != null">
+                ProdutOuterTimes = #{produtoutertimes,jdbcType=INTEGER},
+            </if>
+            <if test="noturnpayableamt != null">
+                NoTurnPayableAmt = #{noturnpayableamt,jdbcType=DECIMAL},
+            </if>
+            <if test="orderbusinesssource != null">
+                OrderBusinessSource = #{orderbusinesssource,jdbcType=CHAR},
+            </if>
+            <if test="turnbeforecategory != null">
+                TurnBeforeCategory = #{turnbeforecategory,jdbcType=INTEGER},
+            </if>
+            <if test="extendedstatus != null">
+                ExtendedStatus = #{extendedstatus,jdbcType=INTEGER},
+            </if>
+            <if test="directsalessendid != null">
+                DirectSalesSendID = #{directsalessendid,jdbcType=CHAR},
+            </if>
+            <if test="routesubtype != null">
+                RouteSubType = #{routesubtype,jdbcType=CHAR},
+            </if>
+            <if test="routesubtypename != null">
+                RouteSubTypeName = #{routesubtypename,jdbcType=VARCHAR},
+            </if>
+            <if test="changestatus != null">
+                ChangeStatus = #{changestatus,jdbcType=INTEGER},
+            </if>
+            <if test="teamnature != null">
+                TeamNature = #{teamnature,jdbcType=VARCHAR},
+            </if>
+            <if test="issigned != null">
+                IsSigned = #{issigned,jdbcType=INTEGER},
+            </if>
+            <if test="sendtime != null">
+                SendTime = #{sendtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="signtime != null">
+                SignTime = #{signtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="isshopordermanage != null">
+                IsShopOrderManage = #{isshopordermanage,jdbcType=INTEGER},
+            </if>
+            <if test="producttype != null">
+                ProductType = #{producttype,jdbcType=INTEGER},
+            </if>
+            <if test="routedescription != null">
+                RouteDescription = #{routedescription,jdbcType=LONGVARCHAR},
+            </if>
+        </set>
+        where ID = #{id,jdbcType=CHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.holyrobot.con_order.pojo.OrdOrderinfo">
+    update Ord_OrderInfo
+    set RouteID = #{routeid,jdbcType=CHAR},
+      TourID = #{tourid,jdbcType=CHAR},
+      OrderName = #{ordername,jdbcType=VARCHAR},
+      ScheduleDays = #{scheduledays,jdbcType=INTEGER},
+      Category = #{category,jdbcType=INTEGER},
+      OrderType = #{ordertype,jdbcType=INTEGER},
+      TourDate = #{tourdate,jdbcType=TIMESTAMP},
+      ReturnDate = #{returndate,jdbcType=TIMESTAMP},
+      DepName = #{depname,jdbcType=VARCHAR},
+      DestName = #{destname,jdbcType=VARCHAR},
+      DestID = #{destid,jdbcType=CHAR},
+      OrderNo = #{orderno,jdbcType=VARCHAR},
+      CustomerUnitID = #{customerunitid,jdbcType=CHAR},
+      CustomerName = #{customername,jdbcType=VARCHAR},
+      OrderSourceID = #{ordersourceid,jdbcType=CHAR},
+      OrderSource = #{ordersource,jdbcType=VARCHAR},
+      Contact = #{contact,jdbcType=VARCHAR},
+      Mobile = #{mobile,jdbcType=VARCHAR},
+      Email = #{email,jdbcType=VARCHAR},
+      HasTraffic = #{hastraffic,jdbcType=INTEGER},
+      AdjustAmt = #{adjustamt,jdbcType=DECIMAL},
+      ReceivableAmt = #{receivableamt,jdbcType=DECIMAL},
+      PayableAmt = #{payableamt,jdbcType=DECIMAL},
+      AdultNum = #{adultnum,jdbcType=INTEGER},
+      ChildNum = #{childnum,jdbcType=INTEGER},
+      GuideNum = #{guidenum,jdbcType=INTEGER},
+      Comment = #{comment,jdbcType=VARCHAR},
+      CreatedDate = #{createddate,jdbcType=TIMESTAMP},
+      CreatedBy = #{createdby,jdbcType=VARCHAR},
+      CreatedByID = #{createdbyid,jdbcType=CHAR},
+      DeptID = #{deptid,jdbcType=CHAR},
+      RevisedDate = #{reviseddate,jdbcType=TIMESTAMP},
+      RevisedBy = #{revisedby,jdbcType=VARCHAR},
+      OrgID = #{orgid,jdbcType=CHAR},
+      OrgName = #{orgname,jdbcType=VARCHAR},
+      DataStatus = #{datastatus,jdbcType=INTEGER},
+      SignStatus = #{signstatus,jdbcType=INTEGER},
+      SignType = #{signtype,jdbcType=INTEGER},
+      TourGuide = #{tourguide,jdbcType=VARCHAR},
+      SupplierID = #{supplierid,jdbcType=CHAR},
+      SupplierName = #{suppliername,jdbcType=VARCHAR},
+      SiteID = #{siteid,jdbcType=CHAR},
+      OccupiedPeriod = #{occupiedperiod,jdbcType=INTEGER},
+      SingleOrderTypeID = #{singleordertypeid,jdbcType=INTEGER},
+      SingleOrderType = #{singleordertype,jdbcType=VARCHAR},
+      ServiceStandard = #{servicestandard,jdbcType=VARCHAR},
+      PrivComment = #{privcomment,jdbcType=VARCHAR},
+      OrdComment = #{ordcomment,jdbcType=VARCHAR},
+      AjustComment = #{ajustcomment,jdbcType=VARCHAR},
+      TicketStatus = #{ticketstatus,jdbcType=INTEGER},
+      RouteTypeID = #{routetypeid,jdbcType=CHAR},
+      RouteTypeName = #{routetypename,jdbcType=VARCHAR},
+      CustomerUnitType = #{customerunittype,jdbcType=INTEGER},
+      IsSignCost = #{issigncost,jdbcType=INTEGER},
+      DepID = #{depid,jdbcType=CHAR},
+      ProType = #{protype,jdbcType=VARCHAR},
+      ProTypeID = #{protypeid,jdbcType=CHAR},
+      IsCreditPay = #{iscreditpay,jdbcType=BIT},
+      CreditPayDate = #{creditpaydate,jdbcType=TIMESTAMP},
+      PayStatus = #{paystatus,jdbcType=INTEGER},
+      EntrySourceID = #{entrysourceid,jdbcType=CHAR},
+      EntrySource = #{entrysource,jdbcType=VARCHAR},
+      OrderSaler = #{ordersaler,jdbcType=VARCHAR},
+      OrderSalerID = #{ordersalerid,jdbcType=CHAR},
+      AirportService = #{airportservice,jdbcType=VARCHAR},
+      SalerDeptID = #{salerdeptid,jdbcType=CHAR},
+      SalerDeptName = #{salerdeptname,jdbcType=VARCHAR},
+      HasTourist = #{hastourist,jdbcType=INTEGER},
+      IsAutoConfirmed = #{isautoconfirmed,jdbcType=INTEGER},
+      OrigReceivableAmt = #{origreceivableamt,jdbcType=DECIMAL},
+      OrigPayableAmt = #{origpayableamt,jdbcType=DECIMAL},
+      ParentOrgID = #{parentorgid,jdbcType=CHAR},
+      IsDirectOrgan = #{isdirectorgan,jdbcType=BIT},
+      NoTouristComment = #{notouristcomment,jdbcType=VARCHAR},
+      IsUseDiscount = #{isusediscount,jdbcType=BIT},
+      PriceType = #{pricetype,jdbcType=INTEGER},
+      ProdutOuterTimes = #{produtoutertimes,jdbcType=INTEGER},
+      NoTurnPayableAmt = #{noturnpayableamt,jdbcType=DECIMAL},
+      OrderBusinessSource = #{orderbusinesssource,jdbcType=CHAR},
+      TurnBeforeCategory = #{turnbeforecategory,jdbcType=INTEGER},
+      ExtendedStatus = #{extendedstatus,jdbcType=INTEGER},
+      DirectSalesSendID = #{directsalessendid,jdbcType=CHAR},
+      RouteSubType = #{routesubtype,jdbcType=CHAR},
+      RouteSubTypeName = #{routesubtypename,jdbcType=VARCHAR},
+      ChangeStatus = #{changestatus,jdbcType=INTEGER},
+      TeamNature = #{teamnature,jdbcType=VARCHAR},
+      IsSigned = #{issigned,jdbcType=INTEGER},
+      SendTime = #{sendtime,jdbcType=TIMESTAMP},
+      SignTime = #{signtime,jdbcType=TIMESTAMP},
+      IsShopOrderManage = #{isshopordermanage,jdbcType=INTEGER},
+      ProductType = #{producttype,jdbcType=INTEGER},
+      RouteDescription = #{routedescription,jdbcType=LONGVARCHAR}
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+
+    <!--  -->
+    <select id="getOrder" resultType="com.holyrobot.dto.OrderInfoViewDto">
+
+        SELECT
+        (
+        SELECT
+        COUNT (1)
+        FROM
+        Pro_Product p,
+        Ord_OrderInfo o,
+        Pro_Tour pt
+        <if test="dataStatus != -7 and dataStatus != -1 and dataStatus != 0 and dataStatus != 1 and dataStatus != 4 and dataStatus!='' and dataStatus != null ">
+            ,H5_ShopComments hs
+        </if>
+        WHERE
+        pt.id = o.TourID
+        AND p.id = pt.ProID
+        <if test="dataStatus != -7 and dataStatus != -1 and dataStatus != 0 and dataStatus != 1 and dataStatus != 4 and dataStatus!='' and dataStatus != null ">
+            AND hs.OrderId = o.ID
+        </if>
+        <if test="dataStatus != -7 and dataStatus != -2 and dataStatus!='' and dataStatus != null ">
+            and o.DataStatus = #{dataStatus}
+        </if>
+
+        AND o.CreatedByID = #{createId}
+        <if test="condition!='' and condition != null ">
+            AND
+            (p.AliaseName LIKE '%${condition}%' OR
+            o.OrderNo LIKE '%${condition}%' OR
+            p.ProNo LIKE '%${condition}%'
+            )
+        </if>
+        ) AS totalNum,
+        o.ID as ordId,
+        p.id AS proId,
+        pt.ID AS proTourId,
+        p.AliaseName AS aliaseName,
+        o.OrderNo AS orderNo,
+        o.TourDate AS tourDate,
+        o.AdultNum AS adultNum,
+        o.ChildNum AS childNum,
+        p.TourDays AS tourDays,
+        o.PayableAmt AS payableAmt,
+        p.CoverImg AS coverImg,
+        o.ReturnDate as returnDate,
+        o.DataStatus as dataStatus,
+        o.SupplierID as supplierID
+        FROM
+        Pro_Product p,
+        Ord_OrderInfo o,
+        Pro_Tour pt
+        <if test="dataStatus != -7 and dataStatus != -1 and dataStatus != 0 and dataStatus != 1 and dataStatus != 4 and dataStatus!='' and dataStatus != null ">
+            ,H5_ShopComments hs
+        </if>
+        WHERE
+        pt.id = o.TourID
+        AND p.id = pt.ProID
+        <if test="dataStatus != -7 and dataStatus != -1 and dataStatus != 0 and dataStatus != 1 and dataStatus != 4 and dataStatus!='' and dataStatus != null ">
+            AND hs.OrderId = o.ID
+        </if>
+        <if test="dataStatus != -7 and dataStatus != -2 and dataStatus!='' and dataStatus != null ">
+            and o.DataStatus = #{dataStatus}
+        </if>
+        AND o.CreatedByID = #{createId}
+        <if test="condition!='' and condition != null ">
+            AND
+            (p.AliaseName LIKE '%${condition}%' OR
+            o.OrderNo LIKE '%${condition}%' OR
+            p.ProNo LIKE '%${condition}%'
+            )
+        </if>
+        ORDER BY
+        o.CreatedDate DESC
+        OFFSET #{startPage} ROWS FETCH NEXT #{size} ROWS ONLY
+
+    </select>
+
+    <select id="getOrderByName" resultType="com.holyrobot.dto.OrderInfoViewDto">
+    SELECT
+    (
+    SELECT
+    COUNT (1)
+    FROM
+    Pro_Product p,
+    Ord_OrderInfo o,
+    Pro_Tour pt
+    WHERE
+    pt.id = o.TourID
+    AND p.id = pt.ProID
+    AND o.CreatedByID = #{createId}
+    AND
+    (p.AliaseName LIKE '%${condition}%' OR
+    o.OrderNo LIKE '%${condition}%' OR
+    p.ProNo LIKE '%${condition}%'
+    )
+    ) AS totalNum,
+    o.ID as ordId,
+    p.id AS proId,
+    pt.ID AS proTourId,
+    p.AliaseName AS aliaseName,
+    o.OrderNo AS orderNo,
+    o.TourDate AS tourDate,
+    o.AdultNum AS adultNum,
+    o.ChildNum AS childNum,
+    p.TourDays AS tourDays,
+    o.PayableAmt AS payableAmt,
+    p.CoverImg AS coverImg,
+    o.ReturnDate as returnDate,
+    o.DataStatus as dataStatus
+    FROM
+    Pro_Product p,
+    Ord_OrderInfo o,
+    Pro_Tour pt
+    WHERE
+    pt.id = o.TourID
+    AND p.id = pt.ProID
+    AND o.CreatedByID = #{createId}
+    AND
+    (p.AliaseName LIKE '%${condition}%' OR
+    o.OrderNo LIKE '%${condition}%' OR
+    p.ProNo LIKE '%${condition}%'
+    )
+    ORDER BY
+    o.CreatedDate DESC
+    OFFSET #{startPage} ROWS FETCH NEXT #{size} ROWS ONLY
+  </select>
+
+    <update id="updateOrderStatus">
+    UPDATE Ord_OrderInfo set DataStatus = -1 WHERE id = #{orderId}
+  </update>
+
+    <update id="updateOrderStatusCom">
+    UPDATE Ord_OrderInfo set DataStatus = -2 WHERE id = #{orderId}
+  </update>
+
+    <select id="getOrderInfoForPay" resultType="com.holyrobot.dto.OrderInfoViewDto">
+    SELECT
+    o.ID as ordId,
+    o.OrderNo AS orderNo,
+    o.TourDate AS tourDate,
+    o.AdultNum AS adultNum,
+    o.ChildNum AS childNum,
+    o.PayableAmt AS payableAmt,
+    o.ReturnDate as returnDate,
+    o.DataStatus as dataStatus,
+    o.Contact as contact,
+    o.Mobile as mobile,
+    o.CreatedDate as createdDate,
+    o.SupplierName as supplierName,
+    o.OrderName as aliaseName
+    FROM
+    Ord_OrderInfo o
+    WHERE o.id=#{orderId}
+  </select>
+
+    <update id="updateDataStatusAndIsCreditPayById" parameterType="java.lang.String">
+    UPDATE Ord_OrderInfo
+    SET DataStatus = 3,
+    IsCreditPay = 0,
+    NewOrderStatus = 12,
+    CreditPayDate = GETDATE()
+    WHERE
+    id = #{orderId}
+  </update>
+
+    <select id="getNewOrder" resultType="com.holyrobot.dto.OrderInfoViewDto">
+        SELECT a.ID AS ordId ,
+        --总条数begin
+        (SELECT
+        count(*)
+        FROM Ord_OrderInfo AS a
+        LEFT JOIN Pro_Tour AS b ON a.TourID = b.ID
+        LEFT JOIN Pro_Product AS c ON a.RouteID = c.ID
+        --包含待确认的已收款
+        LEFT JOIN ( SELECT OrderID ,
+        SUM(a.CollectAmt) CollectAmt ,
+        OrgID
+        FROM Ord_Order_Collection a
+        WHERE a.CollectStatus != 3 AND ISNULL(a.Isbuyerapply,0)!=1
+        GROUP BY OrderID ,
+        a.OrgID
+        ) AS d ON a.ID = d.OrderID
+        AND a.OrgID = d.OrgID
+        --已经付款
+        LEFT JOIN ( SELECT OrderID ,
+        OrgID ,
+        SUM(a.Amount) Amount
+        FROM dbo.Fin_OrderCostPaid a
+        WHERE a.DataStatus = 2
+        GROUP BY a.OrderID ,
+        a.OrgID
+        ) AS e ON a.ID = e.OrderID
+        AND a.OrgID = e.OrgID
+        LEFT JOIN ( SELECT SUM(a.InvoiceAmt) InvoiceAmt ,
+        a.OrderID
+        FROM [Ord_Order_Invoice_Item] AS a
+        LEFT JOIN Ord_Order_Invoice AS b ON a.InvoiceID = b.ID
+        WHERE b.InvoiceStatus = 2
+        GROUP BY a.OrderID
+        ) AS invoce ON invoce.OrderID = a.ID
+        WHERE
+        1=1
+        <include refid="newOrderQry"/>) AS totalNum ,
+        --总条数end
+        a.RouteID AS proId ,
+        a.TourID AS proTourId ,
+        a.OrderName AS aliaseName,
+        a.TourDate AS tourDate ,
+        c.TourDays AS tourDays ,
+        c.coverImg AS coverImg ,
+        a.ReturnDate AS returnDate ,
+        a.DestName AS destName ,
+        a.OrderNo AS orderNo,
+        a.Contact AS contact ,
+        a.Mobile AS mobile ,
+        a.ReceivableAmt ,
+        a.PayableAmt AS payableAmt,
+        a.AdultNum AS adultNum,
+        a.ChildNum AS childNum,
+        a.CreatedDate AS createdDate,
+        a.DataStatus AS dataStatus ,
+        ISNULL(e.Amount, 0) AS PaidAmount,
+        a.SupplierName AS supplierName,
+        a.SupplierID AS supplierID
+        FROM Ord_OrderInfo AS a
+        LEFT JOIN Pro_Tour AS b ON a.TourID = b.ID
+        LEFT JOIN Pro_Product AS c ON a.RouteID = c.ID
+        --包含待确认的已收款
+        LEFT JOIN ( SELECT OrderID ,
+        SUM(a.CollectAmt) CollectAmt ,
+        OrgID
+        FROM Ord_Order_Collection a
+        WHERE a.CollectStatus != 3 AND ISNULL(a.Isbuyerapply,0)!=1
+        GROUP BY OrderID ,
+        a.OrgID
+        ) AS d ON a.ID = d.OrderID
+        AND a.OrgID = d.OrgID
+        --已经付款
+        LEFT JOIN ( SELECT OrderID ,
+        OrgID ,
+        SUM(a.Amount) Amount
+        FROM dbo.Fin_OrderCostPaid a
+        WHERE a.DataStatus = 2
+        GROUP BY a.OrderID ,
+        a.OrgID
+        ) AS e ON a.ID = e.OrderID
+        AND a.OrgID = e.OrgID
+        LEFT JOIN ( SELECT SUM(a.InvoiceAmt) InvoiceAmt ,
+        a.OrderID
+        FROM [Ord_Order_Invoice_Item] AS a
+        LEFT JOIN Ord_Order_Invoice AS b ON a.InvoiceID = b.ID
+        WHERE b.InvoiceStatus = 2
+        GROUP BY a.OrderID
+        ) AS invoce ON invoce.OrderID = a.ID
+        WHERE
+        1=1
+        <include refid="newOrderQry"/>
+        order BY a.RevisedDate desc
+        OFFSET #{startPage} ROWS FETCH NEXT #{size} ROWS ONLY
+    </select>
+    <sql id="newOrderQry">
+        <if test="condition != null and condition != ''">
+            AND (a.OrderName LIKE '%${condition}%' or a.OrderNo LIKE '%${condition}%' )
+        </if>
+
+        --B端
+        <if test="userType==1">
+            and a.OrgID = #{orgId}
+            AND a.Category in(4,6)
+        </if>
+        --C端
+        <if test="userType==2">
+            AND a.CreatedByID = #{userId}
+            AND a.Category in(7,5,8)
+        </if>
+        --商城订单
+        --1：商城采购 2：内部下单 3：手工录单 4：微店erp用户 5：微店直客 6：pc商城B端用户 7：pc商城C端用户
+
+        --待确认0 待支付 1，2 支付待确认3 已支付4 已取消-1
+        <choose>
+            <when test="dataStatus == 0">
+                AND a.DataStatus = 0
+            </when>
+            <when test="dataStatus == 1">
+                AND a.DataStatus in(1,2)
+            </when>
+            <when test="dataStatus == 3">
+                AND a.DataStatus in(3,10)
+            </when>
+            <when test="dataStatus == 4">
+                AND a.DataStatus = 4
+            </when>
+            <when test="dataStatus == -1">
+                AND a.DataStatus = -1
+            </when>
+        </choose>
+    </sql>
+
+    <select id="getVolunteerOrder" resultType="com.holyrobot.dto.OrderInfoViewDto">
+        SELECT a.ID AS ordId ,
+        --总条数begin
+        (SELECT
+        count(*)
+        FROM Ord_OrderInfo AS a
+        LEFT JOIN Volunteer_Commission_Record as r on a.id = r.OrderID
+        LEFT JOIN Pro_Product AS c ON a.RouteID = c.ID
+        --包含待确认的已收款
+        LEFT JOIN ( SELECT OrderID ,
+        SUM(a.CollectAmt) CollectAmt ,
+        OrgID
+        FROM Ord_Order_Collection a
+        WHERE a.CollectStatus != 3 AND ISNULL(a.Isbuyerapply,0)!=1
+        GROUP BY OrderID ,
+        a.OrgID
+        ) AS d ON a.ID = d.OrderID
+        AND a.OrgID = d.OrgID
+        --已经付款
+        LEFT JOIN ( SELECT OrderID ,
+        OrgID ,
+        SUM(a.Amount) Amount
+        FROM dbo.Fin_OrderCostPaid a
+        WHERE a.DataStatus = 2
+        GROUP BY a.OrderID ,
+        a.OrgID
+        ) AS e ON a.ID = e.OrderID
+        AND a.OrgID = e.OrgID
+        LEFT JOIN ( SELECT SUM(a.InvoiceAmt) InvoiceAmt ,
+        a.OrderID
+        FROM [Ord_Order_Invoice_Item] AS a
+        LEFT JOIN Ord_Order_Invoice AS b ON a.InvoiceID = b.ID
+        WHERE b.InvoiceStatus = 2
+        GROUP BY a.OrderID
+        ) AS invoce ON invoce.OrderID = a.ID
+        WHERE
+        1=1
+        <include refid="getVolunteerOrderCondition"/>
+        ) AS totalNum ,
+        --总条数end
+        a.RouteID AS proId ,
+        a.TourID AS proTourId ,
+        a.OrderName AS aliaseName,
+        a.TourDate AS tourDate ,
+        c.TourDays AS tourDays ,
+        c.coverImg AS coverImg ,
+        a.ReturnDate AS returnDate ,
+        a.DestName AS destName ,
+        a.OrderNo AS orderNo,
+        a.Contact AS contact ,
+        a.Mobile AS mobile ,
+        a.ReceivableAmt ,
+        a.PayableAmt AS payableAmt,
+        ISNULL(r.CommissionAmt, 0) as commissionAmt,
+        a.AdultNum AS adultNum,
+        a.ChildNum AS childNum,
+        a.CreatedDate AS createdDate,
+        a.DataStatus AS dataStatus ,
+        ISNULL(e.Amount, 0) AS PaidAmount,
+        a.SupplierName AS supplierName,
+        a.SupplierID AS supplierID
+        FROM Ord_OrderInfo AS a
+        LEFT JOIN Volunteer_Commission_Record as r on a.id = r.OrderID
+        LEFT JOIN Pro_Product AS c ON a.RouteID = c.ID
+        --包含待确认的已收款
+        LEFT JOIN ( SELECT OrderID ,
+        SUM(a.CollectAmt) CollectAmt ,
+        OrgID
+        FROM Ord_Order_Collection a
+        WHERE a.CollectStatus != 3 AND ISNULL(a.Isbuyerapply,0)!=1
+        GROUP BY OrderID ,
+        a.OrgID
+        ) AS d ON a.ID = d.OrderID
+        AND a.OrgID = d.OrgID
+        --已经付款
+        LEFT JOIN ( SELECT OrderID ,
+        OrgID ,
+        SUM(a.Amount) Amount
+        FROM dbo.Fin_OrderCostPaid a
+        WHERE a.DataStatus = 2
+        GROUP BY a.OrderID ,
+        a.OrgID
+        ) AS e ON a.ID = e.OrderID
+        AND a.OrgID = e.OrgID
+        LEFT JOIN ( SELECT SUM(a.InvoiceAmt) InvoiceAmt ,
+        a.OrderID
+        FROM Ord_Order_Invoice_Item AS a
+        LEFT JOIN Ord_Order_Invoice AS b ON a.InvoiceID = b.ID
+        WHERE b.InvoiceStatus = 2
+        GROUP BY a.OrderID
+        ) AS invoce ON invoce.OrderID = a.ID
+        WHERE
+        1=1
+        <include refid="getVolunteerOrderCondition"/>
+        order BY a.RevisedDate desc
+    </select>
+
+    <sql id="getVolunteerOrderCondition">
+        <if test="condition != null and condition != ''">
+            AND (a.OrderName LIKE '%${condition}%' or a.OrderNo LIKE '%${condition}%' )
+        </if>
+        AND a.OrderSalerID =#{userId}
+        AND a.Category = 8
+        AND a.SupplierID = #{orgId}
+        <choose>
+            <when test="dataStatus == 0">
+                AND a.DataStatus = 0
+            </when>
+            <when test="dataStatus == 1">
+                AND a.DataStatus in(1,2)
+            </when>
+            <when test="dataStatus == 3">
+                AND a.DataStatus in(3,10)
+            </when>
+            <when test="dataStatus == 4">
+                AND a.DataStatus = 4
+            </when>
+            <when test="dataStatus == -1">
+                AND a.DataStatus = -1
+            </when>
+        </choose>
+    </sql>
+
+    <update id="updateBillPaymentsById" parameterType="java.lang.String">
+    UPDATE Ord_OrderInfo
+    SET DataStatus = 10,
+    IsCreditPay = 1,
+    NewOrderStatus = 13,
+    CreditPayDate = GETDATE()
+    WHERE
+    id = #{orderId}
+  </update>
+
+    <update id="updateAdjustmentInfo">
+    UPDATE Ord_OrderInfo
+    SET
+    PayableAmt = #{payableAmt}
+    WHERE
+    ID = #{orderId}
+  </update>
+
+
+    <select id="getOrderNumByDataStatus" resultType="com.holyrobot.con_order.pojo.OrderDataStatusVo">
+        SELECT
+        DataStatus as dataStatus,
+        COUNT (*) as orderNum
+        FROM
+        Ord_OrderInfo
+        WHERE
+        1=1
+        <if test="condition != null and condition != ''">
+            AND (OrderName LIKE '%${condition}%' or OrderNo LIKE '%${condition}%' )
+        </if>
+        <choose>
+            <when test="shopType != null and shopType ==1">
+                AND OrderSalerID = #{userId}
+                AND SupplierID = #{orgId}
+            </when>
+            <otherwise>
+                AND CreatedByID = #{userId}
+            </otherwise>
+        </choose>
+        GROUP BY
+        DataStatus
+    </select>
+
+    <select id="erpUserGetOrderNumByDataStatus" resultType="com.holyrobot.con_order.pojo.OrderDataStatusVo">
+        SELECT
+        DataStatus as dataStatus,
+        COUNT (*) as orderNum
+        FROM
+        Ord_OrderInfo
+        WHERE
+        OrgID = #{orgId}
+        AND
+        Category in(4,6)
+        <if test="condition != null and condition != ''">
+            AND (OrderName LIKE '%${condition}%' or OrderNo LIKE '%${condition}%' )
+        </if>
+        GROUP BY
+        DataStatus
+    </select>
+
+    <select id="countOrderNumber" resultType="java.lang.Integer">
+    SELECT
+    COUNT (OrderNo)
+    FROM
+    Ord_OrderInfo
+    WHERE
+    OrderNo = #{orderNumber}
+  </select>
+
+    <select id="selectByIdOfAll" resultMap="BaseResultMap" parameterType="java.lang.String">
+    select
+    *
+    from Ord_OrderInfo
+    where ID = #{id,jdbcType=CHAR}
+  </select>
+
+</mapper>

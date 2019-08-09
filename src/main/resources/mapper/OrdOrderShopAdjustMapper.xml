@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.holyrobot.con_order.mapper.OrdOrderShopAdjustMapper" >
+  <resultMap id="BaseResultMap" type="com.holyrobot.con_order.pojo.OrdOrderShopAdjust" >
+    <id column="ID" property="id" jdbcType="CHAR" />
+    <result column="OrderID" property="orderid" jdbcType="CHAR" />
+    <result column="BeforeAdjustAmount" property="beforeadjustamount" jdbcType="DECIMAL" />
+    <result column="AdjustAmount" property="adjustamount" jdbcType="DECIMAL" />
+    <result column="AfterAdjustAmount" property="afteradjustamount" jdbcType="DECIMAL" />
+    <result column="CreatedByID" property="createdbyid" jdbcType="CHAR" />
+    <result column="CreatedBy" property="createdby" jdbcType="VARCHAR" />
+    <result column="CreatedDate" property="createddate" jdbcType="TIMESTAMP" />
+    <result column="OrgID" property="orgid" jdbcType="CHAR" />
+    <result column="Comment" property="comment" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, OrderID, BeforeAdjustAmount, AdjustAmount, AfterAdjustAmount, CreatedByID, CreatedBy, 
+    CreatedDate, OrgID, Comment
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.holyrobot.con_order.pojo.OrdOrderShopAdjustExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from Ord_Order_ShopAdjust
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from Ord_Order_ShopAdjust
+    where ID = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from Ord_Order_ShopAdjust
+    where ID = #{id,jdbcType=CHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.holyrobot.con_order.pojo.OrdOrderShopAdjustExample" >
+    delete from Ord_Order_ShopAdjust
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.holyrobot.con_order.pojo.OrdOrderShopAdjust" >
+    insert into Ord_Order_ShopAdjust (ID, OrderID, BeforeAdjustAmount, 
+      AdjustAmount, AfterAdjustAmount, CreatedByID, 
+      CreatedBy, CreatedDate, OrgID, 
+      Comment)
+    values (#{id,jdbcType=CHAR}, #{orderid,jdbcType=CHAR}, #{beforeadjustamount,jdbcType=DECIMAL}, 
+      #{adjustamount,jdbcType=DECIMAL}, #{afteradjustamount,jdbcType=DECIMAL}, #{createdbyid,jdbcType=CHAR}, 
+      #{createdby,jdbcType=VARCHAR}, #{createddate,jdbcType=TIMESTAMP}, #{orgid,jdbcType=CHAR},
+      #{comment,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.holyrobot.con_order.pojo.OrdOrderShopAdjust" >
+    insert into Ord_Order_ShopAdjust
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="orderid != null" >
+        OrderID,
+      </if>
+      <if test="beforeadjustamount != null" >
+        BeforeAdjustAmount,
+      </if>
+      <if test="adjustamount != null" >
+        AdjustAmount,
+      </if>
+      <if test="afteradjustamount != null" >
+        AfterAdjustAmount,
+      </if>
+      <if test="createdbyid != null" >
+        CreatedByID,
+      </if>
+      <if test="createdby != null" >
+        CreatedBy,
+      </if>
+      <if test="createddate != null" >
+        CreatedDate,
+      </if>
+      <if test="orgid != null" >
+        OrgID,
+      </if>
+      <if test="comment != null" >
+        Comment,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="orderid != null" >
+        #{orderid,jdbcType=CHAR},
+      </if>
+      <if test="beforeadjustamount != null" >
+        #{beforeadjustamount,jdbcType=DECIMAL},
+      </if>
+      <if test="adjustamount != null" >
+        #{adjustamount,jdbcType=DECIMAL},
+      </if>
+      <if test="afteradjustamount != null" >
+        #{afteradjustamount,jdbcType=DECIMAL},
+      </if>
+      <if test="createdbyid != null" >
+        #{createdbyid,jdbcType=CHAR},
+      </if>
+      <if test="createdby != null" >
+        #{createdby,jdbcType=VARCHAR},
+      </if>
+      <if test="createddate != null" >
+        #{createddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orgid != null" >
+        #{orgid,jdbcType=CHAR},
+      </if>
+      <if test="comment != null" >
+        #{comment,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.holyrobot.con_order.pojo.OrdOrderShopAdjustExample" resultType="java.lang.Integer" >
+    select count(*) from Ord_Order_ShopAdjust
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update Ord_Order_ShopAdjust
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=CHAR},
+      </if>
+      <if test="record.orderid != null" >
+        OrderID = #{record.orderid,jdbcType=CHAR},
+      </if>
+      <if test="record.beforeadjustamount != null" >
+        BeforeAdjustAmount = #{record.beforeadjustamount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.adjustamount != null" >
+        AdjustAmount = #{record.adjustamount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.afteradjustamount != null" >
+        AfterAdjustAmount = #{record.afteradjustamount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.createdbyid != null" >
+        CreatedByID = #{record.createdbyid,jdbcType=CHAR},
+      </if>
+      <if test="record.createdby != null" >
+        CreatedBy = #{record.createdby,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createddate != null" >
+        CreatedDate = #{record.createddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.orgid != null" >
+        OrgID = #{record.orgid,jdbcType=CHAR},
+      </if>
+      <if test="record.comment != null" >
+        Comment = #{record.comment,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update Ord_Order_ShopAdjust
+    set ID = #{record.id,jdbcType=CHAR},
+      OrderID = #{record.orderid,jdbcType=CHAR},
+      BeforeAdjustAmount = #{record.beforeadjustamount,jdbcType=DECIMAL},
+      AdjustAmount = #{record.adjustamount,jdbcType=DECIMAL},
+      AfterAdjustAmount = #{record.afteradjustamount,jdbcType=DECIMAL},
+      CreatedByID = #{record.createdbyid,jdbcType=CHAR},
+      CreatedBy = #{record.createdby,jdbcType=VARCHAR},
+      CreatedDate = #{record.createddate,jdbcType=TIMESTAMP},
+      OrgID = #{record.orgid,jdbcType=CHAR},
+      Comment = #{record.comment,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.holyrobot.con_order.pojo.OrdOrderShopAdjust" >
+    update Ord_Order_ShopAdjust
+    <set >
+      <if test="orderid != null" >
+        OrderID = #{orderid,jdbcType=CHAR},
+      </if>
+      <if test="beforeadjustamount != null" >
+        BeforeAdjustAmount = #{beforeadjustamount,jdbcType=DECIMAL},
+      </if>
+      <if test="adjustamount != null" >
+        AdjustAmount = #{adjustamount,jdbcType=DECIMAL},
+      </if>
+      <if test="afteradjustamount != null" >
+        AfterAdjustAmount = #{afteradjustamount,jdbcType=DECIMAL},
+      </if>
+      <if test="createdbyid != null" >
+        CreatedByID = #{createdbyid,jdbcType=CHAR},
+      </if>
+      <if test="createdby != null" >
+        CreatedBy = #{createdby,jdbcType=VARCHAR},
+      </if>
+      <if test="createddate != null" >
+        CreatedDate = #{createddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orgid != null" >
+        OrgID = #{orgid,jdbcType=CHAR},
+      </if>
+      <if test="comment != null" >
+        Comment = #{comment,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.holyrobot.con_order.pojo.OrdOrderShopAdjust" >
+    update Ord_Order_ShopAdjust
+    set OrderID = #{orderid,jdbcType=CHAR},
+      BeforeAdjustAmount = #{beforeadjustamount,jdbcType=DECIMAL},
+      AdjustAmount = #{adjustamount,jdbcType=DECIMAL},
+      AfterAdjustAmount = #{afteradjustamount,jdbcType=DECIMAL},
+      CreatedByID = #{createdbyid,jdbcType=CHAR},
+      CreatedBy = #{createdby,jdbcType=VARCHAR},
+      CreatedDate = #{createddate,jdbcType=TIMESTAMP},
+      OrgID = #{orgid,jdbcType=CHAR},
+      Comment = #{comment,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+</mapper>

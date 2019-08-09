@@ -1,0 +1,1857 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.holyrobot.con_product.mapper.ProProductMapper" >
+  <resultMap id="BaseResultMap" type="com.holyrobot.con_product.pojo.ProProduct" >
+    <id column="ID" property="id" jdbcType="CHAR" />
+    <result column="ProTypeID" property="protypeid" jdbcType="CHAR" />
+    <result column="ProType" property="protype" jdbcType="VARCHAR" />
+    <result column="ProCategoryID" property="procategoryid" jdbcType="CHAR" />
+    <result column="ProCategory" property="procategory" jdbcType="VARCHAR" />
+    <result column="ProName" property="proname" jdbcType="VARCHAR" />
+    <result column="AliaseName" property="aliasename" jdbcType="VARCHAR" />
+    <result column="ProNo" property="prono" jdbcType="VARCHAR" />
+    <result column="TourDays" property="tourdays" jdbcType="INTEGER" />
+    <result column="StartDate" property="startdate" jdbcType="TIMESTAMP" />
+    <result column="DueDate" property="duedate" jdbcType="TIMESTAMP" />
+    <result column="Departure" property="departure" jdbcType="VARCHAR" />
+    <result column="Destination" property="destination" jdbcType="VARCHAR" />
+    <result column="ProTag" property="protag" jdbcType="VARCHAR" />
+    <result column="Feature" property="feature" jdbcType="LONGVARCHAR" />
+    <result column="FeeIncludes" property="feeincludes" jdbcType="LONGVARCHAR" />
+    <result column="FeeNonIncludes" property="feenonincludes" jdbcType="LONGVARCHAR" />
+    <result column="CoverImg" property="coverimg" jdbcType="VARCHAR" />
+    <result column="Attention" property="attention" jdbcType="LONGVARCHAR" />
+    <result column="Shopping" property="shopping" jdbcType="LONGVARCHAR" />
+    <result column="Tips" property="tips" jdbcType="LONGVARCHAR" />
+    <result column="Insurance" property="insurance" jdbcType="LONGVARCHAR" />
+    <result column="BacToRule" property="bactorule" jdbcType="LONGVARCHAR" />
+    <result column="IsAck" property="isack" jdbcType="INTEGER" />
+    <result column="DataStatus" property="datastatus" jdbcType="INTEGER" />
+    <result column="CreatedDate" property="createddate" jdbcType="TIMESTAMP" />
+    <result column="CreatedBy" property="createdby" jdbcType="VARCHAR" />
+    <result column="CreatedByID" property="createdbyid" jdbcType="CHAR" />
+    <result column="DeptID" property="deptid" jdbcType="CHAR" />
+    <result column="OrgID" property="orgid" jdbcType="CHAR" />
+    <result column="TravelName" property="travelname" jdbcType="VARCHAR" />
+    <result column="BrandName" property="brandname" jdbcType="VARCHAR" />
+    <result column="RevisedDate" property="reviseddate" jdbcType="TIMESTAMP" />
+    <result column="RevisedBy" property="revisedby" jdbcType="VARCHAR" />
+    <result column="IsTail" property="istail" jdbcType="INTEGER" />
+    <result column="SalesType" property="salestype" jdbcType="INTEGER" />
+    <result column="AuditStatus" property="auditstatus" jdbcType="INTEGER" />
+    <result column="AuditedBy" property="auditedby" jdbcType="VARCHAR" />
+    <result column="AuditedDate" property="auditeddate" jdbcType="TIMESTAMP" />
+    <result column="LocalProName" property="localproname" jdbcType="VARCHAR" />
+    <result column="Traffic" property="traffic" jdbcType="VARCHAR" />
+    <result column="IsPrivateTemplate" property="isprivatetemplate" jdbcType="INTEGER" />
+    <result column="IsCommonTemplate" property="iscommontemplate" jdbcType="INTEGER" />
+    <result column="SupplierID" property="supplierid" jdbcType="CHAR" />
+    <result column="SupplierName" property="suppliername" jdbcType="VARCHAR" />
+    <result column="ProProp" property="proprop" jdbcType="INTEGER" />
+    <result column="MobileCoverImg" property="mobilecoverimg" jdbcType="VARCHAR" />
+    <result column="StarLevel" property="starlevel" jdbcType="INTEGER" />
+    <result column="TrafficType" property="traffictype" jdbcType="INTEGER" />
+    <result column="DestCollectionFlag" property="destcollectionflag" jdbcType="VARCHAR" />
+    <result column="EmergencyContact" property="emergencycontact" jdbcType="VARCHAR" />
+    <result column="EmergencyMobileNo" property="emergencymobileno" jdbcType="VARCHAR" />
+    <result column="TravelAgencyAddr" property="travelagencyaddr" jdbcType="VARCHAR" />
+    <result column="TravelAgencyPhone" property="travelagencyphone" jdbcType="VARCHAR" />
+    <result column="TAEmergencyContact" property="taemergencycontact" jdbcType="VARCHAR" />
+    <result column="TAEmergencyMobile" property="taemergencymobile" jdbcType="VARCHAR" />
+    <result column="WXPublicityImage" property="wxpublicityimage" jdbcType="VARCHAR" />
+    <result column="WXTitle" property="wxtitle" jdbcType="VARCHAR" />
+    <result column="WXShareSummary" property="wxsharesummary" jdbcType="LONGVARCHAR" />
+    <result column="TemplateType" property="templatetype" jdbcType="INTEGER" />
+    <result column="RouteSubType" property="routesubtype" jdbcType="CHAR" />
+    <result column="RouteSubTypeName" property="routesubtypename" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.holyrobot.con_product.pojo.ProProduct" extends="BaseResultMap" >
+    <result column="Summary" property="summary" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, ProTypeID, ProType, ProCategoryID, ProCategory, ProName, AliaseName, ProNo, TourDays, 
+    StartDate, DueDate, Departure, Destination, ProTag, Feature, FeeIncludes, FeeNonIncludes, 
+    CoverImg, Attention, Shopping, Tips, Insurance, BacToRule, IsAck, DataStatus, CreatedDate, 
+    CreatedBy, CreatedByID, DeptID, OrgID, TravelName, BrandName, RevisedDate, RevisedBy, 
+    IsTail, SalesType, AuditStatus, AuditedBy, AuditedDate, LocalProName, Traffic, IsPrivateTemplate, 
+    IsCommonTemplate, SupplierID, SupplierName, ProProp, MobileCoverImg, StarLevel, TrafficType, 
+    DestCollectionFlag, EmergencyContact, EmergencyMobileNo, TravelAgencyAddr, TravelAgencyPhone, 
+    TAEmergencyContact, TAEmergencyMobile, WXPublicityImage, WXTitle, WXShareSummary, 
+    TemplateType, RouteSubType, RouteSubTypeName,ProductType,RouteDescription
+  </sql>
+  <sql id="Blob_Column_List" >
+    Summary
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.holyrobot.con_product.pojo.ProProductExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from Pro_Product
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.holyrobot.con_product.pojo.ProProductExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from Pro_Product
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from Pro_Product
+    where ID = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from Pro_Product
+    where ID = #{id,jdbcType=CHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.holyrobot.con_product.pojo.ProProductExample" >
+    delete from Pro_Product
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.holyrobot.con_product.pojo.ProProduct" >
+    insert into Pro_Product (ID, ProTypeID, ProType, 
+      ProCategoryID, ProCategory, ProName, 
+      AliaseName, ProNo, TourDays, 
+      StartDate, DueDate, Departure, 
+      Destination, ProTag, Feature, 
+      FeeIncludes, FeeNonIncludes, 
+      CoverImg, Attention, Shopping, 
+      Tips, Insurance, BacToRule, 
+      IsAck, DataStatus, CreatedDate, 
+      CreatedBy, CreatedByID, DeptID, 
+      OrgID, TravelName, BrandName, 
+      RevisedDate, RevisedBy, IsTail, 
+      SalesType, AuditStatus, AuditedBy, 
+      AuditedDate, LocalProName, Traffic, 
+      IsPrivateTemplate, IsCommonTemplate, SupplierID, 
+      SupplierName, ProProp, MobileCoverImg, 
+      StarLevel, TrafficType, DestCollectionFlag, 
+      EmergencyContact, EmergencyMobileNo, 
+      TravelAgencyAddr, TravelAgencyPhone, 
+      TAEmergencyContact, TAEmergencyMobile, 
+      WXPublicityImage, WXTitle, WXShareSummary, 
+      TemplateType, RouteSubType, RouteSubTypeName, 
+      Summary)
+    values (#{id,jdbcType=CHAR}, #{protypeid,jdbcType=CHAR}, #{protype,jdbcType=VARCHAR},
+      #{procategoryid,jdbcType=CHAR}, #{procategory,jdbcType=VARCHAR}, #{proname,jdbcType=VARCHAR},
+      #{aliasename,jdbcType=VARCHAR}, #{prono,jdbcType=VARCHAR}, #{tourdays,jdbcType=INTEGER},
+      #{startdate,jdbcType=TIMESTAMP}, #{duedate,jdbcType=TIMESTAMP}, #{departure,jdbcType=VARCHAR},
+      #{destination,jdbcType=VARCHAR}, #{protag,jdbcType=VARCHAR}, #{feature,jdbcType=LONGVARCHAR},
+      #{feeincludes,jdbcType=LONGVARCHAR}, #{feenonincludes,jdbcType=LONGVARCHAR},
+      #{coverimg,jdbcType=VARCHAR}, #{attention,jdbcType=LONGVARCHAR}, #{shopping,jdbcType=LONGVARCHAR},
+      #{tips,jdbcType=LONGVARCHAR}, #{insurance,jdbcType=LONGVARCHAR}, #{bactorule,jdbcType=LONGVARCHAR},
+      #{isack,jdbcType=INTEGER}, #{datastatus,jdbcType=INTEGER}, #{createddate,jdbcType=TIMESTAMP}, 
+      #{createdby,jdbcType=VARCHAR}, #{createdbyid,jdbcType=CHAR}, #{deptid,jdbcType=CHAR},
+      #{orgid,jdbcType=CHAR}, #{travelname,jdbcType=VARCHAR}, #{brandname,jdbcType=VARCHAR},
+      #{reviseddate,jdbcType=TIMESTAMP}, #{revisedby,jdbcType=VARCHAR}, #{istail,jdbcType=INTEGER},
+      #{salestype,jdbcType=INTEGER}, #{auditstatus,jdbcType=INTEGER}, #{auditedby,jdbcType=VARCHAR},
+      #{auditeddate,jdbcType=TIMESTAMP}, #{localproname,jdbcType=VARCHAR}, #{traffic,jdbcType=VARCHAR},
+      #{isprivatetemplate,jdbcType=INTEGER}, #{iscommontemplate,jdbcType=INTEGER}, #{supplierid,jdbcType=CHAR}, 
+      #{suppliername,jdbcType=VARCHAR}, #{proprop,jdbcType=INTEGER}, #{mobilecoverimg,jdbcType=VARCHAR},
+      #{starlevel,jdbcType=INTEGER}, #{traffictype,jdbcType=INTEGER}, #{destcollectionflag,jdbcType=VARCHAR},
+      #{emergencycontact,jdbcType=VARCHAR}, #{emergencymobileno,jdbcType=VARCHAR},
+      #{travelagencyaddr,jdbcType=VARCHAR}, #{travelagencyphone,jdbcType=VARCHAR},
+      #{taemergencycontact,jdbcType=VARCHAR}, #{taemergencymobile,jdbcType=VARCHAR},
+      #{wxpublicityimage,jdbcType=VARCHAR}, #{wxtitle,jdbcType=VARCHAR}, #{wxsharesummary,jdbcType=LONGVARCHAR},
+      #{templatetype,jdbcType=INTEGER}, #{routesubtype,jdbcType=CHAR}, #{routesubtypename,jdbcType=VARCHAR},
+      #{summary,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.holyrobot.con_product.pojo.ProProduct" >
+    insert into Pro_Product
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="protypeid != null" >
+        ProTypeID,
+      </if>
+      <if test="protype != null" >
+        ProType,
+      </if>
+      <if test="procategoryid != null" >
+        ProCategoryID,
+      </if>
+      <if test="procategory != null" >
+        ProCategory,
+      </if>
+      <if test="proname != null" >
+        ProName,
+      </if>
+      <if test="aliasename != null" >
+        AliaseName,
+      </if>
+      <if test="prono != null" >
+        ProNo,
+      </if>
+      <if test="tourdays != null" >
+        TourDays,
+      </if>
+      <if test="startdate != null" >
+        StartDate,
+      </if>
+      <if test="duedate != null" >
+        DueDate,
+      </if>
+      <if test="departure != null" >
+        Departure,
+      </if>
+      <if test="destination != null" >
+        Destination,
+      </if>
+      <if test="protag != null" >
+        ProTag,
+      </if>
+      <if test="feature != null" >
+        Feature,
+      </if>
+      <if test="feeincludes != null" >
+        FeeIncludes,
+      </if>
+      <if test="feenonincludes != null" >
+        FeeNonIncludes,
+      </if>
+      <if test="coverimg != null" >
+        CoverImg,
+      </if>
+      <if test="attention != null" >
+        Attention,
+      </if>
+      <if test="shopping != null" >
+        Shopping,
+      </if>
+      <if test="tips != null" >
+        Tips,
+      </if>
+      <if test="insurance != null" >
+        Insurance,
+      </if>
+      <if test="bactorule != null" >
+        BacToRule,
+      </if>
+      <if test="isack != null" >
+        IsAck,
+      </if>
+      <if test="datastatus != null" >
+        DataStatus,
+      </if>
+      <if test="createddate != null" >
+        CreatedDate,
+      </if>
+      <if test="createdby != null" >
+        CreatedBy,
+      </if>
+      <if test="createdbyid != null" >
+        CreatedByID,
+      </if>
+      <if test="deptid != null" >
+        DeptID,
+      </if>
+      <if test="orgid != null" >
+        OrgID,
+      </if>
+      <if test="travelname != null" >
+        TravelName,
+      </if>
+      <if test="brandname != null" >
+        BrandName,
+      </if>
+      <if test="reviseddate != null" >
+        RevisedDate,
+      </if>
+      <if test="revisedby != null" >
+        RevisedBy,
+      </if>
+      <if test="istail != null" >
+        IsTail,
+      </if>
+      <if test="salestype != null" >
+        SalesType,
+      </if>
+      <if test="auditstatus != null" >
+        AuditStatus,
+      </if>
+      <if test="auditedby != null" >
+        AuditedBy,
+      </if>
+      <if test="auditeddate != null" >
+        AuditedDate,
+      </if>
+      <if test="localproname != null" >
+        LocalProName,
+      </if>
+      <if test="traffic != null" >
+        Traffic,
+      </if>
+      <if test="isprivatetemplate != null" >
+        IsPrivateTemplate,
+      </if>
+      <if test="iscommontemplate != null" >
+        IsCommonTemplate,
+      </if>
+      <if test="supplierid != null" >
+        SupplierID,
+      </if>
+      <if test="suppliername != null" >
+        SupplierName,
+      </if>
+      <if test="proprop != null" >
+        ProProp,
+      </if>
+      <if test="mobilecoverimg != null" >
+        MobileCoverImg,
+      </if>
+      <if test="starlevel != null" >
+        StarLevel,
+      </if>
+      <if test="traffictype != null" >
+        TrafficType,
+      </if>
+      <if test="destcollectionflag != null" >
+        DestCollectionFlag,
+      </if>
+      <if test="emergencycontact != null" >
+        EmergencyContact,
+      </if>
+      <if test="emergencymobileno != null" >
+        EmergencyMobileNo,
+      </if>
+      <if test="travelagencyaddr != null" >
+        TravelAgencyAddr,
+      </if>
+      <if test="travelagencyphone != null" >
+        TravelAgencyPhone,
+      </if>
+      <if test="taemergencycontact != null" >
+        TAEmergencyContact,
+      </if>
+      <if test="taemergencymobile != null" >
+        TAEmergencyMobile,
+      </if>
+      <if test="wxpublicityimage != null" >
+        WXPublicityImage,
+      </if>
+      <if test="wxtitle != null" >
+        WXTitle,
+      </if>
+      <if test="wxsharesummary != null" >
+        WXShareSummary,
+      </if>
+      <if test="templatetype != null" >
+        TemplateType,
+      </if>
+      <if test="routesubtype != null" >
+        RouteSubType,
+      </if>
+      <if test="routesubtypename != null" >
+        RouteSubTypeName,
+      </if>
+      <if test="summary != null" >
+        Summary,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="protypeid != null" >
+        #{protypeid,jdbcType=CHAR},
+      </if>
+      <if test="protype != null" >
+        #{protype,jdbcType=VARCHAR},
+      </if>
+      <if test="procategoryid != null" >
+        #{procategoryid,jdbcType=CHAR},
+      </if>
+      <if test="procategory != null" >
+        #{procategory,jdbcType=VARCHAR},
+      </if>
+      <if test="proname != null" >
+        #{proname,jdbcType=VARCHAR},
+      </if>
+      <if test="aliasename != null" >
+        #{aliasename,jdbcType=VARCHAR},
+      </if>
+      <if test="prono != null" >
+        #{prono,jdbcType=VARCHAR},
+      </if>
+      <if test="tourdays != null" >
+        #{tourdays,jdbcType=INTEGER},
+      </if>
+      <if test="startdate != null" >
+        #{startdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="duedate != null" >
+        #{duedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="departure != null" >
+        #{departure,jdbcType=VARCHAR},
+      </if>
+      <if test="destination != null" >
+        #{destination,jdbcType=VARCHAR},
+      </if>
+      <if test="protag != null" >
+        #{protag,jdbcType=VARCHAR},
+      </if>
+      <if test="feature != null" >
+        #{feature,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="feeincludes != null" >
+        #{feeincludes,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="feenonincludes != null" >
+        #{feenonincludes,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="coverimg != null" >
+        #{coverimg,jdbcType=VARCHAR},
+      </if>
+      <if test="attention != null" >
+        #{attention,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="shopping != null" >
+        #{shopping,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="tips != null" >
+        #{tips,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="insurance != null" >
+        #{insurance,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="bactorule != null" >
+        #{bactorule,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="isack != null" >
+        #{isack,jdbcType=INTEGER},
+      </if>
+      <if test="datastatus != null" >
+        #{datastatus,jdbcType=INTEGER},
+      </if>
+      <if test="createddate != null" >
+        #{createddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdby != null" >
+        #{createdby,jdbcType=VARCHAR},
+      </if>
+      <if test="createdbyid != null" >
+        #{createdbyid,jdbcType=CHAR},
+      </if>
+      <if test="deptid != null" >
+        #{deptid,jdbcType=CHAR},
+      </if>
+      <if test="orgid != null" >
+        #{orgid,jdbcType=CHAR},
+      </if>
+      <if test="travelname != null" >
+        #{travelname,jdbcType=VARCHAR},
+      </if>
+      <if test="brandname != null" >
+        #{brandname,jdbcType=VARCHAR},
+      </if>
+      <if test="reviseddate != null" >
+        #{reviseddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="revisedby != null" >
+        #{revisedby,jdbcType=VARCHAR},
+      </if>
+      <if test="istail != null" >
+        #{istail,jdbcType=INTEGER},
+      </if>
+      <if test="salestype != null" >
+        #{salestype,jdbcType=INTEGER},
+      </if>
+      <if test="auditstatus != null" >
+        #{auditstatus,jdbcType=INTEGER},
+      </if>
+      <if test="auditedby != null" >
+        #{auditedby,jdbcType=VARCHAR},
+      </if>
+      <if test="auditeddate != null" >
+        #{auditeddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="localproname != null" >
+        #{localproname,jdbcType=VARCHAR},
+      </if>
+      <if test="traffic != null" >
+        #{traffic,jdbcType=VARCHAR},
+      </if>
+      <if test="isprivatetemplate != null" >
+        #{isprivatetemplate,jdbcType=INTEGER},
+      </if>
+      <if test="iscommontemplate != null" >
+        #{iscommontemplate,jdbcType=INTEGER},
+      </if>
+      <if test="supplierid != null" >
+        #{supplierid,jdbcType=CHAR},
+      </if>
+      <if test="suppliername != null" >
+        #{suppliername,jdbcType=VARCHAR},
+      </if>
+      <if test="proprop != null" >
+        #{proprop,jdbcType=INTEGER},
+      </if>
+      <if test="mobilecoverimg != null" >
+        #{mobilecoverimg,jdbcType=VARCHAR},
+      </if>
+      <if test="starlevel != null" >
+        #{starlevel,jdbcType=INTEGER},
+      </if>
+      <if test="traffictype != null" >
+        #{traffictype,jdbcType=INTEGER},
+      </if>
+      <if test="destcollectionflag != null" >
+        #{destcollectionflag,jdbcType=VARCHAR},
+      </if>
+      <if test="emergencycontact != null" >
+        #{emergencycontact,jdbcType=VARCHAR},
+      </if>
+      <if test="emergencymobileno != null" >
+        #{emergencymobileno,jdbcType=VARCHAR},
+      </if>
+      <if test="travelagencyaddr != null" >
+        #{travelagencyaddr,jdbcType=VARCHAR},
+      </if>
+      <if test="travelagencyphone != null" >
+        #{travelagencyphone,jdbcType=VARCHAR},
+      </if>
+      <if test="taemergencycontact != null" >
+        #{taemergencycontact,jdbcType=VARCHAR},
+      </if>
+      <if test="taemergencymobile != null" >
+        #{taemergencymobile,jdbcType=VARCHAR},
+      </if>
+      <if test="wxpublicityimage != null" >
+        #{wxpublicityimage,jdbcType=VARCHAR},
+      </if>
+      <if test="wxtitle != null" >
+        #{wxtitle,jdbcType=VARCHAR},
+      </if>
+      <if test="wxsharesummary != null" >
+        #{wxsharesummary,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="templatetype != null" >
+        #{templatetype,jdbcType=INTEGER},
+      </if>
+      <if test="routesubtype != null" >
+        #{routesubtype,jdbcType=CHAR},
+      </if>
+      <if test="routesubtypename != null" >
+        #{routesubtypename,jdbcType=VARCHAR},
+      </if>
+      <if test="summary != null" >
+        #{summary,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.holyrobot.con_product.pojo.ProProductExample" resultType="java.lang.Integer" >
+    select count(*) from Pro_Product
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update Pro_Product
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=CHAR},
+      </if>
+      <if test="record.protypeid != null" >
+        ProTypeID = #{record.protypeid,jdbcType=CHAR},
+      </if>
+      <if test="record.protype != null" >
+        ProType = #{record.protype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.procategoryid != null" >
+        ProCategoryID = #{record.procategoryid,jdbcType=CHAR},
+      </if>
+      <if test="record.procategory != null" >
+        ProCategory = #{record.procategory,jdbcType=VARCHAR},
+      </if>
+      <if test="record.proname != null" >
+        ProName = #{record.proname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.aliasename != null" >
+        AliaseName = #{record.aliasename,jdbcType=VARCHAR},
+      </if>
+      <if test="record.prono != null" >
+        ProNo = #{record.prono,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tourdays != null" >
+        TourDays = #{record.tourdays,jdbcType=INTEGER},
+      </if>
+      <if test="record.startdate != null" >
+        StartDate = #{record.startdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.duedate != null" >
+        DueDate = #{record.duedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.departure != null" >
+        Departure = #{record.departure,jdbcType=VARCHAR},
+      </if>
+      <if test="record.destination != null" >
+        Destination = #{record.destination,jdbcType=VARCHAR},
+      </if>
+      <if test="record.protag != null" >
+        ProTag = #{record.protag,jdbcType=VARCHAR},
+      </if>
+      <if test="record.feature != null" >
+        Feature = #{record.feature,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.feeincludes != null" >
+        FeeIncludes = #{record.feeincludes,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.feenonincludes != null" >
+        FeeNonIncludes = #{record.feenonincludes,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.coverimg != null" >
+        CoverImg = #{record.coverimg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.attention != null" >
+        Attention = #{record.attention,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.shopping != null" >
+        Shopping = #{record.shopping,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.tips != null" >
+        Tips = #{record.tips,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.insurance != null" >
+        Insurance = #{record.insurance,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.bactorule != null" >
+        BacToRule = #{record.bactorule,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.isack != null" >
+        IsAck = #{record.isack,jdbcType=INTEGER},
+      </if>
+      <if test="record.datastatus != null" >
+        DataStatus = #{record.datastatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.createddate != null" >
+        CreatedDate = #{record.createddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createdby != null" >
+        CreatedBy = #{record.createdby,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createdbyid != null" >
+        CreatedByID = #{record.createdbyid,jdbcType=CHAR},
+      </if>
+      <if test="record.deptid != null" >
+        DeptID = #{record.deptid,jdbcType=CHAR},
+      </if>
+      <if test="record.orgid != null" >
+        OrgID = #{record.orgid,jdbcType=CHAR},
+      </if>
+      <if test="record.travelname != null" >
+        TravelName = #{record.travelname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.brandname != null" >
+        BrandName = #{record.brandname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.reviseddate != null" >
+        RevisedDate = #{record.reviseddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.revisedby != null" >
+        RevisedBy = #{record.revisedby,jdbcType=VARCHAR},
+      </if>
+      <if test="record.istail != null" >
+        IsTail = #{record.istail,jdbcType=INTEGER},
+      </if>
+      <if test="record.salestype != null" >
+        SalesType = #{record.salestype,jdbcType=INTEGER},
+      </if>
+      <if test="record.auditstatus != null" >
+        AuditStatus = #{record.auditstatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.auditedby != null" >
+        AuditedBy = #{record.auditedby,jdbcType=VARCHAR},
+      </if>
+      <if test="record.auditeddate != null" >
+        AuditedDate = #{record.auditeddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.localproname != null" >
+        LocalProName = #{record.localproname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.traffic != null" >
+        Traffic = #{record.traffic,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isprivatetemplate != null" >
+        IsPrivateTemplate = #{record.isprivatetemplate,jdbcType=INTEGER},
+      </if>
+      <if test="record.iscommontemplate != null" >
+        IsCommonTemplate = #{record.iscommontemplate,jdbcType=INTEGER},
+      </if>
+      <if test="record.supplierid != null" >
+        SupplierID = #{record.supplierid,jdbcType=CHAR},
+      </if>
+      <if test="record.suppliername != null" >
+        SupplierName = #{record.suppliername,jdbcType=VARCHAR},
+      </if>
+      <if test="record.proprop != null" >
+        ProProp = #{record.proprop,jdbcType=INTEGER},
+      </if>
+      <if test="record.mobilecoverimg != null" >
+        MobileCoverImg = #{record.mobilecoverimg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.starlevel != null" >
+        StarLevel = #{record.starlevel,jdbcType=INTEGER},
+      </if>
+      <if test="record.traffictype != null" >
+        TrafficType = #{record.traffictype,jdbcType=INTEGER},
+      </if>
+      <if test="record.destcollectionflag != null" >
+        DestCollectionFlag = #{record.destcollectionflag,jdbcType=VARCHAR},
+      </if>
+      <if test="record.emergencycontact != null" >
+        EmergencyContact = #{record.emergencycontact,jdbcType=VARCHAR},
+      </if>
+      <if test="record.emergencymobileno != null" >
+        EmergencyMobileNo = #{record.emergencymobileno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.travelagencyaddr != null" >
+        TravelAgencyAddr = #{record.travelagencyaddr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.travelagencyphone != null" >
+        TravelAgencyPhone = #{record.travelagencyphone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.taemergencycontact != null" >
+        TAEmergencyContact = #{record.taemergencycontact,jdbcType=VARCHAR},
+      </if>
+      <if test="record.taemergencymobile != null" >
+        TAEmergencyMobile = #{record.taemergencymobile,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wxpublicityimage != null" >
+        WXPublicityImage = #{record.wxpublicityimage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wxtitle != null" >
+        WXTitle = #{record.wxtitle,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wxsharesummary != null" >
+        WXShareSummary = #{record.wxsharesummary,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.templatetype != null" >
+        TemplateType = #{record.templatetype,jdbcType=INTEGER},
+      </if>
+      <if test="record.routesubtype != null" >
+        RouteSubType = #{record.routesubtype,jdbcType=CHAR},
+      </if>
+      <if test="record.routesubtypename != null" >
+        RouteSubTypeName = #{record.routesubtypename,jdbcType=VARCHAR},
+      </if>
+      <if test="record.summary != null" >
+        Summary = #{record.summary,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update Pro_Product
+    set ID = #{record.id,jdbcType=CHAR},
+      ProTypeID = #{record.protypeid,jdbcType=CHAR},
+      ProType = #{record.protype,jdbcType=VARCHAR},
+      ProCategoryID = #{record.procategoryid,jdbcType=CHAR},
+      ProCategory = #{record.procategory,jdbcType=VARCHAR},
+      ProName = #{record.proname,jdbcType=VARCHAR},
+      AliaseName = #{record.aliasename,jdbcType=VARCHAR},
+      ProNo = #{record.prono,jdbcType=VARCHAR},
+      TourDays = #{record.tourdays,jdbcType=INTEGER},
+      StartDate = #{record.startdate,jdbcType=TIMESTAMP},
+      DueDate = #{record.duedate,jdbcType=TIMESTAMP},
+      Departure = #{record.departure,jdbcType=VARCHAR},
+      Destination = #{record.destination,jdbcType=VARCHAR},
+      ProTag = #{record.protag,jdbcType=VARCHAR},
+      Feature = #{record.feature,jdbcType=LONGVARCHAR},
+      FeeIncludes = #{record.feeincludes,jdbcType=LONGVARCHAR},
+      FeeNonIncludes = #{record.feenonincludes,jdbcType=LONGVARCHAR},
+      CoverImg = #{record.coverimg,jdbcType=VARCHAR},
+      Attention = #{record.attention,jdbcType=LONGVARCHAR},
+      Shopping = #{record.shopping,jdbcType=LONGVARCHAR},
+      Tips = #{record.tips,jdbcType=LONGVARCHAR},
+      Insurance = #{record.insurance,jdbcType=LONGVARCHAR},
+      BacToRule = #{record.bactorule,jdbcType=LONGVARCHAR},
+      IsAck = #{record.isack,jdbcType=INTEGER},
+      DataStatus = #{record.datastatus,jdbcType=INTEGER},
+      CreatedDate = #{record.createddate,jdbcType=TIMESTAMP},
+      CreatedBy = #{record.createdby,jdbcType=VARCHAR},
+      CreatedByID = #{record.createdbyid,jdbcType=CHAR},
+      DeptID = #{record.deptid,jdbcType=CHAR},
+      OrgID = #{record.orgid,jdbcType=CHAR},
+      TravelName = #{record.travelname,jdbcType=VARCHAR},
+      BrandName = #{record.brandname,jdbcType=VARCHAR},
+      RevisedDate = #{record.reviseddate,jdbcType=TIMESTAMP},
+      RevisedBy = #{record.revisedby,jdbcType=VARCHAR},
+      IsTail = #{record.istail,jdbcType=INTEGER},
+      SalesType = #{record.salestype,jdbcType=INTEGER},
+      AuditStatus = #{record.auditstatus,jdbcType=INTEGER},
+      AuditedBy = #{record.auditedby,jdbcType=VARCHAR},
+      AuditedDate = #{record.auditeddate,jdbcType=TIMESTAMP},
+      LocalProName = #{record.localproname,jdbcType=VARCHAR},
+      Traffic = #{record.traffic,jdbcType=VARCHAR},
+      IsPrivateTemplate = #{record.isprivatetemplate,jdbcType=INTEGER},
+      IsCommonTemplate = #{record.iscommontemplate,jdbcType=INTEGER},
+      SupplierID = #{record.supplierid,jdbcType=CHAR},
+      SupplierName = #{record.suppliername,jdbcType=VARCHAR},
+      ProProp = #{record.proprop,jdbcType=INTEGER},
+      MobileCoverImg = #{record.mobilecoverimg,jdbcType=VARCHAR},
+      StarLevel = #{record.starlevel,jdbcType=INTEGER},
+      TrafficType = #{record.traffictype,jdbcType=INTEGER},
+      DestCollectionFlag = #{record.destcollectionflag,jdbcType=VARCHAR},
+      EmergencyContact = #{record.emergencycontact,jdbcType=VARCHAR},
+      EmergencyMobileNo = #{record.emergencymobileno,jdbcType=VARCHAR},
+      TravelAgencyAddr = #{record.travelagencyaddr,jdbcType=VARCHAR},
+      TravelAgencyPhone = #{record.travelagencyphone,jdbcType=VARCHAR},
+      TAEmergencyContact = #{record.taemergencycontact,jdbcType=VARCHAR},
+      TAEmergencyMobile = #{record.taemergencymobile,jdbcType=VARCHAR},
+      WXPublicityImage = #{record.wxpublicityimage,jdbcType=VARCHAR},
+      WXTitle = #{record.wxtitle,jdbcType=VARCHAR},
+      WXShareSummary = #{record.wxsharesummary,jdbcType=LONGVARCHAR},
+      TemplateType = #{record.templatetype,jdbcType=INTEGER},
+      RouteSubType = #{record.routesubtype,jdbcType=CHAR},
+      RouteSubTypeName = #{record.routesubtypename,jdbcType=VARCHAR},
+      Summary = #{record.summary,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update Pro_Product
+    set ID = #{record.id,jdbcType=CHAR},
+      ProTypeID = #{record.protypeid,jdbcType=CHAR},
+      ProType = #{record.protype,jdbcType=VARCHAR},
+      ProCategoryID = #{record.procategoryid,jdbcType=CHAR},
+      ProCategory = #{record.procategory,jdbcType=VARCHAR},
+      ProName = #{record.proname,jdbcType=VARCHAR},
+      AliaseName = #{record.aliasename,jdbcType=VARCHAR},
+      ProNo = #{record.prono,jdbcType=VARCHAR},
+      TourDays = #{record.tourdays,jdbcType=INTEGER},
+      StartDate = #{record.startdate,jdbcType=TIMESTAMP},
+      DueDate = #{record.duedate,jdbcType=TIMESTAMP},
+      Departure = #{record.departure,jdbcType=VARCHAR},
+      Destination = #{record.destination,jdbcType=VARCHAR},
+      ProTag = #{record.protag,jdbcType=VARCHAR},
+      Feature = #{record.feature,jdbcType=LONGVARCHAR},
+      FeeIncludes = #{record.feeincludes,jdbcType=LONGVARCHAR},
+      FeeNonIncludes = #{record.feenonincludes,jdbcType=LONGVARCHAR},
+      CoverImg = #{record.coverimg,jdbcType=VARCHAR},
+      Attention = #{record.attention,jdbcType=LONGVARCHAR},
+      Shopping = #{record.shopping,jdbcType=LONGVARCHAR},
+      Tips = #{record.tips,jdbcType=LONGVARCHAR},
+      Insurance = #{record.insurance,jdbcType=LONGVARCHAR},
+      BacToRule = #{record.bactorule,jdbcType=LONGVARCHAR},
+      IsAck = #{record.isack,jdbcType=INTEGER},
+      DataStatus = #{record.datastatus,jdbcType=INTEGER},
+      CreatedDate = #{record.createddate,jdbcType=TIMESTAMP},
+      CreatedBy = #{record.createdby,jdbcType=VARCHAR},
+      CreatedByID = #{record.createdbyid,jdbcType=CHAR},
+      DeptID = #{record.deptid,jdbcType=CHAR},
+      OrgID = #{record.orgid,jdbcType=CHAR},
+      TravelName = #{record.travelname,jdbcType=VARCHAR},
+      BrandName = #{record.brandname,jdbcType=VARCHAR},
+      RevisedDate = #{record.reviseddate,jdbcType=TIMESTAMP},
+      RevisedBy = #{record.revisedby,jdbcType=VARCHAR},
+      IsTail = #{record.istail,jdbcType=INTEGER},
+      SalesType = #{record.salestype,jdbcType=INTEGER},
+      AuditStatus = #{record.auditstatus,jdbcType=INTEGER},
+      AuditedBy = #{record.auditedby,jdbcType=VARCHAR},
+      AuditedDate = #{record.auditeddate,jdbcType=TIMESTAMP},
+      LocalProName = #{record.localproname,jdbcType=VARCHAR},
+      Traffic = #{record.traffic,jdbcType=VARCHAR},
+      IsPrivateTemplate = #{record.isprivatetemplate,jdbcType=INTEGER},
+      IsCommonTemplate = #{record.iscommontemplate,jdbcType=INTEGER},
+      SupplierID = #{record.supplierid,jdbcType=CHAR},
+      SupplierName = #{record.suppliername,jdbcType=VARCHAR},
+      ProProp = #{record.proprop,jdbcType=INTEGER},
+      MobileCoverImg = #{record.mobilecoverimg,jdbcType=VARCHAR},
+      StarLevel = #{record.starlevel,jdbcType=INTEGER},
+      TrafficType = #{record.traffictype,jdbcType=INTEGER},
+      DestCollectionFlag = #{record.destcollectionflag,jdbcType=VARCHAR},
+      EmergencyContact = #{record.emergencycontact,jdbcType=VARCHAR},
+      EmergencyMobileNo = #{record.emergencymobileno,jdbcType=VARCHAR},
+      TravelAgencyAddr = #{record.travelagencyaddr,jdbcType=VARCHAR},
+      TravelAgencyPhone = #{record.travelagencyphone,jdbcType=VARCHAR},
+      TAEmergencyContact = #{record.taemergencycontact,jdbcType=VARCHAR},
+      TAEmergencyMobile = #{record.taemergencymobile,jdbcType=VARCHAR},
+      WXPublicityImage = #{record.wxpublicityimage,jdbcType=VARCHAR},
+      WXTitle = #{record.wxtitle,jdbcType=VARCHAR},
+      WXShareSummary = #{record.wxsharesummary,jdbcType=LONGVARCHAR},
+      TemplateType = #{record.templatetype,jdbcType=INTEGER},
+      RouteSubType = #{record.routesubtype,jdbcType=CHAR},
+      RouteSubTypeName = #{record.routesubtypename,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.holyrobot.con_product.pojo.ProProduct" >
+    update Pro_Product
+    <set >
+      <if test="protypeid != null" >
+        ProTypeID = #{protypeid,jdbcType=CHAR},
+      </if>
+      <if test="protype != null" >
+        ProType = #{protype,jdbcType=VARCHAR},
+      </if>
+      <if test="procategoryid != null" >
+        ProCategoryID = #{procategoryid,jdbcType=CHAR},
+      </if>
+      <if test="procategory != null" >
+        ProCategory = #{procategory,jdbcType=VARCHAR},
+      </if>
+      <if test="proname != null" >
+        ProName = #{proname,jdbcType=VARCHAR},
+      </if>
+      <if test="aliasename != null" >
+        AliaseName = #{aliasename,jdbcType=VARCHAR},
+      </if>
+      <if test="prono != null" >
+        ProNo = #{prono,jdbcType=VARCHAR},
+      </if>
+      <if test="tourdays != null" >
+        TourDays = #{tourdays,jdbcType=INTEGER},
+      </if>
+      <if test="startdate != null" >
+        StartDate = #{startdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="duedate != null" >
+        DueDate = #{duedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="departure != null" >
+        Departure = #{departure,jdbcType=VARCHAR},
+      </if>
+      <if test="destination != null" >
+        Destination = #{destination,jdbcType=VARCHAR},
+      </if>
+      <if test="protag != null" >
+        ProTag = #{protag,jdbcType=VARCHAR},
+      </if>
+      <if test="feature != null" >
+        Feature = #{feature,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="feeincludes != null" >
+        FeeIncludes = #{feeincludes,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="feenonincludes != null" >
+        FeeNonIncludes = #{feenonincludes,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="coverimg != null" >
+        CoverImg = #{coverimg,jdbcType=VARCHAR},
+      </if>
+      <if test="attention != null" >
+        Attention = #{attention,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="shopping != null" >
+        Shopping = #{shopping,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="tips != null" >
+        Tips = #{tips,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="insurance != null" >
+        Insurance = #{insurance,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="bactorule != null" >
+        BacToRule = #{bactorule,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="isack != null" >
+        IsAck = #{isack,jdbcType=INTEGER},
+      </if>
+      <if test="datastatus != null" >
+        DataStatus = #{datastatus,jdbcType=INTEGER},
+      </if>
+      <if test="createddate != null" >
+        CreatedDate = #{createddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdby != null" >
+        CreatedBy = #{createdby,jdbcType=VARCHAR},
+      </if>
+      <if test="createdbyid != null" >
+        CreatedByID = #{createdbyid,jdbcType=CHAR},
+      </if>
+      <if test="deptid != null" >
+        DeptID = #{deptid,jdbcType=CHAR},
+      </if>
+      <if test="orgid != null" >
+        OrgID = #{orgid,jdbcType=CHAR},
+      </if>
+      <if test="travelname != null" >
+        TravelName = #{travelname,jdbcType=VARCHAR},
+      </if>
+      <if test="brandname != null" >
+        BrandName = #{brandname,jdbcType=VARCHAR},
+      </if>
+      <if test="reviseddate != null" >
+        RevisedDate = #{reviseddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="revisedby != null" >
+        RevisedBy = #{revisedby,jdbcType=VARCHAR},
+      </if>
+      <if test="istail != null" >
+        IsTail = #{istail,jdbcType=INTEGER},
+      </if>
+      <if test="salestype != null" >
+        SalesType = #{salestype,jdbcType=INTEGER},
+      </if>
+      <if test="auditstatus != null" >
+        AuditStatus = #{auditstatus,jdbcType=INTEGER},
+      </if>
+      <if test="auditedby != null" >
+        AuditedBy = #{auditedby,jdbcType=VARCHAR},
+      </if>
+      <if test="auditeddate != null" >
+        AuditedDate = #{auditeddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="localproname != null" >
+        LocalProName = #{localproname,jdbcType=VARCHAR},
+      </if>
+      <if test="traffic != null" >
+        Traffic = #{traffic,jdbcType=VARCHAR},
+      </if>
+      <if test="isprivatetemplate != null" >
+        IsPrivateTemplate = #{isprivatetemplate,jdbcType=INTEGER},
+      </if>
+      <if test="iscommontemplate != null" >
+        IsCommonTemplate = #{iscommontemplate,jdbcType=INTEGER},
+      </if>
+      <if test="supplierid != null" >
+        SupplierID = #{supplierid,jdbcType=CHAR},
+      </if>
+      <if test="suppliername != null" >
+        SupplierName = #{suppliername,jdbcType=VARCHAR},
+      </if>
+      <if test="proprop != null" >
+        ProProp = #{proprop,jdbcType=INTEGER},
+      </if>
+      <if test="mobilecoverimg != null" >
+        MobileCoverImg = #{mobilecoverimg,jdbcType=VARCHAR},
+      </if>
+      <if test="starlevel != null" >
+        StarLevel = #{starlevel,jdbcType=INTEGER},
+      </if>
+      <if test="traffictype != null" >
+        TrafficType = #{traffictype,jdbcType=INTEGER},
+      </if>
+      <if test="destcollectionflag != null" >
+        DestCollectionFlag = #{destcollectionflag,jdbcType=VARCHAR},
+      </if>
+      <if test="emergencycontact != null" >
+        EmergencyContact = #{emergencycontact,jdbcType=VARCHAR},
+      </if>
+      <if test="emergencymobileno != null" >
+        EmergencyMobileNo = #{emergencymobileno,jdbcType=VARCHAR},
+      </if>
+      <if test="travelagencyaddr != null" >
+        TravelAgencyAddr = #{travelagencyaddr,jdbcType=VARCHAR},
+      </if>
+      <if test="travelagencyphone != null" >
+        TravelAgencyPhone = #{travelagencyphone,jdbcType=VARCHAR},
+      </if>
+      <if test="taemergencycontact != null" >
+        TAEmergencyContact = #{taemergencycontact,jdbcType=VARCHAR},
+      </if>
+      <if test="taemergencymobile != null" >
+        TAEmergencyMobile = #{taemergencymobile,jdbcType=VARCHAR},
+      </if>
+      <if test="wxpublicityimage != null" >
+        WXPublicityImage = #{wxpublicityimage,jdbcType=VARCHAR},
+      </if>
+      <if test="wxtitle != null" >
+        WXTitle = #{wxtitle,jdbcType=VARCHAR},
+      </if>
+      <if test="wxsharesummary != null" >
+        WXShareSummary = #{wxsharesummary,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="templatetype != null" >
+        TemplateType = #{templatetype,jdbcType=INTEGER},
+      </if>
+      <if test="routesubtype != null" >
+        RouteSubType = #{routesubtype,jdbcType=CHAR},
+      </if>
+      <if test="routesubtypename != null" >
+        RouteSubTypeName = #{routesubtypename,jdbcType=VARCHAR},
+      </if>
+      <if test="summary != null" >
+        Summary = #{summary,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.holyrobot.con_product.pojo.ProProduct" >
+    update Pro_Product
+    set ProTypeID = #{protypeid,jdbcType=CHAR},
+      ProType = #{protype,jdbcType=VARCHAR},
+      ProCategoryID = #{procategoryid,jdbcType=CHAR},
+      ProCategory = #{procategory,jdbcType=VARCHAR},
+      ProName = #{proname,jdbcType=VARCHAR},
+      AliaseName = #{aliasename,jdbcType=VARCHAR},
+      ProNo = #{prono,jdbcType=VARCHAR},
+      TourDays = #{tourdays,jdbcType=INTEGER},
+      StartDate = #{startdate,jdbcType=TIMESTAMP},
+      DueDate = #{duedate,jdbcType=TIMESTAMP},
+      Departure = #{departure,jdbcType=VARCHAR},
+      Destination = #{destination,jdbcType=VARCHAR},
+      ProTag = #{protag,jdbcType=VARCHAR},
+      Feature = #{feature,jdbcType=LONGVARCHAR},
+      FeeIncludes = #{feeincludes,jdbcType=LONGVARCHAR},
+      FeeNonIncludes = #{feenonincludes,jdbcType=LONGVARCHAR},
+      CoverImg = #{coverimg,jdbcType=VARCHAR},
+      Attention = #{attention,jdbcType=LONGVARCHAR},
+      Shopping = #{shopping,jdbcType=LONGVARCHAR},
+      Tips = #{tips,jdbcType=LONGVARCHAR},
+      Insurance = #{insurance,jdbcType=LONGVARCHAR},
+      BacToRule = #{bactorule,jdbcType=LONGVARCHAR},
+      IsAck = #{isack,jdbcType=INTEGER},
+      DataStatus = #{datastatus,jdbcType=INTEGER},
+      CreatedDate = #{createddate,jdbcType=TIMESTAMP},
+      CreatedBy = #{createdby,jdbcType=VARCHAR},
+      CreatedByID = #{createdbyid,jdbcType=CHAR},
+      DeptID = #{deptid,jdbcType=CHAR},
+      OrgID = #{orgid,jdbcType=CHAR},
+      TravelName = #{travelname,jdbcType=VARCHAR},
+      BrandName = #{brandname,jdbcType=VARCHAR},
+      RevisedDate = #{reviseddate,jdbcType=TIMESTAMP},
+      RevisedBy = #{revisedby,jdbcType=VARCHAR},
+      IsTail = #{istail,jdbcType=INTEGER},
+      SalesType = #{salestype,jdbcType=INTEGER},
+      AuditStatus = #{auditstatus,jdbcType=INTEGER},
+      AuditedBy = #{auditedby,jdbcType=VARCHAR},
+      AuditedDate = #{auditeddate,jdbcType=TIMESTAMP},
+      LocalProName = #{localproname,jdbcType=VARCHAR},
+      Traffic = #{traffic,jdbcType=VARCHAR},
+      IsPrivateTemplate = #{isprivatetemplate,jdbcType=INTEGER},
+      IsCommonTemplate = #{iscommontemplate,jdbcType=INTEGER},
+      SupplierID = #{supplierid,jdbcType=CHAR},
+      SupplierName = #{suppliername,jdbcType=VARCHAR},
+      ProProp = #{proprop,jdbcType=INTEGER},
+      MobileCoverImg = #{mobilecoverimg,jdbcType=VARCHAR},
+      StarLevel = #{starlevel,jdbcType=INTEGER},
+      TrafficType = #{traffictype,jdbcType=INTEGER},
+      DestCollectionFlag = #{destcollectionflag,jdbcType=VARCHAR},
+      EmergencyContact = #{emergencycontact,jdbcType=VARCHAR},
+      EmergencyMobileNo = #{emergencymobileno,jdbcType=VARCHAR},
+      TravelAgencyAddr = #{travelagencyaddr,jdbcType=VARCHAR},
+      TravelAgencyPhone = #{travelagencyphone,jdbcType=VARCHAR},
+      TAEmergencyContact = #{taemergencycontact,jdbcType=VARCHAR},
+      TAEmergencyMobile = #{taemergencymobile,jdbcType=VARCHAR},
+      WXPublicityImage = #{wxpublicityimage,jdbcType=VARCHAR},
+      WXTitle = #{wxtitle,jdbcType=VARCHAR},
+      WXShareSummary = #{wxsharesummary,jdbcType=LONGVARCHAR},
+      TemplateType = #{templatetype,jdbcType=INTEGER},
+      RouteSubType = #{routesubtype,jdbcType=CHAR},
+      RouteSubTypeName = #{routesubtypename,jdbcType=VARCHAR},
+      Summary = #{summary,jdbcType=LONGVARCHAR}
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.holyrobot.con_product.pojo.ProProduct" >
+    update Pro_Product
+    set ProTypeID = #{protypeid,jdbcType=CHAR},
+      ProType = #{protype,jdbcType=VARCHAR},
+      ProCategoryID = #{procategoryid,jdbcType=CHAR},
+      ProCategory = #{procategory,jdbcType=VARCHAR},
+      ProName = #{proname,jdbcType=VARCHAR},
+      AliaseName = #{aliasename,jdbcType=VARCHAR},
+      ProNo = #{prono,jdbcType=VARCHAR},
+      TourDays = #{tourdays,jdbcType=INTEGER},
+      StartDate = #{startdate,jdbcType=TIMESTAMP},
+      DueDate = #{duedate,jdbcType=TIMESTAMP},
+      Departure = #{departure,jdbcType=VARCHAR},
+      Destination = #{destination,jdbcType=VARCHAR},
+      ProTag = #{protag,jdbcType=VARCHAR},
+      Feature = #{feature,jdbcType=LONGVARCHAR},
+      FeeIncludes = #{feeincludes,jdbcType=LONGVARCHAR},
+      FeeNonIncludes = #{feenonincludes,jdbcType=LONGVARCHAR},
+      CoverImg = #{coverimg,jdbcType=VARCHAR},
+      Attention = #{attention,jdbcType=LONGVARCHAR},
+      Shopping = #{shopping,jdbcType=LONGVARCHAR},
+      Tips = #{tips,jdbcType=LONGVARCHAR},
+      Insurance = #{insurance,jdbcType=LONGVARCHAR},
+      BacToRule = #{bactorule,jdbcType=LONGVARCHAR},
+      IsAck = #{isack,jdbcType=INTEGER},
+      DataStatus = #{datastatus,jdbcType=INTEGER},
+      CreatedDate = #{createddate,jdbcType=TIMESTAMP},
+      CreatedBy = #{createdby,jdbcType=VARCHAR},
+      CreatedByID = #{createdbyid,jdbcType=CHAR},
+      DeptID = #{deptid,jdbcType=CHAR},
+      OrgID = #{orgid,jdbcType=CHAR},
+      TravelName = #{travelname,jdbcType=VARCHAR},
+      BrandName = #{brandname,jdbcType=VARCHAR},
+      RevisedDate = #{reviseddate,jdbcType=TIMESTAMP},
+      RevisedBy = #{revisedby,jdbcType=VARCHAR},
+      IsTail = #{istail,jdbcType=INTEGER},
+      SalesType = #{salestype,jdbcType=INTEGER},
+      AuditStatus = #{auditstatus,jdbcType=INTEGER},
+      AuditedBy = #{auditedby,jdbcType=VARCHAR},
+      AuditedDate = #{auditeddate,jdbcType=TIMESTAMP},
+      LocalProName = #{localproname,jdbcType=VARCHAR},
+      Traffic = #{traffic,jdbcType=VARCHAR},
+      IsPrivateTemplate = #{isprivatetemplate,jdbcType=INTEGER},
+      IsCommonTemplate = #{iscommontemplate,jdbcType=INTEGER},
+      SupplierID = #{supplierid,jdbcType=CHAR},
+      SupplierName = #{suppliername,jdbcType=VARCHAR},
+      ProProp = #{proprop,jdbcType=INTEGER},
+      MobileCoverImg = #{mobilecoverimg,jdbcType=VARCHAR},
+      StarLevel = #{starlevel,jdbcType=INTEGER},
+      TrafficType = #{traffictype,jdbcType=INTEGER},
+      DestCollectionFlag = #{destcollectionflag,jdbcType=VARCHAR},
+      EmergencyContact = #{emergencycontact,jdbcType=VARCHAR},
+      EmergencyMobileNo = #{emergencymobileno,jdbcType=VARCHAR},
+      TravelAgencyAddr = #{travelagencyaddr,jdbcType=VARCHAR},
+      TravelAgencyPhone = #{travelagencyphone,jdbcType=VARCHAR},
+      TAEmergencyContact = #{taemergencycontact,jdbcType=VARCHAR},
+      TAEmergencyMobile = #{taemergencymobile,jdbcType=VARCHAR},
+      WXPublicityImage = #{wxpublicityimage,jdbcType=VARCHAR},
+      WXTitle = #{wxtitle,jdbcType=VARCHAR},
+      WXShareSummary = #{wxsharesummary,jdbcType=LONGVARCHAR},
+      TemplateType = #{templatetype,jdbcType=INTEGER},
+      RouteSubType = #{routesubtype,jdbcType=CHAR},
+      RouteSubTypeName = #{routesubtypename,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+
+  <select id="listProSchedule" parameterType="java.lang.String" resultType="com.holyrobot.dto.ProductScheduleBo">
+    SELECT
+    a.ID AS schId,
+    a.SchDay AS schDay,
+    a.SchInfo AS schInfo,
+    a.SchName AS schName,
+    a.SchRepast AS schRepast,
+    a.SchStay AS schStay,
+    a.SchRepastInfo as schRepastInfo
+    FROM
+    Pro_Product_Schedule a
+    INNER JOIN Pro_Product b ON a.ProID = b.ID
+    WHERE
+    b.ID = #{id}
+    ORDER BY
+    a.SchDay ASC
+  </select>
+
+  <select id="selectOrgDestination" parameterType="java.lang.String" resultType="com.holyrobot.dto.OrgDestinationDto">
+    SELECT
+    TOP 4 destination,
+    COUNT (*) AS num
+    FROM
+    Pro_Product
+    WHERE
+    OrgID =#{ orgId }
+    AND DataStatus = 2
+    AND SalesType != 2
+    GROUP BY
+    Destination
+    ORDER BY
+    num DESC;
+  </select>
+  <select id="getDestinationByTourDays" resultType="java.lang.String">
+    SELECT DISTINCT
+	    Destination
+    FROM
+        Pro_Product
+    WHERE
+        OrgID = #{orgId}
+    AND TourDays
+    BETWEEN #{begin} AND #{end}
+  </select>
+
+  <select id="selectProList" parameterType="com.holyrobot.dto.ProSearchCondition" resultType="com.holyrobot.dto.ProductListDto">
+    SELECT * from (SELECT
+    t.ID,
+    t.orgId as orgId,
+    0 as isOutgoing,
+    '00000000-0000-0000-0000-000000000000' as directSalesSendId,
+    t.AliaseName,
+    t.TravelName AS brandName,
+    t.StarLevel,
+    t.ProTag,
+    t.TourDays,
+    t.Departure,
+    t.Destination,
+    t.ProCategoryID,
+    t.ProType,
+    t.ProTypeId,
+    t.ProBrand,
+    (SELECT MIN(DirectPrice) from Pro_Tour_PricePolicy x LEFT JOIN Pro_Tour y on x.tourId = y.id   where x.ProID = t.ID AND x.IsDefault = 1 AND x.SiteID = #{siteId} AND y.DueDate> DATEADD(DAY ,- 1, GETDATE())) as DirectPrice,
+    (SELECT MIN(SalesPrice) from Pro_Tour_PricePolicy x LEFT JOIN Pro_Tour y on x.tourId = y.id   where x.ProID = t.ID AND x.IsDefault = 1 AND x.SiteID = #{siteId} AND y.DueDate> DATEADD(DAY ,- 1, GETDATE())) as SalesPrice,
+    (SELECT MIN(RebatePrice) from Pro_Tour_PricePolicy x LEFT JOIN Pro_Tour y on x.tourId = y.id   where x.ProID = t.ID AND x.IsDefault = 1 AND x.SiteID = #{siteId} AND y.DueDate> DATEADD(DAY ,- 1, GETDATE())) as RebatePrice,
+    RIGHT(CONVERT(varchar(100), t.CreatedDate, 14),3) AS salesQuantity,
+    (SELECT
+    tours = (
+    stuff(
+    (
+    SELECT top 5
+    ',' + CONVERT (VARCHAR(100), TourDate, 11)
+    FROM
+    Pro_Tour
+    WHERE
+    ProID = a.ProID
+    and DueDate > DATEADD(DAY ,- 1, GETDATE())
+    ORDER BY TourDate
+    FOR xml path ('')
+    ),
+    1,
+    1,
+    ''
+    )
+    )
+    FROM
+    Pro_Tour AS a
+    WHERE
+    a.ProID = t.id
+    GROUP BY a.ProID
+    )	as tours,
+    t.CoverImg,
+    t.CreatedDate
+    from Pro_Product as t
+    LEFT JOIN Pro_Product_Scope AS  ts ON t.ID = ts.proID
+    LEFT JOIN pro_product_site AS t1 ON t.ID = t1.proID
+    --校验团期
+    JOIN (
+    SELECT a.proId
+    FROM
+    Pro_Tour AS a
+    JOIN Pro_Tour_PricePolicy AS b ON a.ID = b.TourID
+    where a.OrgID = #{orgId}
+    AND b.SiteID = #{siteId}
+    AND a.TourStatus = 1
+    --团期查询
+    <if test="tourMonth != null and tourMonth.size() > 0">
+      AND
+      <foreach collection="tourMonth" index="index" item="item" open="(" separator="or" close=")" >
+        TourDate LIKE '%${item}%'
+      </foreach>
+    </if>
+    <if test="beginDate != null">
+      AND TourDate &gt;= #{beginDate}
+    </if>
+    <if test="endDate != null">
+      AND TourDate &lt;= #{endDate}
+    </if>
+    GROUP BY a.proId
+    ) AS TQ ON TQ.proId = t.id
+    WHERE
+    1=1
+    AND t1.SiteId = #{siteId}
+    AND t.DataStatus = 2
+    --     销售类型 1：对外销售；2：内部分销；3：内外销
+    AND t.SalesType in(1,3)
+    AND t.AuditStatus = 1
+    AND ts.Scope = 2
+    AND t.orgId = #{orgId}
+
+    UNION
+
+    SELECT
+    p.ID,
+    z.ReceiverID as orgId,
+    1 as isOutgoing,
+    z.SupplierID  as directSalesSendId,
+    p.AliaseName,
+    p.TravelName AS brandName,
+    p.StarLevel,
+    p.ProTag,
+    p.TourDays,
+    p.Departure,
+    p.Destination,
+    p.ProCategoryID,
+    p.ProType,
+    p.ProTypeId,
+    p.ProBrand,
+    (SELECT MIN(DirectPrice) from Pro_Product_DirectSales_Item x LEFT JOIN Pro_Product_DirectSales y ON x.DirectSalesID=y.id  where x.ProID = p.ID AND x.IsDefault = 1 AND x.SiteID = #{siteId} AND ReceiverID = #{orgId} AND y.DueDate> DATEADD(DAY ,- 1, GETDATE())) as DirectPrice,
+    (SELECT MIN(SalesPrice) from Pro_Product_DirectSales_Item x LEFT JOIN Pro_Product_DirectSales y ON x.DirectSalesID=y.id  where x.ProID = p.ID AND x.IsDefault = 1 AND x.SiteID = #{siteId} AND ReceiverID = #{orgId} AND y.DueDate> DATEADD(DAY ,- 1, GETDATE())) as SalesPrice,
+    (SELECT MIN(RebatePrice) from Pro_Product_DirectSales_Item x LEFT JOIN Pro_Product_DirectSales y ON x.DirectSalesID=y.id  where x.ProID = p.ID AND x.IsDefault = 1 AND x.SiteID = #{siteId} AND ReceiverID = #{orgId} AND y.DueDate> DATEADD(DAY ,- 1, GETDATE())) as RebatePrice,
+    RIGHT(CONVERT(varchar(100), p.CreatedDate, 14),3) AS salesQuantity,
+    (SELECT
+    tours = (
+    stuff(
+    (
+    SELECT top 5
+    ',' + CONVERT (VARCHAR(100), TourDate, 11)
+    FROM
+    Pro_Product_DirectSales
+    WHERE
+    ProID = a.ProID
+    and DueDate > DATEADD(DAY ,- 1, GETDATE())
+    ORDER BY TourDate
+    FOR xml path ('')
+    ),
+    1,
+    1,
+    ''
+    )
+    )
+    FROM
+    Pro_Product_DirectSales AS a
+    WHERE
+    a.ProID = p.id
+    GROUP BY a.ProID
+    )	as tours,
+    CoverImg,
+    p.CreatedDate
+    FROM
+    Pro_Product AS p
+    LEFT JOIN pro_product_site AS s ON p.ID = s.proID
+    LEFT JOIN Pro_Product_DirectSales AS z ON p.ID = z.proID
+    LEFT JOIN Pro_Product_Scope AS  ts ON p.ID = ts.proID
+    WHERE
+    1=1
+    AND s.SiteId = #{siteId}
+    AND z.ReceiverID = #{orgId}
+    AND ts.Scope = 2
+    AND z.DataStatus = 1
+    AND z.SupplierDataStatus = 1
+    AND z.AuditStatus = 1
+    AND Z.DueDate > DATEADD(DAY ,- 1, GETDATE())
+    --团期查询
+    <if test="tourMonth != null and tourMonth.size() > 0">
+      AND
+      <foreach collection="tourMonth" index="index" item="item" open="(" separator="or" close=")" >
+        z.TourDate LIKE '%${item}%'
+      </foreach>
+    </if>
+    <if test="beginDate != null">
+        AND z.TourDate &gt;= #{beginDate}
+    </if>
+    <if test="endDate != null">
+        AND z.TourDate &lt;= #{endDate}
+    </if>
+    )as b
+    WHERE 1=1
+    <include refid="newProductlistCondition"/>
+  </select>
+
+  <sql id="newProductlistCondition">
+    AND b.tours is not null
+    <if test="keywords != null and keywords != ''">
+      AND (b.AliaseName LIKE '%${keywords}%' or b.destination LIKE '%${keywords}%')
+    </if>
+    <if test="days != null and days.size() > 0">
+      AND
+      <foreach collection="days" index="index" item="item" open="(" separator="or" close=")" >
+        b.tourDays  LIKE '%${item}%'
+      </foreach>
+    </if>
+
+    <if test="departure != null and departure != ''">
+      AND B.Departure LIKE '%${departure}%'
+    </if>
+
+    <if test="brand !='' and brand != null">
+      AND b.ProBrand LIKE '%${brand}%'
+    </if>
+
+    <if test="tags != null and tags.size() > 0">
+      AND
+      <foreach collection="tags" index="index" item="item" open="(" separator="or" close=")" >
+        b.ProTag  LIKE '%${item}%'
+      </foreach>
+    </if>
+
+    <if test="maxDay != null and maxDay != ''" >
+      AND b.TourDays &lt;= #{maxDay}
+    </if>
+
+    <if test="minDay != null and minDay != ''" >
+      AND b.TourDays &gt;= #{minDay}
+    </if>
+
+    <if test="destination!='' and destination != null">
+      AND b.destination LIKE '%${destination}%'
+    </if>
+
+    <if test="routeTypeId != null and routeTypeId != ''">
+      AND b.ProCategoryID = #{routeTypeId}
+    </if>
+
+    <if test="proType != null and proType != ''">
+      AND b.ProTypeId  = #{proType}
+    </if>
+
+    <if test="highPrice != null and highPrice != ''">
+      <choose>
+        <when test="userType == 1">
+          AND b.SalesPrice  &lt;=  #{highPrice}
+        </when>
+        <otherwise>
+          AND b.DirectPrice  &lt;=  #{highPrice}
+        </otherwise>
+      </choose>
+    </if>
+
+    <if test="lowPrice != null and lowPrice != ''">
+      <choose>
+        <when test="userType == 1">
+          AND b.SalesPrice  &gt;=  #{lowPrice}
+        </when>
+        <otherwise>
+          AND b.DirectPrice  &gt;=  #{lowPrice}
+        </otherwise>
+      </choose>
+    </if>
+    <!--<if test="minDay != null and minDay != ''">-->
+      <!--AND b.TourDays &gt;= #{minDay}-->
+    <!--</if>-->
+    <!--<if test="maxDay != null and maxDay != ''">-->
+      <!--AND b.TourDays &lt;= #{maxDay}-->
+    <!--</if>-->
+    --           排序查询，orderBy=1 默认排序，时间排序
+    --       orderBy=2，根据价格排序,需要判断用户类型，直售价、分销价
+    --       orderBy=3，根据热度排序
+    <choose>
+      <when test="orderBy == 1">
+        <choose>
+          <when test="orderDirection == 'DESC'">
+            ORDER BY b.CreatedDate desc
+          </when>
+          <otherwise>
+            ORDER BY b.CreatedDate
+          </otherwise>
+        </choose>
+      </when>
+      <when test="orderBy == 2">
+        <choose>
+          <when test="orderDirection == 'DESC'">
+            <if test="userType == 1">
+              ORDER BY b.SalesPrice desc
+            </if>
+            <if test="userType == 2">
+              ORDER BY b.DirectPrice desc
+            </if>
+          </when>
+          <otherwise>
+            <if test="userType == 1">
+              ORDER BY b.SalesPrice
+            </if>
+            <if test="userType == 2">
+              ORDER BY b.DirectPrice
+            </if>
+          </otherwise>
+        </choose>
+      </when>
+      <when test="orderBy == 3">
+        <choose>
+          <when test="orderDirection == 'DESC'">
+            ORDER BY b.salesQuantity desc
+          </when>
+          <otherwise>
+            ORDER BY b.salesQuantity
+          </otherwise>
+        </choose>
+      </when>
+    </choose>
+    <if test="size != 0">
+      OFFSET #{start} ROWS FETCH NEXT #{size} ROWS ONLY
+    </if>
+  </sql>
+
+  <select id="newProductListByPromotion" parameterType="com.holyrobot.dto.ProSearchCondition" resultType="com.holyrobot.dto.ProductListDto">
+    SELECT  * FROM (
+    SELECT
+    t.ID,
+    t.orgId as orgId,
+    0 as isOutgoing,
+    1 as type,
+    t.AliaseName,
+    t.TravelName,
+    t.StarLevel,
+    t.ProTag,
+    t.TourDays,
+    t.Departure,
+    t.Destination,
+    t.ProCategoryID,
+    t.ProType,
+    t.proTypeId,
+    (SELECT MIN(DirectPrice) from Pro_Tour_PricePolicy x LEFT JOIN Pro_Tour y on x.tourId = y.id   where x.ProID = t.ID AND x.IsDefault = 1 AND x.SiteID = #{siteId} AND y.DueDate> DATEADD(DAY ,- 1, GETDATE())) as DirectPrice,
+    (SELECT MIN(SalesPrice) from Pro_Tour_PricePolicy x LEFT JOIN Pro_Tour y on x.tourId = y.id   where x.ProID = t.ID AND x.IsDefault = 1 AND x.SiteID = #{siteId} AND y.DueDate> DATEADD(DAY ,- 1, GETDATE())) as SalesPrice,
+    (SELECT MIN(RebatePrice) from Pro_Tour_PricePolicy x LEFT JOIN Pro_Tour y on x.tourId = y.id   where x.ProID = t.ID AND x.IsDefault = 1 AND x.SiteID = #{siteId} AND y.DueDate> DATEADD(DAY ,- 1, GETDATE())) as RebatePrice,
+    RIGHT(CONVERT(varchar(100), t.CreatedDate, 14),3) AS salesQuantity,
+    (SELECT
+    tours = (
+    stuff(
+    (
+    SELECT
+    ',' + CONVERT (VARCHAR(100), TourDate, 11)
+    FROM
+    Pro_Tour
+    WHERE
+    ProID = a.ProID
+    and TourDate> DATEADD(DAY ,- 1, GETDATE())
+    ORDER BY TourDate
+    FOR xml path ('')
+    ),
+    1,
+    1,
+    ''
+    )
+    )
+    FROM
+    Pro_Tour AS a
+    WHERE
+    a.ProID = t.id
+    GROUP BY a.ProID
+    )	as tours,
+    t.CoverImg,
+    t.CreatedDate
+    from Pro_Product as t
+    LEFT JOIN pro_product_site AS t1 ON t.ID = t1.proID
+    LEFT JOIN Pro_Product_Scope AS  ts ON t.ID = ts.proID
+    WHERE
+    1=1
+    AND t1.SiteId = #{siteId}
+    AND t.DataStatus = 2
+    --     销售类型 1：对外销售；2：内部分销；3：内外销
+    AND t.SalesType in(1,3)
+    AND t.AuditStatus = 1
+    AND ts.Scope = 2
+    AND t.orgId = #{orgId}
+    AND t.id in(
+    SELECT T.proId
+    from Pro_Tour AS T
+    LEFT JOIN Pro_Tour_PricePolicy AS P ON P.TourID = T.ID
+    where T.OrgID =  #{orgId}
+    AND P.SiteID = #{siteId}
+    <choose>
+      <when test="userType == 1">
+        AND P.DiscountSalesPrice is not null
+      </when>
+      <otherwise>
+        AND P.DiscountDirectPrice is not null
+      </otherwise>
+    </choose>
+
+    AND T.IsUseDiscount = 1
+    AND T.TourStatus = 1
+    AND T.DueDate > DATEADD(DAY ,- 1, GETDATE())
+    GROUP BY T.proId
+    )
+    )as b
+    WHERE 1=1
+    <include refid="newProductlistCondition"/>
+  </select>
+
+  <select id="newGetById" resultType="com.holyrobot.con_product.pojo.ProProduct">
+    select
+        *
+    from
+        Pro_Product
+    where
+        ID = #{id,jdbcType=CHAR}
+  </select>
+
+  <select id="selectProBySiteAndOrdId" resultType="com.holyrobot.dto.ProductListDto">
+    SELECT * from (SELECT
+    t.ID,
+    t.orgId as orgId,
+    0 as isOutgoing,
+    '00000000-0000-0000-0000-000000000000' as directSalesSendId,
+    t.AliaseName,
+    t.TravelName AS brandName,
+    t.StarLevel,
+    t.ProTag,
+    t.TourDays,
+    t.Departure,
+    t.Destination,
+    t.ProCategoryID,
+    t.ProType,
+    t.ProTypeId,
+    t.ProBrand,
+    (SELECT MIN(DirectPrice) from Pro_Tour_PricePolicy x LEFT JOIN Pro_Tour y on x.tourId = y.id   where x.ProID = t.ID AND x.IsDefault = 1 AND x.SiteID = #{siteId} AND y.DueDate> DATEADD(DAY ,- 1, GETDATE())) as DirectPrice,
+    (SELECT MIN(SalesPrice) from Pro_Tour_PricePolicy x LEFT JOIN Pro_Tour y on x.tourId = y.id   where x.ProID = t.ID AND x.IsDefault = 1 AND x.SiteID = #{siteId} AND y.DueDate> DATEADD(DAY ,- 1, GETDATE())) as SalesPrice,
+    (SELECT MIN(RebatePrice) from Pro_Tour_PricePolicy x LEFT JOIN Pro_Tour y on x.tourId = y.id   where x.ProID = t.ID AND x.IsDefault = 1 AND x.SiteID = #{siteId} AND y.DueDate> DATEADD(DAY ,- 1, GETDATE())) as RebatePrice,
+    RIGHT(CONVERT(varchar(100), t.CreatedDate, 14),3) AS salesQuantity,
+    (SELECT
+    tours = (
+    stuff(
+    (
+    SELECT top 5
+    ',' + CONVERT (VARCHAR(100), TourDate, 11)
+    FROM
+    Pro_Tour
+    WHERE
+    ProID = a.ProID
+    and DueDate > DATEADD(DAY ,- 1, GETDATE())
+    ORDER BY TourDate
+    FOR xml path ('')
+    ),
+    1,
+    1,
+    ''
+    )
+    )
+    FROM
+    Pro_Tour AS a
+    WHERE
+    a.ProID = t.id
+    GROUP BY a.ProID
+    )	as tours,
+    t.CoverImg,
+    t.CreatedDate
+    from Pro_Product as t
+    LEFT JOIN Pro_Product_Scope AS  ts ON t.ID = ts.proID
+    LEFT JOIN pro_product_site AS t1 ON t.ID = t1.proID
+    --校验团期
+    JOIN (
+    SELECT a.proId
+    FROM
+    Pro_Tour AS a
+    JOIN Pro_Tour_PricePolicy AS b ON a.ID = b.TourID
+    where a.OrgID = #{orgId}
+    AND b.SiteID = #{siteId}
+    AND a.TourStatus = 1
+    GROUP BY a.proId
+    ) AS TQ ON TQ.proId = t.id
+    WHERE
+    1=1
+    AND t1.SiteId = #{siteId}
+    AND t.DataStatus = 2
+    --     销售类型 1：对外销售；2：内部分销；3：内外销
+    AND t.SalesType in(1,3)
+    AND t.AuditStatus = 1
+    AND ts.Scope = 2
+    AND t.orgId = #{orgId}
+
+    UNION
+
+    SELECT
+    p.ID,
+    z.ReceiverID as orgId,
+    1 as isOutgoing,
+    z.SupplierID  as directSalesSendId,
+    p.AliaseName,
+    p.TravelName AS brandName,
+    p.StarLevel,
+    p.ProTag,
+    p.TourDays,
+    p.Departure,
+    p.Destination,
+    p.ProCategoryID,
+    p.ProType,
+    p.ProTypeId,
+    p.ProBrand,
+    (SELECT MIN(DirectPrice) from Pro_Product_DirectSales_Item x LEFT JOIN Pro_Product_DirectSales y ON x.DirectSalesID=y.id  where x.ProID = p.ID AND x.IsDefault = 1 AND x.SiteID = #{siteId} AND ReceiverID = #{orgId} AND y.DueDate> DATEADD(DAY ,- 1, GETDATE())) as DirectPrice,
+    (SELECT MIN(SalesPrice) from Pro_Product_DirectSales_Item x LEFT JOIN Pro_Product_DirectSales y ON x.DirectSalesID=y.id  where x.ProID = p.ID AND x.IsDefault = 1 AND x.SiteID = #{siteId} AND ReceiverID = #{orgId} AND y.DueDate> DATEADD(DAY ,- 1, GETDATE())) as SalesPrice,
+    (SELECT MIN(RebatePrice) from Pro_Product_DirectSales_Item x LEFT JOIN Pro_Product_DirectSales y ON x.DirectSalesID=y.id  where x.ProID = p.ID AND x.IsDefault = 1 AND x.SiteID = #{siteId} AND ReceiverID = #{orgId} AND y.DueDate> DATEADD(DAY ,- 1, GETDATE())) as RebatePrice,
+    RIGHT(CONVERT(varchar(100), p.CreatedDate, 14),3) AS salesQuantity,
+    (SELECT
+    tours = (
+    stuff(
+    (
+    SELECT top 5
+    ',' + CONVERT (VARCHAR(100), TourDate, 11)
+    FROM
+    Pro_Product_DirectSales
+    WHERE
+    ProID = a.ProID
+    and DueDate > DATEADD(DAY ,- 1, GETDATE())
+    ORDER BY TourDate
+    FOR xml path ('')
+    ),
+    1,
+    1,
+    ''
+    )
+    )
+    FROM
+    Pro_Product_DirectSales AS a
+    WHERE
+    a.ProID = p.id
+    GROUP BY a.ProID
+    )	as tours,
+    CoverImg,
+    p.CreatedDate
+    FROM
+    Pro_Product AS p
+    LEFT JOIN pro_product_site AS s ON p.ID = s.proID
+    LEFT JOIN Pro_Product_DirectSales AS z ON p.ID = z.proID
+    LEFT JOIN Pro_Product_Scope AS  ts ON p.ID = ts.proID
+    WHERE
+    1=1
+    AND s.SiteId = #{siteId}
+    AND z.ReceiverID = #{orgId}
+    AND ts.Scope = 2
+    AND z.DataStatus = 1
+    AND z.SupplierDataStatus = 1
+    AND z.AuditStatus = 1
+    AND Z.DueDate > DATEADD(DAY ,- 1, GETDATE())
+    --团期查询
+    )as b
+    WHERE 1=1
+	AND b.tours is not null
+  </select>
+
+</mapper>

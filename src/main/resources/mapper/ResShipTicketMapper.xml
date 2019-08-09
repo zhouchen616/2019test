@@ -1,0 +1,412 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.holyrobot.con_res.mapper.ResShipTicketMapper" >
+  <resultMap id="BaseResultMap" type="com.holyrobot.con_res.pojo.ResShipTicket" >
+    <id column="ID" property="id" jdbcType="CHAR" />
+    <result column="HullNumber" property="hullnumber" jdbcType="VARCHAR" />
+    <result column="From_Ship_Name" property="fromShipName" jdbcType="VARCHAR" />
+    <result column="From_Ship_NameId" property="fromShipNameid" jdbcType="CHAR" />
+    <result column="To_Ship_Name" property="toShipName" jdbcType="VARCHAR" />
+    <result column="To_Ship_NameId" property="toShipNameid" jdbcType="CHAR" />
+    <result column="StartTime" property="starttime" jdbcType="VARCHAR" />
+    <result column="ArriveTime" property="arrivetime" jdbcType="VARCHAR" />
+    <result column="LiShi" property="lishi" jdbcType="VARCHAR" />
+    <result column="ShippingSpace" property="shippingspace" jdbcType="VARCHAR" />
+    <result column="GoDate" property="godate" jdbcType="DATE" />
+    <result column="FromDate" property="fromdate" jdbcType="DATE" />
+    <result column="CreatedDate" property="createddate" jdbcType="TIMESTAMP" />
+    <result column="CreatedBy" property="createdby" jdbcType="VARCHAR" />
+    <result column="CreatedByID" property="createdbyid" jdbcType="CHAR" />
+    <result column="DeptID" property="deptid" jdbcType="CHAR" />
+    <result column="OrgID" property="orgid" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, HullNumber, From_Ship_Name, From_Ship_NameId, To_Ship_Name, To_Ship_NameId, StartTime, 
+    ArriveTime, LiShi, ShippingSpace, GoDate, FromDate, CreatedDate, CreatedBy, CreatedByID, 
+    DeptID, OrgID
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.holyrobot.con_res.pojo.ResShipTicketExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from Res_ShipTicket
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from Res_ShipTicket
+    where ID = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from Res_ShipTicket
+    where ID = #{id,jdbcType=CHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.holyrobot.con_res.pojo.ResShipTicketExample" >
+    delete from Res_ShipTicket
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.holyrobot.con_res.pojo.ResShipTicket" >
+    insert into Res_ShipTicket (ID, HullNumber, From_Ship_Name, 
+      From_Ship_NameId, To_Ship_Name, To_Ship_NameId, 
+      StartTime, ArriveTime, LiShi, 
+      ShippingSpace, GoDate, FromDate, 
+      CreatedDate, CreatedBy, CreatedByID, 
+      DeptID, OrgID)
+    values (#{id,jdbcType=CHAR}, #{hullnumber,jdbcType=VARCHAR}, #{fromShipName,jdbcType=VARCHAR},
+      #{fromShipNameid,jdbcType=CHAR}, #{toShipName,jdbcType=VARCHAR}, #{toShipNameid,jdbcType=CHAR},
+      #{starttime,jdbcType=VARCHAR}, #{arrivetime,jdbcType=VARCHAR}, #{lishi,jdbcType=VARCHAR},
+      #{shippingspace,jdbcType=VARCHAR}, #{godate,jdbcType=DATE}, #{fromdate,jdbcType=DATE},
+      #{createddate,jdbcType=TIMESTAMP}, #{createdby,jdbcType=VARCHAR}, #{createdbyid,jdbcType=CHAR},
+      #{deptid,jdbcType=CHAR}, #{orgid,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.holyrobot.con_res.pojo.ResShipTicket" >
+    insert into Res_ShipTicket
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="hullnumber != null" >
+        HullNumber,
+      </if>
+      <if test="fromShipName != null" >
+        From_Ship_Name,
+      </if>
+      <if test="fromShipNameid != null" >
+        From_Ship_NameId,
+      </if>
+      <if test="toShipName != null" >
+        To_Ship_Name,
+      </if>
+      <if test="toShipNameid != null" >
+        To_Ship_NameId,
+      </if>
+      <if test="starttime != null" >
+        StartTime,
+      </if>
+      <if test="arrivetime != null" >
+        ArriveTime,
+      </if>
+      <if test="lishi != null" >
+        LiShi,
+      </if>
+      <if test="shippingspace != null" >
+        ShippingSpace,
+      </if>
+      <if test="godate != null" >
+        GoDate,
+      </if>
+      <if test="fromdate != null" >
+        FromDate,
+      </if>
+      <if test="createddate != null" >
+        CreatedDate,
+      </if>
+      <if test="createdby != null" >
+        CreatedBy,
+      </if>
+      <if test="createdbyid != null" >
+        CreatedByID,
+      </if>
+      <if test="deptid != null" >
+        DeptID,
+      </if>
+      <if test="orgid != null" >
+        OrgID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="hullnumber != null" >
+        #{hullnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="fromShipName != null" >
+        #{fromShipName,jdbcType=VARCHAR},
+      </if>
+      <if test="fromShipNameid != null" >
+        #{fromShipNameid,jdbcType=CHAR},
+      </if>
+      <if test="toShipName != null" >
+        #{toShipName,jdbcType=VARCHAR},
+      </if>
+      <if test="toShipNameid != null" >
+        #{toShipNameid,jdbcType=CHAR},
+      </if>
+      <if test="starttime != null" >
+        #{starttime,jdbcType=VARCHAR},
+      </if>
+      <if test="arrivetime != null" >
+        #{arrivetime,jdbcType=VARCHAR},
+      </if>
+      <if test="lishi != null" >
+        #{lishi,jdbcType=VARCHAR},
+      </if>
+      <if test="shippingspace != null" >
+        #{shippingspace,jdbcType=VARCHAR},
+      </if>
+      <if test="godate != null" >
+        #{godate,jdbcType=DATE},
+      </if>
+      <if test="fromdate != null" >
+        #{fromdate,jdbcType=DATE},
+      </if>
+      <if test="createddate != null" >
+        #{createddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdby != null" >
+        #{createdby,jdbcType=VARCHAR},
+      </if>
+      <if test="createdbyid != null" >
+        #{createdbyid,jdbcType=CHAR},
+      </if>
+      <if test="deptid != null" >
+        #{deptid,jdbcType=CHAR},
+      </if>
+      <if test="orgid != null" >
+        #{orgid,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.holyrobot.con_res.pojo.ResShipTicketExample" resultType="java.lang.Integer" >
+    select count(*) from Res_ShipTicket
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update Res_ShipTicket
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=CHAR},
+      </if>
+      <if test="record.hullnumber != null" >
+        HullNumber = #{record.hullnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fromShipName != null" >
+        From_Ship_Name = #{record.fromShipName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fromShipNameid != null" >
+        From_Ship_NameId = #{record.fromShipNameid,jdbcType=CHAR},
+      </if>
+      <if test="record.toShipName != null" >
+        To_Ship_Name = #{record.toShipName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.toShipNameid != null" >
+        To_Ship_NameId = #{record.toShipNameid,jdbcType=CHAR},
+      </if>
+      <if test="record.starttime != null" >
+        StartTime = #{record.starttime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.arrivetime != null" >
+        ArriveTime = #{record.arrivetime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lishi != null" >
+        LiShi = #{record.lishi,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shippingspace != null" >
+        ShippingSpace = #{record.shippingspace,jdbcType=VARCHAR},
+      </if>
+      <if test="record.godate != null" >
+        GoDate = #{record.godate,jdbcType=DATE},
+      </if>
+      <if test="record.fromdate != null" >
+        FromDate = #{record.fromdate,jdbcType=DATE},
+      </if>
+      <if test="record.createddate != null" >
+        CreatedDate = #{record.createddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createdby != null" >
+        CreatedBy = #{record.createdby,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createdbyid != null" >
+        CreatedByID = #{record.createdbyid,jdbcType=CHAR},
+      </if>
+      <if test="record.deptid != null" >
+        DeptID = #{record.deptid,jdbcType=CHAR},
+      </if>
+      <if test="record.orgid != null" >
+        OrgID = #{record.orgid,jdbcType=CHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update Res_ShipTicket
+    set ID = #{record.id,jdbcType=CHAR},
+      HullNumber = #{record.hullnumber,jdbcType=VARCHAR},
+      From_Ship_Name = #{record.fromShipName,jdbcType=VARCHAR},
+      From_Ship_NameId = #{record.fromShipNameid,jdbcType=CHAR},
+      To_Ship_Name = #{record.toShipName,jdbcType=VARCHAR},
+      To_Ship_NameId = #{record.toShipNameid,jdbcType=CHAR},
+      StartTime = #{record.starttime,jdbcType=VARCHAR},
+      ArriveTime = #{record.arrivetime,jdbcType=VARCHAR},
+      LiShi = #{record.lishi,jdbcType=VARCHAR},
+      ShippingSpace = #{record.shippingspace,jdbcType=VARCHAR},
+      GoDate = #{record.godate,jdbcType=DATE},
+      FromDate = #{record.fromdate,jdbcType=DATE},
+      CreatedDate = #{record.createddate,jdbcType=TIMESTAMP},
+      CreatedBy = #{record.createdby,jdbcType=VARCHAR},
+      CreatedByID = #{record.createdbyid,jdbcType=CHAR},
+      DeptID = #{record.deptid,jdbcType=CHAR},
+      OrgID = #{record.orgid,jdbcType=CHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.holyrobot.con_res.pojo.ResShipTicket" >
+    update Res_ShipTicket
+    <set >
+      <if test="hullnumber != null" >
+        HullNumber = #{hullnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="fromShipName != null" >
+        From_Ship_Name = #{fromShipName,jdbcType=VARCHAR},
+      </if>
+      <if test="fromShipNameid != null" >
+        From_Ship_NameId = #{fromShipNameid,jdbcType=CHAR},
+      </if>
+      <if test="toShipName != null" >
+        To_Ship_Name = #{toShipName,jdbcType=VARCHAR},
+      </if>
+      <if test="toShipNameid != null" >
+        To_Ship_NameId = #{toShipNameid,jdbcType=CHAR},
+      </if>
+      <if test="starttime != null" >
+        StartTime = #{starttime,jdbcType=VARCHAR},
+      </if>
+      <if test="arrivetime != null" >
+        ArriveTime = #{arrivetime,jdbcType=VARCHAR},
+      </if>
+      <if test="lishi != null" >
+        LiShi = #{lishi,jdbcType=VARCHAR},
+      </if>
+      <if test="shippingspace != null" >
+        ShippingSpace = #{shippingspace,jdbcType=VARCHAR},
+      </if>
+      <if test="godate != null" >
+        GoDate = #{godate,jdbcType=DATE},
+      </if>
+      <if test="fromdate != null" >
+        FromDate = #{fromdate,jdbcType=DATE},
+      </if>
+      <if test="createddate != null" >
+        CreatedDate = #{createddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdby != null" >
+        CreatedBy = #{createdby,jdbcType=VARCHAR},
+      </if>
+      <if test="createdbyid != null" >
+        CreatedByID = #{createdbyid,jdbcType=CHAR},
+      </if>
+      <if test="deptid != null" >
+        DeptID = #{deptid,jdbcType=CHAR},
+      </if>
+      <if test="orgid != null" >
+        OrgID = #{orgid,jdbcType=CHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.holyrobot.con_res.pojo.ResShipTicket" >
+    update Res_ShipTicket
+    set HullNumber = #{hullnumber,jdbcType=VARCHAR},
+      From_Ship_Name = #{fromShipName,jdbcType=VARCHAR},
+      From_Ship_NameId = #{fromShipNameid,jdbcType=CHAR},
+      To_Ship_Name = #{toShipName,jdbcType=VARCHAR},
+      To_Ship_NameId = #{toShipNameid,jdbcType=CHAR},
+      StartTime = #{starttime,jdbcType=VARCHAR},
+      ArriveTime = #{arrivetime,jdbcType=VARCHAR},
+      LiShi = #{lishi,jdbcType=VARCHAR},
+      ShippingSpace = #{shippingspace,jdbcType=VARCHAR},
+      GoDate = #{godate,jdbcType=DATE},
+      FromDate = #{fromdate,jdbcType=DATE},
+      CreatedDate = #{createddate,jdbcType=TIMESTAMP},
+      CreatedBy = #{createdby,jdbcType=VARCHAR},
+      CreatedByID = #{createdbyid,jdbcType=CHAR},
+      DeptID = #{deptid,jdbcType=CHAR},
+      OrgID = #{orgid,jdbcType=CHAR}
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+
+  <!-- -->
+  <select id="selectByShipCodeAndSoON" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from Res_ShipTicket
+    where HullNumber = #{shipcode,jdbcType=VARCHAR}
+    and GoDate = #{goDate,jdbcType=TIMESTAMP}
+    and From_Ship_Name = #{depstation,jdbcType=VARCHAR}
+    and To_Ship_Name = #{desstation,jdbcType=VARCHAR}
+  </select>
+</mapper>

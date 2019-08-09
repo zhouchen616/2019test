@@ -1,0 +1,433 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.holyrobot.con_om.mapper.OmOrgWechatConfMapper" >
+  <resultMap id="BaseResultMap" type="com.holyrobot.con_om.pojo.OmOrgWechatConf" >
+    <id column="ID" property="id" jdbcType="CHAR" />
+    <result column="WxAppID" property="wxappid" jdbcType="VARCHAR" />
+    <result column="WxAppSecret" property="wxappsecret" jdbcType="VARCHAR" />
+    <result column="WxAppDomainFile" property="wxappdomainfile" jdbcType="VARCHAR" />
+    <result column="WxBusinessDomain" property="wxbusinessdomain" jdbcType="VARCHAR" />
+    <result column="WxJsDomain" property="wxjsdomain" jdbcType="VARCHAR" />
+    <result column="WxAuthDomain" property="wxauthdomain" jdbcType="VARCHAR" />
+    <result column="WxMchID" property="wxmchid" jdbcType="VARCHAR" />
+    <result column="WxPayKey" property="wxpaykey" jdbcType="VARCHAR" />
+    <result column="CertLocalPath" property="certlocalpath" jdbcType="VARCHAR" />
+    <result column="WxPayNotifyUrl" property="wxpaynotifyurl" jdbcType="VARCHAR" />
+    <result column="OrgID" property="orgid" jdbcType="CHAR" />
+    <result column="CreatedDate" property="createddate" jdbcType="TIMESTAMP" />
+    <result column="CreatedBy" property="createdby" jdbcType="VARCHAR" />
+    <result column="CreatedByID" property="createdbyid" jdbcType="CHAR" />
+    <result column="DeptID" property="deptid" jdbcType="CHAR" />
+    <result column="RevisedDate" property="reviseddate" jdbcType="TIMESTAMP" />
+    <result column="RevisedBy" property="revisedby" jdbcType="VARCHAR" />
+    <result column="WxAppName" property="wxappname" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, WxAppID, WxAppSecret, WxAppDomainFile, WxBusinessDomain, WxJsDomain, WxAuthDomain,
+    WxMchID, WxPayKey, CertLocalPath, WxPayNotifyUrl, OrgID, CreatedDate, CreatedBy,
+    CreatedByID, DeptID, RevisedDate, RevisedBy, WxAppName
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.holyrobot.con_om.pojo.OmOrgWechatConfExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from Om_OrgWechatConf
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from Om_OrgWechatConf
+    where ID = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from Om_OrgWechatConf
+    where ID = #{id,jdbcType=CHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.holyrobot.con_om.pojo.OmOrgWechatConfExample" >
+    delete from Om_OrgWechatConf
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.holyrobot.con_om.pojo.OmOrgWechatConf" >
+    insert into Om_OrgWechatConf (ID, WxAppID, WxAppSecret,
+    WxAppDomainFile, WxBusinessDomain, WxJsDomain,
+    WxAuthDomain, WxMchID, WxPayKey,
+    CertLocalPath, WxPayNotifyUrl, OrgID,
+    CreatedDate, CreatedBy, CreatedByID,
+    DeptID, RevisedDate, RevisedBy,
+    WxAppName)
+    values (#{id,jdbcType=CHAR}, #{wxappid,jdbcType=VARCHAR}, #{wxappsecret,jdbcType=VARCHAR},
+    #{wxappdomainfile,jdbcType=VARCHAR}, #{wxbusinessdomain,jdbcType=VARCHAR}, #{wxjsdomain,jdbcType=VARCHAR},
+    #{wxauthdomain,jdbcType=VARCHAR}, #{wxmchid,jdbcType=VARCHAR}, #{wxpaykey,jdbcType=VARCHAR},
+    #{certlocalpath,jdbcType=VARCHAR}, #{wxpaynotifyurl,jdbcType=VARCHAR}, #{orgid,jdbcType=CHAR},
+    #{createddate,jdbcType=TIMESTAMP}, #{createdby,jdbcType=VARCHAR}, #{createdbyid,jdbcType=CHAR},
+    #{deptid,jdbcType=CHAR}, #{reviseddate,jdbcType=TIMESTAMP}, #{revisedby,jdbcType=VARCHAR},
+    #{wxappname,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.holyrobot.con_om.pojo.OmOrgWechatConf" >
+    insert into Om_OrgWechatConf
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="wxappid != null" >
+        WxAppID,
+      </if>
+      <if test="wxappsecret != null" >
+        WxAppSecret,
+      </if>
+      <if test="wxappdomainfile != null" >
+        WxAppDomainFile,
+      </if>
+      <if test="wxbusinessdomain != null" >
+        WxBusinessDomain,
+      </if>
+      <if test="wxjsdomain != null" >
+        WxJsDomain,
+      </if>
+      <if test="wxauthdomain != null" >
+        WxAuthDomain,
+      </if>
+      <if test="wxmchid != null" >
+        WxMchID,
+      </if>
+      <if test="wxpaykey != null" >
+        WxPayKey,
+      </if>
+      <if test="certlocalpath != null" >
+        CertLocalPath,
+      </if>
+      <if test="wxpaynotifyurl != null" >
+        WxPayNotifyUrl,
+      </if>
+      <if test="orgid != null" >
+        OrgID,
+      </if>
+      <if test="createddate != null" >
+        CreatedDate,
+      </if>
+      <if test="createdby != null" >
+        CreatedBy,
+      </if>
+      <if test="createdbyid != null" >
+        CreatedByID,
+      </if>
+      <if test="deptid != null" >
+        DeptID,
+      </if>
+      <if test="reviseddate != null" >
+        RevisedDate,
+      </if>
+      <if test="revisedby != null" >
+        RevisedBy,
+      </if>
+      <if test="wxappname != null" >
+        WxAppName,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="wxappid != null" >
+        #{wxappid,jdbcType=VARCHAR},
+      </if>
+      <if test="wxappsecret != null" >
+        #{wxappsecret,jdbcType=VARCHAR},
+      </if>
+      <if test="wxappdomainfile != null" >
+        #{wxappdomainfile,jdbcType=VARCHAR},
+      </if>
+      <if test="wxbusinessdomain != null" >
+        #{wxbusinessdomain,jdbcType=VARCHAR},
+      </if>
+      <if test="wxjsdomain != null" >
+        #{wxjsdomain,jdbcType=VARCHAR},
+      </if>
+      <if test="wxauthdomain != null" >
+        #{wxauthdomain,jdbcType=VARCHAR},
+      </if>
+      <if test="wxmchid != null" >
+        #{wxmchid,jdbcType=VARCHAR},
+      </if>
+      <if test="wxpaykey != null" >
+        #{wxpaykey,jdbcType=VARCHAR},
+      </if>
+      <if test="certlocalpath != null" >
+        #{certlocalpath,jdbcType=VARCHAR},
+      </if>
+      <if test="wxpaynotifyurl != null" >
+        #{wxpaynotifyurl,jdbcType=VARCHAR},
+      </if>
+      <if test="orgid != null" >
+        #{orgid,jdbcType=CHAR},
+      </if>
+      <if test="createddate != null" >
+        #{createddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdby != null" >
+        #{createdby,jdbcType=VARCHAR},
+      </if>
+      <if test="createdbyid != null" >
+        #{createdbyid,jdbcType=CHAR},
+      </if>
+      <if test="deptid != null" >
+        #{deptid,jdbcType=CHAR},
+      </if>
+      <if test="reviseddate != null" >
+        #{reviseddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="revisedby != null" >
+        #{revisedby,jdbcType=VARCHAR},
+      </if>
+      <if test="wxappname != null" >
+        #{wxappname,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.holyrobot.con_om.pojo.OmOrgWechatConfExample" resultType="java.lang.Integer" >
+    select count(*) from Om_OrgWechatConf
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update Om_OrgWechatConf
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=CHAR},
+      </if>
+      <if test="record.wxappid != null" >
+        WxAppID = #{record.wxappid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wxappsecret != null" >
+        WxAppSecret = #{record.wxappsecret,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wxappdomainfile != null" >
+        WxAppDomainFile = #{record.wxappdomainfile,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wxbusinessdomain != null" >
+        WxBusinessDomain = #{record.wxbusinessdomain,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wxjsdomain != null" >
+        WxJsDomain = #{record.wxjsdomain,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wxauthdomain != null" >
+        WxAuthDomain = #{record.wxauthdomain,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wxmchid != null" >
+        WxMchID = #{record.wxmchid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wxpaykey != null" >
+        WxPayKey = #{record.wxpaykey,jdbcType=VARCHAR},
+      </if>
+      <if test="record.certlocalpath != null" >
+        CertLocalPath = #{record.certlocalpath,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wxpaynotifyurl != null" >
+        WxPayNotifyUrl = #{record.wxpaynotifyurl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orgid != null" >
+        OrgID = #{record.orgid,jdbcType=CHAR},
+      </if>
+      <if test="record.createddate != null" >
+        CreatedDate = #{record.createddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createdby != null" >
+        CreatedBy = #{record.createdby,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createdbyid != null" >
+        CreatedByID = #{record.createdbyid,jdbcType=CHAR},
+      </if>
+      <if test="record.deptid != null" >
+        DeptID = #{record.deptid,jdbcType=CHAR},
+      </if>
+      <if test="record.reviseddate != null" >
+        RevisedDate = #{record.reviseddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.revisedby != null" >
+        RevisedBy = #{record.revisedby,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wxappname != null" >
+        WxAppName = #{record.wxappname,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update Om_OrgWechatConf
+    set ID = #{record.id,jdbcType=CHAR},
+    WxAppID = #{record.wxappid,jdbcType=VARCHAR},
+    WxAppSecret = #{record.wxappsecret,jdbcType=VARCHAR},
+    WxAppDomainFile = #{record.wxappdomainfile,jdbcType=VARCHAR},
+    WxBusinessDomain = #{record.wxbusinessdomain,jdbcType=VARCHAR},
+    WxJsDomain = #{record.wxjsdomain,jdbcType=VARCHAR},
+    WxAuthDomain = #{record.wxauthdomain,jdbcType=VARCHAR},
+    WxMchID = #{record.wxmchid,jdbcType=VARCHAR},
+    WxPayKey = #{record.wxpaykey,jdbcType=VARCHAR},
+    CertLocalPath = #{record.certlocalpath,jdbcType=VARCHAR},
+    WxPayNotifyUrl = #{record.wxpaynotifyurl,jdbcType=VARCHAR},
+    OrgID = #{record.orgid,jdbcType=CHAR},
+    CreatedDate = #{record.createddate,jdbcType=TIMESTAMP},
+    CreatedBy = #{record.createdby,jdbcType=VARCHAR},
+    CreatedByID = #{record.createdbyid,jdbcType=CHAR},
+    DeptID = #{record.deptid,jdbcType=CHAR},
+    RevisedDate = #{record.reviseddate,jdbcType=TIMESTAMP},
+    RevisedBy = #{record.revisedby,jdbcType=VARCHAR},
+    WxAppName = #{record.wxappname,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.holyrobot.con_om.pojo.OmOrgWechatConf" >
+    update Om_OrgWechatConf
+    <set >
+      <if test="wxappid != null" >
+        WxAppID = #{wxappid,jdbcType=VARCHAR},
+      </if>
+      <if test="wxappsecret != null" >
+        WxAppSecret = #{wxappsecret,jdbcType=VARCHAR},
+      </if>
+      <if test="wxappdomainfile != null" >
+        WxAppDomainFile = #{wxappdomainfile,jdbcType=VARCHAR},
+      </if>
+      <if test="wxbusinessdomain != null" >
+        WxBusinessDomain = #{wxbusinessdomain,jdbcType=VARCHAR},
+      </if>
+      <if test="wxjsdomain != null" >
+        WxJsDomain = #{wxjsdomain,jdbcType=VARCHAR},
+      </if>
+      <if test="wxauthdomain != null" >
+        WxAuthDomain = #{wxauthdomain,jdbcType=VARCHAR},
+      </if>
+      <if test="wxmchid != null" >
+        WxMchID = #{wxmchid,jdbcType=VARCHAR},
+      </if>
+      <if test="wxpaykey != null" >
+        WxPayKey = #{wxpaykey,jdbcType=VARCHAR},
+      </if>
+      <if test="certlocalpath != null" >
+        CertLocalPath = #{certlocalpath,jdbcType=VARCHAR},
+      </if>
+      <if test="wxpaynotifyurl != null" >
+        WxPayNotifyUrl = #{wxpaynotifyurl,jdbcType=VARCHAR},
+      </if>
+      <if test="orgid != null" >
+        OrgID = #{orgid,jdbcType=CHAR},
+      </if>
+      <if test="createddate != null" >
+        CreatedDate = #{createddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdby != null" >
+        CreatedBy = #{createdby,jdbcType=VARCHAR},
+      </if>
+      <if test="createdbyid != null" >
+        CreatedByID = #{createdbyid,jdbcType=CHAR},
+      </if>
+      <if test="deptid != null" >
+        DeptID = #{deptid,jdbcType=CHAR},
+      </if>
+      <if test="reviseddate != null" >
+        RevisedDate = #{reviseddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="revisedby != null" >
+        RevisedBy = #{revisedby,jdbcType=VARCHAR},
+      </if>
+      <if test="wxappname != null" >
+        WxAppName = #{wxappname,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.holyrobot.con_om.pojo.OmOrgWechatConf" >
+    update Om_OrgWechatConf
+    set WxAppID = #{wxappid,jdbcType=VARCHAR},
+      WxAppSecret = #{wxappsecret,jdbcType=VARCHAR},
+      WxAppDomainFile = #{wxappdomainfile,jdbcType=VARCHAR},
+      WxBusinessDomain = #{wxbusinessdomain,jdbcType=VARCHAR},
+      WxJsDomain = #{wxjsdomain,jdbcType=VARCHAR},
+      WxAuthDomain = #{wxauthdomain,jdbcType=VARCHAR},
+      WxMchID = #{wxmchid,jdbcType=VARCHAR},
+      WxPayKey = #{wxpaykey,jdbcType=VARCHAR},
+      CertLocalPath = #{certlocalpath,jdbcType=VARCHAR},
+      WxPayNotifyUrl = #{wxpaynotifyurl,jdbcType=VARCHAR},
+      OrgID = #{orgid,jdbcType=CHAR},
+      CreatedDate = #{createddate,jdbcType=TIMESTAMP},
+      CreatedBy = #{createdby,jdbcType=VARCHAR},
+      CreatedByID = #{createdbyid,jdbcType=CHAR},
+      DeptID = #{deptid,jdbcType=CHAR},
+      RevisedDate = #{reviseddate,jdbcType=TIMESTAMP},
+      RevisedBy = #{revisedby,jdbcType=VARCHAR},
+      WxAppName = #{wxappname,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+</mapper>

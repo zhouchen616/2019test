@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.holyrobot.con_product.mapper.ProProductScheduleImageMapper" >
+  <resultMap id="BaseResultMap" type="com.holyrobot.con_product.pojo.ProProductScheduleImage" >
+    <id column="ID" property="id" jdbcType="CHAR" />
+    <result column="ProScheduleID" property="proscheduleid" jdbcType="CHAR" />
+    <result column="ThumbSrc" property="thumbsrc" jdbcType="VARCHAR" />
+    <result column="ImageSrc" property="imagesrc" jdbcType="VARCHAR" />
+    <result column="OrderIndex" property="orderindex" jdbcType="INTEGER" />
+    <result column="OrgID" property="orgid" jdbcType="CHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.holyrobot.con_product.pojo.ProProductScheduleImage" extends="BaseResultMap" >
+    <result column="ImageInfo" property="imageinfo" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, ProScheduleID, ThumbSrc, ImageSrc, OrderIndex, OrgID
+  </sql>
+  <sql id="Blob_Column_List" >
+    ImageInfo
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.holyrobot.con_product.pojo.ProProductScheduleImageExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from Pro_Product_Schedule_Image
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.holyrobot.con_product.pojo.ProProductScheduleImageExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from Pro_Product_Schedule_Image
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from Pro_Product_Schedule_Image
+    where ID = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from Pro_Product_Schedule_Image
+    where ID = #{id,jdbcType=CHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.holyrobot.con_product.pojo.ProProductScheduleImageExample" >
+    delete from Pro_Product_Schedule_Image
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.holyrobot.con_product.pojo.ProProductScheduleImage" >
+    insert into Pro_Product_Schedule_Image (ID, ProScheduleID, ThumbSrc, 
+      ImageSrc, OrderIndex, OrgID, 
+      ImageInfo)
+    values (#{id,jdbcType=CHAR}, #{proscheduleid,jdbcType=CHAR}, #{thumbsrc,jdbcType=VARCHAR},
+      #{imagesrc,jdbcType=VARCHAR}, #{orderindex,jdbcType=INTEGER}, #{orgid,jdbcType=CHAR},
+      #{imageinfo,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.holyrobot.con_product.pojo.ProProductScheduleImage" >
+    insert into Pro_Product_Schedule_Image
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="proscheduleid != null" >
+        ProScheduleID,
+      </if>
+      <if test="thumbsrc != null" >
+        ThumbSrc,
+      </if>
+      <if test="imagesrc != null" >
+        ImageSrc,
+      </if>
+      <if test="orderindex != null" >
+        OrderIndex,
+      </if>
+      <if test="orgid != null" >
+        OrgID,
+      </if>
+      <if test="imageinfo != null" >
+        ImageInfo,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="proscheduleid != null" >
+        #{proscheduleid,jdbcType=CHAR},
+      </if>
+      <if test="thumbsrc != null" >
+        #{thumbsrc,jdbcType=VARCHAR},
+      </if>
+      <if test="imagesrc != null" >
+        #{imagesrc,jdbcType=VARCHAR},
+      </if>
+      <if test="orderindex != null" >
+        #{orderindex,jdbcType=INTEGER},
+      </if>
+      <if test="orgid != null" >
+        #{orgid,jdbcType=CHAR},
+      </if>
+      <if test="imageinfo != null" >
+        #{imageinfo,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.holyrobot.con_product.pojo.ProProductScheduleImageExample" resultType="java.lang.Integer" >
+    select count(*) from Pro_Product_Schedule_Image
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update Pro_Product_Schedule_Image
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=CHAR},
+      </if>
+      <if test="record.proscheduleid != null" >
+        ProScheduleID = #{record.proscheduleid,jdbcType=CHAR},
+      </if>
+      <if test="record.thumbsrc != null" >
+        ThumbSrc = #{record.thumbsrc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.imagesrc != null" >
+        ImageSrc = #{record.imagesrc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orderindex != null" >
+        OrderIndex = #{record.orderindex,jdbcType=INTEGER},
+      </if>
+      <if test="record.orgid != null" >
+        OrgID = #{record.orgid,jdbcType=CHAR},
+      </if>
+      <if test="record.imageinfo != null" >
+        ImageInfo = #{record.imageinfo,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update Pro_Product_Schedule_Image
+    set ID = #{record.id,jdbcType=CHAR},
+      ProScheduleID = #{record.proscheduleid,jdbcType=CHAR},
+      ThumbSrc = #{record.thumbsrc,jdbcType=VARCHAR},
+      ImageSrc = #{record.imagesrc,jdbcType=VARCHAR},
+      OrderIndex = #{record.orderindex,jdbcType=INTEGER},
+      OrgID = #{record.orgid,jdbcType=CHAR},
+      ImageInfo = #{record.imageinfo,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update Pro_Product_Schedule_Image
+    set ID = #{record.id,jdbcType=CHAR},
+      ProScheduleID = #{record.proscheduleid,jdbcType=CHAR},
+      ThumbSrc = #{record.thumbsrc,jdbcType=VARCHAR},
+      ImageSrc = #{record.imagesrc,jdbcType=VARCHAR},
+      OrderIndex = #{record.orderindex,jdbcType=INTEGER},
+      OrgID = #{record.orgid,jdbcType=CHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.holyrobot.con_product.pojo.ProProductScheduleImage" >
+    update Pro_Product_Schedule_Image
+    <set >
+      <if test="proscheduleid != null" >
+        ProScheduleID = #{proscheduleid,jdbcType=CHAR},
+      </if>
+      <if test="thumbsrc != null" >
+        ThumbSrc = #{thumbsrc,jdbcType=VARCHAR},
+      </if>
+      <if test="imagesrc != null" >
+        ImageSrc = #{imagesrc,jdbcType=VARCHAR},
+      </if>
+      <if test="orderindex != null" >
+        OrderIndex = #{orderindex,jdbcType=INTEGER},
+      </if>
+      <if test="orgid != null" >
+        OrgID = #{orgid,jdbcType=CHAR},
+      </if>
+      <if test="imageinfo != null" >
+        ImageInfo = #{imageinfo,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.holyrobot.con_product.pojo.ProProductScheduleImage" >
+    update Pro_Product_Schedule_Image
+    set ProScheduleID = #{proscheduleid,jdbcType=CHAR},
+      ThumbSrc = #{thumbsrc,jdbcType=VARCHAR},
+      ImageSrc = #{imagesrc,jdbcType=VARCHAR},
+      OrderIndex = #{orderindex,jdbcType=INTEGER},
+      OrgID = #{orgid,jdbcType=CHAR},
+      ImageInfo = #{imageinfo,jdbcType=LONGVARCHAR}
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.holyrobot.con_product.pojo.ProProductScheduleImage" >
+    update Pro_Product_Schedule_Image
+    set ProScheduleID = #{proscheduleid,jdbcType=CHAR},
+      ThumbSrc = #{thumbsrc,jdbcType=VARCHAR},
+      ImageSrc = #{imagesrc,jdbcType=VARCHAR},
+      OrderIndex = #{orderindex,jdbcType=INTEGER},
+      OrgID = #{orgid,jdbcType=CHAR}
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+</mapper>

@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.holyrobot.con_om.mapper.OmConfigDetailMapper" >
+  <resultMap id="BaseResultMap" type="com.holyrobot.con_om.pojo.OmConfigDetail" >
+    <id column="ID" property="id" jdbcType="CHAR" />
+    <result column="ConfigKey" property="configkey" jdbcType="VARCHAR" />
+    <result column="ConfigID" property="configid" jdbcType="CHAR" />
+    <result column="ConfigValue" property="configvalue" jdbcType="BIT" />
+    <result column="OrgID" property="orgid" jdbcType="CHAR" />
+    <result column="CreatedDate" property="createddate" jdbcType="TIMESTAMP" />
+    <result column="CreatedBy" property="createdby" jdbcType="VARCHAR" />
+    <result column="CreatedByID" property="createdbyid" jdbcType="CHAR" />
+    <result column="RevisedDate" property="reviseddate" jdbcType="TIMESTAMP" />
+    <result column="RevisedBy" property="revisedby" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, ConfigKey, ConfigID, ConfigValue, OrgID, CreatedDate, CreatedBy, CreatedByID, 
+    RevisedDate, RevisedBy
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.holyrobot.con_om.pojo.OmConfigDetailExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from Om_ConfigDetail
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from Om_ConfigDetail
+    where ID = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from Om_ConfigDetail
+    where ID = #{id,jdbcType=CHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.holyrobot.con_om.pojo.OmConfigDetailExample" >
+    delete from Om_ConfigDetail
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.holyrobot.con_om.pojo.OmConfigDetail" >
+    insert into Om_ConfigDetail (ID, ConfigKey, ConfigID, 
+      ConfigValue, OrgID, CreatedDate, 
+      CreatedBy, CreatedByID, RevisedDate, 
+      RevisedBy)
+    values (#{id,jdbcType=CHAR}, #{configkey,jdbcType=VARCHAR}, #{configid,jdbcType=CHAR},
+      #{configvalue,jdbcType=BIT}, #{orgid,jdbcType=CHAR}, #{createddate,jdbcType=TIMESTAMP}, 
+      #{createdby,jdbcType=VARCHAR}, #{createdbyid,jdbcType=CHAR}, #{reviseddate,jdbcType=TIMESTAMP},
+      #{revisedby,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.holyrobot.con_om.pojo.OmConfigDetail" >
+    insert into Om_ConfigDetail
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="configkey != null" >
+        ConfigKey,
+      </if>
+      <if test="configid != null" >
+        ConfigID,
+      </if>
+      <if test="configvalue != null" >
+        ConfigValue,
+      </if>
+      <if test="orgid != null" >
+        OrgID,
+      </if>
+      <if test="createddate != null" >
+        CreatedDate,
+      </if>
+      <if test="createdby != null" >
+        CreatedBy,
+      </if>
+      <if test="createdbyid != null" >
+        CreatedByID,
+      </if>
+      <if test="reviseddate != null" >
+        RevisedDate,
+      </if>
+      <if test="revisedby != null" >
+        RevisedBy,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="configkey != null" >
+        #{configkey,jdbcType=VARCHAR},
+      </if>
+      <if test="configid != null" >
+        #{configid,jdbcType=CHAR},
+      </if>
+      <if test="configvalue != null" >
+        #{configvalue,jdbcType=BIT},
+      </if>
+      <if test="orgid != null" >
+        #{orgid,jdbcType=CHAR},
+      </if>
+      <if test="createddate != null" >
+        #{createddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdby != null" >
+        #{createdby,jdbcType=VARCHAR},
+      </if>
+      <if test="createdbyid != null" >
+        #{createdbyid,jdbcType=CHAR},
+      </if>
+      <if test="reviseddate != null" >
+        #{reviseddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="revisedby != null" >
+        #{revisedby,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.holyrobot.con_om.pojo.OmConfigDetailExample" resultType="java.lang.Integer" >
+    select count(*) from Om_ConfigDetail
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update Om_ConfigDetail
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=CHAR},
+      </if>
+      <if test="record.configkey != null" >
+        ConfigKey = #{record.configkey,jdbcType=VARCHAR},
+      </if>
+      <if test="record.configid != null" >
+        ConfigID = #{record.configid,jdbcType=CHAR},
+      </if>
+      <if test="record.configvalue != null" >
+        ConfigValue = #{record.configvalue,jdbcType=BIT},
+      </if>
+      <if test="record.orgid != null" >
+        OrgID = #{record.orgid,jdbcType=CHAR},
+      </if>
+      <if test="record.createddate != null" >
+        CreatedDate = #{record.createddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createdby != null" >
+        CreatedBy = #{record.createdby,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createdbyid != null" >
+        CreatedByID = #{record.createdbyid,jdbcType=CHAR},
+      </if>
+      <if test="record.reviseddate != null" >
+        RevisedDate = #{record.reviseddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.revisedby != null" >
+        RevisedBy = #{record.revisedby,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update Om_ConfigDetail
+    set ID = #{record.id,jdbcType=CHAR},
+      ConfigKey = #{record.configkey,jdbcType=VARCHAR},
+      ConfigID = #{record.configid,jdbcType=CHAR},
+      ConfigValue = #{record.configvalue,jdbcType=BIT},
+      OrgID = #{record.orgid,jdbcType=CHAR},
+      CreatedDate = #{record.createddate,jdbcType=TIMESTAMP},
+      CreatedBy = #{record.createdby,jdbcType=VARCHAR},
+      CreatedByID = #{record.createdbyid,jdbcType=CHAR},
+      RevisedDate = #{record.reviseddate,jdbcType=TIMESTAMP},
+      RevisedBy = #{record.revisedby,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.holyrobot.con_om.pojo.OmConfigDetail" >
+    update Om_ConfigDetail
+    <set >
+      <if test="configkey != null" >
+        ConfigKey = #{configkey,jdbcType=VARCHAR},
+      </if>
+      <if test="configid != null" >
+        ConfigID = #{configid,jdbcType=CHAR},
+      </if>
+      <if test="configvalue != null" >
+        ConfigValue = #{configvalue,jdbcType=BIT},
+      </if>
+      <if test="orgid != null" >
+        OrgID = #{orgid,jdbcType=CHAR},
+      </if>
+      <if test="createddate != null" >
+        CreatedDate = #{createddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdby != null" >
+        CreatedBy = #{createdby,jdbcType=VARCHAR},
+      </if>
+      <if test="createdbyid != null" >
+        CreatedByID = #{createdbyid,jdbcType=CHAR},
+      </if>
+      <if test="reviseddate != null" >
+        RevisedDate = #{reviseddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="revisedby != null" >
+        RevisedBy = #{revisedby,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.holyrobot.con_om.pojo.OmConfigDetail" >
+    update Om_ConfigDetail
+    set ConfigKey = #{configkey,jdbcType=VARCHAR},
+      ConfigID = #{configid,jdbcType=CHAR},
+      ConfigValue = #{configvalue,jdbcType=BIT},
+      OrgID = #{orgid,jdbcType=CHAR},
+      CreatedDate = #{createddate,jdbcType=TIMESTAMP},
+      CreatedBy = #{createdby,jdbcType=VARCHAR},
+      CreatedByID = #{createdbyid,jdbcType=CHAR},
+      RevisedDate = #{reviseddate,jdbcType=TIMESTAMP},
+      RevisedBy = #{revisedby,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+  <select id="selectIsAllowVisitorSeeShopValue" resultType="int" parameterType="string">
+    select top 1 ConfigValue from Om_ConfigDetail where ConfigKey = 'IsAllowVisitorSeeShop' and orgId=#{orgId}
+  </select>
+</mapper>

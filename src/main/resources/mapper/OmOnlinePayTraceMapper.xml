@@ -1,0 +1,448 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.holyrobot.con_om.mapper.OmOnlinePayTraceMapper" >
+  <resultMap id="BaseResultMap" type="com.holyrobot.con_om.pojo.OmOnlinePayTrace" >
+    <id column="ID" property="id" jdbcType="CHAR" />
+    <result column="OutTradeNo" property="outtradeno" jdbcType="VARCHAR" />
+    <result column="OrderID" property="orderid" jdbcType="CHAR" />
+    <result column="OrderNo" property="orderno" jdbcType="VARCHAR" />
+    <result column="OrderName" property="ordername" jdbcType="VARCHAR" />
+    <result column="OrderAmt" property="orderamt" jdbcType="DECIMAL" />
+    <result column="Rate" property="rate" jdbcType="DECIMAL" />
+    <result column="Fee" property="fee" jdbcType="DECIMAL" />
+    <result column="PayAmt" property="payamt" jdbcType="DECIMAL" />
+    <result column="RecPayAmt" property="recpayamt" jdbcType="DECIMAL" />
+    <result column="PayDate" property="paydate" jdbcType="TIMESTAMP" />
+    <result column="PlatformType" property="platformtype" jdbcType="INTEGER" />
+    <result column="DataStatus" property="datastatus" jdbcType="INTEGER" />
+    <result column="CreatedBy" property="createdby" jdbcType="VARCHAR" />
+    <result column="CreatedByID" property="createdbyid" jdbcType="CHAR" />
+    <result column="DeptID" property="deptid" jdbcType="CHAR" />
+    <result column="OrgID" property="orgid" jdbcType="CHAR" />
+    <result column="RevisedDate" property="reviseddate" jdbcType="TIMESTAMP" />
+    <result column="Summary" property="summary" jdbcType="VARCHAR" />
+    <result column="TravelName" property="travelname" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, OutTradeNo, OrderID, OrderNo, OrderName, OrderAmt, Rate, Fee, PayAmt, RecPayAmt, 
+    PayDate, PlatformType, DataStatus, CreatedBy, CreatedByID, DeptID, OrgID, RevisedDate, 
+    Summary, TravelName
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.holyrobot.con_om.pojo.OmOnlinePayTraceExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from Om_OnlinePayTrace
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from Om_OnlinePayTrace
+    where ID = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from Om_OnlinePayTrace
+    where ID = #{id,jdbcType=CHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.holyrobot.con_om.pojo.OmOnlinePayTraceExample" >
+    delete from Om_OnlinePayTrace
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.holyrobot.con_om.pojo.OmOnlinePayTrace" >
+    insert into Om_OnlinePayTrace (ID, OutTradeNo, OrderID, 
+      OrderNo, OrderName, OrderAmt, 
+      Rate, Fee, PayAmt, 
+      RecPayAmt, PayDate, PlatformType, 
+      DataStatus, CreatedBy, CreatedByID, 
+      DeptID, OrgID, RevisedDate, 
+      Summary, TravelName)
+    values (#{id,jdbcType=CHAR}, #{outtradeno,jdbcType=VARCHAR}, #{orderid,jdbcType=CHAR},
+      #{orderno,jdbcType=VARCHAR}, #{ordername,jdbcType=VARCHAR}, #{orderamt,jdbcType=DECIMAL},
+      #{rate,jdbcType=DECIMAL}, #{fee,jdbcType=DECIMAL}, #{payamt,jdbcType=DECIMAL}, 
+      #{recpayamt,jdbcType=DECIMAL}, #{paydate,jdbcType=TIMESTAMP}, #{platformtype,jdbcType=INTEGER}, 
+      #{datastatus,jdbcType=INTEGER}, #{createdby,jdbcType=VARCHAR}, #{createdbyid,jdbcType=CHAR},
+      #{deptid,jdbcType=CHAR}, #{orgid,jdbcType=CHAR}, #{reviseddate,jdbcType=TIMESTAMP}, 
+      #{summary,jdbcType=VARCHAR}, #{travelname,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.holyrobot.con_om.pojo.OmOnlinePayTrace" >
+    insert into Om_OnlinePayTrace
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="outtradeno != null" >
+        OutTradeNo,
+      </if>
+      <if test="orderid != null" >
+        OrderID,
+      </if>
+      <if test="orderno != null" >
+        OrderNo,
+      </if>
+      <if test="ordername != null" >
+        OrderName,
+      </if>
+      <if test="orderamt != null" >
+        OrderAmt,
+      </if>
+      <if test="rate != null" >
+        Rate,
+      </if>
+      <if test="fee != null" >
+        Fee,
+      </if>
+      <if test="payamt != null" >
+        PayAmt,
+      </if>
+      <if test="recpayamt != null" >
+        RecPayAmt,
+      </if>
+      <if test="paydate != null" >
+        PayDate,
+      </if>
+      <if test="platformtype != null" >
+        PlatformType,
+      </if>
+      <if test="datastatus != null" >
+        DataStatus,
+      </if>
+      <if test="createdby != null" >
+        CreatedBy,
+      </if>
+      <if test="createdbyid != null" >
+        CreatedByID,
+      </if>
+      <if test="deptid != null" >
+        DeptID,
+      </if>
+      <if test="orgid != null" >
+        OrgID,
+      </if>
+      <if test="reviseddate != null" >
+        RevisedDate,
+      </if>
+      <if test="summary != null" >
+        Summary,
+      </if>
+      <if test="travelname != null" >
+        TravelName,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="outtradeno != null" >
+        #{outtradeno,jdbcType=VARCHAR},
+      </if>
+      <if test="orderid != null" >
+        #{orderid,jdbcType=CHAR},
+      </if>
+      <if test="orderno != null" >
+        #{orderno,jdbcType=VARCHAR},
+      </if>
+      <if test="ordername != null" >
+        #{ordername,jdbcType=VARCHAR},
+      </if>
+      <if test="orderamt != null" >
+        #{orderamt,jdbcType=DECIMAL},
+      </if>
+      <if test="rate != null" >
+        #{rate,jdbcType=DECIMAL},
+      </if>
+      <if test="fee != null" >
+        #{fee,jdbcType=DECIMAL},
+      </if>
+      <if test="payamt != null" >
+        #{payamt,jdbcType=DECIMAL},
+      </if>
+      <if test="recpayamt != null" >
+        #{recpayamt,jdbcType=DECIMAL},
+      </if>
+      <if test="paydate != null" >
+        #{paydate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="platformtype != null" >
+        #{platformtype,jdbcType=INTEGER},
+      </if>
+      <if test="datastatus != null" >
+        #{datastatus,jdbcType=INTEGER},
+      </if>
+      <if test="createdby != null" >
+        #{createdby,jdbcType=VARCHAR},
+      </if>
+      <if test="createdbyid != null" >
+        #{createdbyid,jdbcType=CHAR},
+      </if>
+      <if test="deptid != null" >
+        #{deptid,jdbcType=CHAR},
+      </if>
+      <if test="orgid != null" >
+        #{orgid,jdbcType=CHAR},
+      </if>
+      <if test="reviseddate != null" >
+        #{reviseddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="summary != null" >
+        #{summary,jdbcType=VARCHAR},
+      </if>
+      <if test="travelname != null" >
+        #{travelname,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.holyrobot.con_om.pojo.OmOnlinePayTraceExample" resultType="java.lang.Integer" >
+    select count(*) from Om_OnlinePayTrace
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update Om_OnlinePayTrace
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=CHAR},
+      </if>
+      <if test="record.outtradeno != null" >
+        OutTradeNo = #{record.outtradeno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orderid != null" >
+        OrderID = #{record.orderid,jdbcType=CHAR},
+      </if>
+      <if test="record.orderno != null" >
+        OrderNo = #{record.orderno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ordername != null" >
+        OrderName = #{record.ordername,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orderamt != null" >
+        OrderAmt = #{record.orderamt,jdbcType=DECIMAL},
+      </if>
+      <if test="record.rate != null" >
+        Rate = #{record.rate,jdbcType=DECIMAL},
+      </if>
+      <if test="record.fee != null" >
+        Fee = #{record.fee,jdbcType=DECIMAL},
+      </if>
+      <if test="record.payamt != null" >
+        PayAmt = #{record.payamt,jdbcType=DECIMAL},
+      </if>
+      <if test="record.recpayamt != null" >
+        RecPayAmt = #{record.recpayamt,jdbcType=DECIMAL},
+      </if>
+      <if test="record.paydate != null" >
+        PayDate = #{record.paydate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.platformtype != null" >
+        PlatformType = #{record.platformtype,jdbcType=INTEGER},
+      </if>
+      <if test="record.datastatus != null" >
+        DataStatus = #{record.datastatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.createdby != null" >
+        CreatedBy = #{record.createdby,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createdbyid != null" >
+        CreatedByID = #{record.createdbyid,jdbcType=CHAR},
+      </if>
+      <if test="record.deptid != null" >
+        DeptID = #{record.deptid,jdbcType=CHAR},
+      </if>
+      <if test="record.orgid != null" >
+        OrgID = #{record.orgid,jdbcType=CHAR},
+      </if>
+      <if test="record.reviseddate != null" >
+        RevisedDate = #{record.reviseddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.summary != null" >
+        Summary = #{record.summary,jdbcType=VARCHAR},
+      </if>
+      <if test="record.travelname != null" >
+        TravelName = #{record.travelname,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update Om_OnlinePayTrace
+    set ID = #{record.id,jdbcType=CHAR},
+      OutTradeNo = #{record.outtradeno,jdbcType=VARCHAR},
+      OrderID = #{record.orderid,jdbcType=CHAR},
+      OrderNo = #{record.orderno,jdbcType=VARCHAR},
+      OrderName = #{record.ordername,jdbcType=VARCHAR},
+      OrderAmt = #{record.orderamt,jdbcType=DECIMAL},
+      Rate = #{record.rate,jdbcType=DECIMAL},
+      Fee = #{record.fee,jdbcType=DECIMAL},
+      PayAmt = #{record.payamt,jdbcType=DECIMAL},
+      RecPayAmt = #{record.recpayamt,jdbcType=DECIMAL},
+      PayDate = #{record.paydate,jdbcType=TIMESTAMP},
+      PlatformType = #{record.platformtype,jdbcType=INTEGER},
+      DataStatus = #{record.datastatus,jdbcType=INTEGER},
+      CreatedBy = #{record.createdby,jdbcType=VARCHAR},
+      CreatedByID = #{record.createdbyid,jdbcType=CHAR},
+      DeptID = #{record.deptid,jdbcType=CHAR},
+      OrgID = #{record.orgid,jdbcType=CHAR},
+      RevisedDate = #{record.reviseddate,jdbcType=TIMESTAMP},
+      Summary = #{record.summary,jdbcType=VARCHAR},
+      TravelName = #{record.travelname,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.holyrobot.con_om.pojo.OmOnlinePayTrace" >
+    update Om_OnlinePayTrace
+    <set >
+      <if test="outtradeno != null" >
+        OutTradeNo = #{outtradeno,jdbcType=VARCHAR},
+      </if>
+      <if test="orderid != null" >
+        OrderID = #{orderid,jdbcType=CHAR},
+      </if>
+      <if test="orderno != null" >
+        OrderNo = #{orderno,jdbcType=VARCHAR},
+      </if>
+      <if test="ordername != null" >
+        OrderName = #{ordername,jdbcType=VARCHAR},
+      </if>
+      <if test="orderamt != null" >
+        OrderAmt = #{orderamt,jdbcType=DECIMAL},
+      </if>
+      <if test="rate != null" >
+        Rate = #{rate,jdbcType=DECIMAL},
+      </if>
+      <if test="fee != null" >
+        Fee = #{fee,jdbcType=DECIMAL},
+      </if>
+      <if test="payamt != null" >
+        PayAmt = #{payamt,jdbcType=DECIMAL},
+      </if>
+      <if test="recpayamt != null" >
+        RecPayAmt = #{recpayamt,jdbcType=DECIMAL},
+      </if>
+      <if test="paydate != null" >
+        PayDate = #{paydate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="platformtype != null" >
+        PlatformType = #{platformtype,jdbcType=INTEGER},
+      </if>
+      <if test="datastatus != null" >
+        DataStatus = #{datastatus,jdbcType=INTEGER},
+      </if>
+      <if test="createdby != null" >
+        CreatedBy = #{createdby,jdbcType=VARCHAR},
+      </if>
+      <if test="createdbyid != null" >
+        CreatedByID = #{createdbyid,jdbcType=CHAR},
+      </if>
+      <if test="deptid != null" >
+        DeptID = #{deptid,jdbcType=CHAR},
+      </if>
+      <if test="orgid != null" >
+        OrgID = #{orgid,jdbcType=CHAR},
+      </if>
+      <if test="reviseddate != null" >
+        RevisedDate = #{reviseddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="summary != null" >
+        Summary = #{summary,jdbcType=VARCHAR},
+      </if>
+      <if test="travelname != null" >
+        TravelName = #{travelname,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.holyrobot.con_om.pojo.OmOnlinePayTrace" >
+    update Om_OnlinePayTrace
+    set OutTradeNo = #{outtradeno,jdbcType=VARCHAR},
+      OrderID = #{orderid,jdbcType=CHAR},
+      OrderNo = #{orderno,jdbcType=VARCHAR},
+      OrderName = #{ordername,jdbcType=VARCHAR},
+      OrderAmt = #{orderamt,jdbcType=DECIMAL},
+      Rate = #{rate,jdbcType=DECIMAL},
+      Fee = #{fee,jdbcType=DECIMAL},
+      PayAmt = #{payamt,jdbcType=DECIMAL},
+      RecPayAmt = #{recpayamt,jdbcType=DECIMAL},
+      PayDate = #{paydate,jdbcType=TIMESTAMP},
+      PlatformType = #{platformtype,jdbcType=INTEGER},
+      DataStatus = #{datastatus,jdbcType=INTEGER},
+      CreatedBy = #{createdby,jdbcType=VARCHAR},
+      CreatedByID = #{createdbyid,jdbcType=CHAR},
+      DeptID = #{deptid,jdbcType=CHAR},
+      OrgID = #{orgid,jdbcType=CHAR},
+      RevisedDate = #{reviseddate,jdbcType=TIMESTAMP},
+      Summary = #{summary,jdbcType=VARCHAR},
+      TravelName = #{travelname,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+</mapper>

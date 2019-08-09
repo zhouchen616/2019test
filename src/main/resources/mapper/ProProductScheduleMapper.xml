@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.holyrobot.con_product.mapper.ProProductScheduleMapper" >
+  <resultMap id="BaseResultMap" type="com.holyrobot.con_product.pojo.ProProductSchedule" >
+    <id column="ID" property="id" jdbcType="CHAR" />
+    <result column="ProID" property="proid" jdbcType="CHAR" />
+    <result column="SchDay" property="schday" jdbcType="INTEGER" />
+    <result column="SchName" property="schname" jdbcType="VARCHAR" />
+    <result column="SchInfo" property="schinfo" jdbcType="VARCHAR" />
+    <result column="SchStay" property="schstay" jdbcType="VARCHAR" />
+    <result column="SchRepast" property="schrepast" jdbcType="INTEGER" />
+    <result column="SchRepastInfo" property="schrepastinfo" jdbcType="VARCHAR" />
+    <result column="OrgID" property="orgid" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, ProID, SchDay, SchName, SchInfo, SchStay, SchRepast, SchRepastInfo, OrgID
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.holyrobot.con_product.pojo.ProProductScheduleExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from Pro_Product_Schedule
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from Pro_Product_Schedule
+    where ID = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from Pro_Product_Schedule
+    where ID = #{id,jdbcType=CHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.holyrobot.con_product.pojo.ProProductScheduleExample" >
+    delete from Pro_Product_Schedule
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.holyrobot.con_product.pojo.ProProductSchedule" >
+    insert into Pro_Product_Schedule (ID, ProID, SchDay, 
+      SchName, SchInfo, SchStay, 
+      SchRepast, SchRepastInfo, OrgID
+      )
+    values (#{id,jdbcType=CHAR}, #{proid,jdbcType=CHAR}, #{schday,jdbcType=INTEGER}, 
+      #{schname,jdbcType=VARCHAR}, #{schinfo,jdbcType=VARCHAR}, #{schstay,jdbcType=VARCHAR},
+      #{schrepast,jdbcType=INTEGER}, #{schrepastinfo,jdbcType=VARCHAR}, #{orgid,jdbcType=CHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.holyrobot.con_product.pojo.ProProductSchedule" >
+    insert into Pro_Product_Schedule
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="proid != null" >
+        ProID,
+      </if>
+      <if test="schday != null" >
+        SchDay,
+      </if>
+      <if test="schname != null" >
+        SchName,
+      </if>
+      <if test="schinfo != null" >
+        SchInfo,
+      </if>
+      <if test="schstay != null" >
+        SchStay,
+      </if>
+      <if test="schrepast != null" >
+        SchRepast,
+      </if>
+      <if test="schrepastinfo != null" >
+        SchRepastInfo,
+      </if>
+      <if test="orgid != null" >
+        OrgID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="proid != null" >
+        #{proid,jdbcType=CHAR},
+      </if>
+      <if test="schday != null" >
+        #{schday,jdbcType=INTEGER},
+      </if>
+      <if test="schname != null" >
+        #{schname,jdbcType=VARCHAR},
+      </if>
+      <if test="schinfo != null" >
+        #{schinfo,jdbcType=VARCHAR},
+      </if>
+      <if test="schstay != null" >
+        #{schstay,jdbcType=VARCHAR},
+      </if>
+      <if test="schrepast != null" >
+        #{schrepast,jdbcType=INTEGER},
+      </if>
+      <if test="schrepastinfo != null" >
+        #{schrepastinfo,jdbcType=VARCHAR},
+      </if>
+      <if test="orgid != null" >
+        #{orgid,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.holyrobot.con_product.pojo.ProProductScheduleExample" resultType="java.lang.Integer" >
+    select count(*) from Pro_Product_Schedule
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update Pro_Product_Schedule
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=CHAR},
+      </if>
+      <if test="record.proid != null" >
+        ProID = #{record.proid,jdbcType=CHAR},
+      </if>
+      <if test="record.schday != null" >
+        SchDay = #{record.schday,jdbcType=INTEGER},
+      </if>
+      <if test="record.schname != null" >
+        SchName = #{record.schname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.schinfo != null" >
+        SchInfo = #{record.schinfo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.schstay != null" >
+        SchStay = #{record.schstay,jdbcType=VARCHAR},
+      </if>
+      <if test="record.schrepast != null" >
+        SchRepast = #{record.schrepast,jdbcType=INTEGER},
+      </if>
+      <if test="record.schrepastinfo != null" >
+        SchRepastInfo = #{record.schrepastinfo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orgid != null" >
+        OrgID = #{record.orgid,jdbcType=CHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update Pro_Product_Schedule
+    set ID = #{record.id,jdbcType=CHAR},
+      ProID = #{record.proid,jdbcType=CHAR},
+      SchDay = #{record.schday,jdbcType=INTEGER},
+      SchName = #{record.schname,jdbcType=VARCHAR},
+      SchInfo = #{record.schinfo,jdbcType=VARCHAR},
+      SchStay = #{record.schstay,jdbcType=VARCHAR},
+      SchRepast = #{record.schrepast,jdbcType=INTEGER},
+      SchRepastInfo = #{record.schrepastinfo,jdbcType=VARCHAR},
+      OrgID = #{record.orgid,jdbcType=CHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.holyrobot.con_product.pojo.ProProductSchedule" >
+    update Pro_Product_Schedule
+    <set >
+      <if test="proid != null" >
+        ProID = #{proid,jdbcType=CHAR},
+      </if>
+      <if test="schday != null" >
+        SchDay = #{schday,jdbcType=INTEGER},
+      </if>
+      <if test="schname != null" >
+        SchName = #{schname,jdbcType=VARCHAR},
+      </if>
+      <if test="schinfo != null" >
+        SchInfo = #{schinfo,jdbcType=VARCHAR},
+      </if>
+      <if test="schstay != null" >
+        SchStay = #{schstay,jdbcType=VARCHAR},
+      </if>
+      <if test="schrepast != null" >
+        SchRepast = #{schrepast,jdbcType=INTEGER},
+      </if>
+      <if test="schrepastinfo != null" >
+        SchRepastInfo = #{schrepastinfo,jdbcType=VARCHAR},
+      </if>
+      <if test="orgid != null" >
+        OrgID = #{orgid,jdbcType=CHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.holyrobot.con_product.pojo.ProProductSchedule" >
+    update Pro_Product_Schedule
+    set ProID = #{proid,jdbcType=CHAR},
+      SchDay = #{schday,jdbcType=INTEGER},
+      SchName = #{schname,jdbcType=VARCHAR},
+      SchInfo = #{schinfo,jdbcType=VARCHAR},
+      SchStay = #{schstay,jdbcType=VARCHAR},
+      SchRepast = #{schrepast,jdbcType=INTEGER},
+      SchRepastInfo = #{schrepastinfo,jdbcType=VARCHAR},
+      OrgID = #{orgid,jdbcType=CHAR}
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+</mapper>

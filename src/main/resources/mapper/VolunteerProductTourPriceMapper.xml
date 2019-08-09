@@ -1,0 +1,617 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.holyrobot.con_volunteer.mapper.VolunteerProductTourPriceMapper" >
+  <resultMap id="BaseResultMap" type="com.holyrobot.con_volunteer.pojo.VolunteerProductTourPrice" >
+    <id column="ID" property="id" jdbcType="CHAR" />
+    <result column="OrgID" property="orgid" jdbcType="CHAR" />
+    <result column="TravelAgencyName" property="travelagencyname" jdbcType="VARCHAR" />
+    <result column="UserID" property="userid" jdbcType="CHAR" />
+    <result column="ShopName" property="shopname" jdbcType="VARCHAR" />
+    <result column="ProID" property="proid" jdbcType="CHAR" />
+    <result column="TourID" property="tourid" jdbcType="CHAR" />
+    <result column="SiteID" property="siteid" jdbcType="CHAR" />
+    <result column="SiteName" property="sitename" jdbcType="VARCHAR" />
+    <result column="TouristType" property="touristtype" jdbcType="INTEGER" />
+    <result column="PolicyName" property="policyname" jdbcType="VARCHAR" />
+    <result column="OrderIndex" property="orderindex" jdbcType="INTEGER" />
+    <result column="VolunteerProductID" property="volunteerproductid" jdbcType="CHAR" />
+    <result column="DirectPrice" property="directprice" jdbcType="DECIMAL" />
+    <result column="SalesPrice" property="salesprice" jdbcType="DECIMAL" />
+    <result column="RebatePrice" property="rebateprice" jdbcType="DECIMAL" />
+    <result column="SingleRoomPrice" property="singleroomprice" jdbcType="DECIMAL" />
+    <result column="SalesCostPrice" property="salescostprice" jdbcType="DECIMAL" />
+    <result column="DirectCostPrice" property="directcostprice" jdbcType="DECIMAL" />
+    <result column="DiscountTypeC" property="discounttypec" jdbcType="INTEGER" />
+    <result column="PreValueC" property="prevaluec" jdbcType="DECIMAL" />
+    <result column="DiscountTypeB" property="discounttypeb" jdbcType="INTEGER" />
+    <result column="PreValueB" property="prevalueb" jdbcType="DECIMAL" />
+    <result column="IsOccupySeat" property="isoccupyseat" jdbcType="BIT" />
+    <result column="IsDefault" property="isdefault" jdbcType="BIT" />
+    <result column="DataStatus" property="datastatus" jdbcType="INTEGER" />
+    <result column="Allowance" property="allowance" jdbcType="DECIMAL" />
+    <result column="NewVolunteerProductID" property="newvolunteerproductid" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, OrgID, TravelAgencyName, UserID, ShopName, ProID, TourID, SiteID, SiteName, TouristType, 
+    PolicyName, OrderIndex, VolunteerProductID, DirectPrice, SalesPrice, RebatePrice, 
+    SingleRoomPrice, SalesCostPrice, DirectCostPrice, DiscountTypeC, PreValueC, DiscountTypeB, 
+    PreValueB, IsOccupySeat, IsDefault, DataStatus, Allowance, NewVolunteerProductID
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.holyrobot.con_volunteer.pojo.VolunteerProductTourPriceExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from Volunteer_ProductTourPrice
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from Volunteer_ProductTourPrice
+    where ID = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from Volunteer_ProductTourPrice
+    where ID = #{id,jdbcType=CHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.holyrobot.con_volunteer.pojo.VolunteerProductTourPriceExample" >
+    delete from Volunteer_ProductTourPrice
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.holyrobot.con_volunteer.pojo.VolunteerProductTourPrice" >
+    insert into Volunteer_ProductTourPrice (ID, OrgID, TravelAgencyName, 
+      UserID, ShopName, ProID, 
+      TourID, SiteID, SiteName, 
+      TouristType, PolicyName, OrderIndex, 
+      VolunteerProductID, DirectPrice, SalesPrice, 
+      RebatePrice, SingleRoomPrice, SalesCostPrice, 
+      DirectCostPrice, DiscountTypeC, PreValueC, 
+      DiscountTypeB, PreValueB, IsOccupySeat, 
+      IsDefault, DataStatus, Allowance, 
+      NewVolunteerProductID)
+    values (#{id,jdbcType=CHAR}, #{orgid,jdbcType=CHAR}, #{travelagencyname,jdbcType=VARCHAR},
+      #{userid,jdbcType=CHAR}, #{shopname,jdbcType=VARCHAR}, #{proid,jdbcType=CHAR},
+      #{tourid,jdbcType=CHAR}, #{siteid,jdbcType=CHAR}, #{sitename,jdbcType=VARCHAR},
+      #{touristtype,jdbcType=INTEGER}, #{policyname,jdbcType=VARCHAR}, #{orderindex,jdbcType=INTEGER},
+      #{volunteerproductid,jdbcType=CHAR}, #{directprice,jdbcType=DECIMAL}, #{salesprice,jdbcType=DECIMAL}, 
+      #{rebateprice,jdbcType=DECIMAL}, #{singleroomprice,jdbcType=DECIMAL}, #{salescostprice,jdbcType=DECIMAL}, 
+      #{directcostprice,jdbcType=DECIMAL}, #{discounttypec,jdbcType=INTEGER}, #{prevaluec,jdbcType=DECIMAL}, 
+      #{discounttypeb,jdbcType=INTEGER}, #{prevalueb,jdbcType=DECIMAL}, #{isoccupyseat,jdbcType=BIT}, 
+      #{isdefault,jdbcType=BIT}, #{datastatus,jdbcType=INTEGER}, #{allowance,jdbcType=DECIMAL}, 
+      #{newvolunteerproductid,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.holyrobot.con_volunteer.pojo.VolunteerProductTourPrice" >
+    insert into Volunteer_ProductTourPrice
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="orgid != null" >
+        OrgID,
+      </if>
+      <if test="travelagencyname != null" >
+        TravelAgencyName,
+      </if>
+      <if test="userid != null" >
+        UserID,
+      </if>
+      <if test="shopname != null" >
+        ShopName,
+      </if>
+      <if test="proid != null" >
+        ProID,
+      </if>
+      <if test="tourid != null" >
+        TourID,
+      </if>
+      <if test="siteid != null" >
+        SiteID,
+      </if>
+      <if test="sitename != null" >
+        SiteName,
+      </if>
+      <if test="touristtype != null" >
+        TouristType,
+      </if>
+      <if test="policyname != null" >
+        PolicyName,
+      </if>
+      <if test="orderindex != null" >
+        OrderIndex,
+      </if>
+      <if test="volunteerproductid != null" >
+        VolunteerProductID,
+      </if>
+      <if test="directprice != null" >
+        DirectPrice,
+      </if>
+      <if test="salesprice != null" >
+        SalesPrice,
+      </if>
+      <if test="rebateprice != null" >
+        RebatePrice,
+      </if>
+      <if test="singleroomprice != null" >
+        SingleRoomPrice,
+      </if>
+      <if test="salescostprice != null" >
+        SalesCostPrice,
+      </if>
+      <if test="directcostprice != null" >
+        DirectCostPrice,
+      </if>
+      <if test="discounttypec != null" >
+        DiscountTypeC,
+      </if>
+      <if test="prevaluec != null" >
+        PreValueC,
+      </if>
+      <if test="discounttypeb != null" >
+        DiscountTypeB,
+      </if>
+      <if test="prevalueb != null" >
+        PreValueB,
+      </if>
+      <if test="isoccupyseat != null" >
+        IsOccupySeat,
+      </if>
+      <if test="isdefault != null" >
+        IsDefault,
+      </if>
+      <if test="datastatus != null" >
+        DataStatus,
+      </if>
+      <if test="allowance != null" >
+        Allowance,
+      </if>
+      <if test="newvolunteerproductid != null" >
+        NewVolunteerProductID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="orgid != null" >
+        #{orgid,jdbcType=CHAR},
+      </if>
+      <if test="travelagencyname != null" >
+        #{travelagencyname,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=CHAR},
+      </if>
+      <if test="shopname != null" >
+        #{shopname,jdbcType=VARCHAR},
+      </if>
+      <if test="proid != null" >
+        #{proid,jdbcType=CHAR},
+      </if>
+      <if test="tourid != null" >
+        #{tourid,jdbcType=CHAR},
+      </if>
+      <if test="siteid != null" >
+        #{siteid,jdbcType=CHAR},
+      </if>
+      <if test="sitename != null" >
+        #{sitename,jdbcType=VARCHAR},
+      </if>
+      <if test="touristtype != null" >
+        #{touristtype,jdbcType=INTEGER},
+      </if>
+      <if test="policyname != null" >
+        #{policyname,jdbcType=VARCHAR},
+      </if>
+      <if test="orderindex != null" >
+        #{orderindex,jdbcType=INTEGER},
+      </if>
+      <if test="volunteerproductid != null" >
+        #{volunteerproductid,jdbcType=CHAR},
+      </if>
+      <if test="directprice != null" >
+        #{directprice,jdbcType=DECIMAL},
+      </if>
+      <if test="salesprice != null" >
+        #{salesprice,jdbcType=DECIMAL},
+      </if>
+      <if test="rebateprice != null" >
+        #{rebateprice,jdbcType=DECIMAL},
+      </if>
+      <if test="singleroomprice != null" >
+        #{singleroomprice,jdbcType=DECIMAL},
+      </if>
+      <if test="salescostprice != null" >
+        #{salescostprice,jdbcType=DECIMAL},
+      </if>
+      <if test="directcostprice != null" >
+        #{directcostprice,jdbcType=DECIMAL},
+      </if>
+      <if test="discounttypec != null" >
+        #{discounttypec,jdbcType=INTEGER},
+      </if>
+      <if test="prevaluec != null" >
+        #{prevaluec,jdbcType=DECIMAL},
+      </if>
+      <if test="discounttypeb != null" >
+        #{discounttypeb,jdbcType=INTEGER},
+      </if>
+      <if test="prevalueb != null" >
+        #{prevalueb,jdbcType=DECIMAL},
+      </if>
+      <if test="isoccupyseat != null" >
+        #{isoccupyseat,jdbcType=BIT},
+      </if>
+      <if test="isdefault != null" >
+        #{isdefault,jdbcType=BIT},
+      </if>
+      <if test="datastatus != null" >
+        #{datastatus,jdbcType=INTEGER},
+      </if>
+      <if test="allowance != null" >
+        #{allowance,jdbcType=DECIMAL},
+      </if>
+      <if test="newvolunteerproductid != null" >
+        #{newvolunteerproductid,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.holyrobot.con_volunteer.pojo.VolunteerProductTourPriceExample" resultType="java.lang.Integer" >
+    select count(*) from Volunteer_ProductTourPrice
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update Volunteer_ProductTourPrice
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=CHAR},
+      </if>
+      <if test="record.orgid != null" >
+        OrgID = #{record.orgid,jdbcType=CHAR},
+      </if>
+      <if test="record.travelagencyname != null" >
+        TravelAgencyName = #{record.travelagencyname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userid != null" >
+        UserID = #{record.userid,jdbcType=CHAR},
+      </if>
+      <if test="record.shopname != null" >
+        ShopName = #{record.shopname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.proid != null" >
+        ProID = #{record.proid,jdbcType=CHAR},
+      </if>
+      <if test="record.tourid != null" >
+        TourID = #{record.tourid,jdbcType=CHAR},
+      </if>
+      <if test="record.siteid != null" >
+        SiteID = #{record.siteid,jdbcType=CHAR},
+      </if>
+      <if test="record.sitename != null" >
+        SiteName = #{record.sitename,jdbcType=VARCHAR},
+      </if>
+      <if test="record.touristtype != null" >
+        TouristType = #{record.touristtype,jdbcType=INTEGER},
+      </if>
+      <if test="record.policyname != null" >
+        PolicyName = #{record.policyname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orderindex != null" >
+        OrderIndex = #{record.orderindex,jdbcType=INTEGER},
+      </if>
+      <if test="record.volunteerproductid != null" >
+        VolunteerProductID = #{record.volunteerproductid,jdbcType=CHAR},
+      </if>
+      <if test="record.directprice != null" >
+        DirectPrice = #{record.directprice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.salesprice != null" >
+        SalesPrice = #{record.salesprice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.rebateprice != null" >
+        RebatePrice = #{record.rebateprice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.singleroomprice != null" >
+        SingleRoomPrice = #{record.singleroomprice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.salescostprice != null" >
+        SalesCostPrice = #{record.salescostprice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.directcostprice != null" >
+        DirectCostPrice = #{record.directcostprice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.discounttypec != null" >
+        DiscountTypeC = #{record.discounttypec,jdbcType=INTEGER},
+      </if>
+      <if test="record.prevaluec != null" >
+        PreValueC = #{record.prevaluec,jdbcType=DECIMAL},
+      </if>
+      <if test="record.discounttypeb != null" >
+        DiscountTypeB = #{record.discounttypeb,jdbcType=INTEGER},
+      </if>
+      <if test="record.prevalueb != null" >
+        PreValueB = #{record.prevalueb,jdbcType=DECIMAL},
+      </if>
+      <if test="record.isoccupyseat != null" >
+        IsOccupySeat = #{record.isoccupyseat,jdbcType=BIT},
+      </if>
+      <if test="record.isdefault != null" >
+        IsDefault = #{record.isdefault,jdbcType=BIT},
+      </if>
+      <if test="record.datastatus != null" >
+        DataStatus = #{record.datastatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.allowance != null" >
+        Allowance = #{record.allowance,jdbcType=DECIMAL},
+      </if>
+      <if test="record.newvolunteerproductid != null" >
+        NewVolunteerProductID = #{record.newvolunteerproductid,jdbcType=CHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update Volunteer_ProductTourPrice
+    set ID = #{record.id,jdbcType=CHAR},
+      OrgID = #{record.orgid,jdbcType=CHAR},
+      TravelAgencyName = #{record.travelagencyname,jdbcType=VARCHAR},
+      UserID = #{record.userid,jdbcType=CHAR},
+      ShopName = #{record.shopname,jdbcType=VARCHAR},
+      ProID = #{record.proid,jdbcType=CHAR},
+      TourID = #{record.tourid,jdbcType=CHAR},
+      SiteID = #{record.siteid,jdbcType=CHAR},
+      SiteName = #{record.sitename,jdbcType=VARCHAR},
+      TouristType = #{record.touristtype,jdbcType=INTEGER},
+      PolicyName = #{record.policyname,jdbcType=VARCHAR},
+      OrderIndex = #{record.orderindex,jdbcType=INTEGER},
+      VolunteerProductID = #{record.volunteerproductid,jdbcType=CHAR},
+      DirectPrice = #{record.directprice,jdbcType=DECIMAL},
+      SalesPrice = #{record.salesprice,jdbcType=DECIMAL},
+      RebatePrice = #{record.rebateprice,jdbcType=DECIMAL},
+      SingleRoomPrice = #{record.singleroomprice,jdbcType=DECIMAL},
+      SalesCostPrice = #{record.salescostprice,jdbcType=DECIMAL},
+      DirectCostPrice = #{record.directcostprice,jdbcType=DECIMAL},
+      DiscountTypeC = #{record.discounttypec,jdbcType=INTEGER},
+      PreValueC = #{record.prevaluec,jdbcType=DECIMAL},
+      DiscountTypeB = #{record.discounttypeb,jdbcType=INTEGER},
+      PreValueB = #{record.prevalueb,jdbcType=DECIMAL},
+      IsOccupySeat = #{record.isoccupyseat,jdbcType=BIT},
+      IsDefault = #{record.isdefault,jdbcType=BIT},
+      DataStatus = #{record.datastatus,jdbcType=INTEGER},
+      Allowance = #{record.allowance,jdbcType=DECIMAL},
+      NewVolunteerProductID = #{record.newvolunteerproductid,jdbcType=CHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.holyrobot.con_volunteer.pojo.VolunteerProductTourPrice" >
+    update Volunteer_ProductTourPrice
+    <set >
+      <if test="orgid != null" >
+        OrgID = #{orgid,jdbcType=CHAR},
+      </if>
+      <if test="travelagencyname != null" >
+        TravelAgencyName = #{travelagencyname,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null" >
+        UserID = #{userid,jdbcType=CHAR},
+      </if>
+      <if test="shopname != null" >
+        ShopName = #{shopname,jdbcType=VARCHAR},
+      </if>
+      <if test="proid != null" >
+        ProID = #{proid,jdbcType=CHAR},
+      </if>
+      <if test="tourid != null" >
+        TourID = #{tourid,jdbcType=CHAR},
+      </if>
+      <if test="siteid != null" >
+        SiteID = #{siteid,jdbcType=CHAR},
+      </if>
+      <if test="sitename != null" >
+        SiteName = #{sitename,jdbcType=VARCHAR},
+      </if>
+      <if test="touristtype != null" >
+        TouristType = #{touristtype,jdbcType=INTEGER},
+      </if>
+      <if test="policyname != null" >
+        PolicyName = #{policyname,jdbcType=VARCHAR},
+      </if>
+      <if test="orderindex != null" >
+        OrderIndex = #{orderindex,jdbcType=INTEGER},
+      </if>
+      <if test="volunteerproductid != null" >
+        VolunteerProductID = #{volunteerproductid,jdbcType=CHAR},
+      </if>
+      <if test="directprice != null" >
+        DirectPrice = #{directprice,jdbcType=DECIMAL},
+      </if>
+      <if test="salesprice != null" >
+        SalesPrice = #{salesprice,jdbcType=DECIMAL},
+      </if>
+      <if test="rebateprice != null" >
+        RebatePrice = #{rebateprice,jdbcType=DECIMAL},
+      </if>
+      <if test="singleroomprice != null" >
+        SingleRoomPrice = #{singleroomprice,jdbcType=DECIMAL},
+      </if>
+      <if test="salescostprice != null" >
+        SalesCostPrice = #{salescostprice,jdbcType=DECIMAL},
+      </if>
+      <if test="directcostprice != null" >
+        DirectCostPrice = #{directcostprice,jdbcType=DECIMAL},
+      </if>
+      <if test="discounttypec != null" >
+        DiscountTypeC = #{discounttypec,jdbcType=INTEGER},
+      </if>
+      <if test="prevaluec != null" >
+        PreValueC = #{prevaluec,jdbcType=DECIMAL},
+      </if>
+      <if test="discounttypeb != null" >
+        DiscountTypeB = #{discounttypeb,jdbcType=INTEGER},
+      </if>
+      <if test="prevalueb != null" >
+        PreValueB = #{prevalueb,jdbcType=DECIMAL},
+      </if>
+      <if test="isoccupyseat != null" >
+        IsOccupySeat = #{isoccupyseat,jdbcType=BIT},
+      </if>
+      <if test="isdefault != null" >
+        IsDefault = #{isdefault,jdbcType=BIT},
+      </if>
+      <if test="datastatus != null" >
+        DataStatus = #{datastatus,jdbcType=INTEGER},
+      </if>
+      <if test="allowance != null" >
+        Allowance = #{allowance,jdbcType=DECIMAL},
+      </if>
+      <if test="newvolunteerproductid != null" >
+        NewVolunteerProductID = #{newvolunteerproductid,jdbcType=CHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.holyrobot.con_volunteer.pojo.VolunteerProductTourPrice" >
+    update Volunteer_ProductTourPrice
+    set OrgID = #{orgid,jdbcType=CHAR},
+      TravelAgencyName = #{travelagencyname,jdbcType=VARCHAR},
+      UserID = #{userid,jdbcType=CHAR},
+      ShopName = #{shopname,jdbcType=VARCHAR},
+      ProID = #{proid,jdbcType=CHAR},
+      TourID = #{tourid,jdbcType=CHAR},
+      SiteID = #{siteid,jdbcType=CHAR},
+      SiteName = #{sitename,jdbcType=VARCHAR},
+      TouristType = #{touristtype,jdbcType=INTEGER},
+      PolicyName = #{policyname,jdbcType=VARCHAR},
+      OrderIndex = #{orderindex,jdbcType=INTEGER},
+      VolunteerProductID = #{volunteerproductid,jdbcType=CHAR},
+      DirectPrice = #{directprice,jdbcType=DECIMAL},
+      SalesPrice = #{salesprice,jdbcType=DECIMAL},
+      RebatePrice = #{rebateprice,jdbcType=DECIMAL},
+      SingleRoomPrice = #{singleroomprice,jdbcType=DECIMAL},
+      SalesCostPrice = #{salescostprice,jdbcType=DECIMAL},
+      DirectCostPrice = #{directcostprice,jdbcType=DECIMAL},
+      DiscountTypeC = #{discounttypec,jdbcType=INTEGER},
+      PreValueC = #{prevaluec,jdbcType=DECIMAL},
+      DiscountTypeB = #{discounttypeb,jdbcType=INTEGER},
+      PreValueB = #{prevalueb,jdbcType=DECIMAL},
+      IsOccupySeat = #{isoccupyseat,jdbcType=BIT},
+      IsDefault = #{isdefault,jdbcType=BIT},
+      DataStatus = #{datastatus,jdbcType=INTEGER},
+      Allowance = #{allowance,jdbcType=DECIMAL},
+      NewVolunteerProductID = #{newvolunteerproductid,jdbcType=CHAR}
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+  <insert id="insertList" parameterType="java.util.List" >
+    insert into Volunteer_ProductTourPrice (ID, OrgID, TravelAgencyName,
+    UserID, ShopName, ProID,
+    TourID, SiteID, SiteName,
+    TouristType, PolicyName, OrderIndex,
+    VolunteerProductID, DirectPrice, SalesPrice,
+    RebatePrice, SingleRoomPrice, SalesCostPrice,
+    DirectCostPrice, DiscountTypeC, PreValueC,
+    DiscountTypeB, PreValueB,IsOccupySeat,
+    IsDefault,Allowance,NewVolunteerProductID)
+    values
+    <foreach collection="list" separator="," item="price" >
+      (#{price.id,jdbcType=CHAR}, #{price.orgid,jdbcType=CHAR}, #{price.travelagencyname,jdbcType=VARCHAR},
+      #{price.userid,jdbcType=CHAR}, #{price.shopname,jdbcType=VARCHAR}, #{price.proid,jdbcType=CHAR},
+      #{price.tourid,jdbcType=CHAR}, #{price.siteid,jdbcType=CHAR}, #{price.sitename,jdbcType=VARCHAR},
+      #{price.touristtype,jdbcType=INTEGER}, #{price.policyname,jdbcType=VARCHAR}, #{price.orderindex,jdbcType=INTEGER},
+      #{price.volunteerproductid,jdbcType=CHAR}, #{price.directprice,jdbcType=DECIMAL}, #{price.salesprice,jdbcType=DECIMAL},
+      #{price.rebateprice,jdbcType=DECIMAL}, #{price.singleroomprice,jdbcType=DECIMAL}, #{price.salescostprice,jdbcType=DECIMAL},
+      #{price.directcostprice,jdbcType=DECIMAL}, #{price.discounttypec,jdbcType=INTEGER}, #{price.prevaluec,jdbcType=DECIMAL},
+      #{price.discounttypeb,jdbcType=INTEGER}, #{price.prevalueb,jdbcType=DECIMAL}, #{price.isoccupyseat,jdbcType=BIT},
+      #{price.isdefault,jdbcType=BIT}, #{price.allowance,jdbcType=DECIMAL}, #{price.newvolunteerproductid,jdbcType=CHAR})
+    </foreach>
+  </insert>
+  <select id="selectTourPriceBySale" resultType="com.holyrobot.dto.ProductDetailPriceDto" >
+
+    SELECT
+    TOP 1 DirectPrice as oldPrice,DirectPrice as nowPrice
+    FROM
+    Volunteer_ProductTour as t
+    LEFT JOIN	Volunteer_ProductTourPrice as p on p.VolunteerProductID = t.ID
+    LEFT JOIN Volunteer_Product as p1 on p1.ID = t.VolunteerProductID
+    WHERE
+    t.ProID = #{proId}
+    AND p.SiteID = #{siteId}
+    AND p.userId = #{userId}
+    AND p.DataStatus = 1
+    AND p1.DataStatus = 1
+    AND p1.ProStatus = #{proStatus}
+    AND IsDefault = 1
+    AND DueDate > DATEADD(DAY, - 1, GETDATE())
+    ORDER BY DirectPrice ASC
+  </select>
+</mapper>

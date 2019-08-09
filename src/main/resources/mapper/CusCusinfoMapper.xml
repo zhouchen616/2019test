@@ -1,0 +1,654 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.holyrobot.con_common.mapper.CusCusinfoMapper" >
+  <resultMap id="BaseResultMap" type="com.holyrobot.con_common.pojo.CusCusinfo" >
+    <id column="ID" property="id" jdbcType="CHAR" />
+    <result column="CusType" property="custype" jdbcType="INTEGER" />
+    <result column="DepartureID" property="departureid" jdbcType="VARCHAR" />
+    <result column="Departure" property="departure" jdbcType="VARCHAR" />
+    <result column="Destination" property="destination" jdbcType="VARCHAR" />
+    <result column="StartDate" property="startdate" jdbcType="TIMESTAMP" />
+    <result column="EndDate" property="enddate" jdbcType="TIMESTAMP" />
+    <result column="AdultNum" property="adultnum" jdbcType="INTEGER" />
+    <result column="ChildNum" property="childnum" jdbcType="INTEGER" />
+    <result column="Budget" property="budget" jdbcType="DECIMAL" />
+    <result column="CustomerNum" property="customernum" jdbcType="INTEGER" />
+    <result column="OtherRequire" property="otherrequire" jdbcType="VARCHAR" />
+    <result column="TravellerName" property="travellername" jdbcType="VARCHAR" />
+    <result column="Wechat" property="wechat" jdbcType="VARCHAR" />
+    <result column="Mobile" property="mobile" jdbcType="VARCHAR" />
+    <result column="Email" property="email" jdbcType="VARCHAR" />
+    <result column="DataStatus" property="datastatus" jdbcType="INTEGER" />
+    <result column="SiteID" property="siteid" jdbcType="CHAR" />
+    <result column="CreatedDate" property="createddate" jdbcType="TIMESTAMP" />
+    <result column="CreatedBy" property="createdby" jdbcType="VARCHAR" />
+    <result column="CreatedByID" property="createdbyid" jdbcType="CHAR" />
+    <result column="DeptID" property="deptid" jdbcType="CHAR" />
+    <result column="OrgID" property="orgid" jdbcType="CHAR" />
+    <result column="RevisedDate" property="reviseddate" jdbcType="TIMESTAMP" />
+    <result column="RevisedBy" property="revisedby" jdbcType="VARCHAR" />
+    <result column="CusInfoNo" property="cusinfono" jdbcType="VARCHAR" />
+    <result column="DestinationID" property="destinationid" jdbcType="VARCHAR" />
+    <result column="PushTimes" property="pushtimes" jdbcType="INTEGER" />
+    <result column="LastPushDate" property="lastpushdate" jdbcType="TIMESTAMP" />
+    <result column="Tag" property="tag" jdbcType="VARCHAR" />
+    <result column="Source" property="source" jdbcType="INTEGER" />
+    <result column="ServiceType" property="servicetype" jdbcType="VARCHAR" />
+    <result column="SupplierID" property="supplierid" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, CusType, DepartureID, Departure, Destination, StartDate, EndDate, AdultNum, ChildNum,
+    Budget, CustomerNum, OtherRequire, TravellerName, Wechat, Mobile, Email, DataStatus,
+    SiteID, CreatedDate, CreatedBy, CreatedByID, DeptID, OrgID, RevisedDate, RevisedBy,
+    CusInfoNo, DestinationID, PushTimes, LastPushDate, Tag, Source, ServiceType, SupplierID
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.holyrobot.con_common.pojo.CusCusinfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from Cus_CusInfo
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from Cus_CusInfo
+    where ID = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from Cus_CusInfo
+    where ID = #{id,jdbcType=CHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.holyrobot.con_common.pojo.CusCusinfoExample" >
+    delete from Cus_CusInfo
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.holyrobot.con_common.pojo.CusCusinfo" >
+    insert into Cus_CusInfo (ID, CusType, DepartureID,
+    Departure, Destination, StartDate,
+    EndDate, AdultNum, ChildNum,
+    Budget, CustomerNum, OtherRequire,
+    TravellerName, Wechat, Mobile,
+    Email, DataStatus, SiteID,
+    CreatedDate, CreatedBy, CreatedByID,
+    DeptID, OrgID, RevisedDate,
+    RevisedBy, CusInfoNo, DestinationID,
+    PushTimes, LastPushDate, Tag,
+    Source, ServiceType, SupplierID
+    )
+    values (#{id,jdbcType=CHAR}, #{custype,jdbcType=INTEGER}, #{departureid,jdbcType=VARCHAR},
+    #{departure,jdbcType=VARCHAR}, #{destination,jdbcType=VARCHAR}, #{startdate,jdbcType=TIMESTAMP},
+    #{enddate,jdbcType=TIMESTAMP}, #{adultnum,jdbcType=INTEGER}, #{childnum,jdbcType=INTEGER},
+    #{budget,jdbcType=DECIMAL}, #{customernum,jdbcType=INTEGER}, #{otherrequire,jdbcType=VARCHAR},
+    #{travellername,jdbcType=VARCHAR}, #{wechat,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR},
+    #{email,jdbcType=VARCHAR}, #{datastatus,jdbcType=INTEGER}, #{siteid,jdbcType=CHAR},
+    #{createddate,jdbcType=TIMESTAMP}, #{createdby,jdbcType=VARCHAR}, #{createdbyid,jdbcType=CHAR},
+    #{deptid,jdbcType=CHAR}, #{orgid,jdbcType=CHAR}, #{reviseddate,jdbcType=TIMESTAMP},
+    #{revisedby,jdbcType=VARCHAR}, #{cusinfono,jdbcType=VARCHAR}, #{destinationid,jdbcType=VARCHAR},
+    #{pushtimes,jdbcType=INTEGER}, #{lastpushdate,jdbcType=TIMESTAMP}, #{tag,jdbcType=VARCHAR},
+    #{source,jdbcType=INTEGER}, #{servicetype,jdbcType=VARCHAR}, #{supplierid,jdbcType=CHAR}
+    )
+  </insert>
+  <insert id="insertSelective" parameterType="com.holyrobot.con_common.pojo.CusCusinfo" >
+    insert into Cus_CusInfo
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="custype != null" >
+        CusType,
+      </if>
+      <if test="departureid != null" >
+        DepartureID,
+      </if>
+      <if test="departure != null" >
+        Departure,
+      </if>
+      <if test="destination != null" >
+        Destination,
+      </if>
+      <if test="startdate != null" >
+        StartDate,
+      </if>
+      <if test="enddate != null" >
+        EndDate,
+      </if>
+      <if test="adultnum != null" >
+        AdultNum,
+      </if>
+      <if test="childnum != null" >
+        ChildNum,
+      </if>
+      <if test="budget != null" >
+        Budget,
+      </if>
+      <if test="customernum != null" >
+        CustomerNum,
+      </if>
+      <if test="otherrequire != null" >
+        OtherRequire,
+      </if>
+      <if test="travellername != null" >
+        TravellerName,
+      </if>
+      <if test="wechat != null" >
+        Wechat,
+      </if>
+      <if test="mobile != null" >
+        Mobile,
+      </if>
+      <if test="email != null" >
+        Email,
+      </if>
+      <if test="datastatus != null" >
+        DataStatus,
+      </if>
+      <if test="siteid != null" >
+        SiteID,
+      </if>
+      <if test="createddate != null" >
+        CreatedDate,
+      </if>
+      <if test="createdby != null" >
+        CreatedBy,
+      </if>
+      <if test="createdbyid != null" >
+        CreatedByID,
+      </if>
+      <if test="deptid != null" >
+        DeptID,
+      </if>
+      <if test="orgid != null" >
+        OrgID,
+      </if>
+      <if test="reviseddate != null" >
+        RevisedDate,
+      </if>
+      <if test="revisedby != null" >
+        RevisedBy,
+      </if>
+      <if test="cusinfono != null" >
+        CusInfoNo,
+      </if>
+      <if test="destinationid != null" >
+        DestinationID,
+      </if>
+      <if test="pushtimes != null" >
+        PushTimes,
+      </if>
+      <if test="lastpushdate != null" >
+        LastPushDate,
+      </if>
+      <if test="tag != null" >
+        Tag,
+      </if>
+      <if test="source != null" >
+        Source,
+      </if>
+      <if test="servicetype != null" >
+        ServiceType,
+      </if>
+      <if test="supplierid != null" >
+        SupplierID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="custype != null" >
+        #{custype,jdbcType=INTEGER},
+      </if>
+      <if test="departureid != null" >
+        #{departureid,jdbcType=VARCHAR},
+      </if>
+      <if test="departure != null" >
+        #{departure,jdbcType=VARCHAR},
+      </if>
+      <if test="destination != null" >
+        #{destination,jdbcType=VARCHAR},
+      </if>
+      <if test="startdate != null" >
+        #{startdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="enddate != null" >
+        #{enddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="adultnum != null" >
+        #{adultnum,jdbcType=INTEGER},
+      </if>
+      <if test="childnum != null" >
+        #{childnum,jdbcType=INTEGER},
+      </if>
+      <if test="budget != null" >
+        #{budget,jdbcType=DECIMAL},
+      </if>
+      <if test="customernum != null" >
+        #{customernum,jdbcType=INTEGER},
+      </if>
+      <if test="otherrequire != null" >
+        #{otherrequire,jdbcType=VARCHAR},
+      </if>
+      <if test="travellername != null" >
+        #{travellername,jdbcType=VARCHAR},
+      </if>
+      <if test="wechat != null" >
+        #{wechat,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="datastatus != null" >
+        #{datastatus,jdbcType=INTEGER},
+      </if>
+      <if test="siteid != null" >
+        #{siteid,jdbcType=CHAR},
+      </if>
+      <if test="createddate != null" >
+        #{createddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdby != null" >
+        #{createdby,jdbcType=VARCHAR},
+      </if>
+      <if test="createdbyid != null" >
+        #{createdbyid,jdbcType=CHAR},
+      </if>
+      <if test="deptid != null" >
+        #{deptid,jdbcType=CHAR},
+      </if>
+      <if test="orgid != null" >
+        #{orgid,jdbcType=CHAR},
+      </if>
+      <if test="reviseddate != null" >
+        #{reviseddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="revisedby != null" >
+        #{revisedby,jdbcType=VARCHAR},
+      </if>
+      <if test="cusinfono != null" >
+        #{cusinfono,jdbcType=VARCHAR},
+      </if>
+      <if test="destinationid != null" >
+        #{destinationid,jdbcType=VARCHAR},
+      </if>
+      <if test="pushtimes != null" >
+        #{pushtimes,jdbcType=INTEGER},
+      </if>
+      <if test="lastpushdate != null" >
+        #{lastpushdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tag != null" >
+        #{tag,jdbcType=VARCHAR},
+      </if>
+      <if test="source != null" >
+        #{source,jdbcType=INTEGER},
+      </if>
+      <if test="servicetype != null" >
+        #{servicetype,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierid != null" >
+        #{supplierid,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.holyrobot.con_common.pojo.CusCusinfoExample" resultType="java.lang.Integer" >
+    select count(*) from Cus_CusInfo
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update Cus_CusInfo
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=CHAR},
+      </if>
+      <if test="record.custype != null" >
+        CusType = #{record.custype,jdbcType=INTEGER},
+      </if>
+      <if test="record.departureid != null" >
+        DepartureID = #{record.departureid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.departure != null" >
+        Departure = #{record.departure,jdbcType=VARCHAR},
+      </if>
+      <if test="record.destination != null" >
+        Destination = #{record.destination,jdbcType=VARCHAR},
+      </if>
+      <if test="record.startdate != null" >
+        StartDate = #{record.startdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.enddate != null" >
+        EndDate = #{record.enddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.adultnum != null" >
+        AdultNum = #{record.adultnum,jdbcType=INTEGER},
+      </if>
+      <if test="record.childnum != null" >
+        ChildNum = #{record.childnum,jdbcType=INTEGER},
+      </if>
+      <if test="record.budget != null" >
+        Budget = #{record.budget,jdbcType=DECIMAL},
+      </if>
+      <if test="record.customernum != null" >
+        CustomerNum = #{record.customernum,jdbcType=INTEGER},
+      </if>
+      <if test="record.otherrequire != null" >
+        OtherRequire = #{record.otherrequire,jdbcType=VARCHAR},
+      </if>
+      <if test="record.travellername != null" >
+        TravellerName = #{record.travellername,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wechat != null" >
+        Wechat = #{record.wechat,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mobile != null" >
+        Mobile = #{record.mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="record.email != null" >
+        Email = #{record.email,jdbcType=VARCHAR},
+      </if>
+      <if test="record.datastatus != null" >
+        DataStatus = #{record.datastatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.siteid != null" >
+        SiteID = #{record.siteid,jdbcType=CHAR},
+      </if>
+      <if test="record.createddate != null" >
+        CreatedDate = #{record.createddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createdby != null" >
+        CreatedBy = #{record.createdby,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createdbyid != null" >
+        CreatedByID = #{record.createdbyid,jdbcType=CHAR},
+      </if>
+      <if test="record.deptid != null" >
+        DeptID = #{record.deptid,jdbcType=CHAR},
+      </if>
+      <if test="record.orgid != null" >
+        OrgID = #{record.orgid,jdbcType=CHAR},
+      </if>
+      <if test="record.reviseddate != null" >
+        RevisedDate = #{record.reviseddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.revisedby != null" >
+        RevisedBy = #{record.revisedby,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cusinfono != null" >
+        CusInfoNo = #{record.cusinfono,jdbcType=VARCHAR},
+      </if>
+      <if test="record.destinationid != null" >
+        DestinationID = #{record.destinationid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pushtimes != null" >
+        PushTimes = #{record.pushtimes,jdbcType=INTEGER},
+      </if>
+      <if test="record.lastpushdate != null" >
+        LastPushDate = #{record.lastpushdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.tag != null" >
+        Tag = #{record.tag,jdbcType=VARCHAR},
+      </if>
+      <if test="record.source != null" >
+        Source = #{record.source,jdbcType=INTEGER},
+      </if>
+      <if test="record.servicetype != null" >
+        ServiceType = #{record.servicetype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.supplierid != null" >
+        SupplierID = #{record.supplierid,jdbcType=CHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update Cus_CusInfo
+    set ID = #{record.id,jdbcType=CHAR},
+    CusType = #{record.custype,jdbcType=INTEGER},
+    DepartureID = #{record.departureid,jdbcType=VARCHAR},
+    Departure = #{record.departure,jdbcType=VARCHAR},
+    Destination = #{record.destination,jdbcType=VARCHAR},
+    StartDate = #{record.startdate,jdbcType=TIMESTAMP},
+    EndDate = #{record.enddate,jdbcType=TIMESTAMP},
+    AdultNum = #{record.adultnum,jdbcType=INTEGER},
+    ChildNum = #{record.childnum,jdbcType=INTEGER},
+    Budget = #{record.budget,jdbcType=DECIMAL},
+    CustomerNum = #{record.customernum,jdbcType=INTEGER},
+    OtherRequire = #{record.otherrequire,jdbcType=VARCHAR},
+    TravellerName = #{record.travellername,jdbcType=VARCHAR},
+    Wechat = #{record.wechat,jdbcType=VARCHAR},
+    Mobile = #{record.mobile,jdbcType=VARCHAR},
+    Email = #{record.email,jdbcType=VARCHAR},
+    DataStatus = #{record.datastatus,jdbcType=INTEGER},
+    SiteID = #{record.siteid,jdbcType=CHAR},
+    CreatedDate = #{record.createddate,jdbcType=TIMESTAMP},
+    CreatedBy = #{record.createdby,jdbcType=VARCHAR},
+    CreatedByID = #{record.createdbyid,jdbcType=CHAR},
+    DeptID = #{record.deptid,jdbcType=CHAR},
+    OrgID = #{record.orgid,jdbcType=CHAR},
+    RevisedDate = #{record.reviseddate,jdbcType=TIMESTAMP},
+    RevisedBy = #{record.revisedby,jdbcType=VARCHAR},
+    CusInfoNo = #{record.cusinfono,jdbcType=VARCHAR},
+    DestinationID = #{record.destinationid,jdbcType=VARCHAR},
+    PushTimes = #{record.pushtimes,jdbcType=INTEGER},
+    LastPushDate = #{record.lastpushdate,jdbcType=TIMESTAMP},
+    Tag = #{record.tag,jdbcType=VARCHAR},
+    Source = #{record.source,jdbcType=INTEGER},
+    ServiceType = #{record.servicetype,jdbcType=VARCHAR},
+    SupplierID = #{record.supplierid,jdbcType=CHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.holyrobot.con_common.pojo.CusCusinfo" >
+    update Cus_CusInfo
+    <set >
+      <if test="custype != null" >
+        CusType = #{custype,jdbcType=INTEGER},
+      </if>
+      <if test="departureid != null" >
+        DepartureID = #{departureid,jdbcType=VARCHAR},
+      </if>
+      <if test="departure != null" >
+        Departure = #{departure,jdbcType=VARCHAR},
+      </if>
+      <if test="destination != null" >
+        Destination = #{destination,jdbcType=VARCHAR},
+      </if>
+      <if test="startdate != null" >
+        StartDate = #{startdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="enddate != null" >
+        EndDate = #{enddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="adultnum != null" >
+        AdultNum = #{adultnum,jdbcType=INTEGER},
+      </if>
+      <if test="childnum != null" >
+        ChildNum = #{childnum,jdbcType=INTEGER},
+      </if>
+      <if test="budget != null" >
+        Budget = #{budget,jdbcType=DECIMAL},
+      </if>
+      <if test="customernum != null" >
+        CustomerNum = #{customernum,jdbcType=INTEGER},
+      </if>
+      <if test="otherrequire != null" >
+        OtherRequire = #{otherrequire,jdbcType=VARCHAR},
+      </if>
+      <if test="travellername != null" >
+        TravellerName = #{travellername,jdbcType=VARCHAR},
+      </if>
+      <if test="wechat != null" >
+        Wechat = #{wechat,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        Mobile = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        Email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="datastatus != null" >
+        DataStatus = #{datastatus,jdbcType=INTEGER},
+      </if>
+      <if test="siteid != null" >
+        SiteID = #{siteid,jdbcType=CHAR},
+      </if>
+      <if test="createddate != null" >
+        CreatedDate = #{createddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdby != null" >
+        CreatedBy = #{createdby,jdbcType=VARCHAR},
+      </if>
+      <if test="createdbyid != null" >
+        CreatedByID = #{createdbyid,jdbcType=CHAR},
+      </if>
+      <if test="deptid != null" >
+        DeptID = #{deptid,jdbcType=CHAR},
+      </if>
+      <if test="orgid != null" >
+        OrgID = #{orgid,jdbcType=CHAR},
+      </if>
+      <if test="reviseddate != null" >
+        RevisedDate = #{reviseddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="revisedby != null" >
+        RevisedBy = #{revisedby,jdbcType=VARCHAR},
+      </if>
+      <if test="cusinfono != null" >
+        CusInfoNo = #{cusinfono,jdbcType=VARCHAR},
+      </if>
+      <if test="destinationid != null" >
+        DestinationID = #{destinationid,jdbcType=VARCHAR},
+      </if>
+      <if test="pushtimes != null" >
+        PushTimes = #{pushtimes,jdbcType=INTEGER},
+      </if>
+      <if test="lastpushdate != null" >
+        LastPushDate = #{lastpushdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tag != null" >
+        Tag = #{tag,jdbcType=VARCHAR},
+      </if>
+      <if test="source != null" >
+        Source = #{source,jdbcType=INTEGER},
+      </if>
+      <if test="servicetype != null" >
+        ServiceType = #{servicetype,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierid != null" >
+        SupplierID = #{supplierid,jdbcType=CHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.holyrobot.con_common.pojo.CusCusinfo" >
+    update Cus_CusInfo
+    set CusType = #{custype,jdbcType=INTEGER},
+      DepartureID = #{departureid,jdbcType=VARCHAR},
+      Departure = #{departure,jdbcType=VARCHAR},
+      Destination = #{destination,jdbcType=VARCHAR},
+      StartDate = #{startdate,jdbcType=TIMESTAMP},
+      EndDate = #{enddate,jdbcType=TIMESTAMP},
+      AdultNum = #{adultnum,jdbcType=INTEGER},
+      ChildNum = #{childnum,jdbcType=INTEGER},
+      Budget = #{budget,jdbcType=DECIMAL},
+      CustomerNum = #{customernum,jdbcType=INTEGER},
+      OtherRequire = #{otherrequire,jdbcType=VARCHAR},
+      TravellerName = #{travellername,jdbcType=VARCHAR},
+      Wechat = #{wechat,jdbcType=VARCHAR},
+      Mobile = #{mobile,jdbcType=VARCHAR},
+      Email = #{email,jdbcType=VARCHAR},
+      DataStatus = #{datastatus,jdbcType=INTEGER},
+      SiteID = #{siteid,jdbcType=CHAR},
+      CreatedDate = #{createddate,jdbcType=TIMESTAMP},
+      CreatedBy = #{createdby,jdbcType=VARCHAR},
+      CreatedByID = #{createdbyid,jdbcType=CHAR},
+      DeptID = #{deptid,jdbcType=CHAR},
+      OrgID = #{orgid,jdbcType=CHAR},
+      RevisedDate = #{reviseddate,jdbcType=TIMESTAMP},
+      RevisedBy = #{revisedby,jdbcType=VARCHAR},
+      CusInfoNo = #{cusinfono,jdbcType=VARCHAR},
+      DestinationID = #{destinationid,jdbcType=VARCHAR},
+      PushTimes = #{pushtimes,jdbcType=INTEGER},
+      LastPushDate = #{lastpushdate,jdbcType=TIMESTAMP},
+      Tag = #{tag,jdbcType=VARCHAR},
+      Source = #{source,jdbcType=INTEGER},
+      ServiceType = #{servicetype,jdbcType=VARCHAR},
+      SupplierID = #{supplierid,jdbcType=CHAR}
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+</mapper>

@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.holyrobot.con_order.mapper.OrdOnlinePayInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.holyrobot.con_order.pojo.OrdOnlinePayInfo" >
+    <id column="ID" property="id" jdbcType="CHAR" />
+    <result column="OrderID" property="orderid" jdbcType="CHAR" />
+    <result column="Type" property="type" jdbcType="INTEGER" />
+    <result column="DataStatus" property="datastatus" jdbcType="INTEGER" />
+    <result column="Rdined" property="rdined" jdbcType="DECIMAL" />
+    <result column="ReceivableAmt" property="receivableamt" jdbcType="DECIMAL" />
+    <result column="ServiceCharge" property="servicecharge" jdbcType="DECIMAL" />
+    <result column="RealityAmt" property="realityamt" jdbcType="DECIMAL" />
+    <result column="CreatedDate" property="createddate" jdbcType="TIMESTAMP" />
+    <result column="Remark" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, OrderID, Type, DataStatus, Rdined, ReceivableAmt, ServiceCharge, RealityAmt, 
+    CreatedDate, Remark
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.holyrobot.con_order.pojo.OrdOnlinePayInfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from Ord_OnlinePayInfo
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from Ord_OnlinePayInfo
+    where ID = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from Ord_OnlinePayInfo
+    where ID = #{id,jdbcType=CHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.holyrobot.con_order.pojo.OrdOnlinePayInfoExample" >
+    delete from Ord_OnlinePayInfo
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.holyrobot.con_order.pojo.OrdOnlinePayInfo" >
+    insert into Ord_OnlinePayInfo (ID, OrderID, Type, 
+      DataStatus, Rdined, ReceivableAmt, 
+      ServiceCharge, RealityAmt, CreatedDate, 
+      Remark)
+    values (#{id,jdbcType=CHAR}, #{orderid,jdbcType=CHAR}, #{type,jdbcType=INTEGER}, 
+      #{datastatus,jdbcType=INTEGER}, #{rdined,jdbcType=DECIMAL}, #{receivableamt,jdbcType=DECIMAL}, 
+      #{servicecharge,jdbcType=DECIMAL}, #{realityamt,jdbcType=DECIMAL}, #{createddate,jdbcType=TIMESTAMP}, 
+      #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.holyrobot.con_order.pojo.OrdOnlinePayInfo" >
+    insert into Ord_OnlinePayInfo
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="orderid != null" >
+        OrderID,
+      </if>
+      <if test="type != null" >
+        Type,
+      </if>
+      <if test="datastatus != null" >
+        DataStatus,
+      </if>
+      <if test="rdined != null" >
+        Rdined,
+      </if>
+      <if test="receivableamt != null" >
+        ReceivableAmt,
+      </if>
+      <if test="servicecharge != null" >
+        ServiceCharge,
+      </if>
+      <if test="realityamt != null" >
+        RealityAmt,
+      </if>
+      <if test="createddate != null" >
+        CreatedDate,
+      </if>
+      <if test="remark != null" >
+        Remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="orderid != null" >
+        #{orderid,jdbcType=CHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="datastatus != null" >
+        #{datastatus,jdbcType=INTEGER},
+      </if>
+      <if test="rdined != null" >
+        #{rdined,jdbcType=DECIMAL},
+      </if>
+      <if test="receivableamt != null" >
+        #{receivableamt,jdbcType=DECIMAL},
+      </if>
+      <if test="servicecharge != null" >
+        #{servicecharge,jdbcType=DECIMAL},
+      </if>
+      <if test="realityamt != null" >
+        #{realityamt,jdbcType=DECIMAL},
+      </if>
+      <if test="createddate != null" >
+        #{createddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.holyrobot.con_order.pojo.OrdOnlinePayInfoExample" resultType="java.lang.Integer" >
+    select count(*) from Ord_OnlinePayInfo
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update Ord_OnlinePayInfo
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=CHAR},
+      </if>
+      <if test="record.orderid != null" >
+        OrderID = #{record.orderid,jdbcType=CHAR},
+      </if>
+      <if test="record.type != null" >
+        Type = #{record.type,jdbcType=INTEGER},
+      </if>
+      <if test="record.datastatus != null" >
+        DataStatus = #{record.datastatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.rdined != null" >
+        Rdined = #{record.rdined,jdbcType=DECIMAL},
+      </if>
+      <if test="record.receivableamt != null" >
+        ReceivableAmt = #{record.receivableamt,jdbcType=DECIMAL},
+      </if>
+      <if test="record.servicecharge != null" >
+        ServiceCharge = #{record.servicecharge,jdbcType=DECIMAL},
+      </if>
+      <if test="record.realityamt != null" >
+        RealityAmt = #{record.realityamt,jdbcType=DECIMAL},
+      </if>
+      <if test="record.createddate != null" >
+        CreatedDate = #{record.createddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.remark != null" >
+        Remark = #{record.remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update Ord_OnlinePayInfo
+    set ID = #{record.id,jdbcType=CHAR},
+      OrderID = #{record.orderid,jdbcType=CHAR},
+      Type = #{record.type,jdbcType=INTEGER},
+      DataStatus = #{record.datastatus,jdbcType=INTEGER},
+      Rdined = #{record.rdined,jdbcType=DECIMAL},
+      ReceivableAmt = #{record.receivableamt,jdbcType=DECIMAL},
+      ServiceCharge = #{record.servicecharge,jdbcType=DECIMAL},
+      RealityAmt = #{record.realityamt,jdbcType=DECIMAL},
+      CreatedDate = #{record.createddate,jdbcType=TIMESTAMP},
+      Remark = #{record.remark,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.holyrobot.con_order.pojo.OrdOnlinePayInfo" >
+    update Ord_OnlinePayInfo
+    <set >
+      <if test="orderid != null" >
+        OrderID = #{orderid,jdbcType=CHAR},
+      </if>
+      <if test="type != null" >
+        Type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="datastatus != null" >
+        DataStatus = #{datastatus,jdbcType=INTEGER},
+      </if>
+      <if test="rdined != null" >
+        Rdined = #{rdined,jdbcType=DECIMAL},
+      </if>
+      <if test="receivableamt != null" >
+        ReceivableAmt = #{receivableamt,jdbcType=DECIMAL},
+      </if>
+      <if test="servicecharge != null" >
+        ServiceCharge = #{servicecharge,jdbcType=DECIMAL},
+      </if>
+      <if test="realityamt != null" >
+        RealityAmt = #{realityamt,jdbcType=DECIMAL},
+      </if>
+      <if test="createddate != null" >
+        CreatedDate = #{createddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null" >
+        Remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.holyrobot.con_order.pojo.OrdOnlinePayInfo" >
+    update Ord_OnlinePayInfo
+    set OrderID = #{orderid,jdbcType=CHAR},
+      Type = #{type,jdbcType=INTEGER},
+      DataStatus = #{datastatus,jdbcType=INTEGER},
+      Rdined = #{rdined,jdbcType=DECIMAL},
+      ReceivableAmt = #{receivableamt,jdbcType=DECIMAL},
+      ServiceCharge = #{servicecharge,jdbcType=DECIMAL},
+      RealityAmt = #{realityamt,jdbcType=DECIMAL},
+      CreatedDate = #{createddate,jdbcType=TIMESTAMP},
+      Remark = #{remark,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+</mapper>

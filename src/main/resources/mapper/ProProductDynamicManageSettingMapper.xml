@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.holyrobot.con_product.mapper.ProProductDynamicManageSettingMapper" >
+  <resultMap id="BaseResultMap" type="com.holyrobot.con_product.pojo.ProProductDynamicManageSetting" >
+    <id column="ID" property="id" jdbcType="CHAR" />
+    <result column="ProductID" property="productid" jdbcType="CHAR" />
+    <result column="ProductSource" property="productsource" jdbcType="INTEGER" />
+    <result column="SupplierType" property="suppliertype" jdbcType="INTEGER" />
+    <result column="SupplierID" property="supplierid" jdbcType="CHAR" />
+    <result column="SetMode" property="setmode" jdbcType="INTEGER" />
+    <result column="SetModeValue" property="setmodevalue" jdbcType="DECIMAL" />
+    <result column="CreatedByID" property="createdbyid" jdbcType="CHAR" />
+    <result column="CreatedBy" property="createdby" jdbcType="VARCHAR" />
+    <result column="CreatedDate" property="createddate" jdbcType="TIMESTAMP" />
+    <result column="RevisedByID" property="revisedbyid" jdbcType="CHAR" />
+    <result column="RevisedBy" property="revisedby" jdbcType="VARCHAR" />
+    <result column="RevisedDate" property="reviseddate" jdbcType="TIMESTAMP" />
+    <result column="OrgID" property="orgid" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, ProductID, ProductSource, SupplierType, SupplierID, SetMode, SetModeValue, CreatedByID, 
+    CreatedBy, CreatedDate, RevisedByID, RevisedBy, RevisedDate, OrgID
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.holyrobot.con_product.pojo.ProProductDynamicManageSettingExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from Pro_Product_DynamicManageSetting
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from Pro_Product_DynamicManageSetting
+    where ID = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from Pro_Product_DynamicManageSetting
+    where ID = #{id,jdbcType=CHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.holyrobot.con_product.pojo.ProProductDynamicManageSettingExample" >
+    delete from Pro_Product_DynamicManageSetting
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.holyrobot.con_product.pojo.ProProductDynamicManageSetting" >
+    insert into Pro_Product_DynamicManageSetting (ID, ProductID, ProductSource, 
+      SupplierType, SupplierID, SetMode, 
+      SetModeValue, CreatedByID, CreatedBy, 
+      CreatedDate, RevisedByID, RevisedBy, 
+      RevisedDate, OrgID)
+    values (#{id,jdbcType=CHAR}, #{productid,jdbcType=CHAR}, #{productsource,jdbcType=INTEGER}, 
+      #{suppliertype,jdbcType=INTEGER}, #{supplierid,jdbcType=CHAR}, #{setmode,jdbcType=INTEGER}, 
+      #{setmodevalue,jdbcType=DECIMAL}, #{createdbyid,jdbcType=CHAR}, #{createdby,jdbcType=VARCHAR},
+      #{createddate,jdbcType=TIMESTAMP}, #{revisedbyid,jdbcType=CHAR}, #{revisedby,jdbcType=VARCHAR},
+      #{reviseddate,jdbcType=TIMESTAMP}, #{orgid,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.holyrobot.con_product.pojo.ProProductDynamicManageSetting" >
+    insert into Pro_Product_DynamicManageSetting
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="productid != null" >
+        ProductID,
+      </if>
+      <if test="productsource != null" >
+        ProductSource,
+      </if>
+      <if test="suppliertype != null" >
+        SupplierType,
+      </if>
+      <if test="supplierid != null" >
+        SupplierID,
+      </if>
+      <if test="setmode != null" >
+        SetMode,
+      </if>
+      <if test="setmodevalue != null" >
+        SetModeValue,
+      </if>
+      <if test="createdbyid != null" >
+        CreatedByID,
+      </if>
+      <if test="createdby != null" >
+        CreatedBy,
+      </if>
+      <if test="createddate != null" >
+        CreatedDate,
+      </if>
+      <if test="revisedbyid != null" >
+        RevisedByID,
+      </if>
+      <if test="revisedby != null" >
+        RevisedBy,
+      </if>
+      <if test="reviseddate != null" >
+        RevisedDate,
+      </if>
+      <if test="orgid != null" >
+        OrgID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="productid != null" >
+        #{productid,jdbcType=CHAR},
+      </if>
+      <if test="productsource != null" >
+        #{productsource,jdbcType=INTEGER},
+      </if>
+      <if test="suppliertype != null" >
+        #{suppliertype,jdbcType=INTEGER},
+      </if>
+      <if test="supplierid != null" >
+        #{supplierid,jdbcType=CHAR},
+      </if>
+      <if test="setmode != null" >
+        #{setmode,jdbcType=INTEGER},
+      </if>
+      <if test="setmodevalue != null" >
+        #{setmodevalue,jdbcType=DECIMAL},
+      </if>
+      <if test="createdbyid != null" >
+        #{createdbyid,jdbcType=CHAR},
+      </if>
+      <if test="createdby != null" >
+        #{createdby,jdbcType=VARCHAR},
+      </if>
+      <if test="createddate != null" >
+        #{createddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="revisedbyid != null" >
+        #{revisedbyid,jdbcType=CHAR},
+      </if>
+      <if test="revisedby != null" >
+        #{revisedby,jdbcType=VARCHAR},
+      </if>
+      <if test="reviseddate != null" >
+        #{reviseddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orgid != null" >
+        #{orgid,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.holyrobot.con_product.pojo.ProProductDynamicManageSettingExample" resultType="java.lang.Integer" >
+    select count(*) from Pro_Product_DynamicManageSetting
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update Pro_Product_DynamicManageSetting
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=CHAR},
+      </if>
+      <if test="record.productid != null" >
+        ProductID = #{record.productid,jdbcType=CHAR},
+      </if>
+      <if test="record.productsource != null" >
+        ProductSource = #{record.productsource,jdbcType=INTEGER},
+      </if>
+      <if test="record.suppliertype != null" >
+        SupplierType = #{record.suppliertype,jdbcType=INTEGER},
+      </if>
+      <if test="record.supplierid != null" >
+        SupplierID = #{record.supplierid,jdbcType=CHAR},
+      </if>
+      <if test="record.setmode != null" >
+        SetMode = #{record.setmode,jdbcType=INTEGER},
+      </if>
+      <if test="record.setmodevalue != null" >
+        SetModeValue = #{record.setmodevalue,jdbcType=DECIMAL},
+      </if>
+      <if test="record.createdbyid != null" >
+        CreatedByID = #{record.createdbyid,jdbcType=CHAR},
+      </if>
+      <if test="record.createdby != null" >
+        CreatedBy = #{record.createdby,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createddate != null" >
+        CreatedDate = #{record.createddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.revisedbyid != null" >
+        RevisedByID = #{record.revisedbyid,jdbcType=CHAR},
+      </if>
+      <if test="record.revisedby != null" >
+        RevisedBy = #{record.revisedby,jdbcType=VARCHAR},
+      </if>
+      <if test="record.reviseddate != null" >
+        RevisedDate = #{record.reviseddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.orgid != null" >
+        OrgID = #{record.orgid,jdbcType=CHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update Pro_Product_DynamicManageSetting
+    set ID = #{record.id,jdbcType=CHAR},
+      ProductID = #{record.productid,jdbcType=CHAR},
+      ProductSource = #{record.productsource,jdbcType=INTEGER},
+      SupplierType = #{record.suppliertype,jdbcType=INTEGER},
+      SupplierID = #{record.supplierid,jdbcType=CHAR},
+      SetMode = #{record.setmode,jdbcType=INTEGER},
+      SetModeValue = #{record.setmodevalue,jdbcType=DECIMAL},
+      CreatedByID = #{record.createdbyid,jdbcType=CHAR},
+      CreatedBy = #{record.createdby,jdbcType=VARCHAR},
+      CreatedDate = #{record.createddate,jdbcType=TIMESTAMP},
+      RevisedByID = #{record.revisedbyid,jdbcType=CHAR},
+      RevisedBy = #{record.revisedby,jdbcType=VARCHAR},
+      RevisedDate = #{record.reviseddate,jdbcType=TIMESTAMP},
+      OrgID = #{record.orgid,jdbcType=CHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.holyrobot.con_product.pojo.ProProductDynamicManageSetting" >
+    update Pro_Product_DynamicManageSetting
+    <set >
+      <if test="productid != null" >
+        ProductID = #{productid,jdbcType=CHAR},
+      </if>
+      <if test="productsource != null" >
+        ProductSource = #{productsource,jdbcType=INTEGER},
+      </if>
+      <if test="suppliertype != null" >
+        SupplierType = #{suppliertype,jdbcType=INTEGER},
+      </if>
+      <if test="supplierid != null" >
+        SupplierID = #{supplierid,jdbcType=CHAR},
+      </if>
+      <if test="setmode != null" >
+        SetMode = #{setmode,jdbcType=INTEGER},
+      </if>
+      <if test="setmodevalue != null" >
+        SetModeValue = #{setmodevalue,jdbcType=DECIMAL},
+      </if>
+      <if test="createdbyid != null" >
+        CreatedByID = #{createdbyid,jdbcType=CHAR},
+      </if>
+      <if test="createdby != null" >
+        CreatedBy = #{createdby,jdbcType=VARCHAR},
+      </if>
+      <if test="createddate != null" >
+        CreatedDate = #{createddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="revisedbyid != null" >
+        RevisedByID = #{revisedbyid,jdbcType=CHAR},
+      </if>
+      <if test="revisedby != null" >
+        RevisedBy = #{revisedby,jdbcType=VARCHAR},
+      </if>
+      <if test="reviseddate != null" >
+        RevisedDate = #{reviseddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orgid != null" >
+        OrgID = #{orgid,jdbcType=CHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.holyrobot.con_product.pojo.ProProductDynamicManageSetting" >
+    update Pro_Product_DynamicManageSetting
+    set ProductID = #{productid,jdbcType=CHAR},
+      ProductSource = #{productsource,jdbcType=INTEGER},
+      SupplierType = #{suppliertype,jdbcType=INTEGER},
+      SupplierID = #{supplierid,jdbcType=CHAR},
+      SetMode = #{setmode,jdbcType=INTEGER},
+      SetModeValue = #{setmodevalue,jdbcType=DECIMAL},
+      CreatedByID = #{createdbyid,jdbcType=CHAR},
+      CreatedBy = #{createdby,jdbcType=VARCHAR},
+      CreatedDate = #{createddate,jdbcType=TIMESTAMP},
+      RevisedByID = #{revisedbyid,jdbcType=CHAR},
+      RevisedBy = #{revisedby,jdbcType=VARCHAR},
+      RevisedDate = #{reviseddate,jdbcType=TIMESTAMP},
+      OrgID = #{orgid,jdbcType=CHAR}
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+</mapper>

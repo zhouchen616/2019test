@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.holyrobot.con_volunteer.mapper.VolunteerAddressInformationMapper" >
+  <resultMap id="BaseResultMap" type="com.holyrobot.con_volunteer.pojo.VolunteerAddressInformation" >
+    <id column="ID" property="id" jdbcType="CHAR" />
+    <result column="OrgID" property="orgid" jdbcType="CHAR" />
+    <result column="UserID" property="userid" jdbcType="CHAR" />
+    <result column="Name" property="name" jdbcType="VARCHAR" />
+    <result column="Address" property="address" jdbcType="VARCHAR" />
+    <result column="Area" property="area" jdbcType="VARCHAR" />
+    <result column="Phone" property="phone" jdbcType="VARCHAR" />
+    <result column="Defaults" property="defaults" jdbcType="INTEGER" />
+    <result column="DateTime" property="datetime" jdbcType="TIMESTAMP" />
+    <result column="IsDelete" property="isdelete" jdbcType="INTEGER" />
+    <result column="AreaID" property="areaid" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, OrgID, UserID, Name, Address, Area, Phone, Defaults, DateTime, IsDelete, AreaID
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.holyrobot.con_volunteer.pojo.VolunteerAddressInformationExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from Volunteer_Address_Information
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from Volunteer_Address_Information
+    where ID = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from Volunteer_Address_Information
+    where ID = #{id,jdbcType=CHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.holyrobot.con_volunteer.pojo.VolunteerAddressInformationExample" >
+    delete from Volunteer_Address_Information
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.holyrobot.con_volunteer.pojo.VolunteerAddressInformation" >
+    insert into Volunteer_Address_Information (ID, OrgID, UserID, Name,
+      Address, Area, Phone,
+      Defaults, DateTime, IsDelete,
+      AreaID)
+    values (#{id,jdbcType=CHAR}, #{orgid,jdbcType=CHAR}, #{userid,jdbcType=CHAR}, #{name,jdbcType=VARCHAR},
+      #{address,jdbcType=VARCHAR}, #{area,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR},
+      #{defaults,jdbcType=INTEGER}, #{datetime,jdbcType=TIMESTAMP}, #{isdelete,jdbcType=INTEGER},
+      #{areaid,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.holyrobot.con_volunteer.pojo.VolunteerAddressInformation" >
+    insert into Volunteer_Address_Information
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="orgid != null" >
+        OrgID,
+      </if>
+      <if test="userid != null" >
+        UserID,
+      </if>
+      <if test="name != null" >
+        Name,
+      </if>
+      <if test="address != null" >
+        Address,
+      </if>
+      <if test="area != null" >
+        Area,
+      </if>
+      <if test="phone != null" >
+        Phone,
+      </if>
+      <if test="defaults != null" >
+        Defaults,
+      </if>
+      <if test="datetime != null" >
+        DateTime,
+      </if>
+      <if test="isdelete != null" >
+        IsDelete,
+      </if>
+      <if test="areaid != null" >
+        AreaID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="orgid != null" >
+        #{orgid,jdbcType=CHAR},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=CHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="area != null" >
+        #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="defaults != null" >
+        #{defaults,jdbcType=INTEGER},
+      </if>
+      <if test="datetime != null" >
+        #{datetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isdelete != null" >
+        #{isdelete,jdbcType=INTEGER},
+      </if>
+      <if test="areaid != null" >
+        #{areaid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.holyrobot.con_volunteer.pojo.VolunteerAddressInformationExample" resultType="java.lang.Integer" >
+    select count(*) from Volunteer_Address_Information
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update Volunteer_Address_Information
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=CHAR},
+      </if>
+      <if test="record.orgid != null" >
+        OrgID = #{record.orgid,jdbcType=CHAR},
+      </if>
+      <if test="record.userid != null" >
+        UserID = #{record.userid,jdbcType=CHAR},
+      </if>
+      <if test="record.name != null" >
+        Name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.address != null" >
+        Address = #{record.address,jdbcType=VARCHAR},
+      </if>
+      <if test="record.area != null" >
+        Area = #{record.area,jdbcType=VARCHAR},
+      </if>
+      <if test="record.phone != null" >
+        Phone = #{record.phone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.defaults != null" >
+        Defaults = #{record.defaults,jdbcType=INTEGER},
+      </if>
+      <if test="record.datetime != null" >
+        DateTime = #{record.datetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.isdelete != null" >
+        IsDelete = #{record.isdelete,jdbcType=INTEGER},
+      </if>
+      <if test="record.areaid != null" >
+        AreaID = #{record.areaid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update Volunteer_Address_Information
+    set ID = #{record.id,jdbcType=CHAR},
+    OrgID = #{record.orgid,jdbcType=CHAR},
+    UserID = #{record.userid,jdbcType=CHAR},
+    Name = #{record.name,jdbcType=VARCHAR},
+    Address = #{record.address,jdbcType=VARCHAR},
+    Area = #{record.area,jdbcType=VARCHAR},
+    Phone = #{record.phone,jdbcType=VARCHAR},
+    Defaults = #{record.defaults,jdbcType=INTEGER},
+    DateTime = #{record.datetime,jdbcType=TIMESTAMP},
+    IsDelete = #{record.isdelete,jdbcType=INTEGER},
+    AreaID = #{record.areaid,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.holyrobot.con_volunteer.pojo.VolunteerAddressInformation" >
+    update Volunteer_Address_Information
+    <set >
+      <if test="orgid != null" >
+        OrgID = #{orgid,jdbcType=CHAR},
+      </if>
+      <if test="userid != null" >
+        UserID = #{userid,jdbcType=CHAR},
+      </if>
+      <if test="name != null" >
+        Name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        Address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="area != null" >
+        Area = #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        Phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="defaults != null" >
+        Defaults = #{defaults,jdbcType=INTEGER},
+      </if>
+      <if test="datetime != null" >
+        DateTime = #{datetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isdelete != null" >
+        IsDelete = #{isdelete,jdbcType=INTEGER},
+      </if>
+      <if test="areaid != null" >
+        AreaID = #{areaid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.holyrobot.con_volunteer.pojo.VolunteerAddressInformation" >
+    update Volunteer_Address_Information
+    set OrgID = #{orgid,jdbcType=CHAR},
+      UserID = #{userid,jdbcType=CHAR},
+      Name = #{name,jdbcType=VARCHAR},
+      Address = #{address,jdbcType=VARCHAR},
+      Area = #{area,jdbcType=VARCHAR},
+      Phone = #{phone,jdbcType=VARCHAR},
+      Defaults = #{defaults,jdbcType=INTEGER},
+      DateTime = #{datetime,jdbcType=TIMESTAMP},
+      IsDelete = #{isdelete,jdbcType=INTEGER},
+      AreaID = #{areaid,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+</mapper>

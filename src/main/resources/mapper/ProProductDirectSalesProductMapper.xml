@@ -1,0 +1,741 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.holyrobot.con_product.mapper.ProProductDirectSalesProductMapper" >
+  <resultMap id="BaseResultMap" type="com.holyrobot.con_product.pojo.ProProductDirectSalesProduct" >
+    <id column="ID" property="id" jdbcType="CHAR" />
+    <result column="ProID" property="proid" jdbcType="CHAR" />
+    <result column="SupplierID" property="supplierid" jdbcType="CHAR" />
+    <result column="SupplierName" property="suppliername" jdbcType="VARCHAR" />
+    <result column="AliaseName" property="aliasename" jdbcType="VARCHAR" />
+    <result column="ReceiverID" property="receiverid" jdbcType="CHAR" />
+    <result column="ReceiverName" property="receivername" jdbcType="VARCHAR" />
+    <result column="LocalProName" property="localproname" jdbcType="VARCHAR" />
+    <result column="Feature" property="feature" jdbcType="LONGVARCHAR" />
+    <result column="FeeIncludes" property="feeincludes" jdbcType="LONGVARCHAR" />
+    <result column="FeeNonIncludes" property="feenonincludes" jdbcType="LONGVARCHAR" />
+    <result column="Attention" property="attention" jdbcType="LONGVARCHAR" />
+    <result column="Shopping" property="shopping" jdbcType="LONGVARCHAR" />
+    <result column="Tips" property="tips" jdbcType="LONGVARCHAR" />
+    <result column="Insurance" property="insurance" jdbcType="LONGVARCHAR" />
+    <result column="BacToRule" property="bactorule" jdbcType="LONGVARCHAR" />
+    <result column="TravelName" property="travelname" jdbcType="VARCHAR" />
+    <result column="BrandName" property="brandname" jdbcType="VARCHAR" />
+    <result column="DestCollectionFlag" property="destcollectionflag" jdbcType="VARCHAR" />
+    <result column="EmergencyContact" property="emergencycontact" jdbcType="VARCHAR" />
+    <result column="EmergencyMobileNo" property="emergencymobileno" jdbcType="VARCHAR" />
+    <result column="TravelAgencyAddr" property="travelagencyaddr" jdbcType="VARCHAR" />
+    <result column="TravelAgencyPhone" property="travelagencyphone" jdbcType="VARCHAR" />
+    <result column="TAEmergencyContact" property="taemergencycontact" jdbcType="VARCHAR" />
+    <result column="TAEmergencyMobile" property="taemergencymobile" jdbcType="VARCHAR" />
+    <result column="WXPublicityImage" property="wxpublicityimage" jdbcType="VARCHAR" />
+    <result column="WXTitle" property="wxtitle" jdbcType="VARCHAR" />
+    <result column="WXShareSummary" property="wxsharesummary" jdbcType="LONGVARCHAR" />
+    <result column="SupplierCityID" property="suppliercityid" jdbcType="CHAR" />
+    <result column="SupplierCityName" property="suppliercityname" jdbcType="VARCHAR" />
+    <result column="Summary" property="summary" jdbcType="LONGVARCHAR" />
+    <result column="ProName" property="proname" jdbcType="VARCHAR" />
+    <result column="CoverImg" property="coverimg" jdbcType="VARCHAR" />
+    <result column="CreatedDate" property="createddate" jdbcType="TIMESTAMP" />
+    <result column="RevisedDate" property="reviseddate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, ProID, SupplierID, SupplierName, AliaseName, ReceiverID, ReceiverName, LocalProName, 
+    Feature, FeeIncludes, FeeNonIncludes, Attention, Shopping, Tips, Insurance, BacToRule, 
+    TravelName, BrandName, DestCollectionFlag, EmergencyContact, EmergencyMobileNo, TravelAgencyAddr, 
+    TravelAgencyPhone, TAEmergencyContact, TAEmergencyMobile, WXPublicityImage, WXTitle, 
+    WXShareSummary, SupplierCityID, SupplierCityName, Summary, ProName, CoverImg, CreatedDate, 
+    RevisedDate
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.holyrobot.con_product.pojo.ProProductDirectSalesProductExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from Pro_Product_DirectSales_Product
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from Pro_Product_DirectSales_Product
+    where ID = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from Pro_Product_DirectSales_Product
+    where ID = #{id,jdbcType=CHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.holyrobot.con_product.pojo.ProProductDirectSalesProductExample" >
+    delete from Pro_Product_DirectSales_Product
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.holyrobot.con_product.pojo.ProProductDirectSalesProduct" >
+    insert into Pro_Product_DirectSales_Product (ID, ProID, SupplierID, 
+      SupplierName, AliaseName, ReceiverID, 
+      ReceiverName, LocalProName, Feature, 
+      FeeIncludes, FeeNonIncludes, 
+      Attention, Shopping, Tips, 
+      Insurance, BacToRule, TravelName, 
+      BrandName, DestCollectionFlag, EmergencyContact, 
+      EmergencyMobileNo, TravelAgencyAddr, 
+      TravelAgencyPhone, TAEmergencyContact, 
+      TAEmergencyMobile, WXPublicityImage, 
+      WXTitle, WXShareSummary, SupplierCityID, 
+      SupplierCityName, Summary, ProName, 
+      CoverImg, CreatedDate, isAuto, IsNew, RevisedDate
+      )
+    values (#{id,jdbcType=CHAR}, #{proid,jdbcType=CHAR}, #{supplierid,jdbcType=CHAR}, 
+      #{suppliername,jdbcType=VARCHAR}, #{aliasename,jdbcType=VARCHAR}, #{receiverid,jdbcType=CHAR},
+      #{receivername,jdbcType=VARCHAR}, #{localproname,jdbcType=VARCHAR}, #{feature,jdbcType=LONGVARCHAR},
+      #{feeincludes,jdbcType=LONGVARCHAR}, #{feenonincludes,jdbcType=LONGVARCHAR},
+      #{attention,jdbcType=LONGVARCHAR}, #{shopping,jdbcType=LONGVARCHAR}, #{tips,jdbcType=LONGVARCHAR},
+      #{insurance,jdbcType=LONGVARCHAR}, #{bactorule,jdbcType=LONGVARCHAR}, #{travelname,jdbcType=VARCHAR},
+      #{brandname,jdbcType=VARCHAR}, #{destcollectionflag,jdbcType=VARCHAR}, #{emergencycontact,jdbcType=VARCHAR},
+      #{emergencymobileno,jdbcType=VARCHAR}, #{travelagencyaddr,jdbcType=VARCHAR},
+      #{travelagencyphone,jdbcType=VARCHAR}, #{taemergencycontact,jdbcType=VARCHAR},
+      #{taemergencymobile,jdbcType=VARCHAR}, #{wxpublicityimage,jdbcType=VARCHAR},
+      #{wxtitle,jdbcType=VARCHAR}, #{wxsharesummary,jdbcType=LONGVARCHAR}, #{suppliercityid,jdbcType=CHAR},
+      #{suppliercityname,jdbcType=VARCHAR}, #{summary,jdbcType=LONGVARCHAR}, #{proname,jdbcType=VARCHAR},
+      #{coverimg,jdbcType=VARCHAR}, #{createddate,jdbcType=TIMESTAMP},#{item.isauto,jdbcType=INTEGER} ,#{item.isnew,jdbcType=INTEGER}, #{reviseddate,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.holyrobot.con_product.pojo.ProProductDirectSalesProduct" >
+    insert into Pro_Product_DirectSales_Product
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="proid != null" >
+        ProID,
+      </if>
+      <if test="supplierid != null" >
+        SupplierID,
+      </if>
+      <if test="suppliername != null" >
+        SupplierName,
+      </if>
+      <if test="aliasename != null" >
+        AliaseName,
+      </if>
+      <if test="receiverid != null" >
+        ReceiverID,
+      </if>
+      <if test="receivername != null" >
+        ReceiverName,
+      </if>
+      <if test="localproname != null" >
+        LocalProName,
+      </if>
+      <if test="feature != null" >
+        Feature,
+      </if>
+      <if test="feeincludes != null" >
+        FeeIncludes,
+      </if>
+      <if test="feenonincludes != null" >
+        FeeNonIncludes,
+      </if>
+      <if test="attention != null" >
+        Attention,
+      </if>
+      <if test="shopping != null" >
+        Shopping,
+      </if>
+      <if test="tips != null" >
+        Tips,
+      </if>
+      <if test="insurance != null" >
+        Insurance,
+      </if>
+      <if test="bactorule != null" >
+        BacToRule,
+      </if>
+      <if test="travelname != null" >
+        TravelName,
+      </if>
+      <if test="brandname != null" >
+        BrandName,
+      </if>
+      <if test="destcollectionflag != null" >
+        DestCollectionFlag,
+      </if>
+      <if test="emergencycontact != null" >
+        EmergencyContact,
+      </if>
+      <if test="emergencymobileno != null" >
+        EmergencyMobileNo,
+      </if>
+      <if test="travelagencyaddr != null" >
+        TravelAgencyAddr,
+      </if>
+      <if test="travelagencyphone != null" >
+        TravelAgencyPhone,
+      </if>
+      <if test="taemergencycontact != null" >
+        TAEmergencyContact,
+      </if>
+      <if test="taemergencymobile != null" >
+        TAEmergencyMobile,
+      </if>
+      <if test="wxpublicityimage != null" >
+        WXPublicityImage,
+      </if>
+      <if test="wxtitle != null" >
+        WXTitle,
+      </if>
+      <if test="wxsharesummary != null" >
+        WXShareSummary,
+      </if>
+      <if test="suppliercityid != null" >
+        SupplierCityID,
+      </if>
+      <if test="suppliercityname != null" >
+        SupplierCityName,
+      </if>
+      <if test="summary != null" >
+        Summary,
+      </if>
+      <if test="proname != null" >
+        ProName,
+      </if>
+      <if test="coverimg != null" >
+        CoverImg,
+      </if>
+      <if test="createddate != null" >
+        CreatedDate,
+      </if>
+      <if test="reviseddate != null" >
+        RevisedDate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="proid != null" >
+        #{proid,jdbcType=CHAR},
+      </if>
+      <if test="supplierid != null" >
+        #{supplierid,jdbcType=CHAR},
+      </if>
+      <if test="suppliername != null" >
+        #{suppliername,jdbcType=VARCHAR},
+      </if>
+      <if test="aliasename != null" >
+        #{aliasename,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverid != null" >
+        #{receiverid,jdbcType=CHAR},
+      </if>
+      <if test="receivername != null" >
+        #{receivername,jdbcType=VARCHAR},
+      </if>
+      <if test="localproname != null" >
+        #{localproname,jdbcType=VARCHAR},
+      </if>
+      <if test="feature != null" >
+        #{feature,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="feeincludes != null" >
+        #{feeincludes,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="feenonincludes != null" >
+        #{feenonincludes,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="attention != null" >
+        #{attention,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="shopping != null" >
+        #{shopping,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="tips != null" >
+        #{tips,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="insurance != null" >
+        #{insurance,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="bactorule != null" >
+        #{bactorule,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="travelname != null" >
+        #{travelname,jdbcType=VARCHAR},
+      </if>
+      <if test="brandname != null" >
+        #{brandname,jdbcType=VARCHAR},
+      </if>
+      <if test="destcollectionflag != null" >
+        #{destcollectionflag,jdbcType=VARCHAR},
+      </if>
+      <if test="emergencycontact != null" >
+        #{emergencycontact,jdbcType=VARCHAR},
+      </if>
+      <if test="emergencymobileno != null" >
+        #{emergencymobileno,jdbcType=VARCHAR},
+      </if>
+      <if test="travelagencyaddr != null" >
+        #{travelagencyaddr,jdbcType=VARCHAR},
+      </if>
+      <if test="travelagencyphone != null" >
+        #{travelagencyphone,jdbcType=VARCHAR},
+      </if>
+      <if test="taemergencycontact != null" >
+        #{taemergencycontact,jdbcType=VARCHAR},
+      </if>
+      <if test="taemergencymobile != null" >
+        #{taemergencymobile,jdbcType=VARCHAR},
+      </if>
+      <if test="wxpublicityimage != null" >
+        #{wxpublicityimage,jdbcType=VARCHAR},
+      </if>
+      <if test="wxtitle != null" >
+        #{wxtitle,jdbcType=VARCHAR},
+      </if>
+      <if test="wxsharesummary != null" >
+        #{wxsharesummary,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="suppliercityid != null" >
+        #{suppliercityid,jdbcType=CHAR},
+      </if>
+      <if test="suppliercityname != null" >
+        #{suppliercityname,jdbcType=VARCHAR},
+      </if>
+      <if test="summary != null" >
+        #{summary,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="proname != null" >
+        #{proname,jdbcType=VARCHAR},
+      </if>
+      <if test="coverimg != null" >
+        #{coverimg,jdbcType=VARCHAR},
+      </if>
+      <if test="createddate != null" >
+        #{createddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="reviseddate != null" >
+        #{reviseddate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.holyrobot.con_product.pojo.ProProductDirectSalesProductExample" resultType="java.lang.Integer" >
+    select count(*) from Pro_Product_DirectSales_Product
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update Pro_Product_DirectSales_Product
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=CHAR},
+      </if>
+      <if test="record.proid != null" >
+        ProID = #{record.proid,jdbcType=CHAR},
+      </if>
+      <if test="record.supplierid != null" >
+        SupplierID = #{record.supplierid,jdbcType=CHAR},
+      </if>
+      <if test="record.suppliername != null" >
+        SupplierName = #{record.suppliername,jdbcType=VARCHAR},
+      </if>
+      <if test="record.aliasename != null" >
+        AliaseName = #{record.aliasename,jdbcType=VARCHAR},
+      </if>
+      <if test="record.receiverid != null" >
+        ReceiverID = #{record.receiverid,jdbcType=CHAR},
+      </if>
+      <if test="record.receivername != null" >
+        ReceiverName = #{record.receivername,jdbcType=VARCHAR},
+      </if>
+      <if test="record.localproname != null" >
+        LocalProName = #{record.localproname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.feature != null" >
+        Feature = #{record.feature,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.feeincludes != null" >
+        FeeIncludes = #{record.feeincludes,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.feenonincludes != null" >
+        FeeNonIncludes = #{record.feenonincludes,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.attention != null" >
+        Attention = #{record.attention,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.shopping != null" >
+        Shopping = #{record.shopping,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.tips != null" >
+        Tips = #{record.tips,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.insurance != null" >
+        Insurance = #{record.insurance,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.bactorule != null" >
+        BacToRule = #{record.bactorule,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.travelname != null" >
+        TravelName = #{record.travelname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.brandname != null" >
+        BrandName = #{record.brandname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.destcollectionflag != null" >
+        DestCollectionFlag = #{record.destcollectionflag,jdbcType=VARCHAR},
+      </if>
+      <if test="record.emergencycontact != null" >
+        EmergencyContact = #{record.emergencycontact,jdbcType=VARCHAR},
+      </if>
+      <if test="record.emergencymobileno != null" >
+        EmergencyMobileNo = #{record.emergencymobileno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.travelagencyaddr != null" >
+        TravelAgencyAddr = #{record.travelagencyaddr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.travelagencyphone != null" >
+        TravelAgencyPhone = #{record.travelagencyphone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.taemergencycontact != null" >
+        TAEmergencyContact = #{record.taemergencycontact,jdbcType=VARCHAR},
+      </if>
+      <if test="record.taemergencymobile != null" >
+        TAEmergencyMobile = #{record.taemergencymobile,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wxpublicityimage != null" >
+        WXPublicityImage = #{record.wxpublicityimage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wxtitle != null" >
+        WXTitle = #{record.wxtitle,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wxsharesummary != null" >
+        WXShareSummary = #{record.wxsharesummary,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.suppliercityid != null" >
+        SupplierCityID = #{record.suppliercityid,jdbcType=CHAR},
+      </if>
+      <if test="record.suppliercityname != null" >
+        SupplierCityName = #{record.suppliercityname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.summary != null" >
+        Summary = #{record.summary,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.proname != null" >
+        ProName = #{record.proname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.coverimg != null" >
+        CoverImg = #{record.coverimg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createddate != null" >
+        CreatedDate = #{record.createddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.reviseddate != null" >
+        RevisedDate = #{record.reviseddate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update Pro_Product_DirectSales_Product
+    set ID = #{record.id,jdbcType=CHAR},
+      ProID = #{record.proid,jdbcType=CHAR},
+      SupplierID = #{record.supplierid,jdbcType=CHAR},
+      SupplierName = #{record.suppliername,jdbcType=VARCHAR},
+      AliaseName = #{record.aliasename,jdbcType=VARCHAR},
+      ReceiverID = #{record.receiverid,jdbcType=CHAR},
+      ReceiverName = #{record.receivername,jdbcType=VARCHAR},
+      LocalProName = #{record.localproname,jdbcType=VARCHAR},
+      Feature = #{record.feature,jdbcType=LONGVARCHAR},
+      FeeIncludes = #{record.feeincludes,jdbcType=LONGVARCHAR},
+      FeeNonIncludes = #{record.feenonincludes,jdbcType=LONGVARCHAR},
+      Attention = #{record.attention,jdbcType=LONGVARCHAR},
+      Shopping = #{record.shopping,jdbcType=LONGVARCHAR},
+      Tips = #{record.tips,jdbcType=LONGVARCHAR},
+      Insurance = #{record.insurance,jdbcType=LONGVARCHAR},
+      BacToRule = #{record.bactorule,jdbcType=LONGVARCHAR},
+      TravelName = #{record.travelname,jdbcType=VARCHAR},
+      BrandName = #{record.brandname,jdbcType=VARCHAR},
+      DestCollectionFlag = #{record.destcollectionflag,jdbcType=VARCHAR},
+      EmergencyContact = #{record.emergencycontact,jdbcType=VARCHAR},
+      EmergencyMobileNo = #{record.emergencymobileno,jdbcType=VARCHAR},
+      TravelAgencyAddr = #{record.travelagencyaddr,jdbcType=VARCHAR},
+      TravelAgencyPhone = #{record.travelagencyphone,jdbcType=VARCHAR},
+      TAEmergencyContact = #{record.taemergencycontact,jdbcType=VARCHAR},
+      TAEmergencyMobile = #{record.taemergencymobile,jdbcType=VARCHAR},
+      WXPublicityImage = #{record.wxpublicityimage,jdbcType=VARCHAR},
+      WXTitle = #{record.wxtitle,jdbcType=VARCHAR},
+      WXShareSummary = #{record.wxsharesummary,jdbcType=LONGVARCHAR},
+      SupplierCityID = #{record.suppliercityid,jdbcType=CHAR},
+      SupplierCityName = #{record.suppliercityname,jdbcType=VARCHAR},
+      Summary = #{record.summary,jdbcType=LONGVARCHAR},
+      ProName = #{record.proname,jdbcType=VARCHAR},
+      CoverImg = #{record.coverimg,jdbcType=VARCHAR},
+      CreatedDate = #{record.createddate,jdbcType=TIMESTAMP},
+      RevisedDate = #{record.reviseddate,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.holyrobot.con_product.pojo.ProProductDirectSalesProduct" >
+    update Pro_Product_DirectSales_Product
+    <set >
+      <if test="proid != null" >
+        ProID = #{proid,jdbcType=CHAR},
+      </if>
+      <if test="supplierid != null" >
+        SupplierID = #{supplierid,jdbcType=CHAR},
+      </if>
+      <if test="suppliername != null" >
+        SupplierName = #{suppliername,jdbcType=VARCHAR},
+      </if>
+      <if test="aliasename != null" >
+        AliaseName = #{aliasename,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverid != null" >
+        ReceiverID = #{receiverid,jdbcType=CHAR},
+      </if>
+      <if test="receivername != null" >
+        ReceiverName = #{receivername,jdbcType=VARCHAR},
+      </if>
+      <if test="localproname != null" >
+        LocalProName = #{localproname,jdbcType=VARCHAR},
+      </if>
+      <if test="feature != null" >
+        Feature = #{feature,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="feeincludes != null" >
+        FeeIncludes = #{feeincludes,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="feenonincludes != null" >
+        FeeNonIncludes = #{feenonincludes,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="attention != null" >
+        Attention = #{attention,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="shopping != null" >
+        Shopping = #{shopping,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="tips != null" >
+        Tips = #{tips,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="insurance != null" >
+        Insurance = #{insurance,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="bactorule != null" >
+        BacToRule = #{bactorule,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="travelname != null" >
+        TravelName = #{travelname,jdbcType=VARCHAR},
+      </if>
+      <if test="brandname != null" >
+        BrandName = #{brandname,jdbcType=VARCHAR},
+      </if>
+      <if test="destcollectionflag != null" >
+        DestCollectionFlag = #{destcollectionflag,jdbcType=VARCHAR},
+      </if>
+      <if test="emergencycontact != null" >
+        EmergencyContact = #{emergencycontact,jdbcType=VARCHAR},
+      </if>
+      <if test="emergencymobileno != null" >
+        EmergencyMobileNo = #{emergencymobileno,jdbcType=VARCHAR},
+      </if>
+      <if test="travelagencyaddr != null" >
+        TravelAgencyAddr = #{travelagencyaddr,jdbcType=VARCHAR},
+      </if>
+      <if test="travelagencyphone != null" >
+        TravelAgencyPhone = #{travelagencyphone,jdbcType=VARCHAR},
+      </if>
+      <if test="taemergencycontact != null" >
+        TAEmergencyContact = #{taemergencycontact,jdbcType=VARCHAR},
+      </if>
+      <if test="taemergencymobile != null" >
+        TAEmergencyMobile = #{taemergencymobile,jdbcType=VARCHAR},
+      </if>
+      <if test="wxpublicityimage != null" >
+        WXPublicityImage = #{wxpublicityimage,jdbcType=VARCHAR},
+      </if>
+      <if test="wxtitle != null" >
+        WXTitle = #{wxtitle,jdbcType=VARCHAR},
+      </if>
+      <if test="wxsharesummary != null" >
+        WXShareSummary = #{wxsharesummary,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="suppliercityid != null" >
+        SupplierCityID = #{suppliercityid,jdbcType=CHAR},
+      </if>
+      <if test="suppliercityname != null" >
+        SupplierCityName = #{suppliercityname,jdbcType=VARCHAR},
+      </if>
+      <if test="summary != null" >
+        Summary = #{summary,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="proname != null" >
+        ProName = #{proname,jdbcType=VARCHAR},
+      </if>
+      <if test="coverimg != null" >
+        CoverImg = #{coverimg,jdbcType=VARCHAR},
+      </if>
+      <if test="createddate != null" >
+        CreatedDate = #{createddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="reviseddate != null" >
+        RevisedDate = #{reviseddate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.holyrobot.con_product.pojo.ProProductDirectSalesProduct" >
+    update Pro_Product_DirectSales_Product
+    set ProID = #{proid,jdbcType=CHAR},
+      SupplierID = #{supplierid,jdbcType=CHAR},
+      SupplierName = #{suppliername,jdbcType=VARCHAR},
+      AliaseName = #{aliasename,jdbcType=VARCHAR},
+      ReceiverID = #{receiverid,jdbcType=CHAR},
+      ReceiverName = #{receivername,jdbcType=VARCHAR},
+      LocalProName = #{localproname,jdbcType=VARCHAR},
+      Feature = #{feature,jdbcType=LONGVARCHAR},
+      FeeIncludes = #{feeincludes,jdbcType=LONGVARCHAR},
+      FeeNonIncludes = #{feenonincludes,jdbcType=LONGVARCHAR},
+      Attention = #{attention,jdbcType=LONGVARCHAR},
+      Shopping = #{shopping,jdbcType=LONGVARCHAR},
+      Tips = #{tips,jdbcType=LONGVARCHAR},
+      Insurance = #{insurance,jdbcType=LONGVARCHAR},
+      BacToRule = #{bactorule,jdbcType=LONGVARCHAR},
+      TravelName = #{travelname,jdbcType=VARCHAR},
+      BrandName = #{brandname,jdbcType=VARCHAR},
+      DestCollectionFlag = #{destcollectionflag,jdbcType=VARCHAR},
+      EmergencyContact = #{emergencycontact,jdbcType=VARCHAR},
+      EmergencyMobileNo = #{emergencymobileno,jdbcType=VARCHAR},
+      TravelAgencyAddr = #{travelagencyaddr,jdbcType=VARCHAR},
+      TravelAgencyPhone = #{travelagencyphone,jdbcType=VARCHAR},
+      TAEmergencyContact = #{taemergencycontact,jdbcType=VARCHAR},
+      TAEmergencyMobile = #{taemergencymobile,jdbcType=VARCHAR},
+      WXPublicityImage = #{wxpublicityimage,jdbcType=VARCHAR},
+      WXTitle = #{wxtitle,jdbcType=VARCHAR},
+      WXShareSummary = #{wxsharesummary,jdbcType=LONGVARCHAR},
+      SupplierCityID = #{suppliercityid,jdbcType=CHAR},
+      SupplierCityName = #{suppliercityname,jdbcType=VARCHAR},
+      Summary = #{summary,jdbcType=LONGVARCHAR},
+      ProName = #{proname,jdbcType=VARCHAR},
+      CoverImg = #{coverimg,jdbcType=VARCHAR},
+      CreatedDate = #{createddate,jdbcType=TIMESTAMP},
+      RevisedDate = #{reviseddate,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+  <select id="selectProdutOuterTimes" resultType="int">
+    SELECT
+    COUNT(1)
+    FROM
+    Pro_Product_DirectSales_Product
+    WHERE
+    ProID = #{proId}
+    AND ReceiverID = (
+    SELECT
+    SupplierID
+    FROM
+    Pro_Product_DirectSales_Product
+    WHERE
+    ProID = #{proId}
+    AND ReceiverID = #{receiverId}
+    )
+  </select>
+
+  <insert id="insertList" parameterType="java.util.List" >
+    insert into Pro_Product_DirectSales_Product (ID, ProID, SupplierID,
+    SupplierName, AliaseName, ReceiverID,
+    ReceiverName, LocalProName, Feature,
+    FeeIncludes, FeeNonIncludes,
+    Attention, Shopping, Tips,
+    Insurance, BacToRule, TravelName,
+    BrandName, DestCollectionFlag, EmergencyContact,
+    EmergencyMobileNo, TravelAgencyAddr,
+    TravelAgencyPhone, TAEmergencyContact,
+    TAEmergencyMobile, WXPublicityImage,
+    WXTitle, WXShareSummary, SupplierCityID,
+    SupplierCityName, Summary, ProName,
+    CoverImg, CreatedDate, isAuto, IsNew, RevisedDate
+    )
+    values
+    <foreach collection="list" item="item" separator=",">
+      (#{item.id,jdbcType=CHAR}, #{item.proid,jdbcType=CHAR}, #{item.supplierid,jdbcType=CHAR},
+      #{item.suppliername,jdbcType=VARCHAR}, #{item.aliasename,jdbcType=VARCHAR}, #{item.receiverid,jdbcType=CHAR},
+      #{item.receivername,jdbcType=VARCHAR}, #{item.localproname,jdbcType=VARCHAR}, #{item.feature,jdbcType=LONGVARCHAR},
+      #{item.feeincludes,jdbcType=LONGVARCHAR}, #{item.feenonincludes,jdbcType=LONGVARCHAR},
+      #{item.attention,jdbcType=LONGVARCHAR}, #{item.shopping,jdbcType=LONGVARCHAR}, #{item.tips,jdbcType=LONGVARCHAR},
+      #{item.insurance,jdbcType=LONGVARCHAR}, #{item.bactorule,jdbcType=LONGVARCHAR}, #{item.travelname,jdbcType=VARCHAR},
+      #{item.brandname,jdbcType=VARCHAR}, #{item.destcollectionflag,jdbcType=VARCHAR}, #{item.emergencycontact,jdbcType=VARCHAR},
+      #{item.emergencymobileno,jdbcType=VARCHAR}, #{item.travelagencyaddr,jdbcType=VARCHAR},
+      #{item.travelagencyphone,jdbcType=VARCHAR}, #{item.taemergencycontact,jdbcType=VARCHAR},
+      #{item.taemergencymobile,jdbcType=VARCHAR}, #{item.wxpublicityimage,jdbcType=VARCHAR},
+      #{item.wxtitle,jdbcType=VARCHAR}, #{item.wxsharesummary,jdbcType=LONGVARCHAR}, #{item.suppliercityid,jdbcType=CHAR},
+      #{item.suppliercityname,jdbcType=VARCHAR}, #{item.summary,jdbcType=LONGVARCHAR}, #{item.proname,jdbcType=VARCHAR},
+      #{item.coverimg,jdbcType=VARCHAR}, #{item.createddate,jdbcType=TIMESTAMP},#{item.isauto,jdbcType=INTEGER} ,#{item.isnew,jdbcType=INTEGER},#{item.reviseddate,jdbcType=TIMESTAMP}
+      )
+    </foreach>
+  </insert>
+</mapper>

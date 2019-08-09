@@ -1,0 +1,611 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.holyrobot.con_product.mapper.ProProductDirectSalesItemMapper" >
+  <resultMap id="BaseResultMap" type="com.holyrobot.con_product.pojo.ProProductDirectSalesItem" >
+    <id column="ID" property="id" jdbcType="CHAR" />
+    <result column="TourID" property="tourid" jdbcType="CHAR" />
+    <result column="TouristType" property="touristtype" jdbcType="INTEGER" />
+    <result column="PolicyName" property="policyname" jdbcType="VARCHAR" />
+    <result column="SalesPrice" property="salesprice" jdbcType="DECIMAL" />
+    <result column="RebatePrice" property="rebateprice" jdbcType="DECIMAL" />
+    <result column="SingleRoomPrice" property="singleroomprice" jdbcType="DECIMAL" />
+    <result column="IsDefault" property="isdefault" jdbcType="BIT" />
+    <result column="IsOccupySeat" property="isoccupyseat" jdbcType="BIT" />
+    <result column="OrderIndex" property="orderindex" jdbcType="INTEGER" />
+    <result column="SiteID" property="siteid" jdbcType="CHAR" />
+    <result column="SiteName" property="sitename" jdbcType="VARCHAR" />
+    <result column="ProID" property="proid" jdbcType="CHAR" />
+    <result column="DirectPrice" property="directprice" jdbcType="DECIMAL" />
+    <result column="SalesCostPrice" property="salescostprice" jdbcType="DECIMAL" />
+    <result column="DirectCostPrice" property="directcostprice" jdbcType="DECIMAL" />
+    <result column="DirectSalesID" property="directsalesid" jdbcType="CHAR" />
+    <result column="ETASalesCostPrice" property="etasalescostprice" jdbcType="DECIMAL" />
+    <result column="ETADirectCostPrice" property="etadirectcostprice" jdbcType="DECIMAL" />
+    <result column="ETARebatePrice" property="etarebateprice" jdbcType="DECIMAL" />
+    <result column="ETASingleRoomPrice" property="etasingleroomprice" jdbcType="DECIMAL" />
+    <result column="IsAuto" property="isauto" jdbcType="INTEGER" />
+    <result column="VolunteerDirectPrice" property="volunteerdirectprice" jdbcType="DECIMAL" />
+    <result column="VolunteerRebatePrice" property="volunteerrebateprice" jdbcType="DECIMAL" />
+    <result column="VolunteerSalesPrice" property="volunteersalesprice" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, TourID, TouristType, PolicyName, SalesPrice, RebatePrice, SingleRoomPrice, IsDefault,
+    IsOccupySeat, OrderIndex, SiteID, SiteName, ProID, DirectPrice, SalesCostPrice, DirectCostPrice,
+    DirectSalesID, ETASalesCostPrice, ETADirectCostPrice, ETARebatePrice, ETASingleRoomPrice,
+    IsAuto, VolunteerDirectPrice, VolunteerRebatePrice, VolunteerSalesPrice,TravelerRewardPrice
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.holyrobot.con_product.pojo.ProProductDirectSalesItemExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from Pro_Product_DirectSales_Item
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from Pro_Product_DirectSales_Item
+    where ID = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from Pro_Product_DirectSales_Item
+    where ID = #{id,jdbcType=CHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.holyrobot.con_product.pojo.ProProductDirectSalesItemExample" >
+    delete from Pro_Product_DirectSales_Item
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.holyrobot.con_product.pojo.ProProductDirectSalesItem" >
+    insert into Pro_Product_DirectSales_Item (ID, TourID, TouristType,
+    PolicyName, SalesPrice, RebatePrice,
+    SingleRoomPrice, IsDefault, IsOccupySeat,
+    OrderIndex, SiteID, SiteName,
+    ProID, DirectPrice, SalesCostPrice,
+    DirectCostPrice, DirectSalesID, ETASalesCostPrice,
+    ETADirectCostPrice, ETARebatePrice, ETASingleRoomPrice,
+    IsAuto, VolunteerDirectPrice, VolunteerRebatePrice,
+    VolunteerSalesPrice)
+    values (#{id,jdbcType=CHAR}, #{tourid,jdbcType=CHAR}, #{touristtype,jdbcType=INTEGER},
+    #{policyname,jdbcType=VARCHAR}, #{salesprice,jdbcType=DECIMAL}, #{rebateprice,jdbcType=DECIMAL},
+    #{singleroomprice,jdbcType=DECIMAL}, #{isdefault,jdbcType=BIT}, #{isoccupyseat,jdbcType=BIT},
+    #{orderindex,jdbcType=INTEGER}, #{siteid,jdbcType=CHAR}, #{sitename,jdbcType=VARCHAR},
+    #{proid,jdbcType=CHAR}, #{directprice,jdbcType=DECIMAL}, #{salescostprice,jdbcType=DECIMAL},
+    #{directcostprice,jdbcType=DECIMAL}, #{directsalesid,jdbcType=CHAR}, #{etasalescostprice,jdbcType=DECIMAL},
+    #{etadirectcostprice,jdbcType=DECIMAL}, #{etarebateprice,jdbcType=DECIMAL}, #{etasingleroomprice,jdbcType=DECIMAL},
+    #{isauto,jdbcType=INTEGER}, #{volunteerdirectprice,jdbcType=DECIMAL}, #{volunteerrebateprice,jdbcType=DECIMAL},
+    #{volunteersalesprice,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.holyrobot.con_product.pojo.ProProductDirectSalesItem" >
+    insert into Pro_Product_DirectSales_Item
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="tourid != null" >
+        TourID,
+      </if>
+      <if test="touristtype != null" >
+        TouristType,
+      </if>
+      <if test="policyname != null" >
+        PolicyName,
+      </if>
+      <if test="salesprice != null" >
+        SalesPrice,
+      </if>
+      <if test="rebateprice != null" >
+        RebatePrice,
+      </if>
+      <if test="singleroomprice != null" >
+        SingleRoomPrice,
+      </if>
+      <if test="isdefault != null" >
+        IsDefault,
+      </if>
+      <if test="isoccupyseat != null" >
+        IsOccupySeat,
+      </if>
+      <if test="orderindex != null" >
+        OrderIndex,
+      </if>
+      <if test="siteid != null" >
+        SiteID,
+      </if>
+      <if test="sitename != null" >
+        SiteName,
+      </if>
+      <if test="proid != null" >
+        ProID,
+      </if>
+      <if test="directprice != null" >
+        DirectPrice,
+      </if>
+      <if test="salescostprice != null" >
+        SalesCostPrice,
+      </if>
+      <if test="directcostprice != null" >
+        DirectCostPrice,
+      </if>
+      <if test="directsalesid != null" >
+        DirectSalesID,
+      </if>
+      <if test="etasalescostprice != null" >
+        ETASalesCostPrice,
+      </if>
+      <if test="etadirectcostprice != null" >
+        ETADirectCostPrice,
+      </if>
+      <if test="etarebateprice != null" >
+        ETARebatePrice,
+      </if>
+      <if test="etasingleroomprice != null" >
+        ETASingleRoomPrice,
+      </if>
+      <if test="isauto != null" >
+        IsAuto,
+      </if>
+      <if test="volunteerdirectprice != null" >
+        VolunteerDirectPrice,
+      </if>
+      <if test="volunteerrebateprice != null" >
+        VolunteerRebatePrice,
+      </if>
+      <if test="volunteersalesprice != null" >
+        VolunteerSalesPrice,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="tourid != null" >
+        #{tourid,jdbcType=CHAR},
+      </if>
+      <if test="touristtype != null" >
+        #{touristtype,jdbcType=INTEGER},
+      </if>
+      <if test="policyname != null" >
+        #{policyname,jdbcType=VARCHAR},
+      </if>
+      <if test="salesprice != null" >
+        #{salesprice,jdbcType=DECIMAL},
+      </if>
+      <if test="rebateprice != null" >
+        #{rebateprice,jdbcType=DECIMAL},
+      </if>
+      <if test="singleroomprice != null" >
+        #{singleroomprice,jdbcType=DECIMAL},
+      </if>
+      <if test="isdefault != null" >
+        #{isdefault,jdbcType=BIT},
+      </if>
+      <if test="isoccupyseat != null" >
+        #{isoccupyseat,jdbcType=BIT},
+      </if>
+      <if test="orderindex != null" >
+        #{orderindex,jdbcType=INTEGER},
+      </if>
+      <if test="siteid != null" >
+        #{siteid,jdbcType=CHAR},
+      </if>
+      <if test="sitename != null" >
+        #{sitename,jdbcType=VARCHAR},
+      </if>
+      <if test="proid != null" >
+        #{proid,jdbcType=CHAR},
+      </if>
+      <if test="directprice != null" >
+        #{directprice,jdbcType=DECIMAL},
+      </if>
+      <if test="salescostprice != null" >
+        #{salescostprice,jdbcType=DECIMAL},
+      </if>
+      <if test="directcostprice != null" >
+        #{directcostprice,jdbcType=DECIMAL},
+      </if>
+      <if test="directsalesid != null" >
+        #{directsalesid,jdbcType=CHAR},
+      </if>
+      <if test="etasalescostprice != null" >
+        #{etasalescostprice,jdbcType=DECIMAL},
+      </if>
+      <if test="etadirectcostprice != null" >
+        #{etadirectcostprice,jdbcType=DECIMAL},
+      </if>
+      <if test="etarebateprice != null" >
+        #{etarebateprice,jdbcType=DECIMAL},
+      </if>
+      <if test="etasingleroomprice != null" >
+        #{etasingleroomprice,jdbcType=DECIMAL},
+      </if>
+      <if test="isauto != null" >
+        #{isauto,jdbcType=INTEGER},
+      </if>
+      <if test="volunteerdirectprice != null" >
+        #{volunteerdirectprice,jdbcType=DECIMAL},
+      </if>
+      <if test="volunteerrebateprice != null" >
+        #{volunteerrebateprice,jdbcType=DECIMAL},
+      </if>
+      <if test="volunteersalesprice != null" >
+        #{volunteersalesprice,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.holyrobot.con_product.pojo.ProProductDirectSalesItemExample" resultType="java.lang.Integer" >
+    select count(*) from Pro_Product_DirectSales_Item
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update Pro_Product_DirectSales_Item
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=CHAR},
+      </if>
+      <if test="record.tourid != null" >
+        TourID = #{record.tourid,jdbcType=CHAR},
+      </if>
+      <if test="record.touristtype != null" >
+        TouristType = #{record.touristtype,jdbcType=INTEGER},
+      </if>
+      <if test="record.policyname != null" >
+        PolicyName = #{record.policyname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.salesprice != null" >
+        SalesPrice = #{record.salesprice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.rebateprice != null" >
+        RebatePrice = #{record.rebateprice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.singleroomprice != null" >
+        SingleRoomPrice = #{record.singleroomprice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.isdefault != null" >
+        IsDefault = #{record.isdefault,jdbcType=BIT},
+      </if>
+      <if test="record.isoccupyseat != null" >
+        IsOccupySeat = #{record.isoccupyseat,jdbcType=BIT},
+      </if>
+      <if test="record.orderindex != null" >
+        OrderIndex = #{record.orderindex,jdbcType=INTEGER},
+      </if>
+      <if test="record.siteid != null" >
+        SiteID = #{record.siteid,jdbcType=CHAR},
+      </if>
+      <if test="record.sitename != null" >
+        SiteName = #{record.sitename,jdbcType=VARCHAR},
+      </if>
+      <if test="record.proid != null" >
+        ProID = #{record.proid,jdbcType=CHAR},
+      </if>
+      <if test="record.directprice != null" >
+        DirectPrice = #{record.directprice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.salescostprice != null" >
+        SalesCostPrice = #{record.salescostprice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.directcostprice != null" >
+        DirectCostPrice = #{record.directcostprice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.directsalesid != null" >
+        DirectSalesID = #{record.directsalesid,jdbcType=CHAR},
+      </if>
+      <if test="record.etasalescostprice != null" >
+        ETASalesCostPrice = #{record.etasalescostprice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.etadirectcostprice != null" >
+        ETADirectCostPrice = #{record.etadirectcostprice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.etarebateprice != null" >
+        ETARebatePrice = #{record.etarebateprice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.etasingleroomprice != null" >
+        ETASingleRoomPrice = #{record.etasingleroomprice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.isauto != null" >
+        IsAuto = #{record.isauto,jdbcType=INTEGER},
+      </if>
+      <if test="record.volunteerdirectprice != null" >
+        VolunteerDirectPrice = #{record.volunteerdirectprice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.volunteerrebateprice != null" >
+        VolunteerRebatePrice = #{record.volunteerrebateprice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.volunteersalesprice != null" >
+        VolunteerSalesPrice = #{record.volunteersalesprice,jdbcType=DECIMAL},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update Pro_Product_DirectSales_Item
+    set ID = #{record.id,jdbcType=CHAR},
+    TourID = #{record.tourid,jdbcType=CHAR},
+    TouristType = #{record.touristtype,jdbcType=INTEGER},
+    PolicyName = #{record.policyname,jdbcType=VARCHAR},
+    SalesPrice = #{record.salesprice,jdbcType=DECIMAL},
+    RebatePrice = #{record.rebateprice,jdbcType=DECIMAL},
+    SingleRoomPrice = #{record.singleroomprice,jdbcType=DECIMAL},
+    IsDefault = #{record.isdefault,jdbcType=BIT},
+    IsOccupySeat = #{record.isoccupyseat,jdbcType=BIT},
+    OrderIndex = #{record.orderindex,jdbcType=INTEGER},
+    SiteID = #{record.siteid,jdbcType=CHAR},
+    SiteName = #{record.sitename,jdbcType=VARCHAR},
+    ProID = #{record.proid,jdbcType=CHAR},
+    DirectPrice = #{record.directprice,jdbcType=DECIMAL},
+    SalesCostPrice = #{record.salescostprice,jdbcType=DECIMAL},
+    DirectCostPrice = #{record.directcostprice,jdbcType=DECIMAL},
+    DirectSalesID = #{record.directsalesid,jdbcType=CHAR},
+    ETASalesCostPrice = #{record.etasalescostprice,jdbcType=DECIMAL},
+    ETADirectCostPrice = #{record.etadirectcostprice,jdbcType=DECIMAL},
+    ETARebatePrice = #{record.etarebateprice,jdbcType=DECIMAL},
+    ETASingleRoomPrice = #{record.etasingleroomprice,jdbcType=DECIMAL},
+    IsAuto = #{record.isauto,jdbcType=INTEGER},
+    VolunteerDirectPrice = #{record.volunteerdirectprice,jdbcType=DECIMAL},
+    VolunteerRebatePrice = #{record.volunteerrebateprice,jdbcType=DECIMAL},
+    VolunteerSalesPrice = #{record.volunteersalesprice,jdbcType=DECIMAL}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.holyrobot.con_product.pojo.ProProductDirectSalesItem" >
+    update Pro_Product_DirectSales_Item
+    <set >
+      <if test="tourid != null" >
+        TourID = #{tourid,jdbcType=CHAR},
+      </if>
+      <if test="touristtype != null" >
+        TouristType = #{touristtype,jdbcType=INTEGER},
+      </if>
+      <if test="policyname != null" >
+        PolicyName = #{policyname,jdbcType=VARCHAR},
+      </if>
+      <if test="salesprice != null" >
+        SalesPrice = #{salesprice,jdbcType=DECIMAL},
+      </if>
+      <if test="rebateprice != null" >
+        RebatePrice = #{rebateprice,jdbcType=DECIMAL},
+      </if>
+      <if test="singleroomprice != null" >
+        SingleRoomPrice = #{singleroomprice,jdbcType=DECIMAL},
+      </if>
+      <if test="isdefault != null" >
+        IsDefault = #{isdefault,jdbcType=BIT},
+      </if>
+      <if test="isoccupyseat != null" >
+        IsOccupySeat = #{isoccupyseat,jdbcType=BIT},
+      </if>
+      <if test="orderindex != null" >
+        OrderIndex = #{orderindex,jdbcType=INTEGER},
+      </if>
+      <if test="siteid != null" >
+        SiteID = #{siteid,jdbcType=CHAR},
+      </if>
+      <if test="sitename != null" >
+        SiteName = #{sitename,jdbcType=VARCHAR},
+      </if>
+      <if test="proid != null" >
+        ProID = #{proid,jdbcType=CHAR},
+      </if>
+      <if test="directprice != null" >
+        DirectPrice = #{directprice,jdbcType=DECIMAL},
+      </if>
+      <if test="salescostprice != null" >
+        SalesCostPrice = #{salescostprice,jdbcType=DECIMAL},
+      </if>
+      <if test="directcostprice != null" >
+        DirectCostPrice = #{directcostprice,jdbcType=DECIMAL},
+      </if>
+      <if test="directsalesid != null" >
+        DirectSalesID = #{directsalesid,jdbcType=CHAR},
+      </if>
+      <if test="etasalescostprice != null" >
+        ETASalesCostPrice = #{etasalescostprice,jdbcType=DECIMAL},
+      </if>
+      <if test="etadirectcostprice != null" >
+        ETADirectCostPrice = #{etadirectcostprice,jdbcType=DECIMAL},
+      </if>
+      <if test="etarebateprice != null" >
+        ETARebatePrice = #{etarebateprice,jdbcType=DECIMAL},
+      </if>
+      <if test="etasingleroomprice != null" >
+        ETASingleRoomPrice = #{etasingleroomprice,jdbcType=DECIMAL},
+      </if>
+      <if test="isauto != null" >
+        IsAuto = #{isauto,jdbcType=INTEGER},
+      </if>
+      <if test="volunteerdirectprice != null" >
+        VolunteerDirectPrice = #{volunteerdirectprice,jdbcType=DECIMAL},
+      </if>
+      <if test="volunteerrebateprice != null" >
+        VolunteerRebatePrice = #{volunteerrebateprice,jdbcType=DECIMAL},
+      </if>
+      <if test="volunteersalesprice != null" >
+        VolunteerSalesPrice = #{volunteersalesprice,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.holyrobot.con_product.pojo.ProProductDirectSalesItem" >
+    update Pro_Product_DirectSales_Item
+    set TourID = #{tourid,jdbcType=CHAR},
+    TouristType = #{touristtype,jdbcType=INTEGER},
+    PolicyName = #{policyname,jdbcType=VARCHAR},
+    SalesPrice = #{salesprice,jdbcType=DECIMAL},
+    RebatePrice = #{rebateprice,jdbcType=DECIMAL},
+    SingleRoomPrice = #{singleroomprice,jdbcType=DECIMAL},
+    IsDefault = #{isdefault,jdbcType=BIT},
+    IsOccupySeat = #{isoccupyseat,jdbcType=BIT},
+    OrderIndex = #{orderindex,jdbcType=INTEGER},
+    SiteID = #{siteid,jdbcType=CHAR},
+    SiteName = #{sitename,jdbcType=VARCHAR},
+    ProID = #{proid,jdbcType=CHAR},
+    DirectPrice = #{directprice,jdbcType=DECIMAL},
+    SalesCostPrice = #{salescostprice,jdbcType=DECIMAL},
+    DirectCostPrice = #{directcostprice,jdbcType=DECIMAL},
+    DirectSalesID = #{directsalesid,jdbcType=CHAR},
+    ETASalesCostPrice = #{etasalescostprice,jdbcType=DECIMAL},
+    ETADirectCostPrice = #{etadirectcostprice,jdbcType=DECIMAL},
+    ETARebatePrice = #{etarebateprice,jdbcType=DECIMAL},
+    ETASingleRoomPrice = #{etasingleroomprice,jdbcType=DECIMAL},
+    IsAuto = #{isauto,jdbcType=INTEGER},
+    VolunteerDirectPrice = #{volunteerdirectprice,jdbcType=DECIMAL},
+    VolunteerRebatePrice = #{volunteerrebateprice,jdbcType=DECIMAL},
+    VolunteerSalesPrice = #{volunteersalesprice,jdbcType=DECIMAL}
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+  <select id="listTourLimit" resultType="com.holyrobot.dto.TourBo">
+    SELECT
+    TOP 7 a.ID AS id,
+    a.TourNo AS tourNo,
+    a.TourName AS tourName,
+    a.TourDate AS tourDate,
+    a.DueDate AS dueDate,
+    a.PlanNum AS planNum,
+    a.MinNum AS minNum,
+    a.SeatNum AS seatNum,
+    a.RefDepFlight AS refDepFlight,
+    a.RefBackFlight AS refBackFlight,
+    a.TourStatus AS tourStatus,
+    b.SalesPrice AS salesPrice,
+    b.DirectPrice AS directPrice,
+    B.SiteID,
+    z.ReceiverID,
+    b.volunteerDirectPrice,
+    b.volunteerRebatePrice,
+    b.volunteerSalesPrice
+    FROM
+    Pro_Tour a
+    INNER JOIN Pro_Product_DirectSales_Item b ON a.ID = b.TourID
+    LEFT JOIN Pro_Product_DirectSales AS Z ON Z.TourID = a.ID
+    WHERE
+    b.IsDefault = 1
+    AND z.ProID =#{id}
+    AND a.TourStatus !=- 1
+    AND b.SiteID =#{siteId}
+    -- 此处传orgId
+    -- AND z.ReceiverID = '8DABDD0B-0DE7-4563-B64F-A5DB31093EAD'
+    AND z.DataStatus = 1
+    AND z.SupplierDataStatus = 1
+    AND z.TourDate >= GETDATE()
+    AND z.AuditStatus = 1
+    ORDER BY
+    a.TourDate
+  </select>
+  <select id="selectMinRebatePrice" parameterType="map" resultType="com.holyrobot.dto.RebatePriceDto">
+SELECT
+	ROUND(MIN(ISNULL(VolunteerRebatePrice, 0)/VolunteerDirectPrice),3) AS pricePercent,MIN(ISNULL(VolunteerRebatePrice, 0))as price
+FROM
+Pro_Product_DirectSales AS a
+LEFT JOIN Pro_Product_DirectSales_Item AS b ON a.ID = b.DirectSalesID
+where
+1=1
+<if test="siteId != null and siteId != ''">
+  AND b.SiteID=#{siteId}
+</if>
+AND a.ReceiverID = #{orgId}
+AND A.SupplierID = #{directSalesSendId}
+AND B.IsDefault = 1
+AND a.DataStatus = 1
+AND a.SupplierDataStatus = 1
+AND a.AuditStatus = 1
+AND a.TourDate > DATEADD(DAY, - 1, GETDATE())
+AND b.ProID = #{proId}
+  </select>
+
+  <insert id="insertList" parameterType="java.util.List" >
+    insert into Pro_Product_DirectSales_Item (ID, TourID, TouristType,
+    PolicyName, SalesPrice, RebatePrice,
+    SingleRoomPrice, IsDefault, IsOccupySeat,
+    OrderIndex, SiteID, SiteName,
+    ProID, DirectPrice, SalesCostPrice,
+    DirectCostPrice, DirectSalesID, ETASalesCostPrice,
+    ETADirectCostPrice, ETARebatePrice, ETASingleRoomPrice,
+    IsAuto, VolunteerDirectPrice, VolunteerRebatePrice,
+    VolunteerSalesPrice)
+    values
+    <foreach collection="list" item="item" separator=",">
+      (#{item.id,jdbcType=CHAR}, #{item.tourid,jdbcType=CHAR}, #{item.touristtype,jdbcType=INTEGER},
+      #{item.policyname,jdbcType=VARCHAR}, #{item.salesprice,jdbcType=DECIMAL}, #{item.rebateprice,jdbcType=DECIMAL},
+      #{item.singleroomprice,jdbcType=DECIMAL}, #{item.isdefault,jdbcType=BIT}, #{item.isoccupyseat,jdbcType=BIT},
+      #{item.orderindex,jdbcType=INTEGER}, #{item.siteid,jdbcType=CHAR}, #{item.sitename,jdbcType=VARCHAR},
+      #{item.proid,jdbcType=CHAR}, #{item.directprice,jdbcType=DECIMAL}, #{item.salescostprice,jdbcType=DECIMAL},
+      #{item.directcostprice,jdbcType=DECIMAL}, #{item.directsalesid,jdbcType=CHAR}, #{item.etasalescostprice,jdbcType=DECIMAL},
+      #{item.etadirectcostprice,jdbcType=DECIMAL}, #{item.etarebateprice,jdbcType=DECIMAL}, #{item.etasingleroomprice,jdbcType=DECIMAL},
+      #{item.isauto,jdbcType=INTEGER}, #{item.volunteerdirectprice,jdbcType=DECIMAL}, #{item.volunteerrebateprice,jdbcType=DECIMAL},
+      #{item.volunteersalesprice,jdbcType=DECIMAL})
+    </foreach>
+  </insert>
+
+</mapper>

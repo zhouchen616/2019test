@@ -1,0 +1,370 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.holyrobot.con_product.mapper.ProTourTrafficMapper" >
+  <resultMap id="BaseResultMap" type="com.holyrobot.con_product.pojo.ProTourTraffic" >
+    <id column="ID" property="id" jdbcType="CHAR" />
+    <result column="TourID" property="tourid" jdbcType="CHAR" />
+    <result column="TrafficType" property="traffictype" jdbcType="INTEGER" />
+    <result column="TrafficProductID" property="trafficproductid" jdbcType="CHAR" />
+    <result column="Direction" property="direction" jdbcType="INTEGER" />
+    <result column="OrgID" property="orgid" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, TourID, TrafficType, TrafficProductID, Direction, OrgID
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.holyrobot.con_product.pojo.ProTourTrafficExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from Pro_Tour_Traffic
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from Pro_Tour_Traffic
+    where ID = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from Pro_Tour_Traffic
+    where ID = #{id,jdbcType=CHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.holyrobot.con_product.pojo.ProTourTrafficExample" >
+    delete from Pro_Tour_Traffic
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.holyrobot.con_product.pojo.ProTourTraffic" >
+    insert into Pro_Tour_Traffic (ID, TourID, TrafficType, 
+      TrafficProductID, Direction, OrgID
+      )
+    values (#{id,jdbcType=CHAR}, #{tourid,jdbcType=CHAR}, #{traffictype,jdbcType=INTEGER}, 
+      #{trafficproductid,jdbcType=CHAR}, #{direction,jdbcType=INTEGER}, #{orgid,jdbcType=CHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.holyrobot.con_product.pojo.ProTourTraffic" >
+    insert into Pro_Tour_Traffic
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="tourid != null" >
+        TourID,
+      </if>
+      <if test="traffictype != null" >
+        TrafficType,
+      </if>
+      <if test="trafficproductid != null" >
+        TrafficProductID,
+      </if>
+      <if test="direction != null" >
+        Direction,
+      </if>
+      <if test="orgid != null" >
+        OrgID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="tourid != null" >
+        #{tourid,jdbcType=CHAR},
+      </if>
+      <if test="traffictype != null" >
+        #{traffictype,jdbcType=INTEGER},
+      </if>
+      <if test="trafficproductid != null" >
+        #{trafficproductid,jdbcType=CHAR},
+      </if>
+      <if test="direction != null" >
+        #{direction,jdbcType=INTEGER},
+      </if>
+      <if test="orgid != null" >
+        #{orgid,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.holyrobot.con_product.pojo.ProTourTrafficExample" resultType="java.lang.Integer" >
+    select count(*) from Pro_Tour_Traffic
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update Pro_Tour_Traffic
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=CHAR},
+      </if>
+      <if test="record.tourid != null" >
+        TourID = #{record.tourid,jdbcType=CHAR},
+      </if>
+      <if test="record.traffictype != null" >
+        TrafficType = #{record.traffictype,jdbcType=INTEGER},
+      </if>
+      <if test="record.trafficproductid != null" >
+        TrafficProductID = #{record.trafficproductid,jdbcType=CHAR},
+      </if>
+      <if test="record.direction != null" >
+        Direction = #{record.direction,jdbcType=INTEGER},
+      </if>
+      <if test="record.orgid != null" >
+        OrgID = #{record.orgid,jdbcType=CHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update Pro_Tour_Traffic
+    set ID = #{record.id,jdbcType=CHAR},
+      TourID = #{record.tourid,jdbcType=CHAR},
+      TrafficType = #{record.traffictype,jdbcType=INTEGER},
+      TrafficProductID = #{record.trafficproductid,jdbcType=CHAR},
+      Direction = #{record.direction,jdbcType=INTEGER},
+      OrgID = #{record.orgid,jdbcType=CHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.holyrobot.con_product.pojo.ProTourTraffic" >
+    update Pro_Tour_Traffic
+    <set >
+      <if test="tourid != null" >
+        TourID = #{tourid,jdbcType=CHAR},
+      </if>
+      <if test="traffictype != null" >
+        TrafficType = #{traffictype,jdbcType=INTEGER},
+      </if>
+      <if test="trafficproductid != null" >
+        TrafficProductID = #{trafficproductid,jdbcType=CHAR},
+      </if>
+      <if test="direction != null" >
+        Direction = #{direction,jdbcType=INTEGER},
+      </if>
+      <if test="orgid != null" >
+        OrgID = #{orgid,jdbcType=CHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.holyrobot.con_product.pojo.ProTourTraffic" >
+    update Pro_Tour_Traffic
+    set TourID = #{tourid,jdbcType=CHAR},
+      TrafficType = #{traffictype,jdbcType=INTEGER},
+      TrafficProductID = #{trafficproductid,jdbcType=CHAR},
+      Direction = #{direction,jdbcType=INTEGER},
+      OrgID = #{orgid,jdbcType=CHAR}
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+
+  <resultMap id="flightMap" type="com.holyrobot.dto.FlightProductDto" >
+    <id column="ID" property="id" jdbcType="CHAR" />
+    <result column="FlightDate" property="flightdate" jdbcType="TIMESTAMP" />
+    <result column="IntervalDays" property="intervaldays" jdbcType="INTEGER" />
+    <result column="TicketNumber" property="ticketnumber" jdbcType="INTEGER" />
+    <result column="TicketAmount" property="ticketamount" jdbcType="DECIMAL" />
+    <result column="TaxAmount" property="taxamount" jdbcType="DECIMAL" />
+    <result column="OilAmount" property="oilamount" jdbcType="DECIMAL" />
+    <result column="Flight_Type" property="flightType" jdbcType="INTEGER" />
+    <result column="Source" property="source" jdbcType="VARCHAR" />
+    <result column="ToFlightNo" property="toflightno" jdbcType="VARCHAR" />
+    <result column="FromFlightNo" property="fromflightno" jdbcType="VARCHAR" />
+    <result column="DataStatus" property="datastatus" jdbcType="INTEGER" />
+    <result column="CreatedDate" property="createddate" jdbcType="TIMESTAMP" />
+    <result column="CreatedBy" property="createdby" jdbcType="VARCHAR" />
+    <result column="CreatedByID" property="createdbyid" jdbcType="CHAR" />
+    <result column="DeptID" property="deptid" jdbcType="CHAR" />
+    <result column="OrgID" property="orgid" jdbcType="CHAR" />
+    <result column="RevisedDate" property="reviseddate" jdbcType="TIMESTAMP" />
+    <result column="RevisedBy" property="revisedby" jdbcType="VARCHAR" />
+    <result column="SupplierID" property="supplierid" jdbcType="CHAR" />
+    <result column="Supplier" property="supplier" jdbcType="VARCHAR" />
+    <result column="isShare" property="isshare" jdbcType="INTEGER" />
+    <result column="SharePrices" property="shareprices" jdbcType="DECIMAL" />
+    <result column="Comment" property="comment" jdbcType="VARCHAR" />
+    <result column="DesStation" property="desstation" jdbcType="VARCHAR" />
+    <result column="DepStation" property="depstation" jdbcType="VARCHAR" />
+    <result column="Direction" property="direction" jdbcType="INTEGER" />
+  </resultMap>
+
+  <resultMap id="trainMap" type="com.holyrobot.dto.TrainProductDto" >
+    <id column="ID" property="id" jdbcType="CHAR" />
+    <result column="GoDate" property="godate" jdbcType="DATE" />
+    <result column="station_train_code" property="stationTrainCode" jdbcType="VARCHAR" />
+    <result column="TicketNumber" property="ticketnumber" jdbcType="INTEGER" />
+    <result column="TicketCost" property="ticketcost" jdbcType="DECIMAL" />
+    <result column="isShare" property="isshare" jdbcType="INTEGER" />
+    <result column="SharePrices" property="shareprices" jdbcType="DECIMAL" />
+    <result column="SupplierID" property="supplierid" jdbcType="CHAR" />
+    <result column="Supplier" property="supplier" jdbcType="VARCHAR" />
+    <result column="CreatedDate" property="createddate" jdbcType="TIMESTAMP" />
+    <result column="CreatedBy" property="createdby" jdbcType="VARCHAR" />
+    <result column="CreatedByID" property="createdbyid" jdbcType="CHAR" />
+    <result column="DeptID" property="deptid" jdbcType="CHAR" />
+    <result column="OrgID" property="orgid" jdbcType="CHAR" />
+    <result column="RevisedDate" property="reviseddate" jdbcType="TIMESTAMP" />
+    <result column="RevisedBy" property="revisedby" jdbcType="VARCHAR" />
+    <result column="DataStatus" property="datastatus" jdbcType="INTEGER" />
+    <result column="SeatType" property="seattype" jdbcType="VARCHAR" />
+    <result column="DepStation" property="depstation" jdbcType="VARCHAR" />
+    <result column="DesStation" property="desstation" jdbcType="VARCHAR" />
+    <result column="Direction" property="direction" jdbcType="INTEGER" />
+  </resultMap>
+
+  <resultMap id="busMap" type="com.holyrobot.dto.BusProductDto" >
+    <id column="ID" property="id" jdbcType="CHAR" />
+    <result column="GoDate" property="godate" jdbcType="DATE" />
+    <result column="CarCode" property="carcode" jdbcType="VARCHAR" />
+    <result column="TicketNumber" property="ticketnumber" jdbcType="INTEGER" />
+    <result column="TicketCost" property="ticketcost" jdbcType="DECIMAL" />
+    <result column="isShare" property="isshare" jdbcType="BIT" />
+    <result column="SharePrices" property="shareprices" jdbcType="DECIMAL" />
+    <result column="SupplierID" property="supplierid" jdbcType="CHAR" />
+    <result column="Supplier" property="supplier" jdbcType="VARCHAR" />
+    <result column="CreatedDate" property="createddate" jdbcType="TIMESTAMP" />
+    <result column="CreatedBy" property="createdby" jdbcType="VARCHAR" />
+    <result column="CreatedByID" property="createdbyid" jdbcType="CHAR" />
+    <result column="RevisedDate" property="reviseddate" jdbcType="TIMESTAMP" />
+    <result column="RevisedBy" property="revisedby" jdbcType="VARCHAR" />
+    <result column="DeptID" property="deptid" jdbcType="CHAR" />
+    <result column="OrgID" property="orgid" jdbcType="CHAR" />
+    <result column="DataStatus" property="datastatus" jdbcType="INTEGER" />
+    <result column="DepStation" property="depstation" jdbcType="VARCHAR" />
+    <result column="DesStation" property="desstation" jdbcType="VARCHAR" />
+    <result column="Direction" property="direction" jdbcType="INTEGER" />
+  </resultMap>
+
+  <resultMap id="shipMap" type="com.holyrobot.dto.ShipProductDto" >
+    <id column="ID" property="id" jdbcType="CHAR" />
+    <result column="DataStatus" property="datastatus" jdbcType="INTEGER" />
+    <result column="GoDate" property="godate" jdbcType="DATE" />
+    <result column="ShipCode" property="shipcode" jdbcType="VARCHAR" />
+    <result column="TicketNumber" property="ticketnumber" jdbcType="INTEGER" />
+    <result column="TicketCost" property="ticketcost" jdbcType="DECIMAL" />
+    <result column="isShare" property="isshare" jdbcType="BIT" />
+    <result column="SharePrices" property="shareprices" jdbcType="DECIMAL" />
+    <result column="SupplierID" property="supplierid" jdbcType="CHAR" />
+    <result column="Supplier" property="supplier" jdbcType="VARCHAR" />
+    <result column="CreatedDate" property="createddate" jdbcType="TIMESTAMP" />
+    <result column="CreatedBy" property="createdby" jdbcType="VARCHAR" />
+    <result column="CreatedByID" property="createdbyid" jdbcType="CHAR" />
+    <result column="RevisedDate" property="reviseddate" jdbcType="TIMESTAMP" />
+    <result column="RevisedBy" property="revisedby" jdbcType="VARCHAR" />
+    <result column="DeptID" property="deptid" jdbcType="CHAR" />
+    <result column="OrgID" property="orgid" jdbcType="CHAR" />
+    <result column="DepStation" property="depstation" jdbcType="VARCHAR" />
+    <result column="DesStation" property="desstation" jdbcType="VARCHAR" />
+    <result column="Direction" property="direction" jdbcType="INTEGER" />
+  </resultMap>
+
+  <select id="selectFlightInfo" resultMap="flightMap">
+    SELECT
+    b.ID, FlightDate, IntervalDays, TicketNumber, TicketAmount, TaxAmount, OilAmount, Flight_Type,
+    Source, ToFlightNo, FromFlightNo, DataStatus, CreatedDate, CreatedBy, CreatedByID,
+    DeptID, b.OrgID, RevisedDate, RevisedBy, SupplierID, Supplier, isShare, SharePrices,
+    Comment, DesStation, DepStation,Direction
+    FROM
+    Pro_Tour_Traffic AS a
+    INNER JOIN Res_FlightProduct AS b ON a.TrafficProductID = b.ID
+    WHERE a.TourID = #{tourId}
+  </select>
+  <select id="selectTrainInfo" resultMap="trainMap">
+    SELECT
+    b.ID, GoDate, station_train_code, TicketNumber, TicketCost, isShare, SharePrices, SupplierID,
+    Supplier, CreatedDate, CreatedBy, CreatedByID, DeptID, b.OrgID, RevisedDate, RevisedBy,
+    DataStatus, SeatType, DepStation, DesStation,Direction
+    FROM
+    Pro_Tour_Traffic AS a
+    INNER JOIN Res_TrainProduct AS b ON a.TrafficProductID = b.ID
+    WHERE a.TourID = #{tourId}
+  </select>
+  <select id="selectBusInfo" resultMap="busMap">
+    SELECT
+    b.ID, GoDate, CarCode, TicketNumber, TicketCost, isShare, SharePrices, SupplierID,
+    Supplier, CreatedDate, CreatedBy, CreatedByID, RevisedDate, RevisedBy, DeptID, b.OrgID,
+    DataStatus, DepStation, DesStation,Direction
+    FROM
+    Pro_Tour_Traffic AS a
+    INNER JOIN Res_BusProduct AS b ON a.TrafficProductID = b.ID
+    WHERE a.TourID = #{tourId}
+  </select>
+  <select id="selectShipInfo" resultMap="shipMap">
+    SELECT
+    b.ID, GoDate, ShipCode, TicketNumber, TicketCost, isShare, SharePrices, SupplierID,
+    Supplier, Comment, CreatedDate, CreatedBy, CreatedByID, RevisedDate, RevisedBy, DeptID, b.OrgID,
+    DataStatus, DepStation, DesStation, Direction
+    FROM
+    Pro_Tour_Traffic AS a
+    INNER JOIN Res_ShipProduct AS b ON a.TrafficProductID = b.ID
+    WHERE a.TourID = #{tourId}
+  </select>
+</mapper>

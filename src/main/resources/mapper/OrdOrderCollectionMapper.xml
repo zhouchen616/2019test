@@ -1,0 +1,528 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.holyrobot.con_order.mapper.OrdOrderCollectionMapper" >
+  <resultMap id="BaseResultMap" type="com.holyrobot.con_order.pojo.OrdOrderCollection" >
+    <id column="ID" property="id" jdbcType="CHAR" />
+    <result column="OrderID" property="orderid" jdbcType="CHAR" />
+    <result column="CollectUnit" property="collectunit" jdbcType="VARCHAR" />
+    <result column="CollectUnitID" property="collectunitid" jdbcType="CHAR" />
+    <result column="CollectAmt" property="collectamt" jdbcType="DECIMAL" />
+    <result column="CollectType" property="collecttype" jdbcType="VARCHAR" />
+    <result column="CollectDate" property="collectdate" jdbcType="DATE" />
+    <result column="CollectBill" property="collectbill" jdbcType="VARCHAR" />
+    <result column="Comment" property="comment" jdbcType="VARCHAR" />
+    <result column="ClaimID" property="claimid" jdbcType="CHAR" />
+    <result column="SrcBank" property="srcbank" jdbcType="VARCHAR" />
+    <result column="SrcName" property="srcname" jdbcType="VARCHAR" />
+    <result column="SrcBankID" property="srcbankid" jdbcType="CHAR" />
+    <result column="CollectStatus" property="collectstatus" jdbcType="INTEGER" />
+    <result column="CreatedByID" property="createdbyid" jdbcType="CHAR" />
+    <result column="CreatedBy" property="createdby" jdbcType="VARCHAR" />
+    <result column="CreatedDate" property="createddate" jdbcType="TIMESTAMP" />
+    <result column="Auditor" property="auditor" jdbcType="VARCHAR" />
+    <result column="AuditorID" property="auditorid" jdbcType="CHAR" />
+    <result column="AuditDate" property="auditdate" jdbcType="TIMESTAMP" />
+    <result column="AuditComment" property="auditcomment" jdbcType="VARCHAR" />
+    <result column="OrgID" property="orgid" jdbcType="CHAR" />
+    <result column="PaymentRequestID" property="paymentrequestid" jdbcType="CHAR" />
+    <result column="IsBuyerApply" property="isbuyerapply" jdbcType="BIT" />
+    <result column="BuyerOrgName" property="buyerorgname" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, OrderID, CollectUnit, CollectUnitID, CollectAmt, CollectType, CollectDate, CollectBill,
+    Comment, ClaimID, SrcBank, SrcName, SrcBankID, CollectStatus, CreatedByID, CreatedBy,
+    CreatedDate, Auditor, AuditorID, AuditDate, AuditComment, OrgID, PaymentRequestID,
+    IsBuyerApply, BuyerOrgName
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.holyrobot.con_order.pojo.OrdOrderCollectionExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from Ord_Order_Collection
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from Ord_Order_Collection
+    where ID = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from Ord_Order_Collection
+    where ID = #{id,jdbcType=CHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.holyrobot.con_order.pojo.OrdOrderCollectionExample" >
+    delete from Ord_Order_Collection
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.holyrobot.con_order.pojo.OrdOrderCollection" >
+    insert into Ord_Order_Collection (ID, OrderID, CollectUnit,
+    CollectUnitID, CollectAmt, CollectType,
+    CollectDate, CollectBill, Comment,
+    ClaimID, SrcBank, SrcName,
+    SrcBankID, CollectStatus, CreatedByID,
+    CreatedBy, CreatedDate, Auditor,
+    AuditorID, AuditDate, AuditComment,
+    OrgID, PaymentRequestID, IsBuyerApply,
+    BuyerOrgName)
+    values (#{id,jdbcType=CHAR}, #{orderid,jdbcType=CHAR}, #{collectunit,jdbcType=VARCHAR},
+    #{collectunitid,jdbcType=CHAR}, #{collectamt,jdbcType=DECIMAL}, #{collecttype,jdbcType=VARCHAR},
+    #{collectdate,jdbcType=DATE}, #{collectbill,jdbcType=VARCHAR}, #{comment,jdbcType=VARCHAR},
+    #{claimid,jdbcType=CHAR}, #{srcbank,jdbcType=VARCHAR}, #{srcname,jdbcType=VARCHAR},
+    #{srcbankid,jdbcType=CHAR}, #{collectstatus,jdbcType=INTEGER}, #{createdbyid,jdbcType=CHAR},
+    #{createdby,jdbcType=VARCHAR}, #{createddate,jdbcType=TIMESTAMP}, #{auditor,jdbcType=VARCHAR},
+    #{auditorid,jdbcType=CHAR}, #{auditdate,jdbcType=TIMESTAMP}, #{auditcomment,jdbcType=VARCHAR},
+    #{orgid,jdbcType=CHAR}, #{paymentrequestid,jdbcType=CHAR}, #{isbuyerapply,jdbcType=BIT},
+    #{buyerorgname,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.holyrobot.con_order.pojo.OrdOrderCollection" >
+    insert into Ord_Order_Collection
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="orderid != null" >
+        OrderID,
+      </if>
+      <if test="collectunit != null" >
+        CollectUnit,
+      </if>
+      <if test="collectunitid != null" >
+        CollectUnitID,
+      </if>
+      <if test="collectamt != null" >
+        CollectAmt,
+      </if>
+      <if test="collecttype != null" >
+        CollectType,
+      </if>
+      <if test="collectdate != null" >
+        CollectDate,
+      </if>
+      <if test="collectbill != null" >
+        CollectBill,
+      </if>
+      <if test="comment != null" >
+        Comment,
+      </if>
+      <if test="claimid != null" >
+        ClaimID,
+      </if>
+      <if test="srcbank != null" >
+        SrcBank,
+      </if>
+      <if test="srcname != null" >
+        SrcName,
+      </if>
+      <if test="srcbankid != null" >
+        SrcBankID,
+      </if>
+      <if test="collectstatus != null" >
+        CollectStatus,
+      </if>
+      <if test="createdbyid != null" >
+        CreatedByID,
+      </if>
+      <if test="createdby != null" >
+        CreatedBy,
+      </if>
+      <if test="createddate != null" >
+        CreatedDate,
+      </if>
+      <if test="auditor != null" >
+        Auditor,
+      </if>
+      <if test="auditorid != null" >
+        AuditorID,
+      </if>
+      <if test="auditdate != null" >
+        AuditDate,
+      </if>
+      <if test="auditcomment != null" >
+        AuditComment,
+      </if>
+      <if test="orgid != null" >
+        OrgID,
+      </if>
+      <if test="paymentrequestid != null" >
+        PaymentRequestID,
+      </if>
+      <if test="isbuyerapply != null" >
+        IsBuyerApply,
+      </if>
+      <if test="buyerorgname != null" >
+        BuyerOrgName,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="orderid != null" >
+        #{orderid,jdbcType=CHAR},
+      </if>
+      <if test="collectunit != null" >
+        #{collectunit,jdbcType=VARCHAR},
+      </if>
+      <if test="collectunitid != null" >
+        #{collectunitid,jdbcType=CHAR},
+      </if>
+      <if test="collectamt != null" >
+        #{collectamt,jdbcType=DECIMAL},
+      </if>
+      <if test="collecttype != null" >
+        #{collecttype,jdbcType=VARCHAR},
+      </if>
+      <if test="collectdate != null" >
+        #{collectdate,jdbcType=DATE},
+      </if>
+      <if test="collectbill != null" >
+        #{collectbill,jdbcType=VARCHAR},
+      </if>
+      <if test="comment != null" >
+        #{comment,jdbcType=VARCHAR},
+      </if>
+      <if test="claimid != null" >
+        #{claimid,jdbcType=CHAR},
+      </if>
+      <if test="srcbank != null" >
+        #{srcbank,jdbcType=VARCHAR},
+      </if>
+      <if test="srcname != null" >
+        #{srcname,jdbcType=VARCHAR},
+      </if>
+      <if test="srcbankid != null" >
+        #{srcbankid,jdbcType=CHAR},
+      </if>
+      <if test="collectstatus != null" >
+        #{collectstatus,jdbcType=INTEGER},
+      </if>
+      <if test="createdbyid != null" >
+        #{createdbyid,jdbcType=CHAR},
+      </if>
+      <if test="createdby != null" >
+        #{createdby,jdbcType=VARCHAR},
+      </if>
+      <if test="createddate != null" >
+        #{createddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="auditor != null" >
+        #{auditor,jdbcType=VARCHAR},
+      </if>
+      <if test="auditorid != null" >
+        #{auditorid,jdbcType=CHAR},
+      </if>
+      <if test="auditdate != null" >
+        #{auditdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="auditcomment != null" >
+        #{auditcomment,jdbcType=VARCHAR},
+      </if>
+      <if test="orgid != null" >
+        #{orgid,jdbcType=CHAR},
+      </if>
+      <if test="paymentrequestid != null" >
+        #{paymentrequestid,jdbcType=CHAR},
+      </if>
+      <if test="isbuyerapply != null" >
+        #{isbuyerapply,jdbcType=BIT},
+      </if>
+      <if test="buyerorgname != null" >
+        #{buyerorgname,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.holyrobot.con_order.pojo.OrdOrderCollectionExample" resultType="java.lang.Integer" >
+    select count(*) from Ord_Order_Collection
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update Ord_Order_Collection
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=CHAR},
+      </if>
+      <if test="record.orderid != null" >
+        OrderID = #{record.orderid,jdbcType=CHAR},
+      </if>
+      <if test="record.collectunit != null" >
+        CollectUnit = #{record.collectunit,jdbcType=VARCHAR},
+      </if>
+      <if test="record.collectunitid != null" >
+        CollectUnitID = #{record.collectunitid,jdbcType=CHAR},
+      </if>
+      <if test="record.collectamt != null" >
+        CollectAmt = #{record.collectamt,jdbcType=DECIMAL},
+      </if>
+      <if test="record.collecttype != null" >
+        CollectType = #{record.collecttype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.collectdate != null" >
+        CollectDate = #{record.collectdate,jdbcType=DATE},
+      </if>
+      <if test="record.collectbill != null" >
+        CollectBill = #{record.collectbill,jdbcType=VARCHAR},
+      </if>
+      <if test="record.comment != null" >
+        Comment = #{record.comment,jdbcType=VARCHAR},
+      </if>
+      <if test="record.claimid != null" >
+        ClaimID = #{record.claimid,jdbcType=CHAR},
+      </if>
+      <if test="record.srcbank != null" >
+        SrcBank = #{record.srcbank,jdbcType=VARCHAR},
+      </if>
+      <if test="record.srcname != null" >
+        SrcName = #{record.srcname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.srcbankid != null" >
+        SrcBankID = #{record.srcbankid,jdbcType=CHAR},
+      </if>
+      <if test="record.collectstatus != null" >
+        CollectStatus = #{record.collectstatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.createdbyid != null" >
+        CreatedByID = #{record.createdbyid,jdbcType=CHAR},
+      </if>
+      <if test="record.createdby != null" >
+        CreatedBy = #{record.createdby,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createddate != null" >
+        CreatedDate = #{record.createddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.auditor != null" >
+        Auditor = #{record.auditor,jdbcType=VARCHAR},
+      </if>
+      <if test="record.auditorid != null" >
+        AuditorID = #{record.auditorid,jdbcType=CHAR},
+      </if>
+      <if test="record.auditdate != null" >
+        AuditDate = #{record.auditdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.auditcomment != null" >
+        AuditComment = #{record.auditcomment,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orgid != null" >
+        OrgID = #{record.orgid,jdbcType=CHAR},
+      </if>
+      <if test="record.paymentrequestid != null" >
+        PaymentRequestID = #{record.paymentrequestid,jdbcType=CHAR},
+      </if>
+      <if test="record.isbuyerapply != null" >
+        IsBuyerApply = #{record.isbuyerapply,jdbcType=BIT},
+      </if>
+      <if test="record.buyerorgname != null" >
+        BuyerOrgName = #{record.buyerorgname,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update Ord_Order_Collection
+    set ID = #{record.id,jdbcType=CHAR},
+    OrderID = #{record.orderid,jdbcType=CHAR},
+    CollectUnit = #{record.collectunit,jdbcType=VARCHAR},
+    CollectUnitID = #{record.collectunitid,jdbcType=CHAR},
+    CollectAmt = #{record.collectamt,jdbcType=DECIMAL},
+    CollectType = #{record.collecttype,jdbcType=VARCHAR},
+    CollectDate = #{record.collectdate,jdbcType=DATE},
+    CollectBill = #{record.collectbill,jdbcType=VARCHAR},
+    Comment = #{record.comment,jdbcType=VARCHAR},
+    ClaimID = #{record.claimid,jdbcType=CHAR},
+    SrcBank = #{record.srcbank,jdbcType=VARCHAR},
+    SrcName = #{record.srcname,jdbcType=VARCHAR},
+    SrcBankID = #{record.srcbankid,jdbcType=CHAR},
+    CollectStatus = #{record.collectstatus,jdbcType=INTEGER},
+    CreatedByID = #{record.createdbyid,jdbcType=CHAR},
+    CreatedBy = #{record.createdby,jdbcType=VARCHAR},
+    CreatedDate = #{record.createddate,jdbcType=TIMESTAMP},
+    Auditor = #{record.auditor,jdbcType=VARCHAR},
+    AuditorID = #{record.auditorid,jdbcType=CHAR},
+    AuditDate = #{record.auditdate,jdbcType=TIMESTAMP},
+    AuditComment = #{record.auditcomment,jdbcType=VARCHAR},
+    OrgID = #{record.orgid,jdbcType=CHAR},
+    PaymentRequestID = #{record.paymentrequestid,jdbcType=CHAR},
+    IsBuyerApply = #{record.isbuyerapply,jdbcType=BIT},
+    BuyerOrgName = #{record.buyerorgname,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.holyrobot.con_order.pojo.OrdOrderCollection" >
+    update Ord_Order_Collection
+    <set >
+      <if test="orderid != null" >
+        OrderID = #{orderid,jdbcType=CHAR},
+      </if>
+      <if test="collectunit != null" >
+        CollectUnit = #{collectunit,jdbcType=VARCHAR},
+      </if>
+      <if test="collectunitid != null" >
+        CollectUnitID = #{collectunitid,jdbcType=CHAR},
+      </if>
+      <if test="collectamt != null" >
+        CollectAmt = #{collectamt,jdbcType=DECIMAL},
+      </if>
+      <if test="collecttype != null" >
+        CollectType = #{collecttype,jdbcType=VARCHAR},
+      </if>
+      <if test="collectdate != null" >
+        CollectDate = #{collectdate,jdbcType=DATE},
+      </if>
+      <if test="collectbill != null" >
+        CollectBill = #{collectbill,jdbcType=VARCHAR},
+      </if>
+      <if test="comment != null" >
+        Comment = #{comment,jdbcType=VARCHAR},
+      </if>
+      <if test="claimid != null" >
+        ClaimID = #{claimid,jdbcType=CHAR},
+      </if>
+      <if test="srcbank != null" >
+        SrcBank = #{srcbank,jdbcType=VARCHAR},
+      </if>
+      <if test="srcname != null" >
+        SrcName = #{srcname,jdbcType=VARCHAR},
+      </if>
+      <if test="srcbankid != null" >
+        SrcBankID = #{srcbankid,jdbcType=CHAR},
+      </if>
+      <if test="collectstatus != null" >
+        CollectStatus = #{collectstatus,jdbcType=INTEGER},
+      </if>
+      <if test="createdbyid != null" >
+        CreatedByID = #{createdbyid,jdbcType=CHAR},
+      </if>
+      <if test="createdby != null" >
+        CreatedBy = #{createdby,jdbcType=VARCHAR},
+      </if>
+      <if test="createddate != null" >
+        CreatedDate = #{createddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="auditor != null" >
+        Auditor = #{auditor,jdbcType=VARCHAR},
+      </if>
+      <if test="auditorid != null" >
+        AuditorID = #{auditorid,jdbcType=CHAR},
+      </if>
+      <if test="auditdate != null" >
+        AuditDate = #{auditdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="auditcomment != null" >
+        AuditComment = #{auditcomment,jdbcType=VARCHAR},
+      </if>
+      <if test="orgid != null" >
+        OrgID = #{orgid,jdbcType=CHAR},
+      </if>
+      <if test="paymentrequestid != null" >
+        PaymentRequestID = #{paymentrequestid,jdbcType=CHAR},
+      </if>
+      <if test="isbuyerapply != null" >
+        IsBuyerApply = #{isbuyerapply,jdbcType=BIT},
+      </if>
+      <if test="buyerorgname != null" >
+        BuyerOrgName = #{buyerorgname,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.holyrobot.con_order.pojo.OrdOrderCollection" >
+    update Ord_Order_Collection
+    set OrderID = #{orderid,jdbcType=CHAR},
+    CollectUnit = #{collectunit,jdbcType=VARCHAR},
+    CollectUnitID = #{collectunitid,jdbcType=CHAR},
+    CollectAmt = #{collectamt,jdbcType=DECIMAL},
+    CollectType = #{collecttype,jdbcType=VARCHAR},
+    CollectDate = #{collectdate,jdbcType=DATE},
+    CollectBill = #{collectbill,jdbcType=VARCHAR},
+    Comment = #{comment,jdbcType=VARCHAR},
+    ClaimID = #{claimid,jdbcType=CHAR},
+    SrcBank = #{srcbank,jdbcType=VARCHAR},
+    SrcName = #{srcname,jdbcType=VARCHAR},
+    SrcBankID = #{srcbankid,jdbcType=CHAR},
+    CollectStatus = #{collectstatus,jdbcType=INTEGER},
+    CreatedByID = #{createdbyid,jdbcType=CHAR},
+    CreatedBy = #{createdby,jdbcType=VARCHAR},
+    CreatedDate = #{createddate,jdbcType=TIMESTAMP},
+    Auditor = #{auditor,jdbcType=VARCHAR},
+    AuditorID = #{auditorid,jdbcType=CHAR},
+    AuditDate = #{auditdate,jdbcType=TIMESTAMP},
+    AuditComment = #{auditcomment,jdbcType=VARCHAR},
+    OrgID = #{orgid,jdbcType=CHAR},
+    PaymentRequestID = #{paymentrequestid,jdbcType=CHAR},
+    IsBuyerApply = #{isbuyerapply,jdbcType=BIT},
+    BuyerOrgName = #{buyerorgname,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+</mapper>

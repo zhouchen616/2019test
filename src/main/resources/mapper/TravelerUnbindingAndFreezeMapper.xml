@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.holyrobot.con_volunteer.mapper.TravelerUnbindingAndFreezeMapper" >
+  <resultMap id="BaseResultMap" type="com.holyrobot.con_volunteer.pojo.TravelerUnbindingAndFreeze" >
+    <id column="ID" property="id" jdbcType="CHAR" />
+    <result column="OrgID" property="orgid" jdbcType="CHAR" />
+    <result column="ParentID" property="parentid" jdbcType="CHAR" />
+    <result column="ChildID" property="childid" jdbcType="CHAR" />
+    <result column="DataStatus" property="datastatus" jdbcType="INTEGER" />
+    <result column="AppReason" property="appreason" jdbcType="VARCHAR" />
+    <result column="ReasonDate" property="reasondate" jdbcType="TIMESTAMP" />
+    <result column="ReviewDate" property="reviewdate" jdbcType="TIMESTAMP" />
+    <result column="Reviewer" property="reviewer" jdbcType="VARCHAR" />
+    <result column="Remarks" property="remarks" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, OrgID, ParentID, ChildID, DataStatus, AppReason, ReasonDate, ReviewDate, Reviewer, 
+    Remarks
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.holyrobot.con_volunteer.pojo.TravelerUnbindingAndFreezeExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from Traveler_UnbindingAndFreeze
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from Traveler_UnbindingAndFreeze
+    where ID = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from Traveler_UnbindingAndFreeze
+    where ID = #{id,jdbcType=CHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.holyrobot.con_volunteer.pojo.TravelerUnbindingAndFreezeExample" >
+    delete from Traveler_UnbindingAndFreeze
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.holyrobot.con_volunteer.pojo.TravelerUnbindingAndFreeze" >
+    insert into Traveler_UnbindingAndFreeze (ID, OrgID, ParentID, ChildID, 
+      DataStatus, AppReason, ReasonDate, 
+      ReviewDate, Reviewer, Remarks
+      )
+    values (#{id,jdbcType=CHAR}, #{orgid,jdbcType=CHAR}, #{parentid,jdbcType=CHAR}, #{childid,jdbcType=CHAR}, 
+      #{datastatus,jdbcType=INTEGER}, #{appreason,jdbcType=VARCHAR}, #{reasondate,jdbcType=TIMESTAMP},
+      #{reviewdate,jdbcType=TIMESTAMP}, #{reviewer,jdbcType=VARCHAR}, #{remarks,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.holyrobot.con_volunteer.pojo.TravelerUnbindingAndFreeze" >
+    insert into Traveler_UnbindingAndFreeze
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="orgid != null" >
+        OrgID,
+      </if>
+      <if test="parentid != null" >
+        ParentID,
+      </if>
+      <if test="childid != null" >
+        ChildID,
+      </if>
+      <if test="datastatus != null" >
+        DataStatus,
+      </if>
+      <if test="appreason != null" >
+        AppReason,
+      </if>
+      <if test="reasondate != null" >
+        ReasonDate,
+      </if>
+      <if test="reviewdate != null" >
+        ReviewDate,
+      </if>
+      <if test="reviewer != null" >
+        Reviewer,
+      </if>
+      <if test="remarks != null" >
+        Remarks,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="orgid != null" >
+        #{orgid,jdbcType=CHAR},
+      </if>
+      <if test="parentid != null" >
+        #{parentid,jdbcType=CHAR},
+      </if>
+      <if test="childid != null" >
+        #{childid,jdbcType=CHAR},
+      </if>
+      <if test="datastatus != null" >
+        #{datastatus,jdbcType=INTEGER},
+      </if>
+      <if test="appreason != null" >
+        #{appreason,jdbcType=VARCHAR},
+      </if>
+      <if test="reasondate != null" >
+        #{reasondate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="reviewdate != null" >
+        #{reviewdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="reviewer != null" >
+        #{reviewer,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks != null" >
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.holyrobot.con_volunteer.pojo.TravelerUnbindingAndFreezeExample" resultType="java.lang.Integer" >
+    select count(*) from Traveler_UnbindingAndFreeze
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+    <update id="updateByExampleSelective" parameterType="map" >
+    update Traveler_UnbindingAndFreeze
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=CHAR},
+      </if>
+      <if test="record.orgid != null" >
+        OrgID = #{record.orgid,jdbcType=CHAR},
+      </if>
+      <if test="record.parentid != null" >
+        ParentID = #{record.parentid,jdbcType=CHAR},
+      </if>
+      <if test="record.childid != null" >
+        ChildID = #{record.childid,jdbcType=CHAR},
+      </if>
+      <if test="record.datastatus != null" >
+        DataStatus = #{record.datastatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.appreason != null" >
+        AppReason = #{record.appreason,jdbcType=VARCHAR},
+      </if>
+      <if test="record.reasondate != null" >
+        ReasonDate = #{record.reasondate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.reviewdate != null" >
+        ReviewDate = #{record.reviewdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.reviewer != null" >
+        Reviewer = #{record.reviewer,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remarks != null" >
+        Remarks = #{record.remarks,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update Traveler_UnbindingAndFreeze
+    set ID = #{record.id,jdbcType=CHAR},
+      OrgID = #{record.orgid,jdbcType=CHAR},
+      ParentID = #{record.parentid,jdbcType=CHAR},
+      ChildID = #{record.childid,jdbcType=CHAR},
+      DataStatus = #{record.datastatus,jdbcType=INTEGER},
+      AppReason = #{record.appreason,jdbcType=VARCHAR},
+      ReasonDate = #{record.reasondate,jdbcType=TIMESTAMP},
+      ReviewDate = #{record.reviewdate,jdbcType=TIMESTAMP},
+      Reviewer = #{record.reviewer,jdbcType=VARCHAR},
+      Remarks = #{record.remarks,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.holyrobot.con_volunteer.pojo.TravelerUnbindingAndFreeze" >
+    update Traveler_UnbindingAndFreeze
+    <set >
+      <if test="orgid != null" >
+        OrgID = #{orgid,jdbcType=CHAR},
+      </if>
+      <if test="parentid != null" >
+        ParentID = #{parentid,jdbcType=CHAR},
+      </if>
+      <if test="childid != null" >
+        ChildID = #{childid,jdbcType=CHAR},
+      </if>
+      <if test="datastatus != null" >
+        DataStatus = #{datastatus,jdbcType=INTEGER},
+      </if>
+      <if test="appreason != null" >
+        AppReason = #{appreason,jdbcType=VARCHAR},
+      </if>
+      <if test="reasondate != null" >
+        ReasonDate = #{reasondate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="reviewdate != null" >
+        ReviewDate = #{reviewdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="reviewer != null" >
+        Reviewer = #{reviewer,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks != null" >
+        Remarks = #{remarks,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.holyrobot.con_volunteer.pojo.TravelerUnbindingAndFreeze" >
+    update Traveler_UnbindingAndFreeze
+    set OrgID = #{orgid,jdbcType=CHAR},
+      ParentID = #{parentid,jdbcType=CHAR},
+      ChildID = #{childid,jdbcType=CHAR},
+      DataStatus = #{datastatus,jdbcType=INTEGER},
+      AppReason = #{appreason,jdbcType=VARCHAR},
+      ReasonDate = #{reasondate,jdbcType=TIMESTAMP},
+      ReviewDate = #{reviewdate,jdbcType=TIMESTAMP},
+      Reviewer = #{reviewer,jdbcType=VARCHAR},
+      Remarks = #{remarks,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+  <select id="getTravelerBindList" resultType="com.holyrobot.con_volunteer.pojo.TravelerUnbindingAndFreeze">
+    select *  FROM Traveler_UnbindingAndFreeze
+    <where>
+       <if test="map.userId!=null">
+         ChildId = #{map.userId}
+       </if>
+      <if test="map.orgId!=null">
+       And OrgId = #{map.orgId}
+      </if>
+      <if test="map.parentId!=null">
+        And ParentId = #{map.parentId}
+      </if>
+    </where>
+    order by ReasonDate desc
+  </select>
+</mapper>

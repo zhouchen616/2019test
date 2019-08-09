@@ -1,0 +1,465 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.holyrobot.con_order.mapper.OrdPaymentRequestMapper" >
+  <resultMap id="BaseResultMap" type="com.holyrobot.con_order.pojo.OrdPaymentRequest" >
+    <id column="ID" property="id" jdbcType="CHAR" />
+    <result column="OrderID" property="orderid" jdbcType="CHAR" />
+    <result column="PaymentAmt" property="paymentamt" jdbcType="DECIMAL" />
+    <result column="SupplierID" property="supplierid" jdbcType="CHAR" />
+    <result column="OrderCostID" property="ordercostid" jdbcType="CHAR" />
+    <result column="Creator" property="creator" jdbcType="VARCHAR" />
+    <result column="CreatorID" property="creatorid" jdbcType="CHAR" />
+    <result column="DeptID" property="deptid" jdbcType="CHAR" />
+    <result column="Comment" property="comment" jdbcType="VARCHAR" />
+    <result column="CreateDate" property="createdate" jdbcType="TIMESTAMP" />
+    <result column="DataStatus" property="datastatus" jdbcType="INTEGER" />
+    <result column="OrgID" property="orgid" jdbcType="CHAR" />
+    <result column="OrgName" property="orgname" jdbcType="VARCHAR" />
+    <result column="OrderNo" property="orderno" jdbcType="VARCHAR" />
+    <result column="SupplierName" property="suppliername" jdbcType="VARCHAR" />
+    <result column="PayDate" property="paydate" jdbcType="TIMESTAMP" />
+    <result column="IsSellerAudit" property="isselleraudit" jdbcType="BIT" />
+    <result column="IsCreditPay" property="iscreditpay" jdbcType="BIT" />
+    <result column="CreditPayDate" property="creditpaydate" jdbcType="TIMESTAMP" />
+    <result column="IsBuyerApply" property="isbuyerapply" jdbcType="BIT" />
+    <result column="BuyerOrgName" property="buyerorgname" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, OrderID, PaymentAmt, SupplierID, OrderCostID, Creator, CreatorID, DeptID, Comment, 
+    CreateDate, DataStatus, OrgID, OrgName, OrderNo, SupplierName, PayDate, IsSellerAudit, 
+    IsCreditPay, CreditPayDate, IsBuyerApply, BuyerOrgName
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.holyrobot.con_order.pojo.OrdPaymentRequestExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from Ord_PaymentRequest
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from Ord_PaymentRequest
+    where ID = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from Ord_PaymentRequest
+    where ID = #{id,jdbcType=CHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.holyrobot.con_order.pojo.OrdPaymentRequestExample" >
+    delete from Ord_PaymentRequest
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.holyrobot.con_order.pojo.OrdPaymentRequest" >
+    insert into Ord_PaymentRequest (ID, OrderID, PaymentAmt, 
+      SupplierID, OrderCostID, Creator, 
+      CreatorID, DeptID, Comment, 
+      CreateDate, DataStatus, OrgID, 
+      OrgName, OrderNo, SupplierName, 
+      PayDate, IsSellerAudit, IsCreditPay, 
+      CreditPayDate, IsBuyerApply, BuyerOrgName
+      )
+    values (#{id,jdbcType=CHAR}, #{orderid,jdbcType=CHAR}, #{paymentamt,jdbcType=DECIMAL}, 
+      #{supplierid,jdbcType=CHAR}, #{ordercostid,jdbcType=CHAR}, #{creator,jdbcType=VARCHAR},
+      #{creatorid,jdbcType=CHAR}, #{deptid,jdbcType=CHAR}, #{comment,jdbcType=VARCHAR},
+      #{createdate,jdbcType=TIMESTAMP}, #{datastatus,jdbcType=INTEGER}, #{orgid,jdbcType=CHAR}, 
+      #{orgname,jdbcType=VARCHAR}, #{orderno,jdbcType=VARCHAR}, #{suppliername,jdbcType=VARCHAR},
+      #{paydate,jdbcType=TIMESTAMP}, #{isselleraudit,jdbcType=BIT}, #{iscreditpay,jdbcType=BIT}, 
+      #{creditpaydate,jdbcType=TIMESTAMP}, #{isbuyerapply,jdbcType=BIT}, #{buyerorgname,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.holyrobot.con_order.pojo.OrdPaymentRequest" >
+    insert into Ord_PaymentRequest
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="orderid != null" >
+        OrderID,
+      </if>
+      <if test="paymentamt != null" >
+        PaymentAmt,
+      </if>
+      <if test="supplierid != null" >
+        SupplierID,
+      </if>
+      <if test="ordercostid != null" >
+        OrderCostID,
+      </if>
+      <if test="creator != null" >
+        Creator,
+      </if>
+      <if test="creatorid != null" >
+        CreatorID,
+      </if>
+      <if test="deptid != null" >
+        DeptID,
+      </if>
+      <if test="comment != null" >
+        Comment,
+      </if>
+      <if test="createdate != null" >
+        CreateDate,
+      </if>
+      <if test="datastatus != null" >
+        DataStatus,
+      </if>
+      <if test="orgid != null" >
+        OrgID,
+      </if>
+      <if test="orgname != null" >
+        OrgName,
+      </if>
+      <if test="orderno != null" >
+        OrderNo,
+      </if>
+      <if test="suppliername != null" >
+        SupplierName,
+      </if>
+      <if test="paydate != null" >
+        PayDate,
+      </if>
+      <if test="isselleraudit != null" >
+        IsSellerAudit,
+      </if>
+      <if test="iscreditpay != null" >
+        IsCreditPay,
+      </if>
+      <if test="creditpaydate != null" >
+        CreditPayDate,
+      </if>
+      <if test="isbuyerapply != null" >
+        IsBuyerApply,
+      </if>
+      <if test="buyerorgname != null" >
+        BuyerOrgName,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="orderid != null" >
+        #{orderid,jdbcType=CHAR},
+      </if>
+      <if test="paymentamt != null" >
+        #{paymentamt,jdbcType=DECIMAL},
+      </if>
+      <if test="supplierid != null" >
+        #{supplierid,jdbcType=CHAR},
+      </if>
+      <if test="ordercostid != null" >
+        #{ordercostid,jdbcType=CHAR},
+      </if>
+      <if test="creator != null" >
+        #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="creatorid != null" >
+        #{creatorid,jdbcType=CHAR},
+      </if>
+      <if test="deptid != null" >
+        #{deptid,jdbcType=CHAR},
+      </if>
+      <if test="comment != null" >
+        #{comment,jdbcType=VARCHAR},
+      </if>
+      <if test="createdate != null" >
+        #{createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="datastatus != null" >
+        #{datastatus,jdbcType=INTEGER},
+      </if>
+      <if test="orgid != null" >
+        #{orgid,jdbcType=CHAR},
+      </if>
+      <if test="orgname != null" >
+        #{orgname,jdbcType=VARCHAR},
+      </if>
+      <if test="orderno != null" >
+        #{orderno,jdbcType=VARCHAR},
+      </if>
+      <if test="suppliername != null" >
+        #{suppliername,jdbcType=VARCHAR},
+      </if>
+      <if test="paydate != null" >
+        #{paydate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isselleraudit != null" >
+        #{isselleraudit,jdbcType=BIT},
+      </if>
+      <if test="iscreditpay != null" >
+        #{iscreditpay,jdbcType=BIT},
+      </if>
+      <if test="creditpaydate != null" >
+        #{creditpaydate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isbuyerapply != null" >
+        #{isbuyerapply,jdbcType=BIT},
+      </if>
+      <if test="buyerorgname != null" >
+        #{buyerorgname,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.holyrobot.con_order.pojo.OrdPaymentRequestExample" resultType="java.lang.Integer" >
+    select count(*) from Ord_PaymentRequest
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update Ord_PaymentRequest
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=CHAR},
+      </if>
+      <if test="record.orderid != null" >
+        OrderID = #{record.orderid,jdbcType=CHAR},
+      </if>
+      <if test="record.paymentamt != null" >
+        PaymentAmt = #{record.paymentamt,jdbcType=DECIMAL},
+      </if>
+      <if test="record.supplierid != null" >
+        SupplierID = #{record.supplierid,jdbcType=CHAR},
+      </if>
+      <if test="record.ordercostid != null" >
+        OrderCostID = #{record.ordercostid,jdbcType=CHAR},
+      </if>
+      <if test="record.creator != null" >
+        Creator = #{record.creator,jdbcType=VARCHAR},
+      </if>
+      <if test="record.creatorid != null" >
+        CreatorID = #{record.creatorid,jdbcType=CHAR},
+      </if>
+      <if test="record.deptid != null" >
+        DeptID = #{record.deptid,jdbcType=CHAR},
+      </if>
+      <if test="record.comment != null" >
+        Comment = #{record.comment,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createdate != null" >
+        CreateDate = #{record.createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.datastatus != null" >
+        DataStatus = #{record.datastatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.orgid != null" >
+        OrgID = #{record.orgid,jdbcType=CHAR},
+      </if>
+      <if test="record.orgname != null" >
+        OrgName = #{record.orgname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orderno != null" >
+        OrderNo = #{record.orderno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.suppliername != null" >
+        SupplierName = #{record.suppliername,jdbcType=VARCHAR},
+      </if>
+      <if test="record.paydate != null" >
+        PayDate = #{record.paydate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.isselleraudit != null" >
+        IsSellerAudit = #{record.isselleraudit,jdbcType=BIT},
+      </if>
+      <if test="record.iscreditpay != null" >
+        IsCreditPay = #{record.iscreditpay,jdbcType=BIT},
+      </if>
+      <if test="record.creditpaydate != null" >
+        CreditPayDate = #{record.creditpaydate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.isbuyerapply != null" >
+        IsBuyerApply = #{record.isbuyerapply,jdbcType=BIT},
+      </if>
+      <if test="record.buyerorgname != null" >
+        BuyerOrgName = #{record.buyerorgname,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update Ord_PaymentRequest
+    set ID = #{record.id,jdbcType=CHAR},
+      OrderID = #{record.orderid,jdbcType=CHAR},
+      PaymentAmt = #{record.paymentamt,jdbcType=DECIMAL},
+      SupplierID = #{record.supplierid,jdbcType=CHAR},
+      OrderCostID = #{record.ordercostid,jdbcType=CHAR},
+      Creator = #{record.creator,jdbcType=VARCHAR},
+      CreatorID = #{record.creatorid,jdbcType=CHAR},
+      DeptID = #{record.deptid,jdbcType=CHAR},
+      Comment = #{record.comment,jdbcType=VARCHAR},
+      CreateDate = #{record.createdate,jdbcType=TIMESTAMP},
+      DataStatus = #{record.datastatus,jdbcType=INTEGER},
+      OrgID = #{record.orgid,jdbcType=CHAR},
+      OrgName = #{record.orgname,jdbcType=VARCHAR},
+      OrderNo = #{record.orderno,jdbcType=VARCHAR},
+      SupplierName = #{record.suppliername,jdbcType=VARCHAR},
+      PayDate = #{record.paydate,jdbcType=TIMESTAMP},
+      IsSellerAudit = #{record.isselleraudit,jdbcType=BIT},
+      IsCreditPay = #{record.iscreditpay,jdbcType=BIT},
+      CreditPayDate = #{record.creditpaydate,jdbcType=TIMESTAMP},
+      IsBuyerApply = #{record.isbuyerapply,jdbcType=BIT},
+      BuyerOrgName = #{record.buyerorgname,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.holyrobot.con_order.pojo.OrdPaymentRequest" >
+    update Ord_PaymentRequest
+    <set >
+      <if test="orderid != null" >
+        OrderID = #{orderid,jdbcType=CHAR},
+      </if>
+      <if test="paymentamt != null" >
+        PaymentAmt = #{paymentamt,jdbcType=DECIMAL},
+      </if>
+      <if test="supplierid != null" >
+        SupplierID = #{supplierid,jdbcType=CHAR},
+      </if>
+      <if test="ordercostid != null" >
+        OrderCostID = #{ordercostid,jdbcType=CHAR},
+      </if>
+      <if test="creator != null" >
+        Creator = #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="creatorid != null" >
+        CreatorID = #{creatorid,jdbcType=CHAR},
+      </if>
+      <if test="deptid != null" >
+        DeptID = #{deptid,jdbcType=CHAR},
+      </if>
+      <if test="comment != null" >
+        Comment = #{comment,jdbcType=VARCHAR},
+      </if>
+      <if test="createdate != null" >
+        CreateDate = #{createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="datastatus != null" >
+        DataStatus = #{datastatus,jdbcType=INTEGER},
+      </if>
+      <if test="orgid != null" >
+        OrgID = #{orgid,jdbcType=CHAR},
+      </if>
+      <if test="orgname != null" >
+        OrgName = #{orgname,jdbcType=VARCHAR},
+      </if>
+      <if test="orderno != null" >
+        OrderNo = #{orderno,jdbcType=VARCHAR},
+      </if>
+      <if test="suppliername != null" >
+        SupplierName = #{suppliername,jdbcType=VARCHAR},
+      </if>
+      <if test="paydate != null" >
+        PayDate = #{paydate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isselleraudit != null" >
+        IsSellerAudit = #{isselleraudit,jdbcType=BIT},
+      </if>
+      <if test="iscreditpay != null" >
+        IsCreditPay = #{iscreditpay,jdbcType=BIT},
+      </if>
+      <if test="creditpaydate != null" >
+        CreditPayDate = #{creditpaydate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isbuyerapply != null" >
+        IsBuyerApply = #{isbuyerapply,jdbcType=BIT},
+      </if>
+      <if test="buyerorgname != null" >
+        BuyerOrgName = #{buyerorgname,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.holyrobot.con_order.pojo.OrdPaymentRequest" >
+    update Ord_PaymentRequest
+    set OrderID = #{orderid,jdbcType=CHAR},
+      PaymentAmt = #{paymentamt,jdbcType=DECIMAL},
+      SupplierID = #{supplierid,jdbcType=CHAR},
+      OrderCostID = #{ordercostid,jdbcType=CHAR},
+      Creator = #{creator,jdbcType=VARCHAR},
+      CreatorID = #{creatorid,jdbcType=CHAR},
+      DeptID = #{deptid,jdbcType=CHAR},
+      Comment = #{comment,jdbcType=VARCHAR},
+      CreateDate = #{createdate,jdbcType=TIMESTAMP},
+      DataStatus = #{datastatus,jdbcType=INTEGER},
+      OrgID = #{orgid,jdbcType=CHAR},
+      OrgName = #{orgname,jdbcType=VARCHAR},
+      OrderNo = #{orderno,jdbcType=VARCHAR},
+      SupplierName = #{suppliername,jdbcType=VARCHAR},
+      PayDate = #{paydate,jdbcType=TIMESTAMP},
+      IsSellerAudit = #{isselleraudit,jdbcType=BIT},
+      IsCreditPay = #{iscreditpay,jdbcType=BIT},
+      CreditPayDate = #{creditpaydate,jdbcType=TIMESTAMP},
+      IsBuyerApply = #{isbuyerapply,jdbcType=BIT},
+      BuyerOrgName = #{buyerorgname,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+</mapper>

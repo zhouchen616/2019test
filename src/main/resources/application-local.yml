@@ -1,0 +1,87 @@
+server:
+    port: 9096
+
+jedis :
+  pool :
+    host : 192.168.0.195
+#    host : 192.168.12.4
+    port : 6379
+    database: 1
+    password: ""
+    config :
+      maxTotal: 100
+      maxIdle: 10
+      maxWaitMillis : 100000
+
+spring:
+  rabbitmq:
+      host: localhost
+      port: 5672
+      username: guest
+      password: guest
+  data:
+        #开发环境配置
+          mongodb: # 配置mongoDB
+              database: API
+              uri: mongodb://192.168.0.195:27017
+#              host:
+#              port: 36918
+#              database: NTFoxERP
+#              username: jjkj
+#              password: jjkj#123!!!
+          elasticsearch:
+              #cluster-name: #默认为elasticsearch
+              cluster-nodes: 192.168.0.195:9300 #配置es节点信息，逗号分隔，如果没有指定，则启动ClientNode
+              cluster-name:  my-application
+              properties:
+                  path:
+                    logs: ./elasticsearch/log #elasticsearch日志存储目录
+                    data: ./elasticsearch/data #elasticsearch数据存储目录
+
+
+sharding:
+  jdbc:
+    datasource:
+      names: ds0,ds1
+      ds0:
+        type: com.alibaba.druid.pool.DruidDataSource
+        url: jdbc:sqlserver://192.168.0.195:1433;DatabaseName=ERP
+        username: sa
+        password: abc,,,123
+        driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+      ds1:
+        type: com.alibaba.druid.pool.DruidDataSource
+        url: jdbc:sqlserver://192.168.0.195:1433;DatabaseName=ERP
+        username: sa
+        password: abc,,,123
+        driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    config:
+        masterslave:
+          load-balance-algorithm-type: round_robin
+          name: ms
+          master-data-source-name: ds0
+          slave-data-source-names: ds1
+          props:
+            sql:
+              show:
+                true
+
+
+imgPath: /usr/local/nginx/html/h5/file/dishonest/
+imgUrl: http://h5s.aipinzan.cn/file/dishonest/
+
+orgInfoUrl: http://192.168.0.195:8765/api/OrgInfo/GetDetailByID?ID=
+getOpenIdByAuthorizeUrl: http://192.168.0.195:8765/api/navigate/GetOpenIdByAuthorize?navId=%s&orgid=%s
+
+wechat:
+#  竞界科技测试1-测试环境h5Shop
+#  appid: "wx53f70e7952c20d87"
+#  secret: cbade601c1f71d5dd21417214ec81866
+#accessTokenRedisKey: SpecialH5Shop-accessTokenKey-00000000-0000-0000-0000-000000000001
+
+#  竞界科技测试2-测试环境移动ERP
+  appid: "wxfb534b8d5ff88a09"
+  secret: cdb9305d772bf0625b4ceee77d4cc0cc
+accessTokenRedisKey: NTFox_JsSDK_AccessToken_wxfb534b8d5ff88a09
+
+

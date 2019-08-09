@@ -1,0 +1,385 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.holyrobot.con_fin.mapper.FinOrderCostPaidMapper" >
+  <resultMap id="BaseResultMap" type="com.holyrobot.con_fin.pojo.FinOrderCostPaid" >
+    <id column="ID" property="id" jdbcType="CHAR" />
+    <result column="OrderCostID" property="ordercostid" jdbcType="CHAR" />
+    <result column="SupplierID" property="supplierid" jdbcType="CHAR" />
+    <result column="Amount" property="amount" jdbcType="DECIMAL" />
+    <result column="Fee" property="fee" jdbcType="DECIMAL" />
+    <result column="PayDate" property="paydate" jdbcType="TIMESTAMP" />
+    <result column="xType" property="xtype" jdbcType="VARCHAR" />
+    <result column="Comment" property="comment" jdbcType="VARCHAR" />
+    <result column="Creator" property="creator" jdbcType="VARCHAR" />
+    <result column="CreatorID" property="creatorid" jdbcType="CHAR" />
+    <result column="CreateDate" property="createdate" jdbcType="TIMESTAMP" />
+    <result column="DeptID" property="deptid" jdbcType="CHAR" />
+    <result column="DataStatus" property="datastatus" jdbcType="INTEGER" />
+    <result column="OrderID" property="orderid" jdbcType="CHAR" />
+    <result column="OrgID" property="orgid" jdbcType="CHAR" />
+    <result column="OrgName" property="orgname" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, OrderCostID, SupplierID, Amount, Fee, PayDate, xType, Comment, Creator, CreatorID, 
+    CreateDate, DeptID, DataStatus, OrderID, OrgID, OrgName
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.holyrobot.con_fin.pojo.FinOrderCostPaidExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from Fin_OrderCostPaid
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from Fin_OrderCostPaid
+    where ID = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from Fin_OrderCostPaid
+    where ID = #{id,jdbcType=CHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.holyrobot.con_fin.pojo.FinOrderCostPaidExample" >
+    delete from Fin_OrderCostPaid
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.holyrobot.con_fin.pojo.FinOrderCostPaid" >
+    insert into Fin_OrderCostPaid (ID, OrderCostID, SupplierID, 
+      Amount, Fee, PayDate, 
+      xType, Comment, Creator, 
+      CreatorID, CreateDate, DeptID, 
+      DataStatus, OrderID, OrgID, 
+      OrgName)
+    values (#{id,jdbcType=CHAR}, #{ordercostid,jdbcType=CHAR}, #{supplierid,jdbcType=CHAR}, 
+      #{amount,jdbcType=DECIMAL}, #{fee,jdbcType=DECIMAL}, #{paydate,jdbcType=TIMESTAMP}, 
+      #{xtype,jdbcType=VARCHAR}, #{comment,jdbcType=VARCHAR}, #{creator,jdbcType=VARCHAR},
+      #{creatorid,jdbcType=CHAR}, #{createdate,jdbcType=TIMESTAMP}, #{deptid,jdbcType=CHAR}, 
+      #{datastatus,jdbcType=INTEGER}, #{orderid,jdbcType=CHAR}, #{orgid,jdbcType=CHAR}, 
+      #{orgname,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.holyrobot.con_fin.pojo.FinOrderCostPaid" >
+    insert into Fin_OrderCostPaid
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="ordercostid != null" >
+        OrderCostID,
+      </if>
+      <if test="supplierid != null" >
+        SupplierID,
+      </if>
+      <if test="amount != null" >
+        Amount,
+      </if>
+      <if test="fee != null" >
+        Fee,
+      </if>
+      <if test="paydate != null" >
+        PayDate,
+      </if>
+      <if test="xtype != null" >
+        xType,
+      </if>
+      <if test="comment != null" >
+        Comment,
+      </if>
+      <if test="creator != null" >
+        Creator,
+      </if>
+      <if test="creatorid != null" >
+        CreatorID,
+      </if>
+      <if test="createdate != null" >
+        CreateDate,
+      </if>
+      <if test="deptid != null" >
+        DeptID,
+      </if>
+      <if test="datastatus != null" >
+        DataStatus,
+      </if>
+      <if test="orderid != null" >
+        OrderID,
+      </if>
+      <if test="orgid != null" >
+        OrgID,
+      </if>
+      <if test="orgname != null" >
+        OrgName,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="ordercostid != null" >
+        #{ordercostid,jdbcType=CHAR},
+      </if>
+      <if test="supplierid != null" >
+        #{supplierid,jdbcType=CHAR},
+      </if>
+      <if test="amount != null" >
+        #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="fee != null" >
+        #{fee,jdbcType=DECIMAL},
+      </if>
+      <if test="paydate != null" >
+        #{paydate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="xtype != null" >
+        #{xtype,jdbcType=VARCHAR},
+      </if>
+      <if test="comment != null" >
+        #{comment,jdbcType=VARCHAR},
+      </if>
+      <if test="creator != null" >
+        #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="creatorid != null" >
+        #{creatorid,jdbcType=CHAR},
+      </if>
+      <if test="createdate != null" >
+        #{createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deptid != null" >
+        #{deptid,jdbcType=CHAR},
+      </if>
+      <if test="datastatus != null" >
+        #{datastatus,jdbcType=INTEGER},
+      </if>
+      <if test="orderid != null" >
+        #{orderid,jdbcType=CHAR},
+      </if>
+      <if test="orgid != null" >
+        #{orgid,jdbcType=CHAR},
+      </if>
+      <if test="orgname != null" >
+        #{orgname,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.holyrobot.con_fin.pojo.FinOrderCostPaidExample" resultType="java.lang.Integer" >
+    select count(*) from Fin_OrderCostPaid
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update Fin_OrderCostPaid
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=CHAR},
+      </if>
+      <if test="record.ordercostid != null" >
+        OrderCostID = #{record.ordercostid,jdbcType=CHAR},
+      </if>
+      <if test="record.supplierid != null" >
+        SupplierID = #{record.supplierid,jdbcType=CHAR},
+      </if>
+      <if test="record.amount != null" >
+        Amount = #{record.amount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.fee != null" >
+        Fee = #{record.fee,jdbcType=DECIMAL},
+      </if>
+      <if test="record.paydate != null" >
+        PayDate = #{record.paydate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.xtype != null" >
+        xType = #{record.xtype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.comment != null" >
+        Comment = #{record.comment,jdbcType=VARCHAR},
+      </if>
+      <if test="record.creator != null" >
+        Creator = #{record.creator,jdbcType=VARCHAR},
+      </if>
+      <if test="record.creatorid != null" >
+        CreatorID = #{record.creatorid,jdbcType=CHAR},
+      </if>
+      <if test="record.createdate != null" >
+        CreateDate = #{record.createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.deptid != null" >
+        DeptID = #{record.deptid,jdbcType=CHAR},
+      </if>
+      <if test="record.datastatus != null" >
+        DataStatus = #{record.datastatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.orderid != null" >
+        OrderID = #{record.orderid,jdbcType=CHAR},
+      </if>
+      <if test="record.orgid != null" >
+        OrgID = #{record.orgid,jdbcType=CHAR},
+      </if>
+      <if test="record.orgname != null" >
+        OrgName = #{record.orgname,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update Fin_OrderCostPaid
+    set ID = #{record.id,jdbcType=CHAR},
+      OrderCostID = #{record.ordercostid,jdbcType=CHAR},
+      SupplierID = #{record.supplierid,jdbcType=CHAR},
+      Amount = #{record.amount,jdbcType=DECIMAL},
+      Fee = #{record.fee,jdbcType=DECIMAL},
+      PayDate = #{record.paydate,jdbcType=TIMESTAMP},
+      xType = #{record.xtype,jdbcType=VARCHAR},
+      Comment = #{record.comment,jdbcType=VARCHAR},
+      Creator = #{record.creator,jdbcType=VARCHAR},
+      CreatorID = #{record.creatorid,jdbcType=CHAR},
+      CreateDate = #{record.createdate,jdbcType=TIMESTAMP},
+      DeptID = #{record.deptid,jdbcType=CHAR},
+      DataStatus = #{record.datastatus,jdbcType=INTEGER},
+      OrderID = #{record.orderid,jdbcType=CHAR},
+      OrgID = #{record.orgid,jdbcType=CHAR},
+      OrgName = #{record.orgname,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.holyrobot.con_fin.pojo.FinOrderCostPaid" >
+    update Fin_OrderCostPaid
+    <set >
+      <if test="ordercostid != null" >
+        OrderCostID = #{ordercostid,jdbcType=CHAR},
+      </if>
+      <if test="supplierid != null" >
+        SupplierID = #{supplierid,jdbcType=CHAR},
+      </if>
+      <if test="amount != null" >
+        Amount = #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="fee != null" >
+        Fee = #{fee,jdbcType=DECIMAL},
+      </if>
+      <if test="paydate != null" >
+        PayDate = #{paydate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="xtype != null" >
+        xType = #{xtype,jdbcType=VARCHAR},
+      </if>
+      <if test="comment != null" >
+        Comment = #{comment,jdbcType=VARCHAR},
+      </if>
+      <if test="creator != null" >
+        Creator = #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="creatorid != null" >
+        CreatorID = #{creatorid,jdbcType=CHAR},
+      </if>
+      <if test="createdate != null" >
+        CreateDate = #{createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deptid != null" >
+        DeptID = #{deptid,jdbcType=CHAR},
+      </if>
+      <if test="datastatus != null" >
+        DataStatus = #{datastatus,jdbcType=INTEGER},
+      </if>
+      <if test="orderid != null" >
+        OrderID = #{orderid,jdbcType=CHAR},
+      </if>
+      <if test="orgid != null" >
+        OrgID = #{orgid,jdbcType=CHAR},
+      </if>
+      <if test="orgname != null" >
+        OrgName = #{orgname,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.holyrobot.con_fin.pojo.FinOrderCostPaid" >
+    update Fin_OrderCostPaid
+    set OrderCostID = #{ordercostid,jdbcType=CHAR},
+      SupplierID = #{supplierid,jdbcType=CHAR},
+      Amount = #{amount,jdbcType=DECIMAL},
+      Fee = #{fee,jdbcType=DECIMAL},
+      PayDate = #{paydate,jdbcType=TIMESTAMP},
+      xType = #{xtype,jdbcType=VARCHAR},
+      Comment = #{comment,jdbcType=VARCHAR},
+      Creator = #{creator,jdbcType=VARCHAR},
+      CreatorID = #{creatorid,jdbcType=CHAR},
+      CreateDate = #{createdate,jdbcType=TIMESTAMP},
+      DeptID = #{deptid,jdbcType=CHAR},
+      DataStatus = #{datastatus,jdbcType=INTEGER},
+      OrderID = #{orderid,jdbcType=CHAR},
+      OrgID = #{orgid,jdbcType=CHAR},
+      OrgName = #{orgname,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+</mapper>

@@ -1,0 +1,465 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.holyrobot.con_order.mapper.OrdOtherOrderInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.holyrobot.con_order.pojo.OrdOtherOrderInfo" >
+    <id column="ID" property="id" jdbcType="CHAR" />
+    <result column="OrderNo" property="orderno" jdbcType="VARCHAR" />
+    <result column="OrderName" property="ordername" jdbcType="VARCHAR" />
+    <result column="Count" property="count" jdbcType="INTEGER" />
+    <result column="UnitAmt" property="unitamt" jdbcType="DECIMAL" />
+    <result column="TotalAmt" property="totalamt" jdbcType="DECIMAL" />
+    <result column="ShopOrgID" property="shoporgid" jdbcType="CHAR" />
+    <result column="ShopOrgName" property="shoporgname" jdbcType="VARCHAR" />
+    <result column="DataStatus" property="datastatus" jdbcType="INTEGER" />
+    <result column="OrderType" property="ordertype" jdbcType="INTEGER" />
+    <result column="PayNo" property="payno" jdbcType="VARCHAR" />
+    <result column="PayWay" property="payway" jdbcType="VARCHAR" />
+    <result column="SrcBank" property="srcbank" jdbcType="VARCHAR" />
+    <result column="CreatedByID" property="createdbyid" jdbcType="CHAR" />
+    <result column="CreatedBy" property="createdby" jdbcType="VARCHAR" />
+    <result column="CreatedDate" property="createddate" jdbcType="TIMESTAMP" />
+    <result column="DeptID" property="deptid" jdbcType="CHAR" />
+    <result column="OrgID" property="orgid" jdbcType="CHAR" />
+    <result column="OrgName" property="orgname" jdbcType="VARCHAR" />
+    <result column="OtherProID" property="otherproid" jdbcType="CHAR" />
+    <result column="Comment" property="comment" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, OrderNo, OrderName, Count, UnitAmt, TotalAmt, ShopOrgID, ShopOrgName, DataStatus,
+    OrderType, PayNo, PayWay, SrcBank, CreatedByID, CreatedBy, CreatedDate, DeptID, OrgID,
+    OrgName, OtherProID, Comment
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.holyrobot.con_order.pojo.OrdOtherOrderInfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from Ord_OtherOrderInfo
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from Ord_OtherOrderInfo
+    where ID = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from Ord_OtherOrderInfo
+    where ID = #{id,jdbcType=CHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.holyrobot.con_order.pojo.OrdOtherOrderInfoExample" >
+    delete from Ord_OtherOrderInfo
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.holyrobot.con_order.pojo.OrdOtherOrderInfo" >
+    insert into Ord_OtherOrderInfo (ID, OrderNo, OrderName,
+    Count, UnitAmt, TotalAmt,
+    ShopOrgID, ShopOrgName, DataStatus,
+    OrderType, PayNo, PayWay,
+    SrcBank, CreatedByID, CreatedBy,
+    CreatedDate, DeptID, OrgID,
+    OrgName, OtherProID, Comment
+    )
+    values (#{id,jdbcType=CHAR}, #{orderno,jdbcType=VARCHAR}, #{ordername,jdbcType=VARCHAR},
+    #{count,jdbcType=INTEGER}, #{unitamt,jdbcType=DECIMAL}, #{totalamt,jdbcType=DECIMAL},
+    #{shoporgid,jdbcType=CHAR}, #{shoporgname,jdbcType=VARCHAR}, #{datastatus,jdbcType=INTEGER},
+    #{ordertype,jdbcType=INTEGER}, #{payno,jdbcType=VARCHAR}, #{payway,jdbcType=VARCHAR},
+    #{srcbank,jdbcType=VARCHAR}, #{createdbyid,jdbcType=CHAR}, #{createdby,jdbcType=VARCHAR},
+    #{createddate,jdbcType=TIMESTAMP}, #{deptid,jdbcType=CHAR}, #{orgid,jdbcType=CHAR},
+    #{orgname,jdbcType=VARCHAR}, #{otherproid,jdbcType=CHAR}, #{comment,jdbcType=VARCHAR}
+    )
+  </insert>
+  <insert id="insertSelective" parameterType="com.holyrobot.con_order.pojo.OrdOtherOrderInfo" >
+    insert into Ord_OtherOrderInfo
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="orderno != null" >
+        OrderNo,
+      </if>
+      <if test="ordername != null" >
+        OrderName,
+      </if>
+      <if test="count != null" >
+        Count,
+      </if>
+      <if test="unitamt != null" >
+        UnitAmt,
+      </if>
+      <if test="totalamt != null" >
+        TotalAmt,
+      </if>
+      <if test="shoporgid != null" >
+        ShopOrgID,
+      </if>
+      <if test="shoporgname != null" >
+        ShopOrgName,
+      </if>
+      <if test="datastatus != null" >
+        DataStatus,
+      </if>
+      <if test="ordertype != null" >
+        OrderType,
+      </if>
+      <if test="payno != null" >
+        PayNo,
+      </if>
+      <if test="payway != null" >
+        PayWay,
+      </if>
+      <if test="srcbank != null" >
+        SrcBank,
+      </if>
+      <if test="createdbyid != null" >
+        CreatedByID,
+      </if>
+      <if test="createdby != null" >
+        CreatedBy,
+      </if>
+      <if test="createddate != null" >
+        CreatedDate,
+      </if>
+      <if test="deptid != null" >
+        DeptID,
+      </if>
+      <if test="orgid != null" >
+        OrgID,
+      </if>
+      <if test="orgname != null" >
+        OrgName,
+      </if>
+      <if test="otherproid != null" >
+        OtherProID,
+      </if>
+      <if test="comment != null" >
+        Comment,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="orderno != null" >
+        #{orderno,jdbcType=VARCHAR},
+      </if>
+      <if test="ordername != null" >
+        #{ordername,jdbcType=VARCHAR},
+      </if>
+      <if test="count != null" >
+        #{count,jdbcType=INTEGER},
+      </if>
+      <if test="unitamt != null" >
+        #{unitamt,jdbcType=DECIMAL},
+      </if>
+      <if test="totalamt != null" >
+        #{totalamt,jdbcType=DECIMAL},
+      </if>
+      <if test="shoporgid != null" >
+        #{shoporgid,jdbcType=CHAR},
+      </if>
+      <if test="shoporgname != null" >
+        #{shoporgname,jdbcType=VARCHAR},
+      </if>
+      <if test="datastatus != null" >
+        #{datastatus,jdbcType=INTEGER},
+      </if>
+      <if test="ordertype != null" >
+        #{ordertype,jdbcType=INTEGER},
+      </if>
+      <if test="payno != null" >
+        #{payno,jdbcType=VARCHAR},
+      </if>
+      <if test="payway != null" >
+        #{payway,jdbcType=VARCHAR},
+      </if>
+      <if test="srcbank != null" >
+        #{srcbank,jdbcType=VARCHAR},
+      </if>
+      <if test="createdbyid != null" >
+        #{createdbyid,jdbcType=CHAR},
+      </if>
+      <if test="createdby != null" >
+        #{createdby,jdbcType=VARCHAR},
+      </if>
+      <if test="createddate != null" >
+        #{createddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deptid != null" >
+        #{deptid,jdbcType=CHAR},
+      </if>
+      <if test="orgid != null" >
+        #{orgid,jdbcType=CHAR},
+      </if>
+      <if test="orgname != null" >
+        #{orgname,jdbcType=VARCHAR},
+      </if>
+      <if test="otherproid != null" >
+        #{otherproid,jdbcType=CHAR},
+      </if>
+      <if test="comment != null" >
+        #{comment,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.holyrobot.con_order.pojo.OrdOtherOrderInfoExample" resultType="java.lang.Integer" >
+    select count(*) from Ord_OtherOrderInfo
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update Ord_OtherOrderInfo
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=CHAR},
+      </if>
+      <if test="record.orderno != null" >
+        OrderNo = #{record.orderno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ordername != null" >
+        OrderName = #{record.ordername,jdbcType=VARCHAR},
+      </if>
+      <if test="record.count != null" >
+        Count = #{record.count,jdbcType=INTEGER},
+      </if>
+      <if test="record.unitamt != null" >
+        UnitAmt = #{record.unitamt,jdbcType=DECIMAL},
+      </if>
+      <if test="record.totalamt != null" >
+        TotalAmt = #{record.totalamt,jdbcType=DECIMAL},
+      </if>
+      <if test="record.shoporgid != null" >
+        ShopOrgID = #{record.shoporgid,jdbcType=CHAR},
+      </if>
+      <if test="record.shoporgname != null" >
+        ShopOrgName = #{record.shoporgname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.datastatus != null" >
+        DataStatus = #{record.datastatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.ordertype != null" >
+        OrderType = #{record.ordertype,jdbcType=INTEGER},
+      </if>
+      <if test="record.payno != null" >
+        PayNo = #{record.payno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.payway != null" >
+        PayWay = #{record.payway,jdbcType=VARCHAR},
+      </if>
+      <if test="record.srcbank != null" >
+        SrcBank = #{record.srcbank,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createdbyid != null" >
+        CreatedByID = #{record.createdbyid,jdbcType=CHAR},
+      </if>
+      <if test="record.createdby != null" >
+        CreatedBy = #{record.createdby,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createddate != null" >
+        CreatedDate = #{record.createddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.deptid != null" >
+        DeptID = #{record.deptid,jdbcType=CHAR},
+      </if>
+      <if test="record.orgid != null" >
+        OrgID = #{record.orgid,jdbcType=CHAR},
+      </if>
+      <if test="record.orgname != null" >
+        OrgName = #{record.orgname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.otherproid != null" >
+        OtherProID = #{record.otherproid,jdbcType=CHAR},
+      </if>
+      <if test="record.comment != null" >
+        Comment = #{record.comment,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update Ord_OtherOrderInfo
+    set ID = #{record.id,jdbcType=CHAR},
+    OrderNo = #{record.orderno,jdbcType=VARCHAR},
+    OrderName = #{record.ordername,jdbcType=VARCHAR},
+    Count = #{record.count,jdbcType=INTEGER},
+    UnitAmt = #{record.unitamt,jdbcType=DECIMAL},
+    TotalAmt = #{record.totalamt,jdbcType=DECIMAL},
+    ShopOrgID = #{record.shoporgid,jdbcType=CHAR},
+    ShopOrgName = #{record.shoporgname,jdbcType=VARCHAR},
+    DataStatus = #{record.datastatus,jdbcType=INTEGER},
+    OrderType = #{record.ordertype,jdbcType=INTEGER},
+    PayNo = #{record.payno,jdbcType=VARCHAR},
+    PayWay = #{record.payway,jdbcType=VARCHAR},
+    SrcBank = #{record.srcbank,jdbcType=VARCHAR},
+    CreatedByID = #{record.createdbyid,jdbcType=CHAR},
+    CreatedBy = #{record.createdby,jdbcType=VARCHAR},
+    CreatedDate = #{record.createddate,jdbcType=TIMESTAMP},
+    DeptID = #{record.deptid,jdbcType=CHAR},
+    OrgID = #{record.orgid,jdbcType=CHAR},
+    OrgName = #{record.orgname,jdbcType=VARCHAR},
+    OtherProID = #{record.otherproid,jdbcType=CHAR},
+    Comment = #{record.comment,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.holyrobot.con_order.pojo.OrdOtherOrderInfo" >
+    update Ord_OtherOrderInfo
+    <set >
+      <if test="orderno != null" >
+        OrderNo = #{orderno,jdbcType=VARCHAR},
+      </if>
+      <if test="ordername != null" >
+        OrderName = #{ordername,jdbcType=VARCHAR},
+      </if>
+      <if test="count != null" >
+        Count = #{count,jdbcType=INTEGER},
+      </if>
+      <if test="unitamt != null" >
+        UnitAmt = #{unitamt,jdbcType=DECIMAL},
+      </if>
+      <if test="totalamt != null" >
+        TotalAmt = #{totalamt,jdbcType=DECIMAL},
+      </if>
+      <if test="shoporgid != null" >
+        ShopOrgID = #{shoporgid,jdbcType=CHAR},
+      </if>
+      <if test="shoporgname != null" >
+        ShopOrgName = #{shoporgname,jdbcType=VARCHAR},
+      </if>
+      <if test="datastatus != null" >
+        DataStatus = #{datastatus,jdbcType=INTEGER},
+      </if>
+      <if test="ordertype != null" >
+        OrderType = #{ordertype,jdbcType=INTEGER},
+      </if>
+      <if test="payno != null" >
+        PayNo = #{payno,jdbcType=VARCHAR},
+      </if>
+      <if test="payway != null" >
+        PayWay = #{payway,jdbcType=VARCHAR},
+      </if>
+      <if test="srcbank != null" >
+        SrcBank = #{srcbank,jdbcType=VARCHAR},
+      </if>
+      <if test="createdbyid != null" >
+        CreatedByID = #{createdbyid,jdbcType=CHAR},
+      </if>
+      <if test="createdby != null" >
+        CreatedBy = #{createdby,jdbcType=VARCHAR},
+      </if>
+      <if test="createddate != null" >
+        CreatedDate = #{createddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deptid != null" >
+        DeptID = #{deptid,jdbcType=CHAR},
+      </if>
+      <if test="orgid != null" >
+        OrgID = #{orgid,jdbcType=CHAR},
+      </if>
+      <if test="orgname != null" >
+        OrgName = #{orgname,jdbcType=VARCHAR},
+      </if>
+      <if test="otherproid != null" >
+        OtherProID = #{otherproid,jdbcType=CHAR},
+      </if>
+      <if test="comment != null" >
+        Comment = #{comment,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.holyrobot.con_order.pojo.OrdOtherOrderInfo" >
+    update Ord_OtherOrderInfo
+    set OrderNo = #{orderno,jdbcType=VARCHAR},
+      OrderName = #{ordername,jdbcType=VARCHAR},
+      Count = #{count,jdbcType=INTEGER},
+      UnitAmt = #{unitamt,jdbcType=DECIMAL},
+      TotalAmt = #{totalamt,jdbcType=DECIMAL},
+      ShopOrgID = #{shoporgid,jdbcType=CHAR},
+      ShopOrgName = #{shoporgname,jdbcType=VARCHAR},
+      DataStatus = #{datastatus,jdbcType=INTEGER},
+      OrderType = #{ordertype,jdbcType=INTEGER},
+      PayNo = #{payno,jdbcType=VARCHAR},
+      PayWay = #{payway,jdbcType=VARCHAR},
+      SrcBank = #{srcbank,jdbcType=VARCHAR},
+      CreatedByID = #{createdbyid,jdbcType=CHAR},
+      CreatedBy = #{createdby,jdbcType=VARCHAR},
+      CreatedDate = #{createddate,jdbcType=TIMESTAMP},
+      DeptID = #{deptid,jdbcType=CHAR},
+      OrgID = #{orgid,jdbcType=CHAR},
+      OrgName = #{orgname,jdbcType=VARCHAR},
+      OtherProID = #{otherproid,jdbcType=CHAR},
+      Comment = #{comment,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+</mapper>

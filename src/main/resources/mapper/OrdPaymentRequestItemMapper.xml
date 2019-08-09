@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.holyrobot.con_order.mapper.OrdPaymentRequestItemMapper" >
+  <resultMap id="BaseResultMap" type="com.holyrobot.con_order.pojo.OrdPaymentRequestItem" >
+    <id column="ID" property="id" jdbcType="CHAR" />
+    <result column="PaymentRequestID" property="paymentrequestid" jdbcType="CHAR" />
+    <result column="PaymentAmt" property="paymentamt" jdbcType="DECIMAL" />
+    <result column="OrderID" property="orderid" jdbcType="CHAR" />
+    <result column="OrderNo" property="orderno" jdbcType="VARCHAR" />
+    <result column="OrgID" property="orgid" jdbcType="CHAR" />
+    <result column="CreatedDate" property="createddate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, PaymentRequestID, PaymentAmt, OrderID, OrderNo, OrgID, CreatedDate
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.holyrobot.con_order.pojo.OrdPaymentRequestItemExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from Ord_PaymentRequestItem
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from Ord_PaymentRequestItem
+    where ID = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from Ord_PaymentRequestItem
+    where ID = #{id,jdbcType=CHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.holyrobot.con_order.pojo.OrdPaymentRequestItemExample" >
+    delete from Ord_PaymentRequestItem
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.holyrobot.con_order.pojo.OrdPaymentRequestItem" >
+    insert into Ord_PaymentRequestItem (ID, PaymentRequestID, PaymentAmt, 
+      OrderID, OrderNo, OrgID, 
+      CreatedDate)
+    values (#{id,jdbcType=CHAR}, #{paymentrequestid,jdbcType=CHAR}, #{paymentamt,jdbcType=DECIMAL}, 
+      #{orderid,jdbcType=CHAR}, #{orderno,jdbcType=VARCHAR}, #{orgid,jdbcType=CHAR},
+      #{createddate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.holyrobot.con_order.pojo.OrdPaymentRequestItem" >
+    insert into Ord_PaymentRequestItem
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="paymentrequestid != null" >
+        PaymentRequestID,
+      </if>
+      <if test="paymentamt != null" >
+        PaymentAmt,
+      </if>
+      <if test="orderid != null" >
+        OrderID,
+      </if>
+      <if test="orderno != null" >
+        OrderNo,
+      </if>
+      <if test="orgid != null" >
+        OrgID,
+      </if>
+      <if test="createddate != null" >
+        CreatedDate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="paymentrequestid != null" >
+        #{paymentrequestid,jdbcType=CHAR},
+      </if>
+      <if test="paymentamt != null" >
+        #{paymentamt,jdbcType=DECIMAL},
+      </if>
+      <if test="orderid != null" >
+        #{orderid,jdbcType=CHAR},
+      </if>
+      <if test="orderno != null" >
+        #{orderno,jdbcType=VARCHAR},
+      </if>
+      <if test="orgid != null" >
+        #{orgid,jdbcType=CHAR},
+      </if>
+      <if test="createddate != null" >
+        #{createddate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.holyrobot.con_order.pojo.OrdPaymentRequestItemExample" resultType="java.lang.Integer" >
+    select count(*) from Ord_PaymentRequestItem
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update Ord_PaymentRequestItem
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=CHAR},
+      </if>
+      <if test="record.paymentrequestid != null" >
+        PaymentRequestID = #{record.paymentrequestid,jdbcType=CHAR},
+      </if>
+      <if test="record.paymentamt != null" >
+        PaymentAmt = #{record.paymentamt,jdbcType=DECIMAL},
+      </if>
+      <if test="record.orderid != null" >
+        OrderID = #{record.orderid,jdbcType=CHAR},
+      </if>
+      <if test="record.orderno != null" >
+        OrderNo = #{record.orderno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orgid != null" >
+        OrgID = #{record.orgid,jdbcType=CHAR},
+      </if>
+      <if test="record.createddate != null" >
+        CreatedDate = #{record.createddate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update Ord_PaymentRequestItem
+    set ID = #{record.id,jdbcType=CHAR},
+      PaymentRequestID = #{record.paymentrequestid,jdbcType=CHAR},
+      PaymentAmt = #{record.paymentamt,jdbcType=DECIMAL},
+      OrderID = #{record.orderid,jdbcType=CHAR},
+      OrderNo = #{record.orderno,jdbcType=VARCHAR},
+      OrgID = #{record.orgid,jdbcType=CHAR},
+      CreatedDate = #{record.createddate,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.holyrobot.con_order.pojo.OrdPaymentRequestItem" >
+    update Ord_PaymentRequestItem
+    <set >
+      <if test="paymentrequestid != null" >
+        PaymentRequestID = #{paymentrequestid,jdbcType=CHAR},
+      </if>
+      <if test="paymentamt != null" >
+        PaymentAmt = #{paymentamt,jdbcType=DECIMAL},
+      </if>
+      <if test="orderid != null" >
+        OrderID = #{orderid,jdbcType=CHAR},
+      </if>
+      <if test="orderno != null" >
+        OrderNo = #{orderno,jdbcType=VARCHAR},
+      </if>
+      <if test="orgid != null" >
+        OrgID = #{orgid,jdbcType=CHAR},
+      </if>
+      <if test="createddate != null" >
+        CreatedDate = #{createddate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.holyrobot.con_order.pojo.OrdPaymentRequestItem" >
+    update Ord_PaymentRequestItem
+    set PaymentRequestID = #{paymentrequestid,jdbcType=CHAR},
+      PaymentAmt = #{paymentamt,jdbcType=DECIMAL},
+      OrderID = #{orderid,jdbcType=CHAR},
+      OrderNo = #{orderno,jdbcType=VARCHAR},
+      OrgID = #{orgid,jdbcType=CHAR},
+      CreatedDate = #{createddate,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+</mapper>

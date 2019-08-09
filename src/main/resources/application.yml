@@ -1,0 +1,64 @@
+spring:
+ servlet: #配置上传文件
+   multipart:
+     max-file-size: 30MB
+     max-request-size: 30MB
+     enabled: true
+     location: /data/upload_tmp
+ profiles:
+    active: dev    #开发环境 232
+   #active: test    #测试环境 30.100
+   # active: pro    #线上环境 10
+
+
+
+
+mybatis:
+  typeAliasesPackage: com.holyrobot.con_om.pojo
+  mapperLocations: classpath:mapper/*.xml
+  configuration:
+    call-setters-on-nulls: true
+
+
+logging:
+  level:
+    com.holyrobot: DEBUG
+
+
+appId: "100001"
+appKey: "123456"
+#pdId: "111173"
+pdId: "111317"
+#pdKey: "tdeNQqW0K8NNaQCyocNEn36xnk+boygz"
+pdKey: "/Pn9MZD1Vh398hOb59vp7d2zNwq8CIOZ"
+predUrl: "http://pred.fateadm.com"
+
+
+#-----------------------------------自定义参数-----------------------------------
+#用户session键
+user_session_key: user_session_key
+#session时间 12小时
+session_expire_time: 43200
+
+#获取IP地址对应城市接口
+getCityUrl: http://ip.taobao.com//service/getIpInfo2.php?ip=
+
+#h5微信公众号accessToken存入redis的key
+accessToken_key: h5-shop-accessToken
+
+#获取二维码url
+qrcodeUrl: "https://api.weixin.qq.com/cgi-bin/qrcode/create?access_token=TOKEN"
+#创建微信公众号自定义菜单url
+createMenuUrl: "https://api.weixin.qq.com/cgi-bin/menu/create?access_token="
+
+#发送短信相关配置
+sendMessageUrl: http://www.api.zthysms.com/sendSms.do
+sendMessageUrlMore: http://api.zthysms.com/sendSmsBatch.do
+messageUserName: jjkjhy
+messagePassWord: COmnFc
+
+#logging:
+#  level:
+#    com.holyrobot: DEBUG
+
+

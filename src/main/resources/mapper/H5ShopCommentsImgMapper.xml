@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.holyrobot.con_common.mapper.H5ShopCommentsImgMapper" >
+  <resultMap id="BaseResultMap" type="com.holyrobot.con_common.pojo.H5ShopCommentsImg" >
+    <id column="ID" property="id" jdbcType="CHAR" />
+    <result column="CommentId" property="commentid" jdbcType="CHAR" />
+    <result column="ImgUrl" property="imgurl" jdbcType="VARCHAR" />
+    <result column="ImgName" property="imgname" jdbcType="VARCHAR" />
+    <result column="ImgType" property="imgtype" jdbcType="VARCHAR" />
+    <result column="CreateDate" property="createdate" jdbcType="DATE" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, CommentId, ImgUrl, ImgName, ImgType, CreateDate
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.holyrobot.con_common.pojo.H5ShopCommentsImgExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from H5_ShopCommentsImg
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from H5_ShopCommentsImg
+    where ID = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from H5_ShopCommentsImg
+    where ID = #{id,jdbcType=CHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.holyrobot.con_common.pojo.H5ShopCommentsImgExample" >
+    delete from H5_ShopCommentsImg
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.holyrobot.con_common.pojo.H5ShopCommentsImg" >
+    insert into H5_ShopCommentsImg (ID, CommentId, ImgUrl, 
+      ImgName, ImgType, CreateDate
+      )
+    values (#{id,jdbcType=CHAR}, #{commentid,jdbcType=CHAR}, #{imgurl,jdbcType=VARCHAR}, 
+      #{imgname,jdbcType=VARCHAR}, #{imgtype,jdbcType=VARCHAR}, #{createdate,jdbcType=DATE}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.holyrobot.con_common.pojo.H5ShopCommentsImg" >
+    insert into H5_ShopCommentsImg
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="commentid != null" >
+        CommentId,
+      </if>
+      <if test="imgurl != null" >
+        ImgUrl,
+      </if>
+      <if test="imgname != null" >
+        ImgName,
+      </if>
+      <if test="imgtype != null" >
+        ImgType,
+      </if>
+      <if test="createdate != null" >
+        CreateDate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="commentid != null" >
+        #{commentid,jdbcType=CHAR},
+      </if>
+      <if test="imgurl != null" >
+        #{imgurl,jdbcType=VARCHAR},
+      </if>
+      <if test="imgname != null" >
+        #{imgname,jdbcType=VARCHAR},
+      </if>
+      <if test="imgtype != null" >
+        #{imgtype,jdbcType=VARCHAR},
+      </if>
+      <if test="createdate != null" >
+        #{createdate,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.holyrobot.con_common.pojo.H5ShopCommentsImgExample" resultType="java.lang.Integer" >
+    select count(*) from H5_ShopCommentsImg
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update H5_ShopCommentsImg
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=CHAR},
+      </if>
+      <if test="record.commentid != null" >
+        CommentId = #{record.commentid,jdbcType=CHAR},
+      </if>
+      <if test="record.imgurl != null" >
+        ImgUrl = #{record.imgurl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.imgname != null" >
+        ImgName = #{record.imgname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.imgtype != null" >
+        ImgType = #{record.imgtype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createdate != null" >
+        CreateDate = #{record.createdate,jdbcType=DATE},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update H5_ShopCommentsImg
+    set ID = #{record.id,jdbcType=CHAR},
+      CommentId = #{record.commentid,jdbcType=CHAR},
+      ImgUrl = #{record.imgurl,jdbcType=VARCHAR},
+      ImgName = #{record.imgname,jdbcType=VARCHAR},
+      ImgType = #{record.imgtype,jdbcType=VARCHAR},
+      CreateDate = #{record.createdate,jdbcType=DATE}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.holyrobot.con_common.pojo.H5ShopCommentsImg" >
+    update H5_ShopCommentsImg
+    <set >
+      <if test="commentid != null" >
+        CommentId = #{commentid,jdbcType=CHAR},
+      </if>
+      <if test="imgurl != null" >
+        ImgUrl = #{imgurl,jdbcType=VARCHAR},
+      </if>
+      <if test="imgname != null" >
+        ImgName = #{imgname,jdbcType=VARCHAR},
+      </if>
+      <if test="imgtype != null" >
+        ImgType = #{imgtype,jdbcType=VARCHAR},
+      </if>
+      <if test="createdate != null" >
+        CreateDate = #{createdate,jdbcType=DATE},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.holyrobot.con_common.pojo.H5ShopCommentsImg" >
+    update H5_ShopCommentsImg
+    set CommentId = #{commentid,jdbcType=CHAR},
+      ImgUrl = #{imgurl,jdbcType=VARCHAR},
+      ImgName = #{imgname,jdbcType=VARCHAR},
+      ImgType = #{imgtype,jdbcType=VARCHAR},
+      CreateDate = #{createdate,jdbcType=DATE}
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+</mapper>

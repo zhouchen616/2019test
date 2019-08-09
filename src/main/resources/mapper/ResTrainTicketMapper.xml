@@ -1,0 +1,429 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.holyrobot.con_res.mapper.ResTrainTicketMapper" >
+  <resultMap id="BaseResultMap" type="com.holyrobot.con_res.pojo.ResTrainTicket" >
+    <id column="ID" property="id" jdbcType="CHAR" />
+    <result column="Station_Train_Code" property="stationTrainCode" jdbcType="VARCHAR" />
+    <result column="From_Station_Name" property="fromStationName" jdbcType="VARCHAR" />
+    <result column="To_Station_Name" property="toStationName" jdbcType="VARCHAR" />
+    <result column="StartTime" property="starttime" jdbcType="VARCHAR" />
+    <result column="ArriveTime" property="arrivetime" jdbcType="VARCHAR" />
+    <result column="LiShi" property="lishi" jdbcType="VARCHAR" />
+    <result column="GoDate" property="godate" jdbcType="DATE" />
+    <result column="FromDate" property="fromdate" jdbcType="DATE" />
+    <result column="CreatedDate" property="createddate" jdbcType="TIMESTAMP" />
+    <result column="CreatedBy" property="createdby" jdbcType="VARCHAR" />
+    <result column="CreatedByID" property="createdbyid" jdbcType="CHAR" />
+    <result column="DeptID" property="deptid" jdbcType="CHAR" />
+    <result column="OrgID" property="orgid" jdbcType="CHAR" />
+    <result column="StartStationType" property="startstationtype" jdbcType="VARCHAR" />
+    <result column="EndStationType" property="endstationtype" jdbcType="VARCHAR" />
+    <result column="From_Station_NameID" property="fromStationNameid" jdbcType="VARCHAR" />
+    <result column="To_Station_NameID" property="toStationNameid" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, Station_Train_Code, From_Station_Name, To_Station_Name, StartTime, ArriveTime, 
+    LiShi, GoDate, FromDate, CreatedDate, CreatedBy, CreatedByID, DeptID, OrgID, StartStationType, 
+    EndStationType, From_Station_NameID, To_Station_NameID
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.holyrobot.con_res.pojo.ResTrainTicketExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from Res_TrainTicket
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from Res_TrainTicket
+    where ID = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from Res_TrainTicket
+    where ID = #{id,jdbcType=CHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.holyrobot.con_res.pojo.ResTrainTicketExample" >
+    delete from Res_TrainTicket
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.holyrobot.con_res.pojo.ResTrainTicket" >
+    insert into Res_TrainTicket (ID, Station_Train_Code, From_Station_Name, 
+      To_Station_Name, StartTime, ArriveTime, 
+      LiShi, GoDate, FromDate, 
+      CreatedDate, CreatedBy, CreatedByID, 
+      DeptID, OrgID, StartStationType, 
+      EndStationType, From_Station_NameID, To_Station_NameID
+      )
+    values (#{id,jdbcType=CHAR}, #{stationTrainCode,jdbcType=VARCHAR}, #{fromStationName,jdbcType=VARCHAR},
+      #{toStationName,jdbcType=VARCHAR}, #{starttime,jdbcType=VARCHAR}, #{arrivetime,jdbcType=VARCHAR},
+      #{lishi,jdbcType=VARCHAR}, #{godate,jdbcType=DATE}, #{fromdate,jdbcType=DATE},
+      #{createddate,jdbcType=TIMESTAMP}, #{createdby,jdbcType=VARCHAR}, #{createdbyid,jdbcType=CHAR},
+      #{deptid,jdbcType=CHAR}, #{orgid,jdbcType=CHAR}, #{startstationtype,jdbcType=VARCHAR}, 
+      #{endstationtype,jdbcType=VARCHAR}, #{fromStationNameid,jdbcType=VARCHAR}, #{toStationNameid,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.holyrobot.con_res.pojo.ResTrainTicket" >
+    insert into Res_TrainTicket
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="stationTrainCode != null" >
+        Station_Train_Code,
+      </if>
+      <if test="fromStationName != null" >
+        From_Station_Name,
+      </if>
+      <if test="toStationName != null" >
+        To_Station_Name,
+      </if>
+      <if test="starttime != null" >
+        StartTime,
+      </if>
+      <if test="arrivetime != null" >
+        ArriveTime,
+      </if>
+      <if test="lishi != null" >
+        LiShi,
+      </if>
+      <if test="godate != null" >
+        GoDate,
+      </if>
+      <if test="fromdate != null" >
+        FromDate,
+      </if>
+      <if test="createddate != null" >
+        CreatedDate,
+      </if>
+      <if test="createdby != null" >
+        CreatedBy,
+      </if>
+      <if test="createdbyid != null" >
+        CreatedByID,
+      </if>
+      <if test="deptid != null" >
+        DeptID,
+      </if>
+      <if test="orgid != null" >
+        OrgID,
+      </if>
+      <if test="startstationtype != null" >
+        StartStationType,
+      </if>
+      <if test="endstationtype != null" >
+        EndStationType,
+      </if>
+      <if test="fromStationNameid != null" >
+        From_Station_NameID,
+      </if>
+      <if test="toStationNameid != null" >
+        To_Station_NameID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="stationTrainCode != null" >
+        #{stationTrainCode,jdbcType=VARCHAR},
+      </if>
+      <if test="fromStationName != null" >
+        #{fromStationName,jdbcType=VARCHAR},
+      </if>
+      <if test="toStationName != null" >
+        #{toStationName,jdbcType=VARCHAR},
+      </if>
+      <if test="starttime != null" >
+        #{starttime,jdbcType=VARCHAR},
+      </if>
+      <if test="arrivetime != null" >
+        #{arrivetime,jdbcType=VARCHAR},
+      </if>
+      <if test="lishi != null" >
+        #{lishi,jdbcType=VARCHAR},
+      </if>
+      <if test="godate != null" >
+        #{godate,jdbcType=DATE},
+      </if>
+      <if test="fromdate != null" >
+        #{fromdate,jdbcType=DATE},
+      </if>
+      <if test="createddate != null" >
+        #{createddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdby != null" >
+        #{createdby,jdbcType=VARCHAR},
+      </if>
+      <if test="createdbyid != null" >
+        #{createdbyid,jdbcType=CHAR},
+      </if>
+      <if test="deptid != null" >
+        #{deptid,jdbcType=CHAR},
+      </if>
+      <if test="orgid != null" >
+        #{orgid,jdbcType=CHAR},
+      </if>
+      <if test="startstationtype != null" >
+        #{startstationtype,jdbcType=VARCHAR},
+      </if>
+      <if test="endstationtype != null" >
+        #{endstationtype,jdbcType=VARCHAR},
+      </if>
+      <if test="fromStationNameid != null" >
+        #{fromStationNameid,jdbcType=VARCHAR},
+      </if>
+      <if test="toStationNameid != null" >
+        #{toStationNameid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.holyrobot.con_res.pojo.ResTrainTicketExample" resultType="java.lang.Integer" >
+    select count(*) from Res_TrainTicket
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update Res_TrainTicket
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=CHAR},
+      </if>
+      <if test="record.stationTrainCode != null" >
+        Station_Train_Code = #{record.stationTrainCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fromStationName != null" >
+        From_Station_Name = #{record.fromStationName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.toStationName != null" >
+        To_Station_Name = #{record.toStationName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.starttime != null" >
+        StartTime = #{record.starttime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.arrivetime != null" >
+        ArriveTime = #{record.arrivetime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lishi != null" >
+        LiShi = #{record.lishi,jdbcType=VARCHAR},
+      </if>
+      <if test="record.godate != null" >
+        GoDate = #{record.godate,jdbcType=DATE},
+      </if>
+      <if test="record.fromdate != null" >
+        FromDate = #{record.fromdate,jdbcType=DATE},
+      </if>
+      <if test="record.createddate != null" >
+        CreatedDate = #{record.createddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createdby != null" >
+        CreatedBy = #{record.createdby,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createdbyid != null" >
+        CreatedByID = #{record.createdbyid,jdbcType=CHAR},
+      </if>
+      <if test="record.deptid != null" >
+        DeptID = #{record.deptid,jdbcType=CHAR},
+      </if>
+      <if test="record.orgid != null" >
+        OrgID = #{record.orgid,jdbcType=CHAR},
+      </if>
+      <if test="record.startstationtype != null" >
+        StartStationType = #{record.startstationtype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.endstationtype != null" >
+        EndStationType = #{record.endstationtype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fromStationNameid != null" >
+        From_Station_NameID = #{record.fromStationNameid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.toStationNameid != null" >
+        To_Station_NameID = #{record.toStationNameid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update Res_TrainTicket
+    set ID = #{record.id,jdbcType=CHAR},
+      Station_Train_Code = #{record.stationTrainCode,jdbcType=VARCHAR},
+      From_Station_Name = #{record.fromStationName,jdbcType=VARCHAR},
+      To_Station_Name = #{record.toStationName,jdbcType=VARCHAR},
+      StartTime = #{record.starttime,jdbcType=VARCHAR},
+      ArriveTime = #{record.arrivetime,jdbcType=VARCHAR},
+      LiShi = #{record.lishi,jdbcType=VARCHAR},
+      GoDate = #{record.godate,jdbcType=DATE},
+      FromDate = #{record.fromdate,jdbcType=DATE},
+      CreatedDate = #{record.createddate,jdbcType=TIMESTAMP},
+      CreatedBy = #{record.createdby,jdbcType=VARCHAR},
+      CreatedByID = #{record.createdbyid,jdbcType=CHAR},
+      DeptID = #{record.deptid,jdbcType=CHAR},
+      OrgID = #{record.orgid,jdbcType=CHAR},
+      StartStationType = #{record.startstationtype,jdbcType=VARCHAR},
+      EndStationType = #{record.endstationtype,jdbcType=VARCHAR},
+      From_Station_NameID = #{record.fromStationNameid,jdbcType=VARCHAR},
+      To_Station_NameID = #{record.toStationNameid,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.holyrobot.con_res.pojo.ResTrainTicket" >
+    update Res_TrainTicket
+    <set >
+      <if test="stationTrainCode != null" >
+        Station_Train_Code = #{stationTrainCode,jdbcType=VARCHAR},
+      </if>
+      <if test="fromStationName != null" >
+        From_Station_Name = #{fromStationName,jdbcType=VARCHAR},
+      </if>
+      <if test="toStationName != null" >
+        To_Station_Name = #{toStationName,jdbcType=VARCHAR},
+      </if>
+      <if test="starttime != null" >
+        StartTime = #{starttime,jdbcType=VARCHAR},
+      </if>
+      <if test="arrivetime != null" >
+        ArriveTime = #{arrivetime,jdbcType=VARCHAR},
+      </if>
+      <if test="lishi != null" >
+        LiShi = #{lishi,jdbcType=VARCHAR},
+      </if>
+      <if test="godate != null" >
+        GoDate = #{godate,jdbcType=DATE},
+      </if>
+      <if test="fromdate != null" >
+        FromDate = #{fromdate,jdbcType=DATE},
+      </if>
+      <if test="createddate != null" >
+        CreatedDate = #{createddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdby != null" >
+        CreatedBy = #{createdby,jdbcType=VARCHAR},
+      </if>
+      <if test="createdbyid != null" >
+        CreatedByID = #{createdbyid,jdbcType=CHAR},
+      </if>
+      <if test="deptid != null" >
+        DeptID = #{deptid,jdbcType=CHAR},
+      </if>
+      <if test="orgid != null" >
+        OrgID = #{orgid,jdbcType=CHAR},
+      </if>
+      <if test="startstationtype != null" >
+        StartStationType = #{startstationtype,jdbcType=VARCHAR},
+      </if>
+      <if test="endstationtype != null" >
+        EndStationType = #{endstationtype,jdbcType=VARCHAR},
+      </if>
+      <if test="fromStationNameid != null" >
+        From_Station_NameID = #{fromStationNameid,jdbcType=VARCHAR},
+      </if>
+      <if test="toStationNameid != null" >
+        To_Station_NameID = #{toStationNameid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.holyrobot.con_res.pojo.ResTrainTicket" >
+    update Res_TrainTicket
+    set Station_Train_Code = #{stationTrainCode,jdbcType=VARCHAR},
+      From_Station_Name = #{fromStationName,jdbcType=VARCHAR},
+      To_Station_Name = #{toStationName,jdbcType=VARCHAR},
+      StartTime = #{starttime,jdbcType=VARCHAR},
+      ArriveTime = #{arrivetime,jdbcType=VARCHAR},
+      LiShi = #{lishi,jdbcType=VARCHAR},
+      GoDate = #{godate,jdbcType=DATE},
+      FromDate = #{fromdate,jdbcType=DATE},
+      CreatedDate = #{createddate,jdbcType=TIMESTAMP},
+      CreatedBy = #{createdby,jdbcType=VARCHAR},
+      CreatedByID = #{createdbyid,jdbcType=CHAR},
+      DeptID = #{deptid,jdbcType=CHAR},
+      OrgID = #{orgid,jdbcType=CHAR},
+      StartStationType = #{startstationtype,jdbcType=VARCHAR},
+      EndStationType = #{endstationtype,jdbcType=VARCHAR},
+      From_Station_NameID = #{fromStationNameid,jdbcType=VARCHAR},
+      To_Station_NameID = #{toStationNameid,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+
+  <!-- -->
+  <select id="selectByTrainCodeAndSoON" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from Res_TrainTicket
+    where Station_Train_Code = #{stationTrainCode,jdbcType=VARCHAR}
+    and GoDate = #{goDate,jdbcType=TIMESTAMP}
+    and From_Station_Name = #{fromStationName,jdbcType=VARCHAR}
+    and To_Station_Name = #{toStationName,jdbcType=VARCHAR}
+  </select>
+</mapper>

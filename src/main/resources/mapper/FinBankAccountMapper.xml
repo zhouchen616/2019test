@@ -1,0 +1,448 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.holyrobot.con_fin.mapper.FinBankAccountMapper" >
+  <resultMap id="BaseResultMap" type="com.holyrobot.con_fin.pojo.FinBankAccount" >
+    <id column="ID" property="id" jdbcType="CHAR" />
+    <result column="BankAccount" property="bankaccount" jdbcType="VARCHAR" />
+    <result column="DepositBank" property="depositbank" jdbcType="VARCHAR" />
+    <result column="CardHolder" property="cardholder" jdbcType="VARCHAR" />
+    <result column="Contact" property="contact" jdbcType="VARCHAR" />
+    <result column="Address" property="address" jdbcType="VARCHAR" />
+    <result column="Comment" property="comment" jdbcType="VARCHAR" />
+    <result column="CreatedDate" property="createddate" jdbcType="TIMESTAMP" />
+    <result column="CreatedBy" property="createdby" jdbcType="VARCHAR" />
+    <result column="CreatedByID" property="createdbyid" jdbcType="CHAR" />
+    <result column="RevisedDate" property="reviseddate" jdbcType="TIMESTAMP" />
+    <result column="RevisedBy" property="revisedby" jdbcType="VARCHAR" />
+    <result column="RevisedByID" property="revisedbyid" jdbcType="CHAR" />
+    <result column="AccountSetID" property="accountsetid" jdbcType="CHAR" />
+    <result column="CompanyName" property="companyname" jdbcType="VARCHAR" />
+    <result column="AccountName" property="accountname" jdbcType="VARCHAR" />
+    <result column="IsEnable" property="isenable" jdbcType="BIT" />
+    <result column="DeptID" property="deptid" jdbcType="CHAR" />
+    <result column="OrgID" property="orgid" jdbcType="CHAR" />
+    <result column="IsOut" property="isout" jdbcType="BIT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, BankAccount, DepositBank, CardHolder, Contact, Address, Comment, CreatedDate, 
+    CreatedBy, CreatedByID, RevisedDate, RevisedBy, RevisedByID, AccountSetID, CompanyName, 
+    AccountName, IsEnable, DeptID, OrgID, IsOut
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.holyrobot.con_fin.pojo.FinBankAccountExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from Fin_BankAccount
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from Fin_BankAccount
+    where ID = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from Fin_BankAccount
+    where ID = #{id,jdbcType=CHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.holyrobot.con_fin.pojo.FinBankAccountExample" >
+    delete from Fin_BankAccount
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.holyrobot.con_fin.pojo.FinBankAccount" >
+    insert into Fin_BankAccount (ID, BankAccount, DepositBank, 
+      CardHolder, Contact, Address, 
+      Comment, CreatedDate, CreatedBy, 
+      CreatedByID, RevisedDate, RevisedBy, 
+      RevisedByID, AccountSetID, CompanyName, 
+      AccountName, IsEnable, DeptID, 
+      OrgID, IsOut)
+    values (#{id,jdbcType=CHAR}, #{bankaccount,jdbcType=VARCHAR}, #{depositbank,jdbcType=VARCHAR}, 
+      #{cardholder,jdbcType=VARCHAR}, #{contact,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
+      #{comment,jdbcType=VARCHAR}, #{createddate,jdbcType=TIMESTAMP}, #{createdby,jdbcType=VARCHAR}, 
+      #{createdbyid,jdbcType=CHAR}, #{reviseddate,jdbcType=TIMESTAMP}, #{revisedby,jdbcType=VARCHAR},
+      #{revisedbyid,jdbcType=CHAR}, #{accountsetid,jdbcType=CHAR}, #{companyname,jdbcType=VARCHAR},
+      #{accountname,jdbcType=VARCHAR}, #{isenable,jdbcType=BIT}, #{deptid,jdbcType=CHAR},
+      #{orgid,jdbcType=CHAR}, #{isout,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.holyrobot.con_fin.pojo.FinBankAccount" >
+    insert into Fin_BankAccount
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="bankaccount != null" >
+        BankAccount,
+      </if>
+      <if test="depositbank != null" >
+        DepositBank,
+      </if>
+      <if test="cardholder != null" >
+        CardHolder,
+      </if>
+      <if test="contact != null" >
+        Contact,
+      </if>
+      <if test="address != null" >
+        Address,
+      </if>
+      <if test="comment != null" >
+        Comment,
+      </if>
+      <if test="createddate != null" >
+        CreatedDate,
+      </if>
+      <if test="createdby != null" >
+        CreatedBy,
+      </if>
+      <if test="createdbyid != null" >
+        CreatedByID,
+      </if>
+      <if test="reviseddate != null" >
+        RevisedDate,
+      </if>
+      <if test="revisedby != null" >
+        RevisedBy,
+      </if>
+      <if test="revisedbyid != null" >
+        RevisedByID,
+      </if>
+      <if test="accountsetid != null" >
+        AccountSetID,
+      </if>
+      <if test="companyname != null" >
+        CompanyName,
+      </if>
+      <if test="accountname != null" >
+        AccountName,
+      </if>
+      <if test="isenable != null" >
+        IsEnable,
+      </if>
+      <if test="deptid != null" >
+        DeptID,
+      </if>
+      <if test="orgid != null" >
+        OrgID,
+      </if>
+      <if test="isout != null" >
+        IsOut,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="bankaccount != null" >
+        #{bankaccount,jdbcType=VARCHAR},
+      </if>
+      <if test="depositbank != null" >
+        #{depositbank,jdbcType=VARCHAR},
+      </if>
+      <if test="cardholder != null" >
+        #{cardholder,jdbcType=VARCHAR},
+      </if>
+      <if test="contact != null" >
+        #{contact,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="comment != null" >
+        #{comment,jdbcType=VARCHAR},
+      </if>
+      <if test="createddate != null" >
+        #{createddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdby != null" >
+        #{createdby,jdbcType=VARCHAR},
+      </if>
+      <if test="createdbyid != null" >
+        #{createdbyid,jdbcType=CHAR},
+      </if>
+      <if test="reviseddate != null" >
+        #{reviseddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="revisedby != null" >
+        #{revisedby,jdbcType=VARCHAR},
+      </if>
+      <if test="revisedbyid != null" >
+        #{revisedbyid,jdbcType=CHAR},
+      </if>
+      <if test="accountsetid != null" >
+        #{accountsetid,jdbcType=CHAR},
+      </if>
+      <if test="companyname != null" >
+        #{companyname,jdbcType=VARCHAR},
+      </if>
+      <if test="accountname != null" >
+        #{accountname,jdbcType=VARCHAR},
+      </if>
+      <if test="isenable != null" >
+        #{isenable,jdbcType=BIT},
+      </if>
+      <if test="deptid != null" >
+        #{deptid,jdbcType=CHAR},
+      </if>
+      <if test="orgid != null" >
+        #{orgid,jdbcType=CHAR},
+      </if>
+      <if test="isout != null" >
+        #{isout,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.holyrobot.con_fin.pojo.FinBankAccountExample" resultType="java.lang.Integer" >
+    select count(*) from Fin_BankAccount
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update Fin_BankAccount
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=CHAR},
+      </if>
+      <if test="record.bankaccount != null" >
+        BankAccount = #{record.bankaccount,jdbcType=VARCHAR},
+      </if>
+      <if test="record.depositbank != null" >
+        DepositBank = #{record.depositbank,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cardholder != null" >
+        CardHolder = #{record.cardholder,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contact != null" >
+        Contact = #{record.contact,jdbcType=VARCHAR},
+      </if>
+      <if test="record.address != null" >
+        Address = #{record.address,jdbcType=VARCHAR},
+      </if>
+      <if test="record.comment != null" >
+        Comment = #{record.comment,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createddate != null" >
+        CreatedDate = #{record.createddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createdby != null" >
+        CreatedBy = #{record.createdby,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createdbyid != null" >
+        CreatedByID = #{record.createdbyid,jdbcType=CHAR},
+      </if>
+      <if test="record.reviseddate != null" >
+        RevisedDate = #{record.reviseddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.revisedby != null" >
+        RevisedBy = #{record.revisedby,jdbcType=VARCHAR},
+      </if>
+      <if test="record.revisedbyid != null" >
+        RevisedByID = #{record.revisedbyid,jdbcType=CHAR},
+      </if>
+      <if test="record.accountsetid != null" >
+        AccountSetID = #{record.accountsetid,jdbcType=CHAR},
+      </if>
+      <if test="record.companyname != null" >
+        CompanyName = #{record.companyname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.accountname != null" >
+        AccountName = #{record.accountname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isenable != null" >
+        IsEnable = #{record.isenable,jdbcType=BIT},
+      </if>
+      <if test="record.deptid != null" >
+        DeptID = #{record.deptid,jdbcType=CHAR},
+      </if>
+      <if test="record.orgid != null" >
+        OrgID = #{record.orgid,jdbcType=CHAR},
+      </if>
+      <if test="record.isout != null" >
+        IsOut = #{record.isout,jdbcType=BIT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update Fin_BankAccount
+    set ID = #{record.id,jdbcType=CHAR},
+      BankAccount = #{record.bankaccount,jdbcType=VARCHAR},
+      DepositBank = #{record.depositbank,jdbcType=VARCHAR},
+      CardHolder = #{record.cardholder,jdbcType=VARCHAR},
+      Contact = #{record.contact,jdbcType=VARCHAR},
+      Address = #{record.address,jdbcType=VARCHAR},
+      Comment = #{record.comment,jdbcType=VARCHAR},
+      CreatedDate = #{record.createddate,jdbcType=TIMESTAMP},
+      CreatedBy = #{record.createdby,jdbcType=VARCHAR},
+      CreatedByID = #{record.createdbyid,jdbcType=CHAR},
+      RevisedDate = #{record.reviseddate,jdbcType=TIMESTAMP},
+      RevisedBy = #{record.revisedby,jdbcType=VARCHAR},
+      RevisedByID = #{record.revisedbyid,jdbcType=CHAR},
+      AccountSetID = #{record.accountsetid,jdbcType=CHAR},
+      CompanyName = #{record.companyname,jdbcType=VARCHAR},
+      AccountName = #{record.accountname,jdbcType=VARCHAR},
+      IsEnable = #{record.isenable,jdbcType=BIT},
+      DeptID = #{record.deptid,jdbcType=CHAR},
+      OrgID = #{record.orgid,jdbcType=CHAR},
+      IsOut = #{record.isout,jdbcType=BIT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.holyrobot.con_fin.pojo.FinBankAccount" >
+    update Fin_BankAccount
+    <set >
+      <if test="bankaccount != null" >
+        BankAccount = #{bankaccount,jdbcType=VARCHAR},
+      </if>
+      <if test="depositbank != null" >
+        DepositBank = #{depositbank,jdbcType=VARCHAR},
+      </if>
+      <if test="cardholder != null" >
+        CardHolder = #{cardholder,jdbcType=VARCHAR},
+      </if>
+      <if test="contact != null" >
+        Contact = #{contact,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        Address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="comment != null" >
+        Comment = #{comment,jdbcType=VARCHAR},
+      </if>
+      <if test="createddate != null" >
+        CreatedDate = #{createddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdby != null" >
+        CreatedBy = #{createdby,jdbcType=VARCHAR},
+      </if>
+      <if test="createdbyid != null" >
+        CreatedByID = #{createdbyid,jdbcType=CHAR},
+      </if>
+      <if test="reviseddate != null" >
+        RevisedDate = #{reviseddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="revisedby != null" >
+        RevisedBy = #{revisedby,jdbcType=VARCHAR},
+      </if>
+      <if test="revisedbyid != null" >
+        RevisedByID = #{revisedbyid,jdbcType=CHAR},
+      </if>
+      <if test="accountsetid != null" >
+        AccountSetID = #{accountsetid,jdbcType=CHAR},
+      </if>
+      <if test="companyname != null" >
+        CompanyName = #{companyname,jdbcType=VARCHAR},
+      </if>
+      <if test="accountname != null" >
+        AccountName = #{accountname,jdbcType=VARCHAR},
+      </if>
+      <if test="isenable != null" >
+        IsEnable = #{isenable,jdbcType=BIT},
+      </if>
+      <if test="deptid != null" >
+        DeptID = #{deptid,jdbcType=CHAR},
+      </if>
+      <if test="orgid != null" >
+        OrgID = #{orgid,jdbcType=CHAR},
+      </if>
+      <if test="isout != null" >
+        IsOut = #{isout,jdbcType=BIT},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.holyrobot.con_fin.pojo.FinBankAccount" >
+    update Fin_BankAccount
+    set BankAccount = #{bankaccount,jdbcType=VARCHAR},
+      DepositBank = #{depositbank,jdbcType=VARCHAR},
+      CardHolder = #{cardholder,jdbcType=VARCHAR},
+      Contact = #{contact,jdbcType=VARCHAR},
+      Address = #{address,jdbcType=VARCHAR},
+      Comment = #{comment,jdbcType=VARCHAR},
+      CreatedDate = #{createddate,jdbcType=TIMESTAMP},
+      CreatedBy = #{createdby,jdbcType=VARCHAR},
+      CreatedByID = #{createdbyid,jdbcType=CHAR},
+      RevisedDate = #{reviseddate,jdbcType=TIMESTAMP},
+      RevisedBy = #{revisedby,jdbcType=VARCHAR},
+      RevisedByID = #{revisedbyid,jdbcType=CHAR},
+      AccountSetID = #{accountsetid,jdbcType=CHAR},
+      CompanyName = #{companyname,jdbcType=VARCHAR},
+      AccountName = #{accountname,jdbcType=VARCHAR},
+      IsEnable = #{isenable,jdbcType=BIT},
+      DeptID = #{deptid,jdbcType=CHAR},
+      OrgID = #{orgid,jdbcType=CHAR},
+      IsOut = #{isout,jdbcType=BIT}
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+</mapper>

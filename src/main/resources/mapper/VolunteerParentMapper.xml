@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.holyrobot.con_volunteer.mapper.VolunteerParentMapper" >
+  <resultMap id="BaseResultMap" type="com.holyrobot.con_volunteer.pojo.VolunteerParent" >
+    <id column="ID" property="id" jdbcType="CHAR" />
+    <result column="ParentID" property="parentid" jdbcType="CHAR" />
+    <result column="ChildID" property="childid" jdbcType="CHAR" />
+    <result column="ParentStatus" property="parentstatus" jdbcType="INTEGER" />
+    <result column="CreatedDate" property="createddate" jdbcType="TIMESTAMP" />
+    <result column="OrgID" property="orgid" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, ParentID, ChildID, ParentStatus, CreatedDate, OrgID
+  </sql>
+  <sql id="Base_Column_List_Volun" >
+    ID, OrgID, TravelAgencyName, UserID, UserName, UserCard, UserCardUrl, Phone, TAContact,
+    ShopName, ShopHeadPortrait, PayType, DepositBank, CardNo, DataStatus, CONVERT(varchar(100), CreatedDate, 23) CreatedDate,
+    Remark, AutoUpdate, AdjustmentType, AdjustmentMethod, Percentage, FixedAmount, InfoStatus
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.holyrobot.con_volunteer.pojo.VolunteerParentExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from Volunteer_Parent
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from Volunteer_Parent
+    where ID = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from Volunteer_Parent
+    where ID = #{id,jdbcType=CHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.holyrobot.con_volunteer.pojo.VolunteerParentExample" >
+    delete from Volunteer_Parent
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.holyrobot.con_volunteer.pojo.VolunteerParent" >
+    insert into Volunteer_Parent (ID, ParentID, ChildID, 
+      ParentStatus, CreatedDate, OrgID
+      )
+    values (#{id,jdbcType=CHAR}, #{parentid,jdbcType=CHAR}, #{childid,jdbcType=CHAR}, 
+      #{parentstatus,jdbcType=INTEGER}, #{createddate,jdbcType=TIMESTAMP}, #{orgid,jdbcType=CHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.holyrobot.con_volunteer.pojo.VolunteerParent" >
+    insert into Volunteer_Parent
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="parentid != null" >
+        ParentID,
+      </if>
+      <if test="childid != null" >
+        ChildID,
+      </if>
+      <if test="parentstatus != null" >
+        ParentStatus,
+      </if>
+      <if test="createddate != null" >
+        CreatedDate,
+      </if>
+      <if test="orgid != null" >
+        OrgID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="parentid != null" >
+        #{parentid,jdbcType=CHAR},
+      </if>
+      <if test="childid != null" >
+        #{childid,jdbcType=CHAR},
+      </if>
+      <if test="parentstatus != null" >
+        #{parentstatus,jdbcType=INTEGER},
+      </if>
+      <if test="createddate != null" >
+        #{createddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orgid != null" >
+        #{orgid,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.holyrobot.con_volunteer.pojo.VolunteerParentExample" resultType="java.lang.Integer" >
+    select count(*) from Volunteer_Parent
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+    <update id="updateByExampleSelective" parameterType="map" >
+    update Volunteer_Parent
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=CHAR},
+      </if>
+      <if test="record.parentid != null" >
+        ParentID = #{record.parentid,jdbcType=CHAR},
+      </if>
+      <if test="record.childid != null" >
+        ChildID = #{record.childid,jdbcType=CHAR},
+      </if>
+      <if test="record.parentstatus != null" >
+        ParentStatus = #{record.parentstatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.createddate != null" >
+        CreatedDate = #{record.createddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.orgid != null" >
+        OrgID = #{record.orgid,jdbcType=CHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update Volunteer_Parent
+    set ID = #{record.id,jdbcType=CHAR},
+      ParentID = #{record.parentid,jdbcType=CHAR},
+      ChildID = #{record.childid,jdbcType=CHAR},
+      ParentStatus = #{record.parentstatus,jdbcType=INTEGER},
+      CreatedDate = #{record.createddate,jdbcType=TIMESTAMP},
+      OrgID = #{record.orgid,jdbcType=CHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.holyrobot.con_volunteer.pojo.VolunteerParent" >
+    update Volunteer_Parent
+    <set >
+      <if test="parentid != null" >
+        ParentID = #{parentid,jdbcType=CHAR},
+      </if>
+      <if test="childid != null" >
+        ChildID = #{childid,jdbcType=CHAR},
+      </if>
+      <if test="parentstatus != null" >
+        ParentStatus = #{parentstatus,jdbcType=INTEGER},
+      </if>
+      <if test="createddate != null" >
+        CreatedDate = #{createddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orgid != null" >
+        OrgID = #{orgid,jdbcType=CHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.holyrobot.con_volunteer.pojo.VolunteerParent" >
+    update Volunteer_Parent
+    set ParentID = #{parentid,jdbcType=CHAR},
+      ChildID = #{childid,jdbcType=CHAR},
+      ParentStatus = #{parentstatus,jdbcType=INTEGER},
+      CreatedDate = #{createddate,jdbcType=TIMESTAMP},
+      OrgID = #{orgid,jdbcType=CHAR}
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+  <select id="toTravellerShop" resultType="java.util.HashMap">
+    select <include refid="Base_Column_List_Volun" /> ,(select username from Volunteer_Application where OrgID = a.OrgID And UserID=#{map.parentId}) AS inviter,
+    ISNULL((SELECT
+    sum(Allowance)
+    FROM
+    Traveler_Reward_Recording
+    where  OrgID = a.OrgID And UserID=a.UserID and a.DataStatus=1
+    ),0) AS allowance,  --累计奖励金
+    ISNULL((select sum(CommissionAmt) from Volunteer_Commission_Record where OrgID = a.OrgID And UserID=a.UserID and a.DataStatus=1),0) as commissionAmt,  --佣金
+    ISNULL((SELECT sum(AdultNum)+sum(ChildNum) from ord_orderInfo where orderSalerId = a.userId and OrgID = a.OrgID),0) as mub
+    from Volunteer_Application a
+    <where>
+      <if test="map.orgId">
+        OrgID = #{map.orgId}
+      </if>
+      <if test="map.userId">
+        And UserID = #{map.userId}
+      </if>
+    </where>
+  </select>
+</mapper>

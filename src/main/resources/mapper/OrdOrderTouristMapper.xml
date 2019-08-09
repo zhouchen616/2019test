@@ -1,0 +1,543 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.holyrobot.con_order.mapper.OrdOrderTouristMapper" >
+  <resultMap id="BaseResultMap" type="com.holyrobot.con_order.pojo.OrdOrderTourist" >
+    <id column="ID" property="id" jdbcType="CHAR" />
+    <result column="PriceID" property="priceid" jdbcType="CHAR" />
+    <result column="PriceName" property="pricename" jdbcType="VARCHAR" />
+    <result column="OrderID" property="orderid" jdbcType="CHAR" />
+    <result column="GuestName" property="guestname" jdbcType="VARCHAR" />
+    <result column="GuestSex" property="guestsex" jdbcType="VARCHAR" />
+    <result column="GuestAge" property="guestage" jdbcType="VARCHAR" />
+    <result column="GuestCard" property="guestcard" jdbcType="VARCHAR" />
+    <result column="GuestTelphone" property="guesttelphone" jdbcType="VARCHAR" />
+    <result column="GuestAddress" property="guestaddress" jdbcType="VARCHAR" />
+    <result column="CreatedDate" property="createddate" jdbcType="TIMESTAMP" />
+    <result column="CreatedBy" property="createdby" jdbcType="VARCHAR" />
+    <result column="CreatedID" property="createdid" jdbcType="CHAR" />
+    <result column="DeptID" property="deptid" jdbcType="CHAR" />
+    <result column="RevisedDate" property="reviseddate" jdbcType="TIMESTAMP" />
+    <result column="RevisedBy" property="revisedby" jdbcType="VARCHAR" />
+    <result column="GuestComment" property="guestcomment" jdbcType="VARCHAR" />
+    <result column="SalePrice" property="saleprice" jdbcType="DECIMAL" />
+    <result column="JAmt" property="jamt" jdbcType="DECIMAL" />
+    <result column="SAmt" property="samt" jdbcType="DECIMAL" />
+    <result column="PickUpID" property="pickupid" jdbcType="CHAR" />
+    <result column="PickName" property="pickname" jdbcType="VARCHAR" />
+    <result column="PickUpTime" property="pickuptime" jdbcType="VARCHAR" />
+    <result column="GuestCardType" property="guestcardtype" jdbcType="VARCHAR" />
+    <result column="VenueID" property="venueid" jdbcType="CHAR" />
+    <result column="IsSingleRoom" property="issingleroom" jdbcType="BIT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, PriceID, PriceName, OrderID, GuestName, GuestSex, GuestAge, GuestCard, GuestTelphone, 
+    GuestAddress, CreatedDate, CreatedBy, CreatedID, DeptID, RevisedDate, RevisedBy, 
+    GuestComment, SalePrice, JAmt, SAmt, PickUpID, PickName, PickUpTime, GuestCardType, 
+    VenueID, IsSingleRoom
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.holyrobot.con_order.pojo.OrdOrderTouristExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from Ord_Order_Tourist
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from Ord_Order_Tourist
+    where ID = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from Ord_Order_Tourist
+    where ID = #{id,jdbcType=CHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.holyrobot.con_order.pojo.OrdOrderTouristExample" >
+    delete from Ord_Order_Tourist
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.holyrobot.con_order.pojo.OrdOrderTourist" >
+    insert into Ord_Order_Tourist (ID, PriceID, PriceName, 
+      OrderID, GuestName, GuestSex, 
+      GuestAge, GuestCard, GuestTelphone, 
+      GuestAddress, CreatedDate, CreatedBy, 
+      CreatedID, DeptID, RevisedDate, 
+      RevisedBy, GuestComment, SalePrice, 
+      JAmt, SAmt, PickUpID, 
+      PickName, PickUpTime, GuestCardType, 
+      VenueID, IsSingleRoom)
+    values (#{id,jdbcType=CHAR}, #{priceid,jdbcType=CHAR}, #{pricename,jdbcType=VARCHAR},
+      #{orderid,jdbcType=CHAR}, #{guestname,jdbcType=VARCHAR}, #{guestsex,jdbcType=VARCHAR},
+      #{guestage,jdbcType=VARCHAR}, #{guestcard,jdbcType=VARCHAR}, #{guesttelphone,jdbcType=VARCHAR},
+      #{guestaddress,jdbcType=VARCHAR}, #{createddate,jdbcType=TIMESTAMP}, #{createdby,jdbcType=VARCHAR},
+      #{createdid,jdbcType=CHAR}, #{deptid,jdbcType=CHAR}, #{reviseddate,jdbcType=TIMESTAMP}, 
+      #{revisedby,jdbcType=VARCHAR}, #{guestcomment,jdbcType=VARCHAR}, #{saleprice,jdbcType=DECIMAL},
+      #{jamt,jdbcType=DECIMAL}, #{samt,jdbcType=DECIMAL}, #{pickupid,jdbcType=CHAR}, 
+      #{pickname,jdbcType=VARCHAR}, #{pickuptime,jdbcType=VARCHAR}, #{guestcardtype,jdbcType=VARCHAR},
+      #{venueid,jdbcType=CHAR}, #{issingleroom,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.holyrobot.con_order.pojo.OrdOrderTourist" >
+    insert into Ord_Order_Tourist
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="priceid != null" >
+        PriceID,
+      </if>
+      <if test="pricename != null" >
+        PriceName,
+      </if>
+      <if test="orderid != null" >
+        OrderID,
+      </if>
+      <if test="guestname != null" >
+        GuestName,
+      </if>
+      <if test="guestsex != null" >
+        GuestSex,
+      </if>
+      <if test="guestage != null" >
+        GuestAge,
+      </if>
+      <if test="guestcard != null" >
+        GuestCard,
+      </if>
+      <if test="guesttelphone != null" >
+        GuestTelphone,
+      </if>
+      <if test="guestaddress != null" >
+        GuestAddress,
+      </if>
+      <if test="createddate != null" >
+        CreatedDate,
+      </if>
+      <if test="createdby != null" >
+        CreatedBy,
+      </if>
+      <if test="createdid != null" >
+        CreatedID,
+      </if>
+      <if test="deptid != null" >
+        DeptID,
+      </if>
+      <if test="reviseddate != null" >
+        RevisedDate,
+      </if>
+      <if test="revisedby != null" >
+        RevisedBy,
+      </if>
+      <if test="guestcomment != null" >
+        GuestComment,
+      </if>
+      <if test="saleprice != null" >
+        SalePrice,
+      </if>
+      <if test="jamt != null" >
+        JAmt,
+      </if>
+      <if test="samt != null" >
+        SAmt,
+      </if>
+      <if test="pickupid != null" >
+        PickUpID,
+      </if>
+      <if test="pickname != null" >
+        PickName,
+      </if>
+      <if test="pickuptime != null" >
+        PickUpTime,
+      </if>
+      <if test="guestcardtype != null" >
+        GuestCardType,
+      </if>
+      <if test="venueid != null" >
+        VenueID,
+      </if>
+      <if test="issingleroom != null" >
+        IsSingleRoom,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="priceid != null" >
+        #{priceid,jdbcType=CHAR},
+      </if>
+      <if test="pricename != null" >
+        #{pricename,jdbcType=VARCHAR},
+      </if>
+      <if test="orderid != null" >
+        #{orderid,jdbcType=CHAR},
+      </if>
+      <if test="guestname != null" >
+        #{guestname,jdbcType=VARCHAR},
+      </if>
+      <if test="guestsex != null" >
+        #{guestsex,jdbcType=VARCHAR},
+      </if>
+      <if test="guestage != null" >
+        #{guestage,jdbcType=VARCHAR},
+      </if>
+      <if test="guestcard != null" >
+        #{guestcard,jdbcType=VARCHAR},
+      </if>
+      <if test="guesttelphone != null" >
+        #{guesttelphone,jdbcType=VARCHAR},
+      </if>
+      <if test="guestaddress != null" >
+        #{guestaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="createddate != null" >
+        #{createddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdby != null" >
+        #{createdby,jdbcType=VARCHAR},
+      </if>
+      <if test="createdid != null" >
+        #{createdid,jdbcType=CHAR},
+      </if>
+      <if test="deptid != null" >
+        #{deptid,jdbcType=CHAR},
+      </if>
+      <if test="reviseddate != null" >
+        #{reviseddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="revisedby != null" >
+        #{revisedby,jdbcType=VARCHAR},
+      </if>
+      <if test="guestcomment != null" >
+        #{guestcomment,jdbcType=VARCHAR},
+      </if>
+      <if test="saleprice != null" >
+        #{saleprice,jdbcType=DECIMAL},
+      </if>
+      <if test="jamt != null" >
+        #{jamt,jdbcType=DECIMAL},
+      </if>
+      <if test="samt != null" >
+        #{samt,jdbcType=DECIMAL},
+      </if>
+      <if test="pickupid != null" >
+        #{pickupid,jdbcType=CHAR},
+      </if>
+      <if test="pickname != null" >
+        #{pickname,jdbcType=VARCHAR},
+      </if>
+      <if test="pickuptime != null" >
+        #{pickuptime,jdbcType=VARCHAR},
+      </if>
+      <if test="guestcardtype != null" >
+        #{guestcardtype,jdbcType=VARCHAR},
+      </if>
+      <if test="venueid != null" >
+        #{venueid,jdbcType=CHAR},
+      </if>
+      <if test="issingleroom != null" >
+        #{issingleroom,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.holyrobot.con_order.pojo.OrdOrderTouristExample" resultType="java.lang.Integer" >
+    select count(*) from Ord_Order_Tourist
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update Ord_Order_Tourist
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=CHAR},
+      </if>
+      <if test="record.priceid != null" >
+        PriceID = #{record.priceid,jdbcType=CHAR},
+      </if>
+      <if test="record.pricename != null" >
+        PriceName = #{record.pricename,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orderid != null" >
+        OrderID = #{record.orderid,jdbcType=CHAR},
+      </if>
+      <if test="record.guestname != null" >
+        GuestName = #{record.guestname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.guestsex != null" >
+        GuestSex = #{record.guestsex,jdbcType=VARCHAR},
+      </if>
+      <if test="record.guestage != null" >
+        GuestAge = #{record.guestage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.guestcard != null" >
+        GuestCard = #{record.guestcard,jdbcType=VARCHAR},
+      </if>
+      <if test="record.guesttelphone != null" >
+        GuestTelphone = #{record.guesttelphone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.guestaddress != null" >
+        GuestAddress = #{record.guestaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createddate != null" >
+        CreatedDate = #{record.createddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createdby != null" >
+        CreatedBy = #{record.createdby,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createdid != null" >
+        CreatedID = #{record.createdid,jdbcType=CHAR},
+      </if>
+      <if test="record.deptid != null" >
+        DeptID = #{record.deptid,jdbcType=CHAR},
+      </if>
+      <if test="record.reviseddate != null" >
+        RevisedDate = #{record.reviseddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.revisedby != null" >
+        RevisedBy = #{record.revisedby,jdbcType=VARCHAR},
+      </if>
+      <if test="record.guestcomment != null" >
+        GuestComment = #{record.guestcomment,jdbcType=VARCHAR},
+      </if>
+      <if test="record.saleprice != null" >
+        SalePrice = #{record.saleprice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.jamt != null" >
+        JAmt = #{record.jamt,jdbcType=DECIMAL},
+      </if>
+      <if test="record.samt != null" >
+        SAmt = #{record.samt,jdbcType=DECIMAL},
+      </if>
+      <if test="record.pickupid != null" >
+        PickUpID = #{record.pickupid,jdbcType=CHAR},
+      </if>
+      <if test="record.pickname != null" >
+        PickName = #{record.pickname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pickuptime != null" >
+        PickUpTime = #{record.pickuptime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.guestcardtype != null" >
+        GuestCardType = #{record.guestcardtype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.venueid != null" >
+        VenueID = #{record.venueid,jdbcType=CHAR},
+      </if>
+      <if test="record.issingleroom != null" >
+        IsSingleRoom = #{record.issingleroom,jdbcType=BIT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update Ord_Order_Tourist
+    set ID = #{record.id,jdbcType=CHAR},
+      PriceID = #{record.priceid,jdbcType=CHAR},
+      PriceName = #{record.pricename,jdbcType=VARCHAR},
+      OrderID = #{record.orderid,jdbcType=CHAR},
+      GuestName = #{record.guestname,jdbcType=VARCHAR},
+      GuestSex = #{record.guestsex,jdbcType=VARCHAR},
+      GuestAge = #{record.guestage,jdbcType=VARCHAR},
+      GuestCard = #{record.guestcard,jdbcType=VARCHAR},
+      GuestTelphone = #{record.guesttelphone,jdbcType=VARCHAR},
+      GuestAddress = #{record.guestaddress,jdbcType=VARCHAR},
+      CreatedDate = #{record.createddate,jdbcType=TIMESTAMP},
+      CreatedBy = #{record.createdby,jdbcType=VARCHAR},
+      CreatedID = #{record.createdid,jdbcType=CHAR},
+      DeptID = #{record.deptid,jdbcType=CHAR},
+      RevisedDate = #{record.reviseddate,jdbcType=TIMESTAMP},
+      RevisedBy = #{record.revisedby,jdbcType=VARCHAR},
+      GuestComment = #{record.guestcomment,jdbcType=VARCHAR},
+      SalePrice = #{record.saleprice,jdbcType=DECIMAL},
+      JAmt = #{record.jamt,jdbcType=DECIMAL},
+      SAmt = #{record.samt,jdbcType=DECIMAL},
+      PickUpID = #{record.pickupid,jdbcType=CHAR},
+      PickName = #{record.pickname,jdbcType=VARCHAR},
+      PickUpTime = #{record.pickuptime,jdbcType=VARCHAR},
+      GuestCardType = #{record.guestcardtype,jdbcType=VARCHAR},
+      VenueID = #{record.venueid,jdbcType=CHAR},
+      IsSingleRoom = #{record.issingleroom,jdbcType=BIT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.holyrobot.con_order.pojo.OrdOrderTourist" >
+    update Ord_Order_Tourist
+    <set >
+      <if test="priceid != null" >
+        PriceID = #{priceid,jdbcType=CHAR},
+      </if>
+      <if test="pricename != null" >
+        PriceName = #{pricename,jdbcType=VARCHAR},
+      </if>
+      <if test="orderid != null" >
+        OrderID = #{orderid,jdbcType=CHAR},
+      </if>
+      <if test="guestname != null" >
+        GuestName = #{guestname,jdbcType=VARCHAR},
+      </if>
+      <if test="guestsex != null" >
+        GuestSex = #{guestsex,jdbcType=VARCHAR},
+      </if>
+      <if test="guestage != null" >
+        GuestAge = #{guestage,jdbcType=VARCHAR},
+      </if>
+      <if test="guestcard != null" >
+        GuestCard = #{guestcard,jdbcType=VARCHAR},
+      </if>
+      <if test="guesttelphone != null" >
+        GuestTelphone = #{guesttelphone,jdbcType=VARCHAR},
+      </if>
+      <if test="guestaddress != null" >
+        GuestAddress = #{guestaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="createddate != null" >
+        CreatedDate = #{createddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdby != null" >
+        CreatedBy = #{createdby,jdbcType=VARCHAR},
+      </if>
+      <if test="createdid != null" >
+        CreatedID = #{createdid,jdbcType=CHAR},
+      </if>
+      <if test="deptid != null" >
+        DeptID = #{deptid,jdbcType=CHAR},
+      </if>
+      <if test="reviseddate != null" >
+        RevisedDate = #{reviseddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="revisedby != null" >
+        RevisedBy = #{revisedby,jdbcType=VARCHAR},
+      </if>
+      <if test="guestcomment != null" >
+        GuestComment = #{guestcomment,jdbcType=VARCHAR},
+      </if>
+      <if test="saleprice != null" >
+        SalePrice = #{saleprice,jdbcType=DECIMAL},
+      </if>
+      <if test="jamt != null" >
+        JAmt = #{jamt,jdbcType=DECIMAL},
+      </if>
+      <if test="samt != null" >
+        SAmt = #{samt,jdbcType=DECIMAL},
+      </if>
+      <if test="pickupid != null" >
+        PickUpID = #{pickupid,jdbcType=CHAR},
+      </if>
+      <if test="pickname != null" >
+        PickName = #{pickname,jdbcType=VARCHAR},
+      </if>
+      <if test="pickuptime != null" >
+        PickUpTime = #{pickuptime,jdbcType=VARCHAR},
+      </if>
+      <if test="guestcardtype != null" >
+        GuestCardType = #{guestcardtype,jdbcType=VARCHAR},
+      </if>
+      <if test="venueid != null" >
+        VenueID = #{venueid,jdbcType=CHAR},
+      </if>
+      <if test="issingleroom != null" >
+        IsSingleRoom = #{issingleroom,jdbcType=BIT},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.holyrobot.con_order.pojo.OrdOrderTourist" >
+    update Ord_Order_Tourist
+    set PriceID = #{priceid,jdbcType=CHAR},
+      PriceName = #{pricename,jdbcType=VARCHAR},
+      OrderID = #{orderid,jdbcType=CHAR},
+      GuestName = #{guestname,jdbcType=VARCHAR},
+      GuestSex = #{guestsex,jdbcType=VARCHAR},
+      GuestAge = #{guestage,jdbcType=VARCHAR},
+      GuestCard = #{guestcard,jdbcType=VARCHAR},
+      GuestTelphone = #{guesttelphone,jdbcType=VARCHAR},
+      GuestAddress = #{guestaddress,jdbcType=VARCHAR},
+      CreatedDate = #{createddate,jdbcType=TIMESTAMP},
+      CreatedBy = #{createdby,jdbcType=VARCHAR},
+      CreatedID = #{createdid,jdbcType=CHAR},
+      DeptID = #{deptid,jdbcType=CHAR},
+      RevisedDate = #{reviseddate,jdbcType=TIMESTAMP},
+      RevisedBy = #{revisedby,jdbcType=VARCHAR},
+      GuestComment = #{guestcomment,jdbcType=VARCHAR},
+      SalePrice = #{saleprice,jdbcType=DECIMAL},
+      JAmt = #{jamt,jdbcType=DECIMAL},
+      SAmt = #{samt,jdbcType=DECIMAL},
+      PickUpID = #{pickupid,jdbcType=CHAR},
+      PickName = #{pickname,jdbcType=VARCHAR},
+      PickUpTime = #{pickuptime,jdbcType=VARCHAR},
+      GuestCardType = #{guestcardtype,jdbcType=VARCHAR},
+      VenueID = #{venueid,jdbcType=CHAR},
+      IsSingleRoom = #{issingleroom,jdbcType=BIT}
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+</mapper>

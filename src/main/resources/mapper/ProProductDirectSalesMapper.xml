@@ -1,0 +1,811 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.holyrobot.con_product.mapper.ProProductDirectSalesMapper" >
+  <resultMap id="BaseResultMap" type="com.holyrobot.con_product.pojo.ProProductDirectSales" >
+    <id column="ID" property="id" jdbcType="CHAR" />
+    <result column="SupplierID" property="supplierid" jdbcType="CHAR" />
+    <result column="ReceiverID" property="receiverid" jdbcType="CHAR" />
+    <result column="ProID" property="proid" jdbcType="CHAR" />
+    <result column="TourID" property="tourid" jdbcType="CHAR" />
+    <result column="RevisedDate" property="reviseddate" jdbcType="TIMESTAMP" />
+    <result column="RevisedBy" property="revisedby" jdbcType="VARCHAR" />
+    <result column="TourNo" property="tourno" jdbcType="VARCHAR" />
+    <result column="TourName" property="tourname" jdbcType="VARCHAR" />
+    <result column="TourDate" property="tourdate" jdbcType="DATE" />
+    <result column="DueDate" property="duedate" jdbcType="DATE" />
+    <result column="PlanNum" property="plannum" jdbcType="INTEGER" />
+    <result column="IsShare" property="isshare" jdbcType="INTEGER" />
+    <result column="DataStatus" property="datastatus" jdbcType="INTEGER" />
+    <result column="CreatedDate" property="createddate" jdbcType="TIMESTAMP" />
+    <result column="CreatedBy" property="createdby" jdbcType="VARCHAR" />
+    <result column="CreatedByID" property="createdbyid" jdbcType="CHAR" />
+    <result column="DeptID" property="deptid" jdbcType="CHAR" />
+    <result column="OrgID" property="orgid" jdbcType="CHAR" />
+    <result column="AuditStatus" property="auditstatus" jdbcType="INTEGER" />
+    <result column="AuditedDate" property="auditeddate" jdbcType="TIMESTAMP" />
+    <result column="AuditedBy" property="auditedby" jdbcType="VARCHAR" />
+    <result column="SupplierName" property="suppliername" jdbcType="VARCHAR" />
+    <result column="ReceiverName" property="receivername" jdbcType="VARCHAR" />
+    <result column="SupplierDataStatus" property="supplierdatastatus" jdbcType="INTEGER" />
+    <result column="IsCopy" property="iscopy" jdbcType="INTEGER" />
+    <result column="UnShelveComment" property="unshelvecomment" jdbcType="VARCHAR" />
+    <result column="AuditedByID" property="auditedbyid" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, SupplierID, ReceiverID, ProID, TourID, RevisedDate, RevisedBy, TourNo, TourName, 
+    TourDate, DueDate, PlanNum, IsShare, DataStatus, CreatedDate, CreatedBy, CreatedByID, 
+    DeptID, OrgID, AuditStatus, AuditedDate, AuditedBy, SupplierName, ReceiverName, SupplierDataStatus, 
+    IsCopy, UnShelveComment, AuditedByID
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.holyrobot.con_product.pojo.ProProductDirectSalesExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from Pro_Product_DirectSales
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from Pro_Product_DirectSales
+    where ID = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from Pro_Product_DirectSales
+    where ID = #{id,jdbcType=CHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.holyrobot.con_product.pojo.ProProductDirectSalesExample" >
+    delete from Pro_Product_DirectSales
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.holyrobot.con_product.pojo.ProProductDirectSales" >
+    insert into Pro_Product_DirectSales (ID, SupplierID, ReceiverID, 
+      ProID, TourID, RevisedDate, 
+      RevisedBy, TourNo, TourName, 
+      TourDate, DueDate, PlanNum, 
+      IsShare, DataStatus, CreatedDate, 
+      CreatedBy, CreatedByID, DeptID, 
+      OrgID, AuditStatus, AuditedDate, 
+      AuditedBy, SupplierName, ReceiverName, 
+      SupplierDataStatus, IsCopy, UnShelveComment, 
+      AuditedByID, isAuto,DirectSalesProductId)
+    values (#{id,jdbcType=CHAR}, #{supplierid,jdbcType=CHAR}, #{receiverid,jdbcType=CHAR}, 
+      #{proid,jdbcType=CHAR}, #{tourid,jdbcType=CHAR}, #{reviseddate,jdbcType=TIMESTAMP}, 
+      #{revisedby,jdbcType=VARCHAR}, #{tourno,jdbcType=VARCHAR}, #{tourname,jdbcType=VARCHAR},
+      #{tourdate,jdbcType=DATE}, #{duedate,jdbcType=DATE}, #{plannum,jdbcType=INTEGER}, 
+      #{isshare,jdbcType=INTEGER}, #{datastatus,jdbcType=INTEGER}, #{createddate,jdbcType=TIMESTAMP}, 
+      #{createdby,jdbcType=VARCHAR}, #{createdbyid,jdbcType=CHAR}, #{deptid,jdbcType=CHAR},
+      #{orgid,jdbcType=CHAR}, #{auditstatus,jdbcType=INTEGER}, #{auditeddate,jdbcType=TIMESTAMP}, 
+      #{auditedby,jdbcType=VARCHAR}, #{suppliername,jdbcType=VARCHAR}, #{receivername,jdbcType=VARCHAR},
+      #{supplierdatastatus,jdbcType=INTEGER}, #{iscopy,jdbcType=INTEGER}, #{unshelvecomment,jdbcType=VARCHAR},
+      #{auditedbyid,jdbcType=CHAR}, #{isauto,jdbcType=INTEGER},#{directSalesProductId,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.holyrobot.con_product.pojo.ProProductDirectSales" >
+    insert into Pro_Product_DirectSales
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="supplierid != null" >
+        SupplierID,
+      </if>
+      <if test="receiverid != null" >
+        ReceiverID,
+      </if>
+      <if test="proid != null" >
+        ProID,
+      </if>
+      <if test="tourid != null" >
+        TourID,
+      </if>
+      <if test="reviseddate != null" >
+        RevisedDate,
+      </if>
+      <if test="revisedby != null" >
+        RevisedBy,
+      </if>
+      <if test="tourno != null" >
+        TourNo,
+      </if>
+      <if test="tourname != null" >
+        TourName,
+      </if>
+      <if test="tourdate != null" >
+        TourDate,
+      </if>
+      <if test="duedate != null" >
+        DueDate,
+      </if>
+      <if test="plannum != null" >
+        PlanNum,
+      </if>
+      <if test="isshare != null" >
+        IsShare,
+      </if>
+      <if test="datastatus != null" >
+        DataStatus,
+      </if>
+      <if test="createddate != null" >
+        CreatedDate,
+      </if>
+      <if test="createdby != null" >
+        CreatedBy,
+      </if>
+      <if test="createdbyid != null" >
+        CreatedByID,
+      </if>
+      <if test="deptid != null" >
+        DeptID,
+      </if>
+      <if test="orgid != null" >
+        OrgID,
+      </if>
+      <if test="auditstatus != null" >
+        AuditStatus,
+      </if>
+      <if test="auditeddate != null" >
+        AuditedDate,
+      </if>
+      <if test="auditedby != null" >
+        AuditedBy,
+      </if>
+      <if test="suppliername != null" >
+        SupplierName,
+      </if>
+      <if test="receivername != null" >
+        ReceiverName,
+      </if>
+      <if test="supplierdatastatus != null" >
+        SupplierDataStatus,
+      </if>
+      <if test="iscopy != null" >
+        IsCopy,
+      </if>
+      <if test="unshelvecomment != null" >
+        UnShelveComment,
+      </if>
+      <if test="auditedbyid != null" >
+        AuditedByID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="supplierid != null" >
+        #{supplierid,jdbcType=CHAR},
+      </if>
+      <if test="receiverid != null" >
+        #{receiverid,jdbcType=CHAR},
+      </if>
+      <if test="proid != null" >
+        #{proid,jdbcType=CHAR},
+      </if>
+      <if test="tourid != null" >
+        #{tourid,jdbcType=CHAR},
+      </if>
+      <if test="reviseddate != null" >
+        #{reviseddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="revisedby != null" >
+        #{revisedby,jdbcType=VARCHAR},
+      </if>
+      <if test="tourno != null" >
+        #{tourno,jdbcType=VARCHAR},
+      </if>
+      <if test="tourname != null" >
+        #{tourname,jdbcType=VARCHAR},
+      </if>
+      <if test="tourdate != null" >
+        #{tourdate,jdbcType=DATE},
+      </if>
+      <if test="duedate != null" >
+        #{duedate,jdbcType=DATE},
+      </if>
+      <if test="plannum != null" >
+        #{plannum,jdbcType=INTEGER},
+      </if>
+      <if test="isshare != null" >
+        #{isshare,jdbcType=INTEGER},
+      </if>
+      <if test="datastatus != null" >
+        #{datastatus,jdbcType=INTEGER},
+      </if>
+      <if test="createddate != null" >
+        #{createddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdby != null" >
+        #{createdby,jdbcType=VARCHAR},
+      </if>
+      <if test="createdbyid != null" >
+        #{createdbyid,jdbcType=CHAR},
+      </if>
+      <if test="deptid != null" >
+        #{deptid,jdbcType=CHAR},
+      </if>
+      <if test="orgid != null" >
+        #{orgid,jdbcType=CHAR},
+      </if>
+      <if test="auditstatus != null" >
+        #{auditstatus,jdbcType=INTEGER},
+      </if>
+      <if test="auditeddate != null" >
+        #{auditeddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="auditedby != null" >
+        #{auditedby,jdbcType=VARCHAR},
+      </if>
+      <if test="suppliername != null" >
+        #{suppliername,jdbcType=VARCHAR},
+      </if>
+      <if test="receivername != null" >
+        #{receivername,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierdatastatus != null" >
+        #{supplierdatastatus,jdbcType=INTEGER},
+      </if>
+      <if test="iscopy != null" >
+        #{iscopy,jdbcType=INTEGER},
+      </if>
+      <if test="unshelvecomment != null" >
+        #{unshelvecomment,jdbcType=VARCHAR},
+      </if>
+      <if test="auditedbyid != null" >
+        #{auditedbyid,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.holyrobot.con_product.pojo.ProProductDirectSalesExample" resultType="java.lang.Integer" >
+    select count(*) from Pro_Product_DirectSales
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update Pro_Product_DirectSales
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=CHAR},
+      </if>
+      <if test="record.supplierid != null" >
+        SupplierID = #{record.supplierid,jdbcType=CHAR},
+      </if>
+      <if test="record.receiverid != null" >
+        ReceiverID = #{record.receiverid,jdbcType=CHAR},
+      </if>
+      <if test="record.proid != null" >
+        ProID = #{record.proid,jdbcType=CHAR},
+      </if>
+      <if test="record.tourid != null" >
+        TourID = #{record.tourid,jdbcType=CHAR},
+      </if>
+      <if test="record.reviseddate != null" >
+        RevisedDate = #{record.reviseddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.revisedby != null" >
+        RevisedBy = #{record.revisedby,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tourno != null" >
+        TourNo = #{record.tourno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tourname != null" >
+        TourName = #{record.tourname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tourdate != null" >
+        TourDate = #{record.tourdate,jdbcType=DATE},
+      </if>
+      <if test="record.duedate != null" >
+        DueDate = #{record.duedate,jdbcType=DATE},
+      </if>
+      <if test="record.plannum != null" >
+        PlanNum = #{record.plannum,jdbcType=INTEGER},
+      </if>
+      <if test="record.isshare != null" >
+        IsShare = #{record.isshare,jdbcType=INTEGER},
+      </if>
+      <if test="record.datastatus != null" >
+        DataStatus = #{record.datastatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.createddate != null" >
+        CreatedDate = #{record.createddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createdby != null" >
+        CreatedBy = #{record.createdby,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createdbyid != null" >
+        CreatedByID = #{record.createdbyid,jdbcType=CHAR},
+      </if>
+      <if test="record.deptid != null" >
+        DeptID = #{record.deptid,jdbcType=CHAR},
+      </if>
+      <if test="record.orgid != null" >
+        OrgID = #{record.orgid,jdbcType=CHAR},
+      </if>
+      <if test="record.auditstatus != null" >
+        AuditStatus = #{record.auditstatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.auditeddate != null" >
+        AuditedDate = #{record.auditeddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.auditedby != null" >
+        AuditedBy = #{record.auditedby,jdbcType=VARCHAR},
+      </if>
+      <if test="record.suppliername != null" >
+        SupplierName = #{record.suppliername,jdbcType=VARCHAR},
+      </if>
+      <if test="record.receivername != null" >
+        ReceiverName = #{record.receivername,jdbcType=VARCHAR},
+      </if>
+      <if test="record.supplierdatastatus != null" >
+        SupplierDataStatus = #{record.supplierdatastatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.iscopy != null" >
+        IsCopy = #{record.iscopy,jdbcType=INTEGER},
+      </if>
+      <if test="record.unshelvecomment != null" >
+        UnShelveComment = #{record.unshelvecomment,jdbcType=VARCHAR},
+      </if>
+      <if test="record.auditedbyid != null" >
+        AuditedByID = #{record.auditedbyid,jdbcType=CHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update Pro_Product_DirectSales
+    set ID = #{record.id,jdbcType=CHAR},
+      SupplierID = #{record.supplierid,jdbcType=CHAR},
+      ReceiverID = #{record.receiverid,jdbcType=CHAR},
+      ProID = #{record.proid,jdbcType=CHAR},
+      TourID = #{record.tourid,jdbcType=CHAR},
+      RevisedDate = #{record.reviseddate,jdbcType=TIMESTAMP},
+      RevisedBy = #{record.revisedby,jdbcType=VARCHAR},
+      TourNo = #{record.tourno,jdbcType=VARCHAR},
+      TourName = #{record.tourname,jdbcType=VARCHAR},
+      TourDate = #{record.tourdate,jdbcType=DATE},
+      DueDate = #{record.duedate,jdbcType=DATE},
+      PlanNum = #{record.plannum,jdbcType=INTEGER},
+      IsShare = #{record.isshare,jdbcType=INTEGER},
+      DataStatus = #{record.datastatus,jdbcType=INTEGER},
+      CreatedDate = #{record.createddate,jdbcType=TIMESTAMP},
+      CreatedBy = #{record.createdby,jdbcType=VARCHAR},
+      CreatedByID = #{record.createdbyid,jdbcType=CHAR},
+      DeptID = #{record.deptid,jdbcType=CHAR},
+      OrgID = #{record.orgid,jdbcType=CHAR},
+      AuditStatus = #{record.auditstatus,jdbcType=INTEGER},
+      AuditedDate = #{record.auditeddate,jdbcType=TIMESTAMP},
+      AuditedBy = #{record.auditedby,jdbcType=VARCHAR},
+      SupplierName = #{record.suppliername,jdbcType=VARCHAR},
+      ReceiverName = #{record.receivername,jdbcType=VARCHAR},
+      SupplierDataStatus = #{record.supplierdatastatus,jdbcType=INTEGER},
+      IsCopy = #{record.iscopy,jdbcType=INTEGER},
+      UnShelveComment = #{record.unshelvecomment,jdbcType=VARCHAR},
+      AuditedByID = #{record.auditedbyid,jdbcType=CHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.holyrobot.con_product.pojo.ProProductDirectSales" >
+    update Pro_Product_DirectSales
+    <set >
+      <if test="supplierid != null" >
+        SupplierID = #{supplierid,jdbcType=CHAR},
+      </if>
+      <if test="receiverid != null" >
+        ReceiverID = #{receiverid,jdbcType=CHAR},
+      </if>
+      <if test="proid != null" >
+        ProID = #{proid,jdbcType=CHAR},
+      </if>
+      <if test="tourid != null" >
+        TourID = #{tourid,jdbcType=CHAR},
+      </if>
+      <if test="reviseddate != null" >
+        RevisedDate = #{reviseddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="revisedby != null" >
+        RevisedBy = #{revisedby,jdbcType=VARCHAR},
+      </if>
+      <if test="tourno != null" >
+        TourNo = #{tourno,jdbcType=VARCHAR},
+      </if>
+      <if test="tourname != null" >
+        TourName = #{tourname,jdbcType=VARCHAR},
+      </if>
+      <if test="tourdate != null" >
+        TourDate = #{tourdate,jdbcType=DATE},
+      </if>
+      <if test="duedate != null" >
+        DueDate = #{duedate,jdbcType=DATE},
+      </if>
+      <if test="plannum != null" >
+        PlanNum = #{plannum,jdbcType=INTEGER},
+      </if>
+      <if test="isshare != null" >
+        IsShare = #{isshare,jdbcType=INTEGER},
+      </if>
+      <if test="datastatus != null" >
+        DataStatus = #{datastatus,jdbcType=INTEGER},
+      </if>
+      <if test="createddate != null" >
+        CreatedDate = #{createddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdby != null" >
+        CreatedBy = #{createdby,jdbcType=VARCHAR},
+      </if>
+      <if test="createdbyid != null" >
+        CreatedByID = #{createdbyid,jdbcType=CHAR},
+      </if>
+      <if test="deptid != null" >
+        DeptID = #{deptid,jdbcType=CHAR},
+      </if>
+      <if test="orgid != null" >
+        OrgID = #{orgid,jdbcType=CHAR},
+      </if>
+      <if test="auditstatus != null" >
+        AuditStatus = #{auditstatus,jdbcType=INTEGER},
+      </if>
+      <if test="auditeddate != null" >
+        AuditedDate = #{auditeddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="auditedby != null" >
+        AuditedBy = #{auditedby,jdbcType=VARCHAR},
+      </if>
+      <if test="suppliername != null" >
+        SupplierName = #{suppliername,jdbcType=VARCHAR},
+      </if>
+      <if test="receivername != null" >
+        ReceiverName = #{receivername,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierdatastatus != null" >
+        SupplierDataStatus = #{supplierdatastatus,jdbcType=INTEGER},
+      </if>
+      <if test="iscopy != null" >
+        IsCopy = #{iscopy,jdbcType=INTEGER},
+      </if>
+      <if test="unshelvecomment != null" >
+        UnShelveComment = #{unshelvecomment,jdbcType=VARCHAR},
+      </if>
+      <if test="auditedbyid != null" >
+        AuditedByID = #{auditedbyid,jdbcType=CHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+
+  <update id="updateByPrimaryKey" parameterType="com.holyrobot.con_product.pojo.ProProductDirectSales" >
+    update Pro_Product_DirectSales
+    set SupplierID = #{supplierid,jdbcType=CHAR},
+      ReceiverID = #{receiverid,jdbcType=CHAR},
+      ProID = #{proid,jdbcType=CHAR},
+      TourID = #{tourid,jdbcType=CHAR},
+      RevisedDate = #{reviseddate,jdbcType=TIMESTAMP},
+      RevisedBy = #{revisedby,jdbcType=VARCHAR},
+      TourNo = #{tourno,jdbcType=VARCHAR},
+      TourName = #{tourname,jdbcType=VARCHAR},
+      TourDate = #{tourdate,jdbcType=DATE},
+      DueDate = #{duedate,jdbcType=DATE},
+      PlanNum = #{plannum,jdbcType=INTEGER},
+      IsShare = #{isshare,jdbcType=INTEGER},
+      DataStatus = #{datastatus,jdbcType=INTEGER},
+      CreatedDate = #{createddate,jdbcType=TIMESTAMP},
+      CreatedBy = #{createdby,jdbcType=VARCHAR},
+      CreatedByID = #{createdbyid,jdbcType=CHAR},
+      DeptID = #{deptid,jdbcType=CHAR},
+      OrgID = #{orgid,jdbcType=CHAR},
+      AuditStatus = #{auditstatus,jdbcType=INTEGER},
+      AuditedDate = #{auditeddate,jdbcType=TIMESTAMP},
+      AuditedBy = #{auditedby,jdbcType=VARCHAR},
+      SupplierName = #{suppliername,jdbcType=VARCHAR},
+      ReceiverName = #{receivername,jdbcType=VARCHAR},
+      SupplierDataStatus = #{supplierdatastatus,jdbcType=INTEGER},
+      IsCopy = #{iscopy,jdbcType=INTEGER},
+      UnShelveComment = #{unshelvecomment,jdbcType=VARCHAR},
+      AuditedByID = #{auditedbyid,jdbcType=CHAR}
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+
+  <insert id="insertList" parameterType="java.util.List" >
+    insert into Pro_Product_DirectSales (ID, SupplierID, ReceiverID,
+    ProID, TourID, RevisedDate,
+    RevisedBy, TourNo, TourName,
+    TourDate, DueDate, PlanNum,
+    IsShare, DataStatus, CreatedDate,
+    CreatedBy, CreatedByID, DeptID,
+    OrgID, AuditStatus, AuditedDate,
+    AuditedBy, SupplierName, ReceiverName,
+    SupplierDataStatus, IsCopy, UnShelveComment,
+    AuditedByID, isAuto,DirectSalesProductId)
+    values
+    <foreach collection="list" separator="," item="item">
+      (#{item.id,jdbcType=CHAR}, #{item.supplierid,jdbcType=CHAR}, #{item.receiverid,jdbcType=CHAR},
+      #{item.proid,jdbcType=CHAR}, #{item.tourid,jdbcType=CHAR}, #{item.reviseddate,jdbcType=TIMESTAMP},
+      #{item.revisedby,jdbcType=VARCHAR}, #{item.tourno,jdbcType=VARCHAR}, #{item.tourname,jdbcType=VARCHAR},
+      #{item.tourdate,jdbcType=DATE}, #{item.duedate,jdbcType=DATE}, #{item.plannum,jdbcType=INTEGER},
+      #{item.isshare,jdbcType=INTEGER}, #{item.datastatus,jdbcType=INTEGER}, #{item.createddate,jdbcType=TIMESTAMP},
+      #{item.createdby,jdbcType=VARCHAR}, #{item.createdbyid,jdbcType=CHAR}, #{item.deptid,jdbcType=CHAR},
+      #{item.orgid,jdbcType=CHAR}, #{item.auditstatus,jdbcType=INTEGER}, #{item.auditeddate,jdbcType=TIMESTAMP},
+      #{item.auditedby,jdbcType=VARCHAR}, #{item.suppliername,jdbcType=VARCHAR}, #{item.receivername,jdbcType=VARCHAR},
+      #{item.supplierdatastatus,jdbcType=INTEGER}, #{item.iscopy,jdbcType=INTEGER}, #{item.unshelvecomment,jdbcType=VARCHAR},
+      #{item.auditedbyid,jdbcType=CHAR}, #{item.isauto,jdbcType=INTEGER},#{directSalesProductId,jdbcType=CHAR})
+    </foreach>
+  </insert>
+    <select id="selectTourIds" resultType="java.lang.String">
+        SELECT
+          TourID
+        FROM
+            Pro_Product_DirectSales
+        WHERE
+            ProID = #{proId}
+        AND SupplierID = #{supplierId}
+        AND ReceiverID = #{receiverId}
+        AND isAuto = 1
+    </select>
+  <select id="selectGoodsShelf" parameterType="com.holyrobot.dto.ProSearchCondition" resultType="com.holyrobot.dto.ProductListDto">
+    SELECT * FROM(
+    SELECT
+    t.ID,
+    t.ProNo,
+    t.orgId AS orgId,
+    0 AS isOutgoing,
+    t.orgId AS directSalesSendId,
+    t.AliaseName,
+    t.brandName AS brandName,
+    t.StarLevel,
+    t.ProTag,
+    t.TourDays,
+    t.Departure,
+    t.Destination,
+    t.ProCategoryID,
+    t.ProType,
+    t.ProTypeId,
+    t.ProBrand,
+    t.BusinessTypes,
+    t.RevisedDate,
+    (
+    SELECT
+    MAX (TravelerRewardPrice)
+    FROM
+    Pro_Tour_PricePolicy x
+    LEFT JOIN Pro_Tour y ON x.tourId = y.id
+    WHERE
+    x.ProID = t.ID
+    AND x.IsDefault = 1
+    AND y.DueDate > DATEADD(DAY ,- 1, GETDATE())
+    ) AS TravelerRewardPrice,
+    (
+    SELECT
+    MIN (DirectPrice)
+    FROM
+    Pro_Tour_PricePolicy x
+    LEFT JOIN Pro_Tour y ON x.tourId = y.id
+    WHERE
+    x.ProID = t.ID
+    AND x.IsDefault = 1
+    AND y.DueDate > DATEADD(DAY ,- 1, GETDATE())
+    ) AS DirectPrice,
+    (
+    SELECT
+    MIN (SalesPrice)
+    FROM
+    Pro_Tour_PricePolicy x
+    LEFT JOIN Pro_Tour y ON x.tourId = y.id
+    WHERE
+    x.ProID = t.ID
+    AND x.IsDefault = 1
+    AND y.DueDate > DATEADD(DAY ,- 1, GETDATE())
+    ) AS SalesPrice,
+    (
+    SELECT
+    MAX (RebatePrice)
+    FROM
+    Pro_Tour_PricePolicy x
+    LEFT JOIN Pro_Tour y ON x.tourId = y.id
+    WHERE
+    x.ProID = t.ID
+    AND x.IsDefault = 1
+    AND y.DueDate > DATEADD(DAY ,- 1, GETDATE())
+    ) AS RebatePrice,
+    RIGHT (
+    CONVERT (
+    VARCHAR (100),
+    t.CreatedDate,
+    14
+    ),
+    3
+    ) AS salesQuantity,
+    (
+    SELECT
+    tours = (
+    stuff(
+    (
+    SELECT
+    TOP 5 ',' + CONVERT (VARCHAR(100), TourDate, 11)
+    FROM
+    Pro_Tour
+    WHERE
+    ProID = a.ProID
+    AND DueDate > DATEADD(DAY ,- 1, GETDATE())
+    ORDER BY
+    TourDate FOR xml path ('')
+    ),
+    1,
+    1,
+    ''
+    )
+    )
+    FROM
+    Pro_Tour AS a
+    WHERE
+    a.ProID = t.id
+    GROUP BY
+    a.ProID
+    ) AS tours,
+    t.CoverImg,
+    t.CreatedDate
+    FROM
+    Pro_Product AS t
+    LEFT JOIN pro_product_site AS t1 ON t.ID = t1.proID
+    LEFT JOIN Pro_Product_Scope AS ts ON t.ID = ts.proID
+    INNER JOIN (
+    SELECT
+    a.proId
+    FROM
+    Pro_Tour AS a
+    INNER JOIN Pro_Tour_PricePolicy AS b ON a.ID = b.TourID
+    WHERE
+    1 = 1
+    AND a.TourStatus = 1
+    AND B.SiteID = #{siteId}
+    AND TourDate > DATEADD(DAY, - 1, GETDATE())
+    GROUP BY
+    a.proId
+    ) AS t2 ON t2.proId = t.ID
+    WHERE
+    t1.SiteId = #{siteId}
+    AND ts.Scope = 2
+    AND t.SalesType IN (1, 3)
+    AND t.DataStatus = 2
+    AND t.AuditStatus = 1
+    AND t.orgId != #{orgId}
+    AND t.id NOT IN (
+    SELECT
+    proId
+    FROM
+    Pro_Product_DirectSales_Product AS dp
+    WHERE
+    dp.ReceiverID = #{orgId}
+    )
+    <if test="proIds != null and proIds.size() > 0">
+      AND t.id in
+      <foreach collection="proIds" index="index" item="item" open="(" separator="," close=")" >
+        #{item.id}
+      </foreach>
+    </if>
+    )as l
+    where 1=1
+    and l.DirectPrice is not null
+    <include refid="selectGoodsShelfCondition"/>
+    ORDER BY l.RevisedDate desc
+  </select>
+  
+  <sql id="selectGoodsShelfCondition">
+    <if test="businessType != null">
+      l.BusinessTypes between 0  and  #{businessType}
+    </if>
+    <if test="keywords != null and keywords != ''">
+      AND l.AliaseName LIKE '%${keywords}%'
+    </if>
+    <if test="departure != null and departure != ''">
+      AND l.Departure LIKE '%${departure}%'
+    </if>
+    <if test="destination!='' and destination != null">
+      AND l.destination LIKE '%${destination}%'
+    </if>
+    <if test="brand !='' and brand != null">
+      AND l.ProBrand LIKE '%${brand}%'
+    </if>
+
+    <if test="routeTypeId != null and routeTypeId != ''">
+      AND l.ProCategoryID = #{routeTypeId}
+    </if>
+    <if test="proType != null and proType != ''">
+      AND l.ProTypeId  = #{proType}
+    </if>
+    <!---->
+    <if test="highPrice != null and highPrice != ''">
+      AND l.SalesPrice  &lt;=  #{highPrice}
+    </if>
+
+    <if test="lowPrice != null and lowPrice != ''">
+      AND l.SalesPrice  &gt;=  #{lowPrice}
+    </if>
+
+    <if test="tags != null and tags.size() > 0">
+      AND
+      <foreach collection="tags" index="index" item="item" open="(" separator="or" close=")" >
+        l.ProTag  LIKE '%${item}%'
+      </foreach>
+    </if>
+
+    <if test="maxDay != null and maxDay != ''" >
+      AND l.TourDays &lt;= #{maxDay}
+    </if>
+
+    <if test="minDay != null and minDay != ''" >
+      AND l.TourDays &gt;= #{minDay}
+    </if>
+
+
+
+  </sql>
+</mapper>

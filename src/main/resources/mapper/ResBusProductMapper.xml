@@ -1,0 +1,518 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.holyrobot.con_res.mapper.ResBusProductMapper" >
+  <resultMap id="BaseResultMap" type="com.holyrobot.con_res.pojo.ResBusProduct" >
+    <id column="ID" property="id" jdbcType="CHAR" />
+    <result column="GoDate" property="godate" jdbcType="DATE" />
+    <result column="CarCode" property="carcode" jdbcType="VARCHAR" />
+    <result column="TicketNumber" property="ticketnumber" jdbcType="INTEGER" />
+    <result column="TicketCost" property="ticketcost" jdbcType="DECIMAL" />
+    <result column="isShare" property="isshare" jdbcType="BIT" />
+    <result column="SharePrices" property="shareprices" jdbcType="DECIMAL" />
+    <result column="SupplierID" property="supplierid" jdbcType="CHAR" />
+    <result column="Supplier" property="supplier" jdbcType="VARCHAR" />
+    <result column="CreatedDate" property="createddate" jdbcType="TIMESTAMP" />
+    <result column="CreatedBy" property="createdby" jdbcType="VARCHAR" />
+    <result column="CreatedByID" property="createdbyid" jdbcType="CHAR" />
+    <result column="RevisedDate" property="reviseddate" jdbcType="TIMESTAMP" />
+    <result column="RevisedBy" property="revisedby" jdbcType="VARCHAR" />
+    <result column="DeptID" property="deptid" jdbcType="CHAR" />
+    <result column="OrgID" property="orgid" jdbcType="CHAR" />
+    <result column="DataStatus" property="datastatus" jdbcType="INTEGER" />
+    <result column="DepStation" property="depstation" jdbcType="VARCHAR" />
+    <result column="DesStation" property="desstation" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.holyrobot.con_res.pojo.ResBusProduct" extends="BaseResultMap" >
+    <result column="Comment" property="comment" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, GoDate, CarCode, TicketNumber, TicketCost, isShare, SharePrices, SupplierID, 
+    Supplier, CreatedDate, CreatedBy, CreatedByID, RevisedDate, RevisedBy, DeptID, OrgID, 
+    DataStatus, DepStation, DesStation
+  </sql>
+  <sql id="Blob_Column_List" >
+    Comment
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.holyrobot.con_res.pojo.ResBusProductExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from Res_BusProduct
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.holyrobot.con_res.pojo.ResBusProductExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from Res_BusProduct
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from Res_BusProduct
+    where ID = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from Res_BusProduct
+    where ID = #{id,jdbcType=CHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.holyrobot.con_res.pojo.ResBusProductExample" >
+    delete from Res_BusProduct
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.holyrobot.con_res.pojo.ResBusProduct" >
+    insert into Res_BusProduct (ID, GoDate, CarCode, 
+      TicketNumber, TicketCost, isShare, 
+      SharePrices, SupplierID, Supplier, 
+      CreatedDate, CreatedBy, CreatedByID, 
+      RevisedDate, RevisedBy, DeptID, 
+      OrgID, DataStatus, DepStation, 
+      DesStation, Comment)
+    values (#{id,jdbcType=CHAR}, #{godate,jdbcType=DATE}, #{carcode,jdbcType=VARCHAR},
+      #{ticketnumber,jdbcType=INTEGER}, #{ticketcost,jdbcType=DECIMAL}, #{isshare,jdbcType=BIT}, 
+      #{shareprices,jdbcType=DECIMAL}, #{supplierid,jdbcType=CHAR}, #{supplier,jdbcType=VARCHAR},
+      #{createddate,jdbcType=TIMESTAMP}, #{createdby,jdbcType=VARCHAR}, #{createdbyid,jdbcType=CHAR},
+      #{reviseddate,jdbcType=TIMESTAMP}, #{revisedby,jdbcType=VARCHAR}, #{deptid,jdbcType=CHAR},
+      #{orgid,jdbcType=CHAR}, #{datastatus,jdbcType=INTEGER}, #{depstation,jdbcType=VARCHAR},
+      #{desstation,jdbcType=VARCHAR}, #{comment,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.holyrobot.con_res.pojo.ResBusProduct" >
+    insert into Res_BusProduct
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="godate != null" >
+        GoDate,
+      </if>
+      <if test="carcode != null" >
+        CarCode,
+      </if>
+      <if test="ticketnumber != null" >
+        TicketNumber,
+      </if>
+      <if test="ticketcost != null" >
+        TicketCost,
+      </if>
+      <if test="isshare != null" >
+        isShare,
+      </if>
+      <if test="shareprices != null" >
+        SharePrices,
+      </if>
+      <if test="supplierid != null" >
+        SupplierID,
+      </if>
+      <if test="supplier != null" >
+        Supplier,
+      </if>
+      <if test="createddate != null" >
+        CreatedDate,
+      </if>
+      <if test="createdby != null" >
+        CreatedBy,
+      </if>
+      <if test="createdbyid != null" >
+        CreatedByID,
+      </if>
+      <if test="reviseddate != null" >
+        RevisedDate,
+      </if>
+      <if test="revisedby != null" >
+        RevisedBy,
+      </if>
+      <if test="deptid != null" >
+        DeptID,
+      </if>
+      <if test="orgid != null" >
+        OrgID,
+      </if>
+      <if test="datastatus != null" >
+        DataStatus,
+      </if>
+      <if test="depstation != null" >
+        DepStation,
+      </if>
+      <if test="desstation != null" >
+        DesStation,
+      </if>
+      <if test="comment != null" >
+        Comment,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="godate != null" >
+        #{godate,jdbcType=DATE},
+      </if>
+      <if test="carcode != null" >
+        #{carcode,jdbcType=VARCHAR},
+      </if>
+      <if test="ticketnumber != null" >
+        #{ticketnumber,jdbcType=INTEGER},
+      </if>
+      <if test="ticketcost != null" >
+        #{ticketcost,jdbcType=DECIMAL},
+      </if>
+      <if test="isshare != null" >
+        #{isshare,jdbcType=BIT},
+      </if>
+      <if test="shareprices != null" >
+        #{shareprices,jdbcType=DECIMAL},
+      </if>
+      <if test="supplierid != null" >
+        #{supplierid,jdbcType=CHAR},
+      </if>
+      <if test="supplier != null" >
+        #{supplier,jdbcType=VARCHAR},
+      </if>
+      <if test="createddate != null" >
+        #{createddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdby != null" >
+        #{createdby,jdbcType=VARCHAR},
+      </if>
+      <if test="createdbyid != null" >
+        #{createdbyid,jdbcType=CHAR},
+      </if>
+      <if test="reviseddate != null" >
+        #{reviseddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="revisedby != null" >
+        #{revisedby,jdbcType=VARCHAR},
+      </if>
+      <if test="deptid != null" >
+        #{deptid,jdbcType=CHAR},
+      </if>
+      <if test="orgid != null" >
+        #{orgid,jdbcType=CHAR},
+      </if>
+      <if test="datastatus != null" >
+        #{datastatus,jdbcType=INTEGER},
+      </if>
+      <if test="depstation != null" >
+        #{depstation,jdbcType=VARCHAR},
+      </if>
+      <if test="desstation != null" >
+        #{desstation,jdbcType=VARCHAR},
+      </if>
+      <if test="comment != null" >
+        #{comment,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.holyrobot.con_res.pojo.ResBusProductExample" resultType="java.lang.Integer" >
+    select count(*) from Res_BusProduct
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update Res_BusProduct
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=CHAR},
+      </if>
+      <if test="record.godate != null" >
+        GoDate = #{record.godate,jdbcType=DATE},
+      </if>
+      <if test="record.carcode != null" >
+        CarCode = #{record.carcode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ticketnumber != null" >
+        TicketNumber = #{record.ticketnumber,jdbcType=INTEGER},
+      </if>
+      <if test="record.ticketcost != null" >
+        TicketCost = #{record.ticketcost,jdbcType=DECIMAL},
+      </if>
+      <if test="record.isshare != null" >
+        isShare = #{record.isshare,jdbcType=BIT},
+      </if>
+      <if test="record.shareprices != null" >
+        SharePrices = #{record.shareprices,jdbcType=DECIMAL},
+      </if>
+      <if test="record.supplierid != null" >
+        SupplierID = #{record.supplierid,jdbcType=CHAR},
+      </if>
+      <if test="record.supplier != null" >
+        Supplier = #{record.supplier,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createddate != null" >
+        CreatedDate = #{record.createddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createdby != null" >
+        CreatedBy = #{record.createdby,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createdbyid != null" >
+        CreatedByID = #{record.createdbyid,jdbcType=CHAR},
+      </if>
+      <if test="record.reviseddate != null" >
+        RevisedDate = #{record.reviseddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.revisedby != null" >
+        RevisedBy = #{record.revisedby,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deptid != null" >
+        DeptID = #{record.deptid,jdbcType=CHAR},
+      </if>
+      <if test="record.orgid != null" >
+        OrgID = #{record.orgid,jdbcType=CHAR},
+      </if>
+      <if test="record.datastatus != null" >
+        DataStatus = #{record.datastatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.depstation != null" >
+        DepStation = #{record.depstation,jdbcType=VARCHAR},
+      </if>
+      <if test="record.desstation != null" >
+        DesStation = #{record.desstation,jdbcType=VARCHAR},
+      </if>
+      <if test="record.comment != null" >
+        Comment = #{record.comment,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update Res_BusProduct
+    set ID = #{record.id,jdbcType=CHAR},
+      GoDate = #{record.godate,jdbcType=DATE},
+      CarCode = #{record.carcode,jdbcType=VARCHAR},
+      TicketNumber = #{record.ticketnumber,jdbcType=INTEGER},
+      TicketCost = #{record.ticketcost,jdbcType=DECIMAL},
+      isShare = #{record.isshare,jdbcType=BIT},
+      SharePrices = #{record.shareprices,jdbcType=DECIMAL},
+      SupplierID = #{record.supplierid,jdbcType=CHAR},
+      Supplier = #{record.supplier,jdbcType=VARCHAR},
+      CreatedDate = #{record.createddate,jdbcType=TIMESTAMP},
+      CreatedBy = #{record.createdby,jdbcType=VARCHAR},
+      CreatedByID = #{record.createdbyid,jdbcType=CHAR},
+      RevisedDate = #{record.reviseddate,jdbcType=TIMESTAMP},
+      RevisedBy = #{record.revisedby,jdbcType=VARCHAR},
+      DeptID = #{record.deptid,jdbcType=CHAR},
+      OrgID = #{record.orgid,jdbcType=CHAR},
+      DataStatus = #{record.datastatus,jdbcType=INTEGER},
+      DepStation = #{record.depstation,jdbcType=VARCHAR},
+      DesStation = #{record.desstation,jdbcType=VARCHAR},
+      Comment = #{record.comment,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update Res_BusProduct
+    set ID = #{record.id,jdbcType=CHAR},
+      GoDate = #{record.godate,jdbcType=DATE},
+      CarCode = #{record.carcode,jdbcType=VARCHAR},
+      TicketNumber = #{record.ticketnumber,jdbcType=INTEGER},
+      TicketCost = #{record.ticketcost,jdbcType=DECIMAL},
+      isShare = #{record.isshare,jdbcType=BIT},
+      SharePrices = #{record.shareprices,jdbcType=DECIMAL},
+      SupplierID = #{record.supplierid,jdbcType=CHAR},
+      Supplier = #{record.supplier,jdbcType=VARCHAR},
+      CreatedDate = #{record.createddate,jdbcType=TIMESTAMP},
+      CreatedBy = #{record.createdby,jdbcType=VARCHAR},
+      CreatedByID = #{record.createdbyid,jdbcType=CHAR},
+      RevisedDate = #{record.reviseddate,jdbcType=TIMESTAMP},
+      RevisedBy = #{record.revisedby,jdbcType=VARCHAR},
+      DeptID = #{record.deptid,jdbcType=CHAR},
+      OrgID = #{record.orgid,jdbcType=CHAR},
+      DataStatus = #{record.datastatus,jdbcType=INTEGER},
+      DepStation = #{record.depstation,jdbcType=VARCHAR},
+      DesStation = #{record.desstation,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.holyrobot.con_res.pojo.ResBusProduct" >
+    update Res_BusProduct
+    <set >
+      <if test="godate != null" >
+        GoDate = #{godate,jdbcType=DATE},
+      </if>
+      <if test="carcode != null" >
+        CarCode = #{carcode,jdbcType=VARCHAR},
+      </if>
+      <if test="ticketnumber != null" >
+        TicketNumber = #{ticketnumber,jdbcType=INTEGER},
+      </if>
+      <if test="ticketcost != null" >
+        TicketCost = #{ticketcost,jdbcType=DECIMAL},
+      </if>
+      <if test="isshare != null" >
+        isShare = #{isshare,jdbcType=BIT},
+      </if>
+      <if test="shareprices != null" >
+        SharePrices = #{shareprices,jdbcType=DECIMAL},
+      </if>
+      <if test="supplierid != null" >
+        SupplierID = #{supplierid,jdbcType=CHAR},
+      </if>
+      <if test="supplier != null" >
+        Supplier = #{supplier,jdbcType=VARCHAR},
+      </if>
+      <if test="createddate != null" >
+        CreatedDate = #{createddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdby != null" >
+        CreatedBy = #{createdby,jdbcType=VARCHAR},
+      </if>
+      <if test="createdbyid != null" >
+        CreatedByID = #{createdbyid,jdbcType=CHAR},
+      </if>
+      <if test="reviseddate != null" >
+        RevisedDate = #{reviseddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="revisedby != null" >
+        RevisedBy = #{revisedby,jdbcType=VARCHAR},
+      </if>
+      <if test="deptid != null" >
+        DeptID = #{deptid,jdbcType=CHAR},
+      </if>
+      <if test="orgid != null" >
+        OrgID = #{orgid,jdbcType=CHAR},
+      </if>
+      <if test="datastatus != null" >
+        DataStatus = #{datastatus,jdbcType=INTEGER},
+      </if>
+      <if test="depstation != null" >
+        DepStation = #{depstation,jdbcType=VARCHAR},
+      </if>
+      <if test="desstation != null" >
+        DesStation = #{desstation,jdbcType=VARCHAR},
+      </if>
+      <if test="comment != null" >
+        Comment = #{comment,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.holyrobot.con_res.pojo.ResBusProduct" >
+    update Res_BusProduct
+    set GoDate = #{godate,jdbcType=DATE},
+      CarCode = #{carcode,jdbcType=VARCHAR},
+      TicketNumber = #{ticketnumber,jdbcType=INTEGER},
+      TicketCost = #{ticketcost,jdbcType=DECIMAL},
+      isShare = #{isshare,jdbcType=BIT},
+      SharePrices = #{shareprices,jdbcType=DECIMAL},
+      SupplierID = #{supplierid,jdbcType=CHAR},
+      Supplier = #{supplier,jdbcType=VARCHAR},
+      CreatedDate = #{createddate,jdbcType=TIMESTAMP},
+      CreatedBy = #{createdby,jdbcType=VARCHAR},
+      CreatedByID = #{createdbyid,jdbcType=CHAR},
+      RevisedDate = #{reviseddate,jdbcType=TIMESTAMP},
+      RevisedBy = #{revisedby,jdbcType=VARCHAR},
+      DeptID = #{deptid,jdbcType=CHAR},
+      OrgID = #{orgid,jdbcType=CHAR},
+      DataStatus = #{datastatus,jdbcType=INTEGER},
+      DepStation = #{depstation,jdbcType=VARCHAR},
+      DesStation = #{desstation,jdbcType=VARCHAR},
+      Comment = #{comment,jdbcType=LONGVARCHAR}
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.holyrobot.con_res.pojo.ResBusProduct" >
+    update Res_BusProduct
+    set GoDate = #{godate,jdbcType=DATE},
+      CarCode = #{carcode,jdbcType=VARCHAR},
+      TicketNumber = #{ticketnumber,jdbcType=INTEGER},
+      TicketCost = #{ticketcost,jdbcType=DECIMAL},
+      isShare = #{isshare,jdbcType=BIT},
+      SharePrices = #{shareprices,jdbcType=DECIMAL},
+      SupplierID = #{supplierid,jdbcType=CHAR},
+      Supplier = #{supplier,jdbcType=VARCHAR},
+      CreatedDate = #{createddate,jdbcType=TIMESTAMP},
+      CreatedBy = #{createdby,jdbcType=VARCHAR},
+      CreatedByID = #{createdbyid,jdbcType=CHAR},
+      RevisedDate = #{reviseddate,jdbcType=TIMESTAMP},
+      RevisedBy = #{revisedby,jdbcType=VARCHAR},
+      DeptID = #{deptid,jdbcType=CHAR},
+      OrgID = #{orgid,jdbcType=CHAR},
+      DataStatus = #{datastatus,jdbcType=INTEGER},
+      DepStation = #{depstation,jdbcType=VARCHAR},
+      DesStation = #{desstation,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+</mapper>

@@ -1,0 +1,174 @@
+server:
+    port: 9096
+
+jedis :
+  pool :
+    host : 192.168.30.100
+#    host : 192.168.12.4
+    port : 6379
+    database: 1
+    password: ""
+    config :
+      maxTotal: 100
+      maxIdle: 10
+      maxWaitMillis : 100000
+
+spring:
+  rabbitmq:
+      host: 192.168.30.100
+      port: 5672
+      username: javaplayer
+      password: Shan^XiBeiLu#1283#
+  data:
+        #开发环境配置
+          mongodb: # 配置mongoDB
+              database: API
+              uri: mongodb://192.168.30.100:27017
+#              host:
+#              port: 36918
+#              database: NTFoxERP
+#              username: jjkj
+#              password: jjkj#123!!!
+          elasticsearch:
+              #cluster-name: #默认为elasticsearch
+              cluster-nodes: 192.168.30.100:9300 #配置es节点信息，逗号分隔，如果没有指定，则启动ClientNode
+              cluster-name:  my-application
+              properties:
+                  path:
+                    logs: ./elasticsearch/log #elasticsearch日志存储目录
+                    data: ./elasticsearch/data #elasticsearch数据存储目录
+
+sharding:
+  jdbc:
+    datasource:
+      names: ds0,ds1
+      ds0:
+        type: com.alibaba.druid.pool.DruidDataSource
+        url: jdbc:sqlserver://192.168.30.102:1433;DatabaseName=ERP
+        username: ntfox
+        password: abc,,,123
+        driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+      ds1:
+        type: com.alibaba.druid.pool.DruidDataSource
+        url: jdbc:sqlserver://192.168.30.102:1433;DatabaseName=ERP
+        username: ntfox
+        password: abc,,,123
+        driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    config:
+        masterslave:
+          load-balance-algorithm-type: round_robin
+          name: ms
+          master-data-source-name: ds0
+          slave-data-source-names: ds1
+          props:
+            sql:
+              show:
+                true
+
+
+webHome: "http://h5s01.aipinzan.cn/#/home"
+
+site: "上海站"
+siteid: "10935D1F-8B33-993F-F242-27437BDA95D3"
+
+#线路类型
+JWrouteTypeId: "609380AD-14F2-478A-901B-7BC289CDB421"
+CXrouteTypeId: "4A9E2935-0940-40E7-A742-64BEB2174F1B"
+DXrouteTypeId: "F10AFF04-8652-444B-BC1B-418DDAC79F57"
+
+
+#.netapi接口
+airPortUrl:
+      #机场三字码转换获取接口
+      url: "http://192.168.30.102:8765/api/AirPort/TakeAirPortCache?key="
+      #旅行社注册信息获取接口
+      getOrgInfoUrl: "http://192.168.30.102:8765/api/OrgInfo/GetOrgInfoExtension?orgID="
+      #用户详情接口
+      getUserUrl: "http://192.168.30.102:8765/api/User/Get?userID="
+      #绑定ERP用户openid接口
+      BindUserOpenID_H5Shop: "http://192.168.30.102:8765/api/User/BindUserOpenID_H5Shop"
+      #检查登录用户是否为ERP用户
+      ExistWeChatOpenID: "http://192.168.30.102:8765/api/User/ExistWeChatOpenID_H5Shop?OpenID="
+      #查询用户登录信息
+      userAccountID: "http://192.168.30.102:8765/api/User/GetAcct?userAccountID="
+      #查询直客是否注册
+      H5_UserLogin: "http://192.168.30.102:8765/api/H5UserIdentification/H5_UserLogin?loginType=%s&loginIdentifier=%s"
+      #直客注册
+      H5_Save: "http://192.168.30.102:8765/api/H5UserIdentification/H5_Save"
+      #new直客注册
+      NewH5_Save: "http://192.168.30.102:8765/api/H5UserIdentification/NewH5_Save"
+      #new获取用户信息
+      getNewH5ShopUserId: "http://192.168.30.102:8765/api/H5SpecialShop/getNewH5ShopUserId"
+      #获取H5用户信息
+      H5_GetUserInfo: "http://192.168.30.102:8765/api/H5UserIdentification/H5_GetUserInfo?userId="
+      #获取用户的相关信息url
+      userInfoURL: "http://192.168.30.102:8765/api/UserIdentification/GetUserInfo?userID="
+      #定制游订单提交成功后post接口
+      cusInfoMatch: "http://192.168.30.102:8765/api/CusInfo/CusInfoMatch?cusInfoId="
+      #定制游需求单POST接口
+      addCusInfoByWeb: "http://192.168.30.102:8765/api/CusInfo/AddCusInfoByWeb"
+      #生成占位订单
+      GetGeneratePlaceholder: "http://192.168.30.102:8765/api/OrdOrderInfo/GetGeneratePlaceholder?orderId="
+      #获得机场名称
+      getAirPortName: "http://192.168.30.102:8765/api/AirPort/TakeAirPortCache?key="
+      #获取邀请码
+      getUserInvitation: "http://192.168.30.102:8765/api/User/GetUserInvitation?userID="
+      #获得用户账号信息
+      getAdminInfo: "http://192.168.30.102:8765/api/User/GetAdminInfo?orgID="
+      #获得旅行社信息
+      getSupplierNameByID: "http://192.168.30.102:8765/api/OrgInfo/GetSupplierNameByID?ids="
+      #Dept
+      getDept: "http://192.168.30.102:8765/api/Dept/Get?keyID="
+      #获得用户详情
+      getAcct: "http://192.168.30.102:8765/api/User/GetAcct?userAccountID="
+      #志愿者店铺短信通知
+      sendOrderPaySMS: "http://192.168.30.102:8765/api/OrdOrderInfo/SendOrderPaySMS"
+      #失信人
+      dishonestPeople: "http://192.168.30.100:9093/searchDishonestPeople?orderId="
+      # 发送消息(ProIdsAndUserIdAndOrgId)都Mq 志愿者
+      sendVolPro: "http://192.168.30.100:9096/sendMqPro"
+      #一键铺货的时候 发送消息(B端主动分销数据同步 by orgId)
+      sendDirectProByOrgId: "http://192.168.30.100:9096/addDirectProByOrgId?orgId="
+      #一键铺货的时候 发送消息(B端主动分销数据同步 by proId)
+      sendDirectProByProId: "http://192.168.30.100:9096/addDirectProByProId?proId="
+      #订单wx模板消息通知
+      sendTemplateMsg: "http://192.168.30.100:9096/sendOrderTemplateMessage"
+
+#图片保存路径
+imgPath: /usr/local/nginx/html/h5/file/
+imgUrl: http://h5s01.aipinzan.cn/file/
+#商城首页
+h5Url: "http://h5s01.aipinzan.cn/"
+
+Volunteer:
+  #身份证图片
+  UserCardPath: /usr/local/nginx/html/h5/file/UserCard/
+  #店铺头像图片
+  ShopHeadPath: /usr/local/nginx/html/h5/file/ShopHead/
+  #下载路径 身份证
+  UserCardDownload: http://h5s01.aipinzan.cn/file/UserCard/
+  #下载路径 店铺头像
+  ShopHeadDownload: http://h5s01.aipinzan.cn/file/ShopHead/
+  #二维码
+  ImgPath: /usr/local/nginx/html/h5/file/VolunteerQR/
+  #二维码获取路径
+  ImgUrl: http://h5s01.aipinzan.cn/file/VolunteerQR/
+
+
+wechat:
+  appid: "wxc5dd7052cf231328"
+  secret: 5a04bb27a8ecab4b08e8a9b302c262fa
+  encodingAesKey: "3E015gANAOLTyQINrYurYcXZe4HdJ3nGCaPQnKeb09p"
+  pay:
+    appId: wxd6a4420ed7485e80
+    mchId: 1352023001
+    mchKey: "jingjie123456AaAjingjie123456AaA"
+    keyPath: "classpath:/static/apiclient_cert.p12"
+devStatus: "ywf"
+payNotify: http://h5s01.aipinzan.cn/Pay/PayAPI/payNotify
+#竞界微信公众号的配置对应的orgID
+jjkjOrgId: 00000000-0000-0000-0000-000000000001
+
+lvyLogo: http://h5s.laolvyou.vip/file/icon/de-logo.png
+
+

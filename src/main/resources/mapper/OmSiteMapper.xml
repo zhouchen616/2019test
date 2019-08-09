@@ -1,0 +1,481 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.holyrobot.con_om.mapper.OmSiteMapper">
+    <resultMap id="BaseResultMap" type="com.holyrobot.con_om.pojo.OmSite">
+        <id column="ID" property="id" jdbcType="CHAR"/>
+        <result column="SiteName" property="sitename" jdbcType="VARCHAR"/>
+        <result column="DataStatus" property="datastatus" jdbcType="INTEGER"/>
+        <result column="CreatedDate" property="createddate" jdbcType="TIMESTAMP"/>
+        <result column="CreatedBy" property="createdby" jdbcType="VARCHAR"/>
+        <result column="CreatedByID" property="createdbyid" jdbcType="CHAR"/>
+        <result column="DeptID" property="deptid" jdbcType="CHAR"/>
+        <result column="OrgID" property="orgid" jdbcType="CHAR"/>
+        <result column="RevisedDate" property="reviseddate" jdbcType="TIMESTAMP"/>
+        <result column="RevisedBy" property="revisedby" jdbcType="VARCHAR"/>
+        <result column="OrderIndex" property="orderindex" jdbcType="INTEGER"/>
+        <result column="FullSpell" property="fullspell" jdbcType="VARCHAR"/>
+        <result column="FirstChar" property="firstchar" jdbcType="VARCHAR"/>
+    </resultMap>
+    <resultMap id="ProductAdnDestinationResultMap" type="com.holyrobot.bo.OmDestinationBo">
+        <id column="d_id" property="id" jdbcType="CHAR"/>
+        <result column="ParentID" property="parentid" jdbcType="CHAR"/>
+        <result column="DestID" property="destid" jdbcType="CHAR"/>
+        <result column="DestName" property="destname" jdbcType="VARCHAR"/>
+        <result column="SiteID" property="siteid" jdbcType="CHAR"/>
+        <result column="SiteName" property="sitename" jdbcType="VARCHAR"/>
+        <result column="RouteTypeID" property="routetypeid" jdbcType="CHAR"/>
+        <result column="RouteType" property="routetype" jdbcType="VARCHAR"/>
+        <result column="CreatedDate" property="createddate" jdbcType="TIMESTAMP"/>
+        <result column="CreatedBy" property="createdby" jdbcType="VARCHAR"/>
+        <result column="CreatedByID" property="createdbyid" jdbcType="CHAR"/>
+        <result column="DeptID" property="deptid" jdbcType="CHAR"/>
+        <result column="OrgID" property="orgid" jdbcType="CHAR"/>
+        <result column="RevisedDate" property="reviseddate" jdbcType="TIMESTAMP"/>
+        <result column="RevisedBy" property="revisedby" jdbcType="VARCHAR"/>
+        <result column="DataStatus" property="datastatus" jdbcType="INTEGER"/>
+        <result column="AliasID" property="aliasid" jdbcType="INTEGER"/>
+        <!--一个目的地对应多个产品  -->
+        <collection property="proProductBoList" ofType="com.holyrobot.bo.ProProductBo">
+            <id column="p_id" property="id" jdbcType="CHAR"/>
+            <result column="ProTypeID" property="protypeid" jdbcType="CHAR"/>
+            <result column="ProType" property="protype" jdbcType="VARCHAR"/>
+            <result column="ProCategoryID" property="procategoryid" jdbcType="CHAR"/>
+            <result column="ProCategory" property="procategory" jdbcType="VARCHAR"/>
+            <result column="ProName" property="proname" jdbcType="VARCHAR"/>
+            <result column="AliaseName" property="aliasename" jdbcType="VARCHAR"/>
+            <result column="ProNo" property="prono" jdbcType="VARCHAR"/>
+            <result column="TourDays" property="tourdays" jdbcType="INTEGER"/>
+            <result column="StartDate" property="startdate" jdbcType="TIMESTAMP"/>
+            <result column="DueDate" property="duedate" jdbcType="TIMESTAMP"/>
+            <result column="Departure" property="departure" jdbcType="VARCHAR"/>
+            <result column="Destination" property="destination" jdbcType="VARCHAR"/>
+            <result column="ProTag" property="protag" jdbcType="VARCHAR"/>
+            <result column="Feature" property="feature" jdbcType="VARCHAR"/>
+            <result column="FeeIncludes" property="feeincludes" jdbcType="VARCHAR"/>
+            <result column="FeeNonIncludes" property="feenonincludes" jdbcType="VARCHAR"/>
+            <result column="CoverImg" property="coverimg" jdbcType="VARCHAR"/>
+            <result column="Attention" property="attention" jdbcType="LONGVARCHAR"/>
+            <result column="Shopping" property="shopping" jdbcType="LONGVARCHAR"/>
+            <result column="Tips" property="tips" jdbcType="LONGVARCHAR"/>
+            <result column="Insurance" property="insurance" jdbcType="LONGVARCHAR"/>
+            <result column="BacToRule" property="bactorule" jdbcType="LONGVARCHAR"/>
+            <result column="IsAck" property="isack" jdbcType="INTEGER"/>
+            <result column="DataStatus" property="datastatus" jdbcType="INTEGER"/>
+            <result column="CreatedDate" property="createddate" jdbcType="TIMESTAMP"/>
+            <result column="CreatedBy" property="createdby" jdbcType="VARCHAR"/>
+            <result column="CreatedByID" property="createdbyid" jdbcType="CHAR"/>
+            <result column="DeptID" property="deptid" jdbcType="CHAR"/>
+            <result column="OrgID" property="orgid" jdbcType="CHAR"/>
+            <result column="TravelName" property="travelname" jdbcType="VARCHAR"/>
+            <result column="BrandName" property="brandname" jdbcType="VARCHAR"/>
+            <result column="RevisedDate" property="reviseddate" jdbcType="TIMESTAMP"/>
+            <result column="RevisedBy" property="revisedby" jdbcType="VARCHAR"/>
+            <result column="IsTail" property="istail" jdbcType="BIT"/>
+            <!-- 一个产品对应多个 -->
+        </collection>
+    </resultMap>
+    <sql id="Example_Where_Clause">
+        <where>
+            <foreach collection="oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" suffix=")" prefixOverrides="and">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")"
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Update_By_Example_Where_Clause">
+        <where>
+            <foreach collection="example.oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" suffix=")" prefixOverrides="and">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")"
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Base_Column_List">
+    ID, SiteName, DataStatus, CreatedDate, CreatedBy, CreatedByID, DeptID, OrgID, RevisedDate, 
+    RevisedBy, OrderIndex, FullSpell, FirstChar
+  </sql>
+    <sql id="dd_Column_List">
+    ID as IDD, ParentID, DestID, DestName, SiteID, SiteName, RouteTypeID, RouteType, CreatedDate, 
+    CreatedBy, CreatedByID, DeptID, OrgID, RevisedDate, RevisedBy, DataStatus, AliasID
+  </sql>
+    <sql id="Destination_Column_List">
+    d.IDD as d_id, d.ParentID, d.DestID, d.DestName, d.SiteID, d.SiteName, d.RouteTypeID, d.RouteType, d.CreatedDate, 
+    d.CreatedBy, d.CreatedByID, d.DeptID, d.OrgID, d.RevisedDate, d.RevisedBy, d.DataStatus, d.AliasID
+  </sql>
+    <sql id="Product_Column_List">
+    p.ID as p_id, p.ProTypeID, p.ProType, p.ProCategoryID, p.ProCategory, p.ProName, p.AliaseName, p.ProNo, p.TourDays, p.StartDate, 
+    p.DueDate, p.Departure, p.Destination, p.ProTag, p.Feature, p.FeeIncludes, p.FeeNonIncludes, 
+    p.CoverImg, p.Attention, p.Shopping, p.Tips, p.Insurance, p.BacToRule, p.IsAck, p.DataStatus, p.CreatedDate, 
+    p.CreatedBy, p.CreatedByID, p.DeptID, p.OrgID, p.TravelName, p.BrandName, p.RevisedDate, p.RevisedBy, p.IsTail
+  </sql>
+    <!--  查询所有 -->
+    <select id="selectAll" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from Om_Site
+    </select>
+    <!-- 根据siteid查询尾单的产品 -->
+    <select id="getProductAdnDestinationBysiteid" resultMap="ProductAdnDestinationResultMap"
+            parameterType="java.lang.String">
+        SELECT Top 8
+        <include refid="Destination_Column_List"/>,
+        <include refid="Product_Column_List"/>
+        FROM (SELECT DISTINCT DestID,
+        ID as IDD, ParentID, DestName, SiteID, SiteName, RouteTypeID, RouteType, CreatedDate,
+        CreatedBy, CreatedByID, DeptID, OrgID, RevisedDate, RevisedBy, DataStatus, AliasID
+        FROM Om_Destination WHERE DataStatus =2 AND SiteID =#{siteid,jdbcType=CHAR}) d
+        INNER JOIN Pro_Product_Destination pd
+        ON d.DestID=pd.DestinationID
+        INNER JOIN Pro_Product p
+        ON p.ID=pd.ProID
+        WHERE p.DataStatus = 2 AND p.IsTail=1
+    </select>
+
+    <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.holyrobot.con_om.pojo.OmSiteExample">
+        select
+        <if test="pageSize != null and pageSize != 0">
+            Top ${pageSize}
+        </if>
+        <if test="distinct">
+            distinct
+        </if>
+        <include refid="Base_Column_List"/>
+        from Om_Site
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+        <if test="startRow != null">
+            AND id NOT IN (SELECT TOP (${pageSize}*(${startRow}-1)) id FROM Om_Site)
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+    </select>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List"/>
+        from Om_Site
+        where ID = #{id,jdbcType=CHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from Om_Site
+    where ID = #{id,jdbcType=CHAR}
+  </delete>
+    <delete id="deleteByExample" parameterType="com.holyrobot.con_om.pojo.OmSiteExample">
+        delete from Om_Site
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </delete>
+    <insert id="insert" parameterType="com.holyrobot.con_om.pojo.OmSite">
+    insert into Om_Site (ID, SiteName, DataStatus, 
+      CreatedDate, CreatedBy, CreatedByID, 
+      DeptID, OrgID, RevisedDate, 
+      RevisedBy, OrderIndex, FullSpell, 
+      FirstChar)
+    values (#{id,jdbcType=CHAR}, #{sitename,jdbcType=VARCHAR}, #{datastatus,jdbcType=INTEGER},
+      #{createddate,jdbcType=TIMESTAMP}, #{createdby,jdbcType=VARCHAR}, #{createdbyid,jdbcType=CHAR},
+      #{deptid,jdbcType=CHAR}, #{orgid,jdbcType=CHAR}, #{reviseddate,jdbcType=TIMESTAMP}, 
+      #{revisedby,jdbcType=VARCHAR}, #{orderindex,jdbcType=INTEGER}, #{fullspell,jdbcType=VARCHAR},
+      #{firstchar,jdbcType=VARCHAR})
+  </insert>
+    <insert id="insertSelective" parameterType="com.holyrobot.con_om.pojo.OmSite">
+        insert into Om_Site
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                ID,
+            </if>
+            <if test="sitename != null">
+                SiteName,
+            </if>
+            <if test="datastatus != null">
+                DataStatus,
+            </if>
+            <if test="createddate != null">
+                CreatedDate,
+            </if>
+            <if test="createdby != null">
+                CreatedBy,
+            </if>
+            <if test="createdbyid != null">
+                CreatedByID,
+            </if>
+            <if test="deptid != null">
+                DeptID,
+            </if>
+            <if test="orgid != null">
+                OrgID,
+            </if>
+            <if test="reviseddate != null">
+                RevisedDate,
+            </if>
+            <if test="revisedby != null">
+                RevisedBy,
+            </if>
+            <if test="orderindex != null">
+                OrderIndex,
+            </if>
+            <if test="fullspell != null">
+                FullSpell,
+            </if>
+            <if test="firstchar != null">
+                FirstChar,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=CHAR},
+            </if>
+            <if test="sitename != null">
+                #{sitename,jdbcType=VARCHAR},
+            </if>
+            <if test="datastatus != null">
+                #{datastatus,jdbcType=INTEGER},
+            </if>
+            <if test="createddate != null">
+                #{createddate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createdby != null">
+                #{createdby,jdbcType=VARCHAR},
+            </if>
+            <if test="createdbyid != null">
+                #{createdbyid,jdbcType=CHAR},
+            </if>
+            <if test="deptid != null">
+                #{deptid,jdbcType=CHAR},
+            </if>
+            <if test="orgid != null">
+                #{orgid,jdbcType=CHAR},
+            </if>
+            <if test="reviseddate != null">
+                #{reviseddate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="revisedby != null">
+                #{revisedby,jdbcType=VARCHAR},
+            </if>
+            <if test="orderindex != null">
+                #{orderindex,jdbcType=INTEGER},
+            </if>
+            <if test="fullspell != null">
+                #{fullspell,jdbcType=VARCHAR},
+            </if>
+            <if test="firstchar != null">
+                #{firstchar,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <select id="countByExample" parameterType="com.holyrobot.con_om.pojo.OmSiteExample" resultType="java.lang.Integer">
+        select count(*) from Om_Site
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </select>
+    <update id="updateByExampleSelective" parameterType="map">
+        update Om_Site
+        <set>
+            <if test="record.id != null">
+                ID = #{record.id,jdbcType=CHAR},
+            </if>
+            <if test="record.sitename != null">
+                SiteName = #{record.sitename,jdbcType=VARCHAR},
+            </if>
+            <if test="record.datastatus != null">
+                DataStatus = #{record.datastatus,jdbcType=INTEGER},
+            </if>
+            <if test="record.createddate != null">
+                CreatedDate = #{record.createddate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.createdby != null">
+                CreatedBy = #{record.createdby,jdbcType=VARCHAR},
+            </if>
+            <if test="record.createdbyid != null">
+                CreatedByID = #{record.createdbyid,jdbcType=CHAR},
+            </if>
+            <if test="record.deptid != null">
+                DeptID = #{record.deptid,jdbcType=CHAR},
+            </if>
+            <if test="record.orgid != null">
+                OrgID = #{record.orgid,jdbcType=CHAR},
+            </if>
+            <if test="record.reviseddate != null">
+                RevisedDate = #{record.reviseddate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.revisedby != null">
+                RevisedBy = #{record.revisedby,jdbcType=VARCHAR},
+            </if>
+            <if test="record.orderindex != null">
+                OrderIndex = #{record.orderindex,jdbcType=INTEGER},
+            </if>
+            <if test="record.fullspell != null">
+                FullSpell = #{record.fullspell,jdbcType=VARCHAR},
+            </if>
+            <if test="record.firstchar != null">
+                FirstChar = #{record.firstchar,jdbcType=VARCHAR},
+            </if>
+        </set>
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByExample" parameterType="map">
+        update Om_Site
+        set ID = #{record.id,jdbcType=CHAR},
+        SiteName = #{record.sitename,jdbcType=VARCHAR},
+        DataStatus = #{record.datastatus,jdbcType=INTEGER},
+        CreatedDate = #{record.createddate,jdbcType=TIMESTAMP},
+        CreatedBy = #{record.createdby,jdbcType=VARCHAR},
+        CreatedByID = #{record.createdbyid,jdbcType=CHAR},
+        DeptID = #{record.deptid,jdbcType=CHAR},
+        OrgID = #{record.orgid,jdbcType=CHAR},
+        RevisedDate = #{record.reviseddate,jdbcType=TIMESTAMP},
+        RevisedBy = #{record.revisedby,jdbcType=VARCHAR},
+        OrderIndex = #{record.orderindex,jdbcType=INTEGER},
+        FullSpell = #{record.fullspell,jdbcType=VARCHAR},
+        FirstChar = #{record.firstchar,jdbcType=VARCHAR}
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByPrimaryKeySelective" parameterType="com.holyrobot.con_om.pojo.OmSite">
+        update Om_Site
+        <set>
+            <if test="sitename != null">
+                SiteName = #{sitename,jdbcType=VARCHAR},
+            </if>
+            <if test="datastatus != null">
+                DataStatus = #{datastatus,jdbcType=INTEGER},
+            </if>
+            <if test="createddate != null">
+                CreatedDate = #{createddate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createdby != null">
+                CreatedBy = #{createdby,jdbcType=VARCHAR},
+            </if>
+            <if test="createdbyid != null">
+                CreatedByID = #{createdbyid,jdbcType=CHAR},
+            </if>
+            <if test="deptid != null">
+                DeptID = #{deptid,jdbcType=CHAR},
+            </if>
+            <if test="orgid != null">
+                OrgID = #{orgid,jdbcType=CHAR},
+            </if>
+            <if test="reviseddate != null">
+                RevisedDate = #{reviseddate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="revisedby != null">
+                RevisedBy = #{revisedby,jdbcType=VARCHAR},
+            </if>
+            <if test="orderindex != null">
+                OrderIndex = #{orderindex,jdbcType=INTEGER},
+            </if>
+            <if test="fullspell != null">
+                FullSpell = #{fullspell,jdbcType=VARCHAR},
+            </if>
+            <if test="firstchar != null">
+                FirstChar = #{firstchar,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where ID = #{id,jdbcType=CHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.holyrobot.con_om.pojo.OmSite">
+    update Om_Site
+    set SiteName = #{sitename,jdbcType=VARCHAR},
+      DataStatus = #{datastatus,jdbcType=INTEGER},
+      CreatedDate = #{createddate,jdbcType=TIMESTAMP},
+      CreatedBy = #{createdby,jdbcType=VARCHAR},
+      CreatedByID = #{createdbyid,jdbcType=CHAR},
+      DeptID = #{deptid,jdbcType=CHAR},
+      OrgID = #{orgid,jdbcType=CHAR},
+      RevisedDate = #{reviseddate,jdbcType=TIMESTAMP},
+      RevisedBy = #{revisedby,jdbcType=VARCHAR},
+      OrderIndex = #{orderindex,jdbcType=INTEGER},
+      FullSpell = #{fullspell,jdbcType=VARCHAR},
+      FirstChar = #{firstchar,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+
+    <select id="selectSiteByOrgId" resultType="com.holyrobot.con_om.pojo.OmSite">
+    SELECT
+      s.*
+    FROM
+      Om_Site as s
+      LEFT JOIN Om_OpPermission as o on s.ID = o.SiteID
+      where o.TravelAgencyID=#{orgId}
+      AND s.DataStatus = 1
+  </select>
+
+    <select id="selectDefaultSiteByOrgId" resultType="com.holyrobot.dto.DefaultSiteDto">
+     SELECT
+            TOP 1 p.siteId,
+            p.SiteName,
+            COUNT (*) num
+        FROM
+            Pro_Product_Site as p
+            LEFT JOIN Om_Site as s on s.ID = p.SiteID
+            LEFT JOIN Om_OpPermission as o on o.SiteID = p.SiteID
+        WHERE
+            p.ProID IN (
+                SELECT
+                    ProID
+                FROM
+                    Pro_Tour
+                WHERE
+                    OrgID = #{orgId}
+                AND DueDate > DATEADD(DAY ,- 1, GETDATE())
+                GROUP BY
+                    ProID
+            )
+        AND s.DataStatus = 1
+        AND o.TravelAgencyID = #{orgId}
+        GROUP BY
+            p.siteId,
+            p.SiteName
+        ORDER BY
+            num DESC
+  </select>
+</mapper>
